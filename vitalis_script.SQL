@@ -8,6 +8,32 @@ Database: Oracle 19c
 
 -- Drop relationships section -------------------------------------------------
 
+ALTER TABLE vitalis_bitacoras DROP CONSTRAINT Relationship63
+;
+ALTER TABLE vitalis_notificaciones DROP CONSTRAINT Relationship62
+;
+ALTER TABLE vitalis_feriados DROP CONSTRAINT Relationship60
+;
+ALTER TABLE vitalis_monitor_eventos DROP CONSTRAINT Relationship59
+;
+ALTER TABLE vitalis_jobs_ejecuciones DROP CONSTRAINT Relationship58
+;
+ALTER TABLE vitalis_autoregistros_documentos DROP CONSTRAINT Relationship57
+;
+ALTER TABLE vitalis_autoregistros_documentos DROP CONSTRAINT Relationship56
+;
+ALTER TABLE vitalis_vacaciones DROP CONSTRAINT Relationship55
+;
+ALTER TABLE vitalis_facturas_detalle DROP CONSTRAINT Relationship54
+;
+ALTER TABLE vitalis_facturas_centros DROP CONSTRAINT Relationship53
+;
+ALTER TABLE vitalis_consultorios DROP CONSTRAINT Relationship52
+;
+ALTER TABLE vitalis_incapacidades DROP CONSTRAINT Relationship50
+;
+ALTER TABLE vitalis_contratos DROP CONSTRAINT Relationship49
+;
 ALTER TABLE vitalis_identificacion DROP CONSTRAINT Relationship48
 ;
 ALTER TABLE vitalis_resumen_financiero DROP CONSTRAINT Relationship47
@@ -98,19 +124,49 @@ ALTER TABLE vitalis_provincia DROP CONSTRAINT Relationship2
 
 -- Drop keys for tables section -------------------------------------------------
 
+ALTER TABLE vitalis_tarifas_historial DROP CONSTRAINT vitalis_tarifas_historial_pk
+;
+ALTER TABLE vitalis_monitor_eventos DROP CONSTRAINT vitalis_monitor_eventos_pk
+;
+ALTER TABLE vitalis_monitor_bd DROP CONSTRAINT vitalis_monitor_bd_pk
+;
+ALTER TABLE vitalis_jobs_ejecuciones DROP CONSTRAINT vitalis_jobs_ejecuciones_pk
+;
+ALTER TABLE vitalis_jobs DROP CONSTRAINT vitalis_jobs_pk
+;
+ALTER TABLE vitalis_plantillas_notificacion DROP CONSTRAINT vitalis_plantillas_notificacion_pk
+;
+ALTER TABLE vitalis_autoregistros_documentos DROP CONSTRAINT vitalis_autoregistros_documentos_pk
+;
+ALTER TABLE vitalis_autoregistros DROP CONSTRAINT vitalis_autoregistros_pk
+;
+ALTER TABLE vitalis_facturas_centros DROP CONSTRAINT vitalis_facturas_centros _pk
+;
+ALTER TABLE vitalis_facturas_detalle DROP CONSTRAINT vitalis_facturas_detalle_pk
+;
+ALTER TABLE vitalis_consultorios DROP CONSTRAINT vitalis_consultorios_pk
+;
+ALTER TABLE vitalis_feriados DROP CONSTRAINT vitalis_feriados_pk
+;
+ALTER TABLE vitalis_vacaciones DROP CONSTRAINT vitalis_vacaciones_pk
+;
+ALTER TABLE vitalis_incapacidades DROP CONSTRAINT vitalis_incapacidades_pk
+;
+ALTER TABLE vitalis_contratos DROP CONSTRAINT vitalis_contratos_pk
+;
 ALTER TABLE vitalis_notificaciones DROP CONSTRAINT vitalis_notificaciones_pk
 ;
 ALTER TABLE vitalis_identificacion DROP CONSTRAINT vitalis_identificacion_pk
 ;
-ALTER TABLE vitalis_estados DROP CONSTRAINT PK_vitalis_estados
+ALTER TABLE vitalis_estados DROP CONSTRAINT vitalis_estados_pk
 ;
-ALTER TABLE vitalis_personal_tipos_planillas DROP CONSTRAINT PK_vitalis_personal_tipos_planillas
+ALTER TABLE vitalis_personal_tipos_planillas DROP CONSTRAINT vitalis_personal_tipos_plantillas_pk
 ;
-ALTER TABLE vitalis_perfiles_pantallas DROP CONSTRAINT PK_vitalis_perfiles_pantallas
+ALTER TABLE vitalis_perfiles_pantallas DROP CONSTRAINT vitalis_perfiles_pantallas_pk
 ;
 ALTER TABLE vitalis_puestos_turnos DROP CONSTRAINT vitalis_puestos_turnos_pk
 ;
-ALTER TABLE vitalis_padron_nacional DROP CONSTRAINT PK_vitalis_padron_nacional
+ALTER TABLE vitalis_padron_nacional DROP CONSTRAINT vitalis_padron_nacional_pk
 ;
 ALTER TABLE vitalis_bitacoras DROP CONSTRAINT vitalis_bitacoras_pk
 ;
@@ -180,7 +236,33 @@ ALTER TABLE vitalis_paises DROP CONSTRAINT vitalis_paises_pk
 
 -- Drop indexes section -------------------------------------------------
 
+DROP INDEX IX_Relationship59
+;
+DROP INDEX IX_Relationship58
+;
+DROP INDEX IX_Relationship56
+;
+DROP INDEX IX_Relationship57
+;
+DROP INDEX IX_Relationship53
+;
+DROP INDEX IX_Relationship54
+;
+DROP INDEX IX_Relationship52
+;
+DROP INDEX IX_Relationship60
+;
+DROP INDEX IX_Relationship55
+;
+DROP INDEX IX_Relationship50
+;
+DROP INDEX IX_Relationship49
+;
+DROP INDEX IX_Relationship62
+;
 DROP INDEX IX_Relationship48
+;
+DROP INDEX IX_Relationship63
 ;
 DROP INDEX IX_Relationship47
 ;
@@ -256,6 +338,36 @@ DROP INDEX vitalis_provincia_ind01
 
 -- Drop tables section ---------------------------------------------------
 
+DROP TABLE vitalis_tarifas_historial
+;
+DROP TABLE vitalis_monitor_eventos
+;
+DROP TABLE vitalis_monitor_bd
+;
+DROP TABLE vitalis_jobs_ejecuciones
+;
+DROP TABLE vitalis_jobs
+;
+DROP TABLE vitalis_plantillas_notificacion
+;
+DROP TABLE vitalis_autoregistros_documentos
+;
+DROP TABLE vitalis_autoregistros
+;
+DROP TABLE vitalis_facturas_centros
+;
+DROP TABLE vitalis_facturas_detalle
+;
+DROP TABLE vitalis_consultorios
+;
+DROP TABLE vitalis_feriados
+;
+DROP TABLE vitalis_vacaciones
+;
+DROP TABLE vitalis_incapacidades
+;
+DROP TABLE vitalis_contratos
+;
 DROP TABLE vitalis_notificaciones
 ;
 DROP TABLE vitalis_identificacion
@@ -1810,8 +1922,14 @@ CREATE TABLE vitalis_bitacoras(
   bit_valores_anteriores Char(20 ),
   bit_valores_nuevos Char(20 ),
   bit_ip_usuario Char(20 ),
-  bit_version Char(20 ) DEFAULT 1
+  bit_version Char(20 ) DEFAULT 1,
+  usu_id Number
 )
+;
+
+-- Create indexes for table vitalis_bitacoras
+
+CREATE INDEX IX_Relationship63 ON vitalis_bitacoras (usu_id)
 ;
 
 -- Add keys for table vitalis_bitacoras
@@ -1862,7 +1980,7 @@ CREATE TABLE vitalis_padron_nacional(
 
 -- Add keys for table vitalis_padron_nacional
 
-ALTER TABLE vitalis_padron_nacional ADD CONSTRAINT PK_vitalis_padron_nacional PRIMARY KEY (pad_id)
+ALTER TABLE vitalis_padron_nacional ADD CONSTRAINT vitalis_padron_nacional_pk PRIMARY KEY (pad_id)
 ;
 
 -- Table and Columns comments section
@@ -1951,7 +2069,7 @@ CREATE TABLE vitalis_perfiles_pantallas(
 
 -- Add keys for table vitalis_perfiles_pantallas
 
-ALTER TABLE vitalis_perfiles_pantallas ADD CONSTRAINT PK_vitalis_perfiles_pantallas PRIMARY KEY (pan_id,prf_id,prp_id)
+ALTER TABLE vitalis_perfiles_pantallas ADD CONSTRAINT vitalis_perfiles_pantallas_pk PRIMARY KEY (pan_id,prf_id,prp_id)
 ;
 
 -- Table and Columns comments section
@@ -1993,7 +2111,7 @@ CREATE TABLE vitalis_personal_tipos_planillas(
 
 -- Add keys for table vitalis_personal_tipos_planillas
 
-ALTER TABLE vitalis_personal_tipos_planillas ADD CONSTRAINT PK_vitalis_personal_tipos_planillas PRIMARY KEY (ptp_id)
+ALTER TABLE vitalis_personal_tipos_planillas ADD CONSTRAINT vitalis_personal_tipos_plantillas_pk PRIMARY KEY (ptp_id)
 ;
 
 -- Table and Columns comments section
@@ -2025,7 +2143,7 @@ CREATE TABLE vitalis_estados(
 
 -- Add keys for table vitalis_estados
 
-ALTER TABLE vitalis_estados ADD CONSTRAINT PK_vitalis_estados PRIMARY KEY (est_id)
+ALTER TABLE vitalis_estados ADD CONSTRAINT vitalis_estados_pk PRIMARY KEY (est_id)
 ;
 
 -- Table and Columns comments section
@@ -2077,8 +2195,14 @@ CREATE TABLE vitalis_notificaciones(
   not_fecha_envio Char(20 ),
   not_estado Char(20 ),
   not_intentos Char(20 ),
-  not_version Number DEFAULT 1
+  not_version Number DEFAULT 1,
+  pln_id Number
 )
+;
+
+-- Create indexes for table vitalis_notificaciones
+
+CREATE INDEX IX_Relationship62 ON vitalis_notificaciones (pln_id)
 ;
 
 -- Add keys for table vitalis_notificaciones
@@ -2105,6 +2229,380 @@ COMMENT ON COLUMN vitalis_notificaciones.not_estado IS 'E=Enviado, P=Pendiente, 
 COMMENT ON COLUMN vitalis_notificaciones.not_intentos IS 'Intentos de envio'
 ;
 COMMENT ON COLUMN vitalis_notificaciones.not_version IS 'Version del registro'
+;
+
+-- Table vitalis_contratos
+
+CREATE TABLE vitalis_contratos(
+  ctr_id Number NOT NULL,
+  ctr_tipo Char(20 ),
+  ctr_fecha_inicio Char(20 ),
+  ctr_fecha_fin Char(20 ),
+  ctr_monto_base Char(20 ),
+  ctr_estado Char(20 ),
+  ctr_version Number,
+  per_id Number
+)
+;
+
+-- Create indexes for table vitalis_contratos
+
+CREATE INDEX IX_Relationship49 ON vitalis_contratos (per_id)
+;
+
+-- Add keys for table vitalis_contratos
+
+ALTER TABLE vitalis_contratos ADD CONSTRAINT vitalis_contratos_pk PRIMARY KEY (ctr_id)
+;
+
+-- Table vitalis_incapacidades
+
+CREATE TABLE vitalis_incapacidades(
+  inc_id Number NOT NULL,
+  inc_fecha_inicio Char(20 ),
+  inc_fecha_fin Char(20 ),
+  inc_tipo Char(20 ),
+  inc_certificado Char(20 ),
+  inc_version Number DEFAULT 1,
+  per_id Number
+)
+;
+
+-- Create indexes for table vitalis_incapacidades
+
+CREATE INDEX IX_Relationship50 ON vitalis_incapacidades (per_id)
+;
+
+-- Add keys for table vitalis_incapacidades
+
+ALTER TABLE vitalis_incapacidades ADD CONSTRAINT vitalis_incapacidades_pk PRIMARY KEY (inc_id)
+;
+
+-- Table vitalis_vacaciones
+
+CREATE TABLE vitalis_vacaciones(
+  vac_id Number NOT NULL,
+  vac_fecha_inicio Char(20 ),
+  vac_fecha_fin Char(20 ),
+  vac_dias Char(20 ),
+  vac_estado Char(20 ),
+  vac_version Number DEFAULT 1 NOT NULL,
+  per_id Number
+)
+;
+
+-- Create indexes for table vitalis_vacaciones
+
+CREATE INDEX IX_Relationship55 ON vitalis_vacaciones (per_id)
+;
+
+-- Add keys for table vitalis_vacaciones
+
+ALTER TABLE vitalis_vacaciones ADD CONSTRAINT vitalis_vacaciones_pk PRIMARY KEY (vac_id)
+;
+
+-- Table vitalis_feriados
+
+CREATE TABLE vitalis_feriados(
+  fer_id Number NOT NULL,
+  fer_fecha Char(20 ),
+  fer_nombre Char(20 ),
+  fer_tipo Char(20 ),
+  fer_estado Char(20 ),
+  fer_version Number DEFAULT 1 NOT NULL,
+  csa_id Number
+)
+;
+
+-- Create indexes for table vitalis_feriados
+
+CREATE INDEX IX_Relationship60 ON vitalis_feriados (csa_id)
+;
+
+-- Add keys for table vitalis_feriados
+
+ALTER TABLE vitalis_feriados ADD CONSTRAINT vitalis_feriados_pk PRIMARY KEY (fer_id)
+;
+
+-- Table vitalis_consultorios
+
+CREATE TABLE vitalis_consultorios(
+  con_id Number NOT NULL,
+  con_codigo Char(20 ),
+  con_nombre Char(20 ),
+  con_capacidad Char(20 ),
+  con_estado Char(20 ),
+  con_version Number DEFAULT 1 NOT NULL,
+  csa_id Number
+)
+;
+
+-- Create indexes for table vitalis_consultorios
+
+CREATE INDEX IX_Relationship52 ON vitalis_consultorios (csa_id)
+;
+
+-- Add keys for table vitalis_consultorios
+
+ALTER TABLE vitalis_consultorios ADD CONSTRAINT vitalis_consultorios_pk PRIMARY KEY (con_id)
+;
+
+-- Table vitalis_facturas_detalle
+
+CREATE TABLE vitalis_facturas_detalle(
+  fad_id Number NOT NULL,
+  fad_origen Char(20 ),
+  fad_origen_id Char(20 ),
+  fad_descripcion Char(20 ),
+  fad_cantidad Char(20 ),
+  fad_precio_unit Char(20 ),
+  fad_monto Char(20 ),
+  fad_version Number DEFAULT 1,
+  fac_id Number
+)
+;
+
+-- Create indexes for table vitalis_facturas_detalle
+
+CREATE INDEX IX_Relationship54 ON vitalis_facturas_detalle (fac_id)
+;
+
+-- Add keys for table vitalis_facturas_detalle
+
+ALTER TABLE vitalis_facturas_detalle ADD CONSTRAINT vitalis_facturas_detalle_pk PRIMARY KEY (fad_id)
+;
+
+-- Table vitalis_facturas_centros
+
+CREATE TABLE vitalis_facturas_centros(
+  fac_id Number NOT NULL,
+  fac_mes Char(20 ),
+  fac_anio Char(20 ),
+  fac_numero Char(20 ),
+  fac_fecha Char(20 ),
+  fac_subtotal Char(20 ),
+  fac_impuestos Char(20 ),
+  fac_total Char(20 ),
+  fac_estado Char(20 ),
+  fac_version Number NOT NULL,
+  csa_id Number
+)
+;
+
+-- Create indexes for table vitalis_facturas_centros
+
+CREATE INDEX IX_Relationship53 ON vitalis_facturas_centros (csa_id)
+;
+
+-- Add keys for table vitalis_facturas_centros
+
+ALTER TABLE vitalis_facturas_centros ADD CONSTRAINT vitalis_facturas_centros _pk PRIMARY KEY (fac_id)
+;
+
+-- Table and Columns comments section
+
+COMMENT ON COLUMN vitalis_facturas_centros.fac_estado IS ' (EMITIDA/PAGADA/ANULADA)'
+;
+COMMENT ON COLUMN vitalis_facturas_centros.fac_version IS 'Version del registro'
+;
+
+-- Table vitalis_autoregistros
+
+CREATE TABLE vitalis_autoregistros(
+  aur_id Number NOT NULL,
+  aur_cedula Char(20 ),
+  aur_nombre Char(20 ),
+  aur_apellido1 Char(20 ),
+  aur_apellido2 Char(20 ),
+  aur_email Char(20 ),
+  aur_telefono Char(20 ),
+  aur_tipo_personal Char(20 ),
+  aur_fecha_nacimiento Char(20 ),
+  aur_estado Char(20 ),
+  aur_fecha_registro Char(20 ),
+  aur_fecha_revision Char(20 ),
+  aur_usu_revisor Char(20 ),
+  aur_version Number DEFAULT 1 NOT NULL
+)
+;
+
+-- Add keys for table vitalis_autoregistros
+
+ALTER TABLE vitalis_autoregistros ADD CONSTRAINT vitalis_autoregistros_pk PRIMARY KEY (aur_id)
+;
+
+-- Table and Columns comments section
+
+COMMENT ON COLUMN vitalis_autoregistros.aur_id IS 'ID único del autoregistro'
+;
+COMMENT ON COLUMN vitalis_autoregistros.aur_cedula IS 'Cédula de identidad'
+;
+COMMENT ON COLUMN vitalis_autoregistros.aur_nombre IS 'Primer nombre'
+;
+COMMENT ON COLUMN vitalis_autoregistros.aur_tipo_personal IS 'MEDICO, ADMINISTRATIVO'
+;
+COMMENT ON COLUMN vitalis_autoregistros.aur_estado IS 'P=Pendiente, A=Aprobado, R=Rechazado'
+;
+
+-- Table vitalis_autoregistros_documentos
+
+CREATE TABLE vitalis_autoregistros_documentos(
+  aud_id Number NOT NULL,
+  aud_nombre_archivo Char(20 ),
+  aud_ruta_archivo Char(20 ),
+  aud_fecha_carga Char(20 ),
+  aud_estado Char(20 ),
+  aud_version Number DEFAULT 1 NOT NULL,
+  aur_id Number,
+  tdo_id Number
+)
+;
+
+-- Create indexes for table vitalis_autoregistros_documentos
+
+CREATE INDEX IX_Relationship56 ON vitalis_autoregistros_documentos (aur_id)
+;
+
+CREATE INDEX IX_Relationship57 ON vitalis_autoregistros_documentos (tdo_id)
+;
+
+-- Add keys for table vitalis_autoregistros_documentos
+
+ALTER TABLE vitalis_autoregistros_documentos ADD CONSTRAINT vitalis_autoregistros_documentos_pk PRIMARY KEY (aud_id)
+;
+
+-- Table and Columns comments section
+
+COMMENT ON COLUMN vitalis_autoregistros_documentos.aud_version IS 'Version del registro'
+;
+
+-- Table vitalis_plantillas_notificacion
+
+CREATE TABLE vitalis_plantillas_notificacion(
+  pln_id Number NOT NULL,
+  pln_codigo Char(20 ),
+  pln_nombre Char(20 ),
+  pln_asunto Char(20 ),
+  pln_cuerpo Char(20 ),
+  pln_tipo Char(20 ),
+  pln_estado Char(20 ),
+  pln_fecha_creacion Char(20 ),
+  pln_version Number DEFAULT 1
+)
+;
+
+-- Add keys for table vitalis_plantillas_notificacion
+
+ALTER TABLE vitalis_plantillas_notificacion ADD CONSTRAINT vitalis_plantillas_notificacion_pk PRIMARY KEY (pln_id)
+;
+
+-- Table vitalis_jobs
+
+CREATE TABLE vitalis_jobs(
+  job_id Number NOT NULL,
+  job_codigo Char(20 ),
+  job_nombre Char(20 ),
+  job_descripcion Char(20 ),
+  job_cron Char(20 ),
+  job_activo Char(20 ),
+  job_fecha_creacion Char(20 ),
+  job_version Number DEFAULT 1 NOT NULL
+)
+;
+
+-- Add keys for table vitalis_jobs
+
+ALTER TABLE vitalis_jobs ADD CONSTRAINT vitalis_jobs_pk PRIMARY KEY (job_id)
+;
+
+-- Table and Columns comments section
+
+COMMENT ON COLUMN vitalis_jobs.job_version IS 'Version del registro'
+;
+
+-- Table vitalis_jobs_ejecuciones
+
+CREATE TABLE vitalis_jobs_ejecuciones(
+  joe_id Number NOT NULL,
+  joe_fecha_inicio Char(20 ),
+  joe_fecha_fin Char(20 ),
+  joe_estado Char(20 ),
+  joe_log Char(20 ),
+  joe_version Number DEFAULT 1 NOT NULL,
+  job_id Number
+)
+;
+
+-- Create indexes for table vitalis_jobs_ejecuciones
+
+CREATE INDEX IX_Relationship58 ON vitalis_jobs_ejecuciones (job_id)
+;
+
+-- Add keys for table vitalis_jobs_ejecuciones
+
+ALTER TABLE vitalis_jobs_ejecuciones ADD CONSTRAINT vitalis_jobs_ejecuciones_pk PRIMARY KEY (joe_id)
+;
+
+-- Table vitalis_monitor_bd
+
+CREATE TABLE vitalis_monitor_bd(
+  mbd_id Number NOT NULL,
+  mbd_tipo Char(20 ),
+  mbd_descripcion Char(20 ),
+  mbd_valor Char(20 ),
+  mbd_fecha Char(20 ),
+  mbd_estado Char(20 ),
+  mbd_version Number DEFAULT 1 NOT NULL
+)
+;
+
+-- Add keys for table vitalis_monitor_bd
+
+ALTER TABLE vitalis_monitor_bd ADD CONSTRAINT vitalis_monitor_bd_pk PRIMARY KEY (mbd_id)
+;
+
+-- Table vitalis_monitor_eventos
+
+CREATE TABLE vitalis_monitor_eventos(
+  mve_id Number NOT NULL,
+  mve_fecha Char(20 ),
+  mve_notificado Char(20 ),
+  mve_destinatario Char(20 ),
+  mve_resultado Char(20 ),
+  mve_estado Char(20 ),
+  mve_version Number DEFAULT 1 NOT NULL,
+  mbd_id Number
+)
+;
+
+-- Create indexes for table vitalis_monitor_eventos
+
+CREATE INDEX IX_Relationship59 ON vitalis_monitor_eventos (mbd_id)
+;
+
+-- Add keys for table vitalis_monitor_eventos
+
+ALTER TABLE vitalis_monitor_eventos ADD CONSTRAINT vitalis_monitor_eventos_pk PRIMARY KEY (mve_id)
+;
+
+-- Table vitalis_tarifas_historial
+
+CREATE TABLE vitalis_tarifas_historial(
+  tah_id Number NOT NULL,
+  tah_contexto Char(20 ),
+  tah_monto_cobrar Char(20 ),
+  tah_monto_pagar Char(20 ),
+  tah_vig_desde Char(20 ),
+  tah_vig_hasta Char(20 ),
+  tah_estado Char(20 ),
+  tah_fecha_registro Char(20 ),
+  tah_version Number DEFAULT 1 NOT NULL
+)
+;
+
+-- Add keys for table vitalis_tarifas_historial
+
+ALTER TABLE vitalis_tarifas_historial ADD CONSTRAINT vitalis_tarifas_historial_pk PRIMARY KEY (tah_id)
 ;
 
 
@@ -2316,6 +2814,71 @@ ALTER TABLE vitalis_resumen_financiero ADD CONSTRAINT Relationship47 FOREIGN KEY
 
 
 ALTER TABLE vitalis_identificacion ADD CONSTRAINT Relationship48 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+;
+
+
+
+ALTER TABLE vitalis_contratos ADD CONSTRAINT Relationship49 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+;
+
+
+
+ALTER TABLE vitalis_incapacidades ADD CONSTRAINT Relationship50 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+;
+
+
+
+ALTER TABLE vitalis_consultorios ADD CONSTRAINT Relationship52 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+;
+
+
+
+ALTER TABLE vitalis_facturas_centros ADD CONSTRAINT Relationship53 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+;
+
+
+
+ALTER TABLE vitalis_facturas_detalle ADD CONSTRAINT Relationship54 FOREIGN KEY (fac_id) REFERENCES vitalis_facturas_centros (fac_id)
+;
+
+
+
+ALTER TABLE vitalis_vacaciones ADD CONSTRAINT Relationship55 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+;
+
+
+
+ALTER TABLE vitalis_autoregistros_documentos ADD CONSTRAINT Relationship56 FOREIGN KEY (aur_id) REFERENCES vitalis_autoregistros (aur_id)
+;
+
+
+
+ALTER TABLE vitalis_autoregistros_documentos ADD CONSTRAINT Relationship57 FOREIGN KEY (tdo_id) REFERENCES vitalis_tipos_documentos (tdo_id)
+;
+
+
+
+ALTER TABLE vitalis_jobs_ejecuciones ADD CONSTRAINT Relationship58 FOREIGN KEY (job_id) REFERENCES vitalis_jobs (job_id)
+;
+
+
+
+ALTER TABLE vitalis_monitor_eventos ADD CONSTRAINT Relationship59 FOREIGN KEY (mbd_id) REFERENCES vitalis_monitor_bd (mbd_id)
+;
+
+
+
+ALTER TABLE vitalis_feriados ADD CONSTRAINT Relationship60 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+;
+
+
+
+ALTER TABLE vitalis_notificaciones ADD CONSTRAINT Relationship62 FOREIGN KEY (pln_id) REFERENCES vitalis_plantillas_notificacion (pln_id)
+;
+
+
+
+ALTER TABLE vitalis_bitacoras ADD CONSTRAINT Relationship63 FOREIGN KEY (usu_id) REFERENCES vitalis_usuarios (usu_id)
 ;
 
 
