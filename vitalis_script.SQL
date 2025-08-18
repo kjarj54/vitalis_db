@@ -6,6 +6,335 @@ Database: Oracle 19c
 */
 
 
+-- Drop relationships section -------------------------------------------------
+
+ALTER TABLE vitalis_identificacion DROP CONSTRAINT Relationship48
+;
+ALTER TABLE vitalis_resumen_financiero DROP CONSTRAINT Relationship47
+;
+ALTER TABLE vitalis_planillas_movimientos DROP CONSTRAINT Relationship46
+;
+ALTER TABLE vitalis_planillas_detalle DROP CONSTRAINT Relationship45
+;
+ALTER TABLE vitalis_escalas_mensuales_detalle DROP CONSTRAINT Relationship44
+;
+ALTER TABLE vitalis_escalas_mensuales DROP CONSTRAINT Relationship43
+;
+ALTER TABLE vitalis_escalas_base_detalle DROP CONSTRAINT Relationship42
+;
+ALTER TABLE vitalis_escalas_base_detalle DROP CONSTRAINT Relationship41
+;
+ALTER TABLE vitalis_procedimientos_medicos DROP CONSTRAINT Relationship40
+;
+ALTER TABLE vitalis_perfiles DROP CONSTRAINT Relationship38
+;
+ALTER TABLE vitalis_tipos_documentos DROP CONSTRAINT Relationship37
+;
+ALTER TABLE vitalis_planillas_movimientos DROP CONSTRAINT Relationship36
+;
+ALTER TABLE vitalis_procedimientos_medicos DROP CONSTRAINT Relationship34
+;
+ALTER TABLE vitalis_procedimientos_medicos DROP CONSTRAINT Relationship33
+;
+ALTER TABLE vitalis_escalas_mensuales_detalle DROP CONSTRAINT Relationship32
+;
+ALTER TABLE vitalis_escalas_base_detalle DROP CONSTRAINT Relationship29
+;
+ALTER TABLE vitalis_usuarios DROP CONSTRAINT Relationship27
+;
+ALTER TABLE vitalis_documentos_personas DROP CONSTRAINT Relationship26
+;
+ALTER TABLE vitalis_cuentas_bancarias DROP CONSTRAINT Relationship25
+;
+ALTER TABLE vitalis_cuentas_bancarias DROP CONSTRAINT Relationship24
+;
+ALTER TABLE vitalis_direcciones_personas DROP CONSTRAINT Relationship23
+;
+ALTER TABLE vitalis_centros_salud DROP CONSTRAINT Relationship22
+;
+ALTER TABLE vitalis_personal_tipos_planillas DROP CONSTRAINT Relationship21
+;
+ALTER TABLE vitalis_personal_tipos_planillas DROP CONSTRAINT Relationship20
+;
+ALTER TABLE vitalis_perfiles_pantallas DROP CONSTRAINT Relationship19
+;
+ALTER TABLE vitalis_perfiles_pantallas DROP CONSTRAINT Relationship18
+;
+ALTER TABLE vitalis_puestos_turnos DROP CONSTRAINT Relationship17
+;
+ALTER TABLE vitalis_puestos_turnos DROP CONSTRAINT Relationship16
+;
+ALTER TABLE vitalis_planillas_detalle DROP CONSTRAINT Relationship15
+;
+ALTER TABLE vitalis_planillas DROP CONSTRAINT Relationship14
+;
+ALTER TABLE vitalis_escalas_mensuales_detalle DROP CONSTRAINT Relationship13
+;
+ALTER TABLE vitalis_escalas_mensuales DROP CONSTRAINT Relationship12
+;
+ALTER TABLE vitalis_escalas_base DROP CONSTRAINT Relationship11
+;
+ALTER TABLE vitalis_puestos DROP CONSTRAINT Relationship10
+;
+ALTER TABLE vitalis_usuarios DROP CONSTRAINT Relationship9
+;
+ALTER TABLE vitalis_documentos_personas DROP CONSTRAINT Relationship8
+;
+ALTER TABLE vitalis_cuentas_bancarias DROP CONSTRAINT Relationship7
+;
+ALTER TABLE vitalis_telefonos_personas DROP CONSTRAINT Relationship6
+;
+ALTER TABLE vitalis_direcciones_personas DROP CONSTRAINT Relationship5
+;
+ALTER TABLE vitalis_distritos DROP CONSTRAINT Relationship4
+;
+ALTER TABLE vitalis_cantones DROP CONSTRAINT Relationship3
+;
+ALTER TABLE vitalis_provincia DROP CONSTRAINT Relationship2
+;
+
+
+
+
+-- Drop keys for tables section -------------------------------------------------
+
+ALTER TABLE vitalis_notificaciones DROP CONSTRAINT vitalis_notificaciones_pk
+;
+ALTER TABLE vitalis_identificacion DROP CONSTRAINT vitalis_identificacion_pk
+;
+ALTER TABLE vitalis_estados DROP CONSTRAINT PK_vitalis_estados
+;
+ALTER TABLE vitalis_personal_tipos_planillas DROP CONSTRAINT PK_vitalis_personal_tipos_planillas
+;
+ALTER TABLE vitalis_perfiles_pantallas DROP CONSTRAINT PK_vitalis_perfiles_pantallas
+;
+ALTER TABLE vitalis_puestos_turnos DROP CONSTRAINT vitalis_puestos_turnos_pk
+;
+ALTER TABLE vitalis_padron_nacional DROP CONSTRAINT PK_vitalis_padron_nacional
+;
+ALTER TABLE vitalis_bitacoras DROP CONSTRAINT vitalis_bitacoras_pk
+;
+ALTER TABLE vitalis_parametros DROP CONSTRAINT vitalis_parametros_pk
+;
+ALTER TABLE vitalis_resumen_financiero DROP CONSTRAINT vitalis_resumen_financiero_pk
+;
+ALTER TABLE vitalis_planillas_movimientos DROP CONSTRAINT vitalis_planillas_movimientos_pk
+;
+ALTER TABLE vitalis_planillas_detalle DROP CONSTRAINT vitalis_planillas_detalle_pk
+;
+ALTER TABLE vitalis_planillas DROP CONSTRAINT vitalis_planillas_pk
+;
+ALTER TABLE vitalis_tipos_movimientos DROP CONSTRAINT vitalis_tipos_movimientos_pk
+;
+ALTER TABLE vitalis_tipos_planillas DROP CONSTRAINT vitalis_tipos_planillas_pk
+;
+ALTER TABLE vitalis_escalas_mensuales_detalle DROP CONSTRAINT vitalis_escalas_mensuales_detalle_pk
+;
+ALTER TABLE vitalis_escalas_mensuales DROP CONSTRAINT vitalis_escalas_mensuales_pk
+;
+ALTER TABLE vitalis_escalas_base_detalle DROP CONSTRAINT vitalis_escalas_base_detalle_pk
+;
+ALTER TABLE vitalis_escalas_base DROP CONSTRAINT vitalis_escalas_base_pk
+;
+ALTER TABLE vitalis_procedimientos_medicos DROP CONSTRAINT vitalis_procedimientos_medicos_pk
+;
+ALTER TABLE vitalis_tipos_procedimientos DROP CONSTRAINT vitalis_tipos_procedimientos_pk
+;
+ALTER TABLE vitalis_turnos DROP CONSTRAINT vitalis_turnos_pk
+;
+ALTER TABLE vitalis_puestos DROP CONSTRAINT vitalis_puestos_pk
+;
+ALTER TABLE vitalis_centros_salud DROP CONSTRAINT vitalis_centros_salud_pk
+;
+ALTER TABLE vitalis_usuarios DROP CONSTRAINT vitalis_usuarios_pk
+;
+ALTER TABLE vitalis_pantallas DROP CONSTRAINT vitalis_pantallas_pk
+;
+ALTER TABLE vitalis_perfiles DROP CONSTRAINT vitalis_perfiles_pk
+;
+ALTER TABLE vitalis_documentos_personas DROP CONSTRAINT vitalis_documentos_personas_pk
+;
+ALTER TABLE vitalis_cuentas_bancarias DROP CONSTRAINT vitalis_cuentas_bancarias_pk
+;
+ALTER TABLE vitalis_telefonos_personas DROP CONSTRAINT vitalis_telefonos_personas_pk
+;
+ALTER TABLE vitalis_direcciones_personas DROP CONSTRAINT vitalis_direcciones_personas_pk
+;
+ALTER TABLE vitalis_personas DROP CONSTRAINT vitalis_personas_pk
+;
+ALTER TABLE vitalis_tipos_cuenta DROP CONSTRAINT vitalis_tipos_cuenta_pk
+;
+ALTER TABLE vitalis_bancos DROP CONSTRAINT vitalis_bancos_pk
+;
+ALTER TABLE vitalis_tipos_documentos DROP CONSTRAINT vitalis_tipos_documentos_pk
+;
+ALTER TABLE vitalis_distritos DROP CONSTRAINT vitalis_distritos_pk
+;
+ALTER TABLE vitalis_cantones DROP CONSTRAINT vitalis_cantones_pk
+;
+ALTER TABLE vitalis_provincia DROP CONSTRAINT vitalis_provincia_pk
+;
+ALTER TABLE vitalis_paises DROP CONSTRAINT vitalis_paises_pk
+;
+
+
+-- Drop indexes section -------------------------------------------------
+
+DROP INDEX IX_Relationship48
+;
+DROP INDEX IX_Relationship47
+;
+DROP INDEX IX_Relationship36
+;
+DROP INDEX IX_Relationship46
+;
+DROP INDEX IX_Relationship15
+;
+DROP INDEX IX_Relationship45
+;
+DROP INDEX IX_Relationship14
+;
+DROP INDEX IX_Relationship13
+;
+DROP INDEX IX_Relationship32
+;
+DROP INDEX IX_Relationship44
+;
+DROP INDEX IX_Relationship12
+;
+DROP INDEX IX_Relationship43
+;
+DROP INDEX IX_Relationship29
+;
+DROP INDEX IX_Relationship41
+;
+DROP INDEX IX_Relationship42
+;
+DROP INDEX IX_Relationship11
+;
+DROP INDEX IX_Relationship33
+;
+DROP INDEX IX_Relationship34
+;
+DROP INDEX IX_Relationship40
+;
+DROP INDEX IX_Relationship10
+;
+DROP INDEX IX_Relationship22
+;
+DROP INDEX IX_Relationship9
+;
+DROP INDEX IX_Relationship27
+;
+DROP INDEX IX_Relationship38
+;
+DROP INDEX IX_Relationship8
+;
+DROP INDEX IX_Relationship26
+;
+DROP INDEX IX_Relationship7
+;
+DROP INDEX IX_Relationship24
+;
+DROP INDEX IX_Relationship25
+;
+DROP INDEX IX_Relationship6
+;
+DROP INDEX IX_Relationship5
+;
+DROP INDEX IX_Relationship23
+;
+DROP INDEX IX_Relationship37
+;
+DROP INDEX IX_Relationship4
+;
+DROP INDEX vitalis_cantones_ind01
+;
+DROP INDEX vitalis_provincia_ind01
+;
+
+
+-- Drop tables section ---------------------------------------------------
+
+DROP TABLE vitalis_notificaciones
+;
+DROP TABLE vitalis_identificacion
+;
+DROP TABLE vitalis_estados
+;
+DROP TABLE vitalis_personal_tipos_planillas
+;
+DROP TABLE vitalis_perfiles_pantallas
+;
+DROP TABLE vitalis_puestos_turnos
+;
+DROP TABLE vitalis_padron_nacional
+;
+DROP TABLE vitalis_bitacoras
+;
+DROP TABLE vitalis_parametros
+;
+DROP TABLE vitalis_resumen_financiero
+;
+DROP TABLE vitalis_planillas_movimientos
+;
+DROP TABLE vitalis_planillas_detalle
+;
+DROP TABLE vitalis_planillas
+;
+DROP TABLE vitalis_tipos_movimientos
+;
+DROP TABLE vitalis_tipos_planillas
+;
+DROP TABLE vitalis_escalas_mensuales_detalle
+;
+DROP TABLE vitalis_escalas_mensuales
+;
+DROP TABLE vitalis_escalas_base_detalle
+;
+DROP TABLE vitalis_escalas_base
+;
+DROP TABLE vitalis_procedimientos_medicos
+;
+DROP TABLE vitalis_tipos_procedimientos
+;
+DROP TABLE vitalis_turnos
+;
+DROP TABLE vitalis_puestos
+;
+DROP TABLE vitalis_centros_salud
+;
+DROP TABLE vitalis_usuarios
+;
+DROP TABLE vitalis_pantallas
+;
+DROP TABLE vitalis_perfiles
+;
+DROP TABLE vitalis_documentos_personas
+;
+DROP TABLE vitalis_cuentas_bancarias
+;
+DROP TABLE vitalis_telefonos_personas
+;
+DROP TABLE vitalis_direcciones_personas
+;
+DROP TABLE vitalis_personas
+;
+DROP TABLE vitalis_tipos_cuenta
+;
+DROP TABLE vitalis_bancos
+;
+DROP TABLE vitalis_tipos_documentos
+;
+DROP TABLE vitalis_distritos
+;
+DROP TABLE vitalis_cantones
+;
+DROP TABLE vitalis_provincia
+;
+DROP TABLE vitalis_paises
+;
+
 -- Create tables section -------------------------------------------------
 
 -- Table vitalis_paises
@@ -250,6 +579,7 @@ CREATE TABLE vitalis_personas(
   per_sexo Varchar2(1 ),
   per_email Varchar2(200 ),
   per_estado Varchar2(1 ),
+  per_tipo_personal Char(20 ),
   per_version Number DEFAULT 1 NOT NULL,
   CONSTRAINT vitalis_personas_ck01 CHECK (per_sexo in ('M', 'F')),
   CONSTRAINT vitalis_personas_ck02 CHECK (per_estado in ('A', 'I'))
@@ -281,6 +611,8 @@ COMMENT ON COLUMN vitalis_personas.per_sexo IS 'Sexo de la persona (M=masculino,
 COMMENT ON COLUMN vitalis_personas.per_email IS 'Correo electrónico'
 ;
 COMMENT ON COLUMN vitalis_personas.per_estado IS 'Estado de la persona(A= activo, I= inactivo)'
+;
+COMMENT ON COLUMN vitalis_personas.per_tipo_personal IS 'Tipo personal(MÉDICO, ADMINISTRATIVO)'
 ;
 COMMENT ON COLUMN vitalis_personas.per_version IS 'Version del registro'
 ;
@@ -1732,6 +2064,47 @@ COMMENT ON COLUMN vitalis_identificacion.ide_numero IS 'Numero de la identificac
 ;
 COMMENT ON COLUMN vitalis_identificacion.ide_tipo IS 'Dimex, cedula de identidad, pasaporte, etc
 '
+;
+
+-- Table vitalis_notificaciones
+
+CREATE TABLE vitalis_notificaciones(
+  not_id Number NOT NULL,
+  not_tipo Char(20 ),
+  not_destinatario Char(20 ),
+  not_asunto Char(20 ),
+  not_mensaje Char(20 ),
+  not_fecha_envio Char(20 ),
+  not_estado Char(20 ),
+  not_intentos Char(20 ),
+  not_version Number DEFAULT 1
+)
+;
+
+-- Add keys for table vitalis_notificaciones
+
+ALTER TABLE vitalis_notificaciones ADD CONSTRAINT vitalis_notificaciones_pk PRIMARY KEY (not_id)
+;
+
+-- Table and Columns comments section
+
+COMMENT ON COLUMN vitalis_notificaciones.not_tipo IS 'Tipo de notificación
+'
+;
+COMMENT ON COLUMN vitalis_notificaciones.not_destinatario IS 'Email destinatario
+'
+;
+COMMENT ON COLUMN vitalis_notificaciones.not_asunto IS 'Ansunto de la notificacion'
+;
+COMMENT ON COLUMN vitalis_notificaciones.not_mensaje IS 'Mensaje de la notificacion'
+;
+COMMENT ON COLUMN vitalis_notificaciones.not_fecha_envio IS 'Fecha de envio'
+;
+COMMENT ON COLUMN vitalis_notificaciones.not_estado IS 'E=Enviado, P=Pendiente, F=Fallido'
+;
+COMMENT ON COLUMN vitalis_notificaciones.not_intentos IS 'Intentos de envio'
+;
+COMMENT ON COLUMN vitalis_notificaciones.not_version IS 'Version del registro'
 ;
 
 
