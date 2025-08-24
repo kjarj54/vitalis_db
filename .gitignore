@@ -1,0 +1,25 @@
+# Archivos grandes del padrón nacional
+PadronNacional/PADRON_COMPLETO.txt
+PadronNacional/vitalis_padron_nacional_oracle.sql
+
+# Archivos temporales de Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+*.so
+*__pycache__/
+
+# Archivos de prueba
+test_parser.py
+
+# Archivos de logs
+*.log
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+
+
+.vscode/
