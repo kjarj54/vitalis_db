@@ -9,6 +9,7 @@ __pycache__/
 *.pyd
 .Python
 *.so
+*__pycache__/
 
 # Archivos de prueba
 test_parser.py
@@ -19,3 +20,6 @@ test_parser.py
 # Archivos temporales del sistema
 .DS_Store
 Thumbs.db
+
+
+.vscode/
