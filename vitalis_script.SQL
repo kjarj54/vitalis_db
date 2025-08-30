@@ -1,6 +1,6 @@
 ﻿/*
 Created: 16/8/2025
-Modified: 29/8/2025
+Modified: 30/8/2025
 Model: Vitalis
 Database: Oracle 19c
 */
@@ -3214,17 +3214,17 @@ BEGIN
 END;
 ;
 
--- Trigger for sequence vitalis_personal_tipos_planillas_seq01 for column per_id in table vitalis_personal_tipos_planillas ---------
+-- Trigger for sequence vitalis_personal_tipos_planillas_seq01 for column ptp_id in table vitalis_personal_tipos_planillas ---------
 CREATE OR REPLACE TRIGGER ts_vitalis_personal_tipos_planillas_vitalis_personal_tipos_planillas_seq01 BEFORE INSERT
 ON vitalis_personal_tipos_planillas FOR EACH ROW
 BEGIN
-  :new.per_id := vitalis_personal_tipos_planillas_seq01.nextval;
+  :new.ptp_id := vitalis_personal_tipos_planillas_seq01.nextval;
 END;
 ;
-CREATE OR REPLACE TRIGGER tsu_vitalis_personal_tipos_planillas_vitalis_personal_tipos_planillas_seq01 AFTER UPDATE OF per_id
+CREATE OR REPLACE TRIGGER tsu_vitalis_personal_tipos_planillas_vitalis_personal_tipos_planillas_seq01 AFTER UPDATE OF ptp_id
 ON vitalis_personal_tipos_planillas FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column per_id in table vitalis_personal_tipos_planillas as it uses sequence.');
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column ptp_id in table vitalis_personal_tipos_planillas as it uses sequence.');
 END;
 ;
 
