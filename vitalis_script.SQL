@@ -2523,7 +2523,7 @@ CREATE INDEX vitalis_facturas_centros_ind01 ON vitalis_facturas_centros (csa_id)
 
 -- Add keys for table vitalis_facturas_centros
 
-ALTER TABLE vitalis_facturas_centros ADD CONSTRAINT vitalis_facturas_centros _pk PRIMARY KEY (fac_id)
+ALTER TABLE vitalis_facturas_centros ADD CONSTRAINT vitalis_facturas_centros_pk PRIMARY KEY (fac_id)
 ;
 
 -- Table and Columns comments section
