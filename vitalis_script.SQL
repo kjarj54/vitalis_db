@@ -1,6 +1,6 @@
 ﻿/*
 Created: 16/8/2025
-Modified: 24/8/2025
+Modified: 29/8/2025
 Model: Vitalis
 Database: Oracle 19c
 */
@@ -489,7 +489,7 @@ CREATE TABLE vitalis_cantones(
   pro_id Number,
   can_codigo Number NOT NULL,
   can_nombre Varchar2(100 ) NOT NULL,
-  can_estado Char(1 ) NOT NULL
+  can_estado Varchar2(1 ) NOT NULL
         CONSTRAINT chk_can_estado CHECK (activo IN ('A','I')),
   can_version Number DEFAULT 1 NOT NULL,
   CONSTRAINT vitalis_cantones_ck01 CHECK (can_estado in ('A','I'))
@@ -524,7 +524,7 @@ CREATE TABLE vitalis_distritos(
   can_id Number,
   dis_codigo Number NOT NULL,
   dis_nombre Varchar2(100 ) NOT NULL,
-  dis_estado Char(1 ) NOT NULL
+  dis_estado Varchar2(1 ) NOT NULL
         CONSTRAINT chk_dis_estado CHECK (activo IN ('A','I')),
   dis_version Number NOT NULL,
   CONSTRAINT vitalis_distritos_ck01 CHECK (dis_estado in ('A','I'))
@@ -533,7 +533,7 @@ CREATE TABLE vitalis_distritos(
 
 -- Create indexes for table vitalis_distritos
 
-CREATE INDEX IX_Relationship4 ON vitalis_distritos (can_id)
+CREATE INDEX viatalis_distritos_ind01 ON vitalis_distritos (can_id)
 ;
 
 -- Add keys for table vitalis_distritos
@@ -576,7 +576,7 @@ CREATE TABLE vitalis_tipos_documentos(
 
 -- Create indexes for table vitalis_tipos_documentos
 
-CREATE INDEX IX_Relationship37 ON vitalis_tipos_documentos (est_id)
+CREATE INDEX vitalis_tipos_documentos_ind01 ON vitalis_tipos_documentos (est_id)
 ;
 
 -- Add keys for table vitalis_tipos_documentos
@@ -728,10 +728,10 @@ CREATE TABLE vitalis_direcciones_personas(
 
 -- Create indexes for table vitalis_direcciones_personas
 
-CREATE INDEX IX_Relationship5 ON vitalis_direcciones_personas (per_id)
+CREATE INDEX vitalis_direcciones_personas_ind01 ON vitalis_direcciones_personas (per_id)
 ;
 
-CREATE INDEX IX_Relationship23 ON vitalis_direcciones_personas (dis_id)
+CREATE INDEX vitalis_direcciones_personas_ind02 ON vitalis_direcciones_personas (dis_id)
 ;
 
 -- Add keys for table vitalis_direcciones_personas
@@ -774,7 +774,7 @@ CREATE TABLE vitalis_telefonos_personas(
 
 -- Create indexes for table vitalis_telefonos_personas
 
-CREATE INDEX IX_Relationship6 ON vitalis_telefonos_personas (per_id)
+CREATE INDEX vitalis_telefonos_personas_ind01 ON vitalis_telefonos_personas (per_id)
 ;
 
 -- Add keys for table vitalis_telefonos_personas
@@ -819,13 +819,13 @@ CREATE TABLE vitalis_cuentas_bancarias(
 
 -- Create indexes for table vitalis_cuentas_bancarias
 
-CREATE INDEX IX_Relationship7 ON vitalis_cuentas_bancarias (per_id)
+CREATE INDEX vitalis_cuentas_bancarias_ind01 ON vitalis_cuentas_bancarias (per_id)
 ;
 
-CREATE INDEX IX_Relationship24 ON vitalis_cuentas_bancarias (ban_id)
+CREATE INDEX vitalis_cuentas_bancarias_ind02 ON vitalis_cuentas_bancarias (ban_id)
 ;
 
-CREATE INDEX IX_Relationship25 ON vitalis_cuentas_bancarias (tcu_id)
+CREATE INDEX vitalis_cuentas_bancarias_ind03 ON vitalis_cuentas_bancarias (tcu_id)
 ;
 
 -- Add keys for table vitalis_cuentas_bancarias
@@ -871,10 +871,10 @@ CREATE TABLE vitalis_documentos_personas(
 
 -- Create indexes for table vitalis_documentos_personas
 
-CREATE INDEX IX_Relationship8 ON vitalis_documentos_personas (per_id)
+CREATE INDEX vitalis_documentos_personas_fk01 ON vitalis_documentos_personas (per_id)
 ;
 
-CREATE INDEX IX_Relationship26 ON vitalis_documentos_personas (tdo_id)
+CREATE INDEX vitalis_documentos_personas_fk02 ON vitalis_documentos_personas (tdo_id)
 ;
 
 -- Add keys for table vitalis_documentos_personas
@@ -922,7 +922,7 @@ CREATE TABLE vitalis_perfiles(
 
 -- Create indexes for table vitalis_perfiles
 
-CREATE INDEX IX_Relationship38 ON vitalis_perfiles (est_id)
+CREATE INDEX vitalis_perfiles_ind01 ON vitalis_perfiles (est_id)
 ;
 
 -- Add keys for table vitalis_perfiles
@@ -1002,10 +1002,10 @@ CREATE TABLE vitalis_usuarios(
 
 -- Create indexes for table vitalis_usuarios
 
-CREATE INDEX IX_Relationship9 ON vitalis_usuarios (per_id)
+CREATE INDEX vitalis_usuarios_ind01 ON vitalis_usuarios (per_id)
 ;
 
-CREATE INDEX IX_Relationship27 ON vitalis_usuarios (prf_id)
+CREATE INDEX vitalis_usuarios_ind02 ON vitalis_usuarios (prf_id)
 ;
 
 -- Add keys for table vitalis_usuarios
@@ -1066,7 +1066,7 @@ CREATE TABLE vitalis_centros_salud(
 
 -- Create indexes for table vitalis_centros_salud
 
-CREATE INDEX IX_Relationship22 ON vitalis_centros_salud (dis_id)
+CREATE INDEX vitalis_centros_salud_ind01 ON vitalis_centros_salud (dis_id)
 ;
 
 -- Add keys for table vitalis_centros_salud
@@ -1123,7 +1123,7 @@ CREATE TABLE vitalis_puestos(
 
 -- Create indexes for table vitalis_puestos
 
-CREATE INDEX IX_Relationship10 ON vitalis_puestos (csa_id)
+CREATE INDEX vitalis_puestos_ind01 ON vitalis_puestos (csa_id)
 ;
 
 -- Add keys for table vitalis_puestos
@@ -1262,13 +1262,13 @@ CREATE TABLE vitalis_procedimientos_medicos(
 
 -- Create indexes for table vitalis_procedimientos_medicos
 
-CREATE INDEX IX_Relationship33 ON vitalis_procedimientos_medicos (per_id)
+CREATE INDEX vitalis_procedimientos_medicos_ind01 ON vitalis_procedimientos_medicos (per_id)
 ;
 
-CREATE INDEX IX_Relationship34 ON vitalis_procedimientos_medicos (tpr_id)
+CREATE INDEX vitalis_procedimientos_medicos_ind02 ON vitalis_procedimientos_medicos (tpr_id)
 ;
 
-CREATE INDEX IX_Relationship40 ON vitalis_procedimientos_medicos (csa_id)
+CREATE INDEX vitalis_procedimientos_medicos_ind03 ON vitalis_procedimientos_medicos (csa_id)
 ;
 
 -- Add keys for table vitalis_procedimientos_medicos
@@ -1324,7 +1324,7 @@ CREATE TABLE vitalis_escalas_base(
 
 -- Create indexes for table vitalis_escalas_base
 
-CREATE INDEX IX_Relationship11 ON vitalis_escalas_base (csa_id)
+CREATE INDEX vitalis_escalas_base_ind01 ON vitalis_escalas_base (csa_id)
 ;
 
 -- Add keys for table vitalis_escalas_base
@@ -1370,13 +1370,13 @@ CREATE TABLE vitalis_escalas_base_detalle(
 
 -- Create indexes for table vitalis_escalas_base_detalle
 
-CREATE INDEX IX_Relationship29 ON vitalis_escalas_base_detalle (per_id)
+CREATE INDEX vitalis_escalas_base_detalle_ind01 ON vitalis_escalas_base_detalle (per_id)
 ;
 
-CREATE INDEX IX_Relationship41 ON vitalis_escalas_base_detalle (esb_id)
+CREATE INDEX vitalis_escalas_base_detalle_ind02 ON vitalis_escalas_base_detalle (esb_id)
 ;
 
-CREATE INDEX IX_Relationship42 ON vitalis_escalas_base_detalle (put_id)
+CREATE INDEX vitalis_escalas_base_detalle_ind03 ON vitalis_escalas_base_detalle (put_id)
 ;
 
 -- Add keys for table vitalis_escalas_base_detalle
@@ -1419,10 +1419,10 @@ CREATE TABLE vitalis_escalas_mensuales(
 
 -- Create indexes for table vitalis_escalas_mensuales
 
-CREATE INDEX IX_Relationship12 ON vitalis_escalas_mensuales (esb_id)
+CREATE INDEX vitalis_escalas_mensuales_ind01 ON vitalis_escalas_mensuales (esb_id)
 ;
 
-CREATE INDEX IX_Relationship43 ON vitalis_escalas_mensuales (csa_id)
+CREATE INDEX vitalis_escalas_mensuales_ind02 ON vitalis_escalas_mensuales (csa_id)
 ;
 
 -- Add keys for table vitalis_escalas_mensuales
@@ -1652,7 +1652,7 @@ CREATE TABLE vitalis_planillas(
 
 -- Create indexes for table vitalis_planillas
 
-CREATE INDEX IX_Relationship14 ON vitalis_planillas (tpl_id)
+CREATE INDEX vitalis_planillas_ind01 ON vitalis_planillas (tpl_id)
 ;
 
 -- Add keys for table vitalis_planillas
@@ -1715,10 +1715,10 @@ CREATE TABLE vitalis_planillas_detalle(
 
 -- Create indexes for table vitalis_planillas_detalle
 
-CREATE INDEX IX_Relationship15 ON vitalis_planillas_detalle (pla_id)
+CREATE INDEX vitalis_planillas_detalle_ind01 ON vitalis_planillas_detalle (pla_id)
 ;
 
-CREATE INDEX IX_Relationship45 ON vitalis_planillas_detalle (per_id)
+CREATE INDEX vitalis_planillas_detalle_ind02 ON vitalis_planillas_detalle (per_id)
 ;
 
 -- Add keys for table vitalis_planillas_detalle
@@ -1772,10 +1772,10 @@ CREATE TABLE vitalis_planillas_movimientos(
 
 -- Create indexes for table vitalis_planillas_movimientos
 
-CREATE INDEX IX_Relationship36 ON vitalis_planillas_movimientos (tmo_id)
+CREATE INDEX vitalis_planillas_movimientos_ind01 ON vitalis_planillas_movimientos (tmo_id)
 ;
 
-CREATE INDEX IX_Relationship46 ON vitalis_planillas_movimientos (pld_id)
+CREATE INDEX vitalis_planillas_movimientos_ind02 ON vitalis_planillas_movimientos (pld_id)
 ;
 
 -- Add keys for table vitalis_planillas_movimientos
@@ -1832,7 +1832,7 @@ CREATE TABLE vitalis_resumen_financiero(
 
 -- Create indexes for table vitalis_resumen_financiero
 
-CREATE INDEX IX_Relationship47 ON vitalis_resumen_financiero (csa_id)
+CREATE INDEX vitalis_resumen_financiero_ind01 ON vitalis_resumen_financiero (csa_id)
 ;
 
 -- Add keys for table vitalis_resumen_financiero
@@ -2105,7 +2105,7 @@ CREATE TABLE vitalis_perfiles_pantallas(
 
 -- Add keys for table vitalis_perfiles_pantallas
 
-ALTER TABLE vitalis_perfiles_pantallas ADD CONSTRAINT vitalis_perfiles_pantallas_pk PRIMARY KEY (pan_id,prf_id,prp_id)
+ALTER TABLE vitalis_perfiles_pantallas ADD CONSTRAINT vitalis_perfiles_pantallas_pk PRIMARY KEY (prp_id)
 ;
 
 -- Table and Columns comments section
@@ -2203,7 +2203,7 @@ CREATE TABLE vitalis_identificacion(
 
 -- Create indexes for table vitalis_identificacion
 
-CREATE INDEX IX_Relationship48 ON vitalis_identificacion (per_id)
+CREATE INDEX vitalis_identificacion_ind01 ON vitalis_identificacion (per_id)
 ;
 
 -- Add keys for table vitalis_identificacion
@@ -2240,7 +2240,7 @@ CREATE TABLE vitalis_notificaciones(
 
 -- Create indexes for table vitalis_notificaciones
 
-CREATE INDEX IX_Relationship62 ON vitalis_notificaciones (pln_id)
+CREATE INDEX vitalis_notificaciones_ind01 ON vitalis_notificaciones (pln_id)
 ;
 
 -- Add keys for table vitalis_notificaciones
@@ -2324,7 +2324,7 @@ CREATE TABLE vitalis_incapacidades(
 
 -- Create indexes for table vitalis_incapacidades
 
-CREATE INDEX IX_Relationship50 ON vitalis_incapacidades (per_id)
+CREATE INDEX vitalis_incapacidades_ind01 ON vitalis_incapacidades (per_id)
 ;
 
 -- Add keys for table vitalis_incapacidades
@@ -2360,7 +2360,7 @@ CREATE TABLE vitalis_vacaciones(
 
 -- Create indexes for table vitalis_vacaciones
 
-CREATE INDEX IX_Relationship55 ON vitalis_vacaciones (per_id)
+CREATE INDEX vitalis_vacaciones_ind01 ON vitalis_vacaciones (per_id)
 ;
 
 -- Add keys for table vitalis_vacaciones
@@ -2398,7 +2398,7 @@ CREATE TABLE vitalis_feriados(
 
 -- Create indexes for table vitalis_feriados
 
-CREATE INDEX IX_Relationship60 ON vitalis_feriados (csa_id)
+CREATE INDEX vitalis_feriados_ind01 ON vitalis_feriados (csa_id)
 ;
 
 -- Add keys for table vitalis_feriados
@@ -2435,7 +2435,7 @@ CREATE TABLE vitalis_consultorios(
 
 -- Create indexes for table vitalis_consultorios
 
-CREATE INDEX IX_Relationship52 ON vitalis_consultorios (csa_id)
+CREATE INDEX vitalis_consultorios_ind01 ON vitalis_consultorios (csa_id)
 ;
 
 -- Add keys for table vitalis_consultorios
@@ -2472,7 +2472,7 @@ CREATE TABLE vitalis_facturas_detalle(
 
 -- Create indexes for table vitalis_facturas_detalle
 
-CREATE INDEX IX_Relationship54 ON vitalis_facturas_detalle (fac_id)
+CREATE INDEX vitalis_facturas_detalle_ind01 ON vitalis_facturas_detalle (fac_id)
 ;
 
 -- Add keys for table vitalis_facturas_detalle
@@ -2518,7 +2518,7 @@ CREATE TABLE vitalis_facturas_centros(
 
 -- Create indexes for table vitalis_facturas_centros
 
-CREATE INDEX IX_Relationship53 ON vitalis_facturas_centros (csa_id)
+CREATE INDEX vitalis_facturas_centros_ind01 ON vitalis_facturas_centros (csa_id)
 ;
 
 -- Add keys for table vitalis_facturas_centros
@@ -2622,10 +2622,10 @@ CREATE TABLE vitalis_autoregistros_documentos(
 
 -- Create indexes for table vitalis_autoregistros_documentos
 
-CREATE INDEX IX_Relationship56 ON vitalis_autoregistros_documentos (aur_id)
+CREATE INDEX vitalis_documentos_personas_ind01 ON vitalis_autoregistros_documentos (aur_id)
 ;
 
-CREATE INDEX IX_Relationship57 ON vitalis_autoregistros_documentos (tdo_id)
+CREATE INDEX vitalis_documentos_personas_ind02 ON vitalis_autoregistros_documentos (tdo_id)
 ;
 
 -- Add keys for table vitalis_autoregistros_documentos
@@ -3427,267 +3427,267 @@ END;
 
 -- Create foreign keys (relationships) section ------------------------------------------------- 
 
-ALTER TABLE vitalis_provincia ADD CONSTRAINT Relationship2 FOREIGN KEY (pai_id) REFERENCES vitalis_paises (pai_id)
+ALTER TABLE vitalis_provincia ADD CONSTRAINT vitalis_pasisesprovincia_fk01 FOREIGN KEY (pai_id) REFERENCES vitalis_paises (pai_id)
 ;
 
 
 
-ALTER TABLE vitalis_cantones ADD CONSTRAINT Relationship3 FOREIGN KEY (pro_id) REFERENCES vitalis_provincia (pro_id)
+ALTER TABLE vitalis_cantones ADD CONSTRAINT vitalis_provinciacantones_fk01 FOREIGN KEY (pro_id) REFERENCES vitalis_provincia (pro_id)
 ;
 
 
 
-ALTER TABLE vitalis_distritos ADD CONSTRAINT Relationship4 FOREIGN KEY (can_id) REFERENCES vitalis_cantones (can_id)
+ALTER TABLE vitalis_distritos ADD CONSTRAINT vitalis_cantonesdistritos_fk01 FOREIGN KEY (can_id) REFERENCES vitalis_cantones (can_id)
 ;
 
 
 
-ALTER TABLE vitalis_direcciones_personas ADD CONSTRAINT Relationship5 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_direcciones_personas ADD CONSTRAINT vitalis_personasdireccionesper_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_telefonos_personas ADD CONSTRAINT Relationship6 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_telefonos_personas ADD CONSTRAINT vitalis_personastelefonos_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_cuentas_bancarias ADD CONSTRAINT Relationship7 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_cuentas_bancarias ADD CONSTRAINT vitalis_personascuentabancaria_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_documentos_personas ADD CONSTRAINT Relationship8 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_documentos_personas ADD CONSTRAINT vitalis_personasdocumentospersona_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_usuarios ADD CONSTRAINT Relationship9 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_usuarios ADD CONSTRAINT vitalis_personasusuario_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_puestos ADD CONSTRAINT Relationship10 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+ALTER TABLE vitalis_puestos ADD CONSTRAINT vitalis_centrossaludpuestos_fk01 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_base ADD CONSTRAINT Relationship11 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+ALTER TABLE vitalis_escalas_base ADD CONSTRAINT vitalis_centrossaludescalabase_fk01 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_mensuales ADD CONSTRAINT Relationship12 FOREIGN KEY (esb_id) REFERENCES vitalis_escalas_base (esb_id)
+ALTER TABLE vitalis_escalas_mensuales ADD CONSTRAINT vitalis_escalasbaseescalasmensuales_fk01 FOREIGN KEY (esb_id) REFERENCES vitalis_escalas_base (esb_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_mensuales_detalle ADD CONSTRAINT Relationship13 FOREIGN KEY (esm_id) REFERENCES vitalis_escalas_mensuales (esm_id)
+ALTER TABLE vitalis_escalas_mensuales_detalle ADD CONSTRAINT vitalis_escalasmensualesescalasmensualesdetalle_fk01 FOREIGN KEY (esm_id) REFERENCES vitalis_escalas_mensuales (esm_id)
 ;
 
 
 
-ALTER TABLE vitalis_planillas ADD CONSTRAINT Relationship14 FOREIGN KEY (tpl_id) REFERENCES vitalis_tipos_planillas (tpl_id)
+ALTER TABLE vitalis_planillas ADD CONSTRAINT vitalis_tiposplanillasplanillas_fk01 FOREIGN KEY (tpl_id) REFERENCES vitalis_tipos_planillas (tpl_id)
 ;
 
 
 
-ALTER TABLE vitalis_planillas_detalle ADD CONSTRAINT Relationship15 FOREIGN KEY (pla_id) REFERENCES vitalis_planillas (pla_id)
+ALTER TABLE vitalis_planillas_detalle ADD CONSTRAINT vitalis_planillasplanillasdetalle_fk01 FOREIGN KEY (pla_id) REFERENCES vitalis_planillas (pla_id)
 ;
 
 
 
-ALTER TABLE vitalis_puestos_turnos ADD CONSTRAINT Relationship16 FOREIGN KEY (pue_id) REFERENCES vitalis_puestos (pue_id)
+ALTER TABLE vitalis_puestos_turnos ADD CONSTRAINT vitalis_puestospuestosturnos_fk01 FOREIGN KEY (pue_id) REFERENCES vitalis_puestos (pue_id)
 ;
 
 
 
-ALTER TABLE vitalis_puestos_turnos ADD CONSTRAINT Relationship17 FOREIGN KEY (tur_id) REFERENCES vitalis_turnos (tur_id)
+ALTER TABLE vitalis_puestos_turnos ADD CONSTRAINT vitalis_turnospuestosturnos_fk01 FOREIGN KEY (tur_id) REFERENCES vitalis_turnos (tur_id)
 ;
 
 
 
-ALTER TABLE vitalis_perfiles_pantallas ADD CONSTRAINT Relationship18 FOREIGN KEY (pan_id) REFERENCES vitalis_pantallas (pan_id)
+ALTER TABLE vitalis_perfiles_pantallas ADD CONSTRAINT vitalis_pantallasperfilespantallas_fk01 FOREIGN KEY (pan_id) REFERENCES vitalis_pantallas (pan_id)
 ;
 
 
 
-ALTER TABLE vitalis_perfiles_pantallas ADD CONSTRAINT Relationship19 FOREIGN KEY (prf_id) REFERENCES vitalis_perfiles (prf_id)
+ALTER TABLE vitalis_perfiles_pantallas ADD CONSTRAINT vitalis_perfilesperfilespantalla_fk01 FOREIGN KEY (prf_id) REFERENCES vitalis_perfiles (prf_id)
 ;
 
 
 
-ALTER TABLE vitalis_personal_tipos_planillas ADD CONSTRAINT Relationship20 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_personal_tipos_planillas ADD CONSTRAINT vitalis_personaspersonaltiposplanilla_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_personal_tipos_planillas ADD CONSTRAINT Relationship21 FOREIGN KEY (tpl_id) REFERENCES vitalis_tipos_planillas (tpl_id)
+ALTER TABLE vitalis_personal_tipos_planillas ADD CONSTRAINT vitalis_tiposplanillaspersonaltiposplanillas_fk01 FOREIGN KEY (tpl_id) REFERENCES vitalis_tipos_planillas (tpl_id)
 ;
 
 
 
-ALTER TABLE vitalis_centros_salud ADD CONSTRAINT Relationship22 FOREIGN KEY (dis_id) REFERENCES vitalis_distritos (dis_id)
+ALTER TABLE vitalis_centros_salud ADD CONSTRAINT vitalis_distritoscentrossalud_fk01 FOREIGN KEY (dis_id) REFERENCES vitalis_distritos (dis_id)
 ;
 
 
 
-ALTER TABLE vitalis_direcciones_personas ADD CONSTRAINT Relationship23 FOREIGN KEY (dis_id) REFERENCES vitalis_distritos (dis_id)
+ALTER TABLE vitalis_direcciones_personas ADD CONSTRAINT vitalis_distritosdireccionesper_fk01 FOREIGN KEY (dis_id) REFERENCES vitalis_distritos (dis_id)
 ;
 
 
 
-ALTER TABLE vitalis_cuentas_bancarias ADD CONSTRAINT Relationship24 FOREIGN KEY (ban_id) REFERENCES vitalis_bancos (ban_id)
+ALTER TABLE vitalis_cuentas_bancarias ADD CONSTRAINT vitalis_bancoscuentasbancarias_fk01 FOREIGN KEY (ban_id) REFERENCES vitalis_bancos (ban_id)
 ;
 
 
 
-ALTER TABLE vitalis_cuentas_bancarias ADD CONSTRAINT Relationship25 FOREIGN KEY (tcu_id) REFERENCES vitalis_tipos_cuenta (tcu_id)
+ALTER TABLE vitalis_cuentas_bancarias ADD CONSTRAINT vitalis_tiposcuentacuentasbancarias_fk01 FOREIGN KEY (tcu_id) REFERENCES vitalis_tipos_cuenta (tcu_id)
 ;
 
 
 
-ALTER TABLE vitalis_documentos_personas ADD CONSTRAINT Relationship26 FOREIGN KEY (tdo_id) REFERENCES vitalis_tipos_documentos (tdo_id)
+ALTER TABLE vitalis_documentos_personas ADD CONSTRAINT vitalis_tiposdocumentosdocumentospersonas_fk01 FOREIGN KEY (tdo_id) REFERENCES vitalis_tipos_documentos (tdo_id)
 ;
 
 
 
-ALTER TABLE vitalis_usuarios ADD CONSTRAINT Relationship27 FOREIGN KEY (prf_id) REFERENCES vitalis_perfiles (prf_id)
+ALTER TABLE vitalis_usuarios ADD CONSTRAINT vitalis_perfilesusuarios_fk01 FOREIGN KEY (prf_id) REFERENCES vitalis_perfiles (prf_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_base_detalle ADD CONSTRAINT Relationship29 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_escalas_base_detalle ADD CONSTRAINT vitalis_personasescalasbasedetalle_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_mensuales_detalle ADD CONSTRAINT Relationship32 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_escalas_mensuales_detalle ADD CONSTRAINT vitalis_personasescalasmensualesdetalle_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_procedimientos_medicos ADD CONSTRAINT Relationship33 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_procedimientos_medicos ADD CONSTRAINT vitalis_personasprocedimientosmedicos_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_procedimientos_medicos ADD CONSTRAINT Relationship34 FOREIGN KEY (tpr_id) REFERENCES vitalis_tipos_procedimientos (tpr_id)
+ALTER TABLE vitalis_procedimientos_medicos ADD CONSTRAINT vitalis_tiposprocedimientosprocedimientosmedicos_fk01 FOREIGN KEY (tpr_id) REFERENCES vitalis_tipos_procedimientos (tpr_id)
 ;
 
 
 
-ALTER TABLE vitalis_planillas_movimientos ADD CONSTRAINT Relationship36 FOREIGN KEY (tmo_id) REFERENCES vitalis_tipos_movimientos (tmo_id)
+ALTER TABLE vitalis_planillas_movimientos ADD CONSTRAINT vitalis_tiposmovimientosplanillasmovimientos_fk01 FOREIGN KEY (tmo_id) REFERENCES vitalis_tipos_movimientos (tmo_id)
 ;
 
 
 
-ALTER TABLE vitalis_tipos_documentos ADD CONSTRAINT Relationship37 FOREIGN KEY (est_id) REFERENCES vitalis_estados (est_id)
+ALTER TABLE vitalis_tipos_documentos ADD CONSTRAINT vitalis_estadostiposdocumentos_fk01 FOREIGN KEY (est_id) REFERENCES vitalis_estados (est_id)
 ;
 
 
 
-ALTER TABLE vitalis_perfiles ADD CONSTRAINT Relationship38 FOREIGN KEY (est_id) REFERENCES vitalis_estados (est_id)
+ALTER TABLE vitalis_perfiles ADD CONSTRAINT vitalis_estadosperfiles_fk01 FOREIGN KEY (est_id) REFERENCES vitalis_estados (est_id)
 ;
 
 
 
-ALTER TABLE vitalis_procedimientos_medicos ADD CONSTRAINT Relationship40 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+ALTER TABLE vitalis_procedimientos_medicos ADD CONSTRAINT vitalis_centrossaludprocedimientosmedicos_fk01 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_base_detalle ADD CONSTRAINT Relationship41 FOREIGN KEY (esb_id) REFERENCES vitalis_escalas_base (esb_id)
+ALTER TABLE vitalis_escalas_base_detalle ADD CONSTRAINT vitalis_escalasbaseescalasbasedetalle_fk01 FOREIGN KEY (esb_id) REFERENCES vitalis_escalas_base (esb_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_base_detalle ADD CONSTRAINT Relationship42 FOREIGN KEY (put_id) REFERENCES vitalis_puestos_turnos (put_id)
+ALTER TABLE vitalis_escalas_base_detalle ADD CONSTRAINT vitalis_puestosturnosescalasbasedetalle_fk01 FOREIGN KEY (put_id) REFERENCES vitalis_puestos_turnos (put_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_mensuales ADD CONSTRAINT Relationship43 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+ALTER TABLE vitalis_escalas_mensuales ADD CONSTRAINT vitalis_centrossaludescalasmensuales_fk01 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_mensuales_detalle ADD CONSTRAINT Relationship44 FOREIGN KEY (put_id) REFERENCES vitalis_puestos_turnos (put_id)
+ALTER TABLE vitalis_escalas_mensuales_detalle ADD CONSTRAINT vitalis_puestosturnosescalasmensualesdetalle_fk01 FOREIGN KEY (put_id) REFERENCES vitalis_puestos_turnos (put_id)
 ;
 
 
 
-ALTER TABLE vitalis_planillas_detalle ADD CONSTRAINT Relationship45 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_planillas_detalle ADD CONSTRAINT vitalis_personasplanillasdetalle_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_planillas_movimientos ADD CONSTRAINT Relationship46 FOREIGN KEY (pld_id) REFERENCES vitalis_planillas_detalle (pld_id)
+ALTER TABLE vitalis_planillas_movimientos ADD CONSTRAINT vitalis_planillasdetalleplanillasmovimientos_fk01 FOREIGN KEY (pld_id) REFERENCES vitalis_planillas_detalle (pld_id)
 ;
 
 
 
-ALTER TABLE vitalis_resumen_financiero ADD CONSTRAINT Relationship47 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+ALTER TABLE vitalis_resumen_financiero ADD CONSTRAINT vitalis_centrossaludresumenfinanciero_fk01 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
 ;
 
 
 
-ALTER TABLE vitalis_identificacion ADD CONSTRAINT Relationship48 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_identificacion ADD CONSTRAINT vitalis_personasidentificacion_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_contratos ADD CONSTRAINT Relationship49 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_contratos ADD CONSTRAINT vitalis_personascontratos_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_incapacidades ADD CONSTRAINT Relationship50 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_incapacidades ADD CONSTRAINT vitalis_personasincapacidades_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_consultorios ADD CONSTRAINT Relationship52 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+ALTER TABLE vitalis_consultorios ADD CONSTRAINT vitalis_centrossaludconsultorios_fk01 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
 ;
 
 
 
-ALTER TABLE vitalis_facturas_centros ADD CONSTRAINT Relationship53 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+ALTER TABLE vitalis_facturas_centros ADD CONSTRAINT vitalis_centrossaludfacturascentros_fk01 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
 ;
 
 
 
-ALTER TABLE vitalis_facturas_detalle ADD CONSTRAINT Relationship54 FOREIGN KEY (fac_id) REFERENCES vitalis_facturas_centros (fac_id)
+ALTER TABLE vitalis_facturas_detalle ADD CONSTRAINT vitalis_facturasdetallefacturascentro_fk01 FOREIGN KEY (fac_id) REFERENCES vitalis_facturas_centros (fac_id)
 ;
 
 
 
-ALTER TABLE vitalis_vacaciones ADD CONSTRAINT Relationship55 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_vacaciones ADD CONSTRAINT vitalis_personasvaciones_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_autoregistros_documentos ADD CONSTRAINT Relationship56 FOREIGN KEY (aur_id) REFERENCES vitalis_autoregistros (aur_id)
+ALTER TABLE vitalis_autoregistros_documentos ADD CONSTRAINT vitalis_autoregistrosautorregistrosdocumentos_fk01 FOREIGN KEY (aur_id) REFERENCES vitalis_autoregistros (aur_id)
 ;
 
 
 
-ALTER TABLE vitalis_autoregistros_documentos ADD CONSTRAINT Relationship57 FOREIGN KEY (tdo_id) REFERENCES vitalis_tipos_documentos (tdo_id)
+ALTER TABLE vitalis_autoregistros_documentos ADD CONSTRAINT vitalis_tiposdocumentosautoregistrosdocumentos_fk01 FOREIGN KEY (tdo_id) REFERENCES vitalis_tipos_documentos (tdo_id)
 ;
 
 
 
-ALTER TABLE vitalis_feriados ADD CONSTRAINT Relationship60 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+ALTER TABLE vitalis_feriados ADD CONSTRAINT vitalis_centrossaludferiados_fk01 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
 ;
 
 
 
-ALTER TABLE vitalis_notificaciones ADD CONSTRAINT Relationship62 FOREIGN KEY (pln_id) REFERENCES vitalis_plantillas_notificacion (pln_id)
+ALTER TABLE vitalis_notificaciones ADD CONSTRAINT vitalis_planillasnotificacionnotificaciones_fk01 FOREIGN KEY (pln_id) REFERENCES vitalis_plantillas_notificacion (pln_id)
 ;
 
 
 
-ALTER TABLE vitalis_bitacoras ADD CONSTRAINT Relationship63 FOREIGN KEY (usu_id) REFERENCES vitalis_usuarios (usu_id)
+ALTER TABLE vitalis_bitacoras ADD CONSTRAINT vitalis_usuariosbitacoras_fk01 FOREIGN KEY (usu_id) REFERENCES vitalis_usuarios (usu_id)
 ;
 
 
