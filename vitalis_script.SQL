@@ -1,450 +1,411 @@
 ﻿/*
 Created: 16/8/2025
-Modified: 17/8/2025
+Modified: 30/8/2025
 Model: Vitalis
 Database: Oracle 19c
 */
 
 
--- Drop relationships section -------------------------------------------------
+-- Create sequences section -------------------------------------------------
 
-ALTER TABLE vitalis_bitacoras DROP CONSTRAINT Relationship63
-;
-ALTER TABLE vitalis_notificaciones DROP CONSTRAINT Relationship62
-;
-ALTER TABLE vitalis_feriados DROP CONSTRAINT Relationship60
-;
-ALTER TABLE vitalis_monitor_eventos DROP CONSTRAINT Relationship59
-;
-ALTER TABLE vitalis_jobs_ejecuciones DROP CONSTRAINT Relationship58
-;
-ALTER TABLE vitalis_autoregistros_documentos DROP CONSTRAINT Relationship57
-;
-ALTER TABLE vitalis_autoregistros_documentos DROP CONSTRAINT Relationship56
-;
-ALTER TABLE vitalis_vacaciones DROP CONSTRAINT Relationship55
-;
-ALTER TABLE vitalis_facturas_detalle DROP CONSTRAINT Relationship54
-;
-ALTER TABLE vitalis_facturas_centros DROP CONSTRAINT Relationship53
-;
-ALTER TABLE vitalis_consultorios DROP CONSTRAINT Relationship52
-;
-ALTER TABLE vitalis_incapacidades DROP CONSTRAINT Relationship50
-;
-ALTER TABLE vitalis_contratos DROP CONSTRAINT Relationship49
-;
-ALTER TABLE vitalis_identificacion DROP CONSTRAINT Relationship48
-;
-ALTER TABLE vitalis_resumen_financiero DROP CONSTRAINT Relationship47
-;
-ALTER TABLE vitalis_planillas_movimientos DROP CONSTRAINT Relationship46
-;
-ALTER TABLE vitalis_planillas_detalle DROP CONSTRAINT Relationship45
-;
-ALTER TABLE vitalis_escalas_mensuales_detalle DROP CONSTRAINT Relationship44
-;
-ALTER TABLE vitalis_escalas_mensuales DROP CONSTRAINT Relationship43
-;
-ALTER TABLE vitalis_escalas_base_detalle DROP CONSTRAINT Relationship42
-;
-ALTER TABLE vitalis_escalas_base_detalle DROP CONSTRAINT Relationship41
-;
-ALTER TABLE vitalis_procedimientos_medicos DROP CONSTRAINT Relationship40
-;
-ALTER TABLE vitalis_perfiles DROP CONSTRAINT Relationship38
-;
-ALTER TABLE vitalis_tipos_documentos DROP CONSTRAINT Relationship37
-;
-ALTER TABLE vitalis_planillas_movimientos DROP CONSTRAINT Relationship36
-;
-ALTER TABLE vitalis_procedimientos_medicos DROP CONSTRAINT Relationship34
-;
-ALTER TABLE vitalis_procedimientos_medicos DROP CONSTRAINT Relationship33
-;
-ALTER TABLE vitalis_escalas_mensuales_detalle DROP CONSTRAINT Relationship32
-;
-ALTER TABLE vitalis_escalas_base_detalle DROP CONSTRAINT Relationship29
-;
-ALTER TABLE vitalis_usuarios DROP CONSTRAINT Relationship27
-;
-ALTER TABLE vitalis_documentos_personas DROP CONSTRAINT Relationship26
-;
-ALTER TABLE vitalis_cuentas_bancarias DROP CONSTRAINT Relationship25
-;
-ALTER TABLE vitalis_cuentas_bancarias DROP CONSTRAINT Relationship24
-;
-ALTER TABLE vitalis_direcciones_personas DROP CONSTRAINT Relationship23
-;
-ALTER TABLE vitalis_centros_salud DROP CONSTRAINT Relationship22
-;
-ALTER TABLE vitalis_personal_tipos_planillas DROP CONSTRAINT Relationship21
-;
-ALTER TABLE vitalis_personal_tipos_planillas DROP CONSTRAINT Relationship20
-;
-ALTER TABLE vitalis_perfiles_pantallas DROP CONSTRAINT Relationship19
-;
-ALTER TABLE vitalis_perfiles_pantallas DROP CONSTRAINT Relationship18
-;
-ALTER TABLE vitalis_puestos_turnos DROP CONSTRAINT Relationship17
-;
-ALTER TABLE vitalis_puestos_turnos DROP CONSTRAINT Relationship16
-;
-ALTER TABLE vitalis_planillas_detalle DROP CONSTRAINT Relationship15
-;
-ALTER TABLE vitalis_planillas DROP CONSTRAINT Relationship14
-;
-ALTER TABLE vitalis_escalas_mensuales_detalle DROP CONSTRAINT Relationship13
-;
-ALTER TABLE vitalis_escalas_mensuales DROP CONSTRAINT Relationship12
-;
-ALTER TABLE vitalis_escalas_base DROP CONSTRAINT Relationship11
-;
-ALTER TABLE vitalis_puestos DROP CONSTRAINT Relationship10
-;
-ALTER TABLE vitalis_usuarios DROP CONSTRAINT Relationship9
-;
-ALTER TABLE vitalis_documentos_personas DROP CONSTRAINT Relationship8
-;
-ALTER TABLE vitalis_cuentas_bancarias DROP CONSTRAINT Relationship7
-;
-ALTER TABLE vitalis_telefonos_personas DROP CONSTRAINT Relationship6
-;
-ALTER TABLE vitalis_direcciones_personas DROP CONSTRAINT Relationship5
-;
-ALTER TABLE vitalis_distritos DROP CONSTRAINT Relationship4
-;
-ALTER TABLE vitalis_cantones DROP CONSTRAINT Relationship3
-;
-ALTER TABLE vitalis_provincia DROP CONSTRAINT Relationship2
+CREATE SEQUENCE vitalis_paises_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
 
-
-
-
--- Drop keys for tables section -------------------------------------------------
-
-ALTER TABLE vitalis_tarifas_historial DROP CONSTRAINT vitalis_tarifas_historial_pk
-;
-ALTER TABLE vitalis_monitor_eventos DROP CONSTRAINT vitalis_monitor_eventos_pk
-;
-ALTER TABLE vitalis_monitor_bd DROP CONSTRAINT vitalis_monitor_bd_pk
-;
-ALTER TABLE vitalis_jobs_ejecuciones DROP CONSTRAINT vitalis_jobs_ejecuciones_pk
-;
-ALTER TABLE vitalis_jobs DROP CONSTRAINT vitalis_jobs_pk
-;
-ALTER TABLE vitalis_plantillas_notificacion DROP CONSTRAINT vitalis_plantillas_notificacion_pk
-;
-ALTER TABLE vitalis_autoregistros_documentos DROP CONSTRAINT vitalis_autoregistros_documentos_pk
-;
-ALTER TABLE vitalis_autoregistros DROP CONSTRAINT vitalis_autoregistros_pk
-;
-ALTER TABLE vitalis_facturas_centros DROP CONSTRAINT vitalis_facturas_centros _pk
-;
-ALTER TABLE vitalis_facturas_detalle DROP CONSTRAINT vitalis_facturas_detalle_pk
-;
-ALTER TABLE vitalis_consultorios DROP CONSTRAINT vitalis_consultorios_pk
-;
-ALTER TABLE vitalis_feriados DROP CONSTRAINT vitalis_feriados_pk
-;
-ALTER TABLE vitalis_vacaciones DROP CONSTRAINT vitalis_vacaciones_pk
-;
-ALTER TABLE vitalis_incapacidades DROP CONSTRAINT vitalis_incapacidades_pk
-;
-ALTER TABLE vitalis_contratos DROP CONSTRAINT vitalis_contratos_pk
-;
-ALTER TABLE vitalis_notificaciones DROP CONSTRAINT vitalis_notificaciones_pk
-;
-ALTER TABLE vitalis_identificacion DROP CONSTRAINT vitalis_identificacion_pk
-;
-ALTER TABLE vitalis_estados DROP CONSTRAINT vitalis_estados_pk
-;
-ALTER TABLE vitalis_personal_tipos_planillas DROP CONSTRAINT vitalis_personal_tipos_plantillas_pk
-;
-ALTER TABLE vitalis_perfiles_pantallas DROP CONSTRAINT vitalis_perfiles_pantallas_pk
-;
-ALTER TABLE vitalis_puestos_turnos DROP CONSTRAINT vitalis_puestos_turnos_pk
-;
-ALTER TABLE vitalis_padron_nacional DROP CONSTRAINT vitalis_padron_nacional_pk
-;
-ALTER TABLE vitalis_bitacoras DROP CONSTRAINT vitalis_bitacoras_pk
-;
-ALTER TABLE vitalis_parametros DROP CONSTRAINT vitalis_parametros_pk
-;
-ALTER TABLE vitalis_resumen_financiero DROP CONSTRAINT vitalis_resumen_financiero_pk
-;
-ALTER TABLE vitalis_planillas_movimientos DROP CONSTRAINT vitalis_planillas_movimientos_pk
-;
-ALTER TABLE vitalis_planillas_detalle DROP CONSTRAINT vitalis_planillas_detalle_pk
-;
-ALTER TABLE vitalis_planillas DROP CONSTRAINT vitalis_planillas_pk
-;
-ALTER TABLE vitalis_tipos_movimientos DROP CONSTRAINT vitalis_tipos_movimientos_pk
-;
-ALTER TABLE vitalis_tipos_planillas DROP CONSTRAINT vitalis_tipos_planillas_pk
-;
-ALTER TABLE vitalis_escalas_mensuales_detalle DROP CONSTRAINT vitalis_escalas_mensuales_detalle_pk
-;
-ALTER TABLE vitalis_escalas_mensuales DROP CONSTRAINT vitalis_escalas_mensuales_pk
-;
-ALTER TABLE vitalis_escalas_base_detalle DROP CONSTRAINT vitalis_escalas_base_detalle_pk
-;
-ALTER TABLE vitalis_escalas_base DROP CONSTRAINT vitalis_escalas_base_pk
-;
-ALTER TABLE vitalis_procedimientos_medicos DROP CONSTRAINT vitalis_procedimientos_medicos_pk
-;
-ALTER TABLE vitalis_tipos_procedimientos DROP CONSTRAINT vitalis_tipos_procedimientos_pk
-;
-ALTER TABLE vitalis_turnos DROP CONSTRAINT vitalis_turnos_pk
-;
-ALTER TABLE vitalis_puestos DROP CONSTRAINT vitalis_puestos_pk
-;
-ALTER TABLE vitalis_centros_salud DROP CONSTRAINT vitalis_centros_salud_pk
-;
-ALTER TABLE vitalis_usuarios DROP CONSTRAINT vitalis_usuarios_pk
-;
-ALTER TABLE vitalis_pantallas DROP CONSTRAINT vitalis_pantallas_pk
-;
-ALTER TABLE vitalis_perfiles DROP CONSTRAINT vitalis_perfiles_pk
-;
-ALTER TABLE vitalis_documentos_personas DROP CONSTRAINT vitalis_documentos_personas_pk
-;
-ALTER TABLE vitalis_cuentas_bancarias DROP CONSTRAINT vitalis_cuentas_bancarias_pk
-;
-ALTER TABLE vitalis_telefonos_personas DROP CONSTRAINT vitalis_telefonos_personas_pk
-;
-ALTER TABLE vitalis_direcciones_personas DROP CONSTRAINT vitalis_direcciones_personas_pk
-;
-ALTER TABLE vitalis_personas DROP CONSTRAINT vitalis_personas_pk
-;
-ALTER TABLE vitalis_tipos_cuenta DROP CONSTRAINT vitalis_tipos_cuenta_pk
-;
-ALTER TABLE vitalis_bancos DROP CONSTRAINT vitalis_bancos_pk
-;
-ALTER TABLE vitalis_tipos_documentos DROP CONSTRAINT vitalis_tipos_documentos_pk
-;
-ALTER TABLE vitalis_distritos DROP CONSTRAINT vitalis_distritos_pk
-;
-ALTER TABLE vitalis_cantones DROP CONSTRAINT vitalis_cantones_pk
-;
-ALTER TABLE vitalis_provincia DROP CONSTRAINT vitalis_provincia_pk
-;
-ALTER TABLE vitalis_paises DROP CONSTRAINT vitalis_paises_pk
+CREATE SEQUENCE vitalis_provincias_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
 
-
--- Drop indexes section -------------------------------------------------
-
-DROP INDEX IX_Relationship59
-;
-DROP INDEX IX_Relationship58
-;
-DROP INDEX IX_Relationship56
-;
-DROP INDEX IX_Relationship57
-;
-DROP INDEX IX_Relationship53
-;
-DROP INDEX IX_Relationship54
-;
-DROP INDEX IX_Relationship52
-;
-DROP INDEX IX_Relationship60
-;
-DROP INDEX IX_Relationship55
-;
-DROP INDEX IX_Relationship50
-;
-DROP INDEX IX_Relationship49
-;
-DROP INDEX IX_Relationship62
-;
-DROP INDEX IX_Relationship48
-;
-DROP INDEX IX_Relationship63
-;
-DROP INDEX IX_Relationship47
-;
-DROP INDEX IX_Relationship36
-;
-DROP INDEX IX_Relationship46
-;
-DROP INDEX IX_Relationship15
-;
-DROP INDEX IX_Relationship45
-;
-DROP INDEX IX_Relationship14
-;
-DROP INDEX IX_Relationship13
-;
-DROP INDEX IX_Relationship32
-;
-DROP INDEX IX_Relationship44
-;
-DROP INDEX IX_Relationship12
-;
-DROP INDEX IX_Relationship43
-;
-DROP INDEX IX_Relationship29
-;
-DROP INDEX IX_Relationship41
-;
-DROP INDEX IX_Relationship42
-;
-DROP INDEX IX_Relationship11
-;
-DROP INDEX IX_Relationship33
-;
-DROP INDEX IX_Relationship34
-;
-DROP INDEX IX_Relationship40
-;
-DROP INDEX IX_Relationship10
-;
-DROP INDEX IX_Relationship22
-;
-DROP INDEX IX_Relationship9
-;
-DROP INDEX IX_Relationship27
-;
-DROP INDEX IX_Relationship38
-;
-DROP INDEX IX_Relationship8
-;
-DROP INDEX IX_Relationship26
-;
-DROP INDEX IX_Relationship7
-;
-DROP INDEX IX_Relationship24
-;
-DROP INDEX IX_Relationship25
-;
-DROP INDEX IX_Relationship6
-;
-DROP INDEX IX_Relationship5
-;
-DROP INDEX IX_Relationship23
-;
-DROP INDEX IX_Relationship37
-;
-DROP INDEX IX_Relationship4
-;
-DROP INDEX vitalis_cantones_ind01
-;
-DROP INDEX vitalis_provincia_ind01
+CREATE SEQUENCE vitalis_cantones_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
 
+CREATE SEQUENCE vitalis_distritos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
 
--- Drop tables section ---------------------------------------------------
+CREATE SEQUENCE vitalis_direcciones_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
 
-DROP TABLE vitalis_tarifas_historial
+CREATE SEQUENCE vitalis_facturas_detalle_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_monitor_eventos
+
+CREATE SEQUENCE vitalis_facturas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_monitor_bd
+
+CREATE SEQUENCE vitalis_consultorios_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_jobs_ejecuciones
+
+CREATE SEQUENCE vitalis_feriados_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_jobs
+
+CREATE SEQUENCE vitalis_resumen_financiero_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_plantillas_notificacion
+
+CREATE SEQUENCE vitalis_centros_salud_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_autoregistros_documentos
+
+CREATE SEQUENCE vitalis_procedimientos_medicos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_autoregistros
+
+CREATE SEQUENCE vitalis_escalas_mensuales_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_facturas_centros
+
+CREATE SEQUENCE vitalis_puestos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_facturas_detalle
+
+CREATE SEQUENCE vitalis_tipos_procedimientos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_consultorios
+
+CREATE SEQUENCE vitalis_turnos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_feriados
+
+CREATE SEQUENCE vitalis_escalas_mensuales_detalle_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_vacaciones
+
+CREATE SEQUENCE vitalis_puestos_turno_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_incapacidades
+
+CREATE SEQUENCE vitalis_escalas_base_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_contratos
+
+CREATE SEQUENCE vitalis_escalas_base_detalle_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_notificaciones
+
+CREATE SEQUENCE vitalis_personas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_identificacion
+
+CREATE SEQUENCE vitalis_telefonos_personas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_estados
+
+CREATE SEQUENCE vitalis_bancos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_personal_tipos_planillas
+
+CREATE SEQUENCE vitalis_tipos_cuenta_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_perfiles_pantallas
+
+CREATE SEQUENCE vitalis_cuentas_bancarias_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_puestos_turnos
+
+CREATE SEQUENCE vitalis_usuarios_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_padron_nacional
+
+CREATE SEQUENCE vitalis_vacaciones_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_bitacoras
+
+CREATE SEQUENCE vitalis_contratos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_parametros
+
+CREATE SEQUENCE vitalis_incapacidades_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_resumen_financiero
+
+CREATE SEQUENCE vitalis_identificacion_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_planillas_movimientos
+
+CREATE SEQUENCE vitalis_personal_tipos_planillas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_planillas_detalle
+
+CREATE SEQUENCE vitalis_tipos_planillas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_planillas
+
+CREATE SEQUENCE vitalis_planillas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_tipos_movimientos
+
+CREATE SEQUENCE vitalis_tipos_movimientos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_tipos_planillas
+
+CREATE SEQUENCE vitalis_planillas_movimientos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_escalas_mensuales_detalle
+
+CREATE SEQUENCE vitalis_planillas_detalle_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_escalas_mensuales
+
+CREATE SEQUENCE vitalis_documentos_personas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_escalas_base_detalle
+
+CREATE SEQUENCE vitalis_autoregistros_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_escalas_base
+
+CREATE SEQUENCE vitalis_autoregistros_documentos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_procedimientos_medicos
+
+CREATE SEQUENCE vitalis_tipos_documentos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_tipos_procedimientos
+
+CREATE SEQUENCE vitalis_estados_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_turnos
+
+CREATE SEQUENCE vitalis_perfiles_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_puestos
+
+CREATE SEQUENCE vitalis_pantallas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_centros_salud
+
+CREATE SEQUENCE vitalis_perfiles_pantallas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_usuarios
+
+CREATE SEQUENCE vitalis_bitacoras_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_pantallas
+
+CREATE SEQUENCE vitalis_parametros_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_perfiles
+
+CREATE SEQUENCE vitalis_tarifas_historial_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_documentos_personas
+
+CREATE SEQUENCE vitalis_padron_nacional_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_cuentas_bancarias
+
+CREATE SEQUENCE vitalis_notificaciones_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
-DROP TABLE vitalis_telefonos_personas
-;
-DROP TABLE vitalis_direcciones_personas
-;
-DROP TABLE vitalis_personas
-;
-DROP TABLE vitalis_tipos_cuenta
-;
-DROP TABLE vitalis_bancos
-;
-DROP TABLE vitalis_tipos_documentos
-;
-DROP TABLE vitalis_distritos
-;
-DROP TABLE vitalis_cantones
-;
-DROP TABLE vitalis_provincia
-;
-DROP TABLE vitalis_paises
+
+CREATE SEQUENCE vitalis_planillas_notificaciones_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
 ;
 
 -- Create tables section -------------------------------------------------
@@ -453,9 +414,10 @@ DROP TABLE vitalis_paises
 
 CREATE TABLE vitalis_paises(
   pai_id Number NOT NULL,
-  pai_codigo Varchar2(4 ),
+  pai_codigo Varchar2(4 ) NOT NULL,
   pai_nombre Varchar2(100 ),
-  pai_estado Varchar2(1 ),
+  pai_estado Char(1 )
+        CONSTRAINT chk_pai_estado CHECK (activo IN ('A','I')),
   pai_version Number DEFAULT 1 NOT NULL,
   CONSTRAINT vitalis_paises_ck01 CHECK (pai_estado in ('A','I'))
 )
@@ -525,10 +487,11 @@ COMMENT ON COLUMN vitalis_provincia.pro_version IS 'Version del registro'
 CREATE TABLE vitalis_cantones(
   can_id Number NOT NULL,
   pro_id Number,
-  can_codigo Varchar2(10 ),
-  can_nombre Varchar2(100 ),
-  can_estado Varchar2(1 ),
-  can_version Number DEFAULT 1,
+  can_codigo Number NOT NULL,
+  can_nombre Varchar2(100 ) NOT NULL,
+  can_estado Varchar2(1 ) NOT NULL
+        CONSTRAINT chk_can_estado CHECK (activo IN ('A','I')),
+  can_version Number DEFAULT 1 NOT NULL,
   CONSTRAINT vitalis_cantones_ck01 CHECK (can_estado in ('A','I'))
 )
 ;
@@ -543,22 +506,34 @@ CREATE INDEX vitalis_cantones_ind01 ON vitalis_cantones (pro_id)
 ALTER TABLE vitalis_cantones ADD CONSTRAINT vitalis_cantones_pk PRIMARY KEY (can_id)
 ;
 
+-- Table and Columns comments section
+
+COMMENT ON COLUMN vitalis_cantones.can_codigo IS 'Codigo del canton'
+;
+COMMENT ON COLUMN vitalis_cantones.can_nombre IS 'Nombre del cantón'
+;
+COMMENT ON COLUMN vitalis_cantones.can_estado IS 'A=Activo o I=inactivo'
+;
+COMMENT ON COLUMN vitalis_cantones.can_version IS 'version del cantón'
+;
+
 -- Table vitalis_distritos
 
 CREATE TABLE vitalis_distritos(
   dis_id Number NOT NULL,
   can_id Number,
-  dis_codigo Char(10 ),
-  dis_nombre Varchar2(100 ),
-  dis_estado Varchar2(1 ),
-  dis_version Number,
+  dis_codigo Number NOT NULL,
+  dis_nombre Varchar2(100 ) NOT NULL,
+  dis_estado Varchar2(1 ) NOT NULL
+        CONSTRAINT chk_dis_estado CHECK (activo IN ('A','I')),
+  dis_version Number NOT NULL,
   CONSTRAINT vitalis_distritos_ck01 CHECK (dis_estado in ('A','I'))
 )
 ;
 
 -- Create indexes for table vitalis_distritos
 
-CREATE INDEX IX_Relationship4 ON vitalis_distritos (can_id)
+CREATE INDEX viatalis_distritos_ind01 ON vitalis_distritos (can_id)
 ;
 
 -- Add keys for table vitalis_distritos
@@ -592,7 +567,8 @@ CREATE TABLE vitalis_tipos_documentos(
   tdo_descripcion Varchar2(500 ),
   tdo_tipo_personal Varchar2(20 ),
   tdo_url_recurso Varchar2(200 ) NOT NULL,
-  tdo_estado Varchar2(1 ),
+  tdo_estado Char(1 )
+        CONSTRAINT chk_tdo_estado CHECK (activo IN ('A','I')),
   tdo_version Number,
   est_id Number
 )
@@ -600,7 +576,7 @@ CREATE TABLE vitalis_tipos_documentos(
 
 -- Create indexes for table vitalis_tipos_documentos
 
-CREATE INDEX IX_Relationship37 ON vitalis_tipos_documentos (est_id)
+CREATE INDEX vitalis_tipos_documentos_ind01 ON vitalis_tipos_documentos (est_id)
 ;
 
 -- Add keys for table vitalis_tipos_documentos
@@ -620,6 +596,8 @@ COMMENT ON COLUMN vitalis_tipos_documentos.tdo_tipo_personal IS 'Tipo de persona
 ;
 COMMENT ON COLUMN vitalis_tipos_documentos.tdo_url_recurso IS 'URL del recurso o documento'
 ;
+COMMENT ON COLUMN vitalis_tipos_documentos.tdo_estado IS 'Estado (A=Activo, I=Inactivo)'
+;
 COMMENT ON COLUMN vitalis_tipos_documentos.tdo_version IS 'Version del registro'
 ;
 
@@ -629,7 +607,8 @@ CREATE TABLE vitalis_bancos(
   ban_id Number NOT NULL,
   ban_ced_juridica Varchar2(10 ),
   ban_nombre Varchar2(70 ),
-  ban_estado Char(20 ),
+  ban_estado Char(1 )
+        CONSTRAINT chk_ban_estado CHECK (activo IN ('A','I')),
   ban_version Number
 )
 ;
@@ -655,7 +634,8 @@ COMMENT ON COLUMN vitalis_bancos.ban_version IS 'Version del registro'
 CREATE TABLE vitalis_tipos_cuenta(
   tcu_id Number NOT NULL,
   tcu_nombre Varchar2(50 ),
-  tcu_estado Varchar2(1 ),
+  tcu_estado Char(1 )
+        CONSTRAINT chk_tcu_estado CHECK (activo IN ('A','I')),
   tcu_moneda Varchar2(10 ),
   tcu_version Number,
   CONSTRAINT vitalis_tipos_cuenta_ck01 CHECK (tcu_estado in ('A', 'I'))
@@ -683,15 +663,17 @@ COMMENT ON COLUMN vitalis_tipos_cuenta.tcu_version IS 'Version del registro'
 
 CREATE TABLE vitalis_personas(
   per_id Number NOT NULL,
-  per_nombre Varchar2(20 ),
-  per_apellido1 Varchar2(15 ),
-  per_apellido2 Varchar2(15 ),
-  per_estado_civil Varchar2(10 ),
-  per_fecha_nacimiento Date,
-  per_sexo Varchar2(1 ),
-  per_email Varchar2(200 ),
-  per_estado Varchar2(1 ),
-  per_tipo_personal Char(20 ),
+  per_nombre Varchar2(20 ) NOT NULL,
+  per_apellido1 Varchar2(15 ) NOT NULL,
+  per_apellido2 Varchar2(15 ) NOT NULL,
+  per_estado_civil Varchar2(10 ) NOT NULL,
+  per_fecha_nacimiento Date NOT NULL,
+  per_sexo Char(1 ) NOT NULL
+        CONSTRAINT chk_per_sexo CHECK (activo IN ('M','F')),
+  per_email Varchar2(200 ) NOT NULL,
+  per_estado Char(1 )
+        CONSTRAINT chk_per_estado CHECK (activo IN ('A','I')),
+  per_tipo_personal Char(20 ) NOT NULL,
   per_version Number DEFAULT 1 NOT NULL,
   CONSTRAINT vitalis_personas_ck01 CHECK (per_sexo in ('M', 'F')),
   CONSTRAINT vitalis_personas_ck02 CHECK (per_estado in ('A', 'I'))
@@ -735,9 +717,10 @@ CREATE TABLE vitalis_direcciones_personas(
   dpe_id Number NOT NULL,
   per_id Number,
   dis_id Number,
-  dpe_tipo_direccion Varchar2(10 ),
-  dpe_direccion_exacta Varchar2(250 ),
-  dpe_principal Varchar2(1 ),
+  dpe_tipo_direccion Varchar2(10 ) NOT NULL,
+  dpe_direccion_exacta Varchar2(250 ) NOT NULL,
+  dpe_principal Char(1 ) NOT NULL
+        CONSTRAINT chk_dpe_principal CHECK (activo IN ('S','N')),
   dpe_codigo_postal Varchar2(30 ),
   dpe_version Number DEFAULT 1 NOT NULL
 )
@@ -745,10 +728,10 @@ CREATE TABLE vitalis_direcciones_personas(
 
 -- Create indexes for table vitalis_direcciones_personas
 
-CREATE INDEX IX_Relationship5 ON vitalis_direcciones_personas (per_id)
+CREATE INDEX vitalis_direcciones_personas_ind01 ON vitalis_direcciones_personas (per_id)
 ;
 
-CREATE INDEX IX_Relationship23 ON vitalis_direcciones_personas (dis_id)
+CREATE INDEX vitalis_direcciones_personas_ind02 ON vitalis_direcciones_personas (dis_id)
 ;
 
 -- Add keys for table vitalis_direcciones_personas
@@ -791,7 +774,7 @@ CREATE TABLE vitalis_telefonos_personas(
 
 -- Create indexes for table vitalis_telefonos_personas
 
-CREATE INDEX IX_Relationship6 ON vitalis_telefonos_personas (per_id)
+CREATE INDEX vitalis_telefonos_personas_ind01 ON vitalis_telefonos_personas (per_id)
 ;
 
 -- Add keys for table vitalis_telefonos_personas
@@ -824,23 +807,25 @@ CREATE TABLE vitalis_cuentas_bancarias(
   per_id Number,
   ban_id Number,
   tcu_id Number,
-  cba_numero_cuenta Varchar2(50 ),
-  cba_iban Varchar2(50 ),
-  cba_principal Varchar2(1 ),
-  cba_estado Varchar2(1 ),
+  cba_numero_cuenta Varchar2(50 ) NOT NULL,
+  cba_iban Varchar2(50 ) NOT NULL,
+  cba_principal Char(1 ) NOT NULL
+        CONSTRAINT chk_cba_principal CHECK (activo IN ('S','N')),
+  cba_estado Char(1 ) NOT NULL
+        CONSTRAINT cba_estado CHECK (activo IN ('A','I')),
   cba_version Number DEFAULT 1
 )
 ;
 
 -- Create indexes for table vitalis_cuentas_bancarias
 
-CREATE INDEX IX_Relationship7 ON vitalis_cuentas_bancarias (per_id)
+CREATE INDEX vitalis_cuentas_bancarias_ind01 ON vitalis_cuentas_bancarias (per_id)
 ;
 
-CREATE INDEX IX_Relationship24 ON vitalis_cuentas_bancarias (ban_id)
+CREATE INDEX vitalis_cuentas_bancarias_ind02 ON vitalis_cuentas_bancarias (ban_id)
 ;
 
-CREATE INDEX IX_Relationship25 ON vitalis_cuentas_bancarias (tcu_id)
+CREATE INDEX vitalis_cuentas_bancarias_ind03 ON vitalis_cuentas_bancarias (tcu_id)
 ;
 
 -- Add keys for table vitalis_cuentas_bancarias
@@ -886,10 +871,10 @@ CREATE TABLE vitalis_documentos_personas(
 
 -- Create indexes for table vitalis_documentos_personas
 
-CREATE INDEX IX_Relationship8 ON vitalis_documentos_personas (per_id)
+CREATE INDEX vitalis_documentos_personas_fk01 ON vitalis_documentos_personas (per_id)
 ;
 
-CREATE INDEX IX_Relationship26 ON vitalis_documentos_personas (tdo_id)
+CREATE INDEX vitalis_documentos_personas_fk02 ON vitalis_documentos_personas (tdo_id)
 ;
 
 -- Add keys for table vitalis_documentos_personas
@@ -927,16 +912,17 @@ COMMENT ON COLUMN vitalis_documentos_personas.dop_version IS 'Version del regist
 CREATE TABLE vitalis_perfiles(
   prf_id Number NOT NULL,
   est_id Number,
-  prf_nombre Char(20 ),
-  prf_descripcion Char(20 ),
-  prf_estado Char(20 ),
+  prf_nombre Varchar2(20 ),
+  prf_descripcion Varchar2(100 ),
+  prf_estado Char(1 )
+        CONSTRAINT chk_prf_estado CHECK (activo IN ('A','I')),
   prf_version Number DEFAULT 1 NOT NULL
 )
 ;
 
 -- Create indexes for table vitalis_perfiles
 
-CREATE INDEX IX_Relationship38 ON vitalis_perfiles (est_id)
+CREATE INDEX vitalis_perfiles_ind01 ON vitalis_perfiles (est_id)
 ;
 
 -- Add keys for table vitalis_perfiles
@@ -961,11 +947,12 @@ COMMENT ON COLUMN vitalis_perfiles.prf_version IS 'Version del registro'
 
 CREATE TABLE vitalis_pantallas(
   pan_id Number NOT NULL,
-  pan_codigo Char(20 ),
-  pan_nombre Char(20 ),
-  pan_descripcion Char(20 ),
-  pan_modulo Char(20 ),
-  pan_estado Char(20 ),
+  pan_codigo Number NOT NULL,
+  pan_nombre Varchar2(30 ),
+  pan_descripcion Varchar2(100 ),
+  pan_modulo Number,
+  pan_estado Char(1 )
+        CONSTRAINT chk_pan_estado CHECK (activo IN ('A','I')),
   pan_version Number DEFAULT 1 NOT NULL
 )
 ;
@@ -1000,23 +987,25 @@ CREATE TABLE vitalis_usuarios(
   usu_id Number NOT NULL,
   per_id Number,
   prf_id Number,
-  usu_login Char(20 ),
-  usu_password Char(20 ),
-  usu_fecha_creacion Char(20 ),
-  usu_fecha_ultimo_acceso Char(20 ),
-  usu_intentos_fallidos Char(20 ),
-  usu_bloqueado Char(20 ),
-  usu_estado Char(20 ),
+  usu_login Varchar2(20 ) NOT NULL,
+  usu_password Varchar2(20 ) NOT NULL,
+  usu_fecha_creacion Date,
+  usu_fecha_ultimo_acceso Date,
+  usu_intentos_fallidos Number,
+  usu_bloqueado Char(1 )
+        CONSTRAINT chk_usu_bloqueado CHECK (activo IN ('S','N')),
+  usu_estado Char(1 )
+        CONSTRAINT chk_usu_estado CHECK (activo IN ('S','N')),
   usu_version Number DEFAULT 1 NOT NULL
 )
 ;
 
 -- Create indexes for table vitalis_usuarios
 
-CREATE INDEX IX_Relationship9 ON vitalis_usuarios (per_id)
+CREATE INDEX vitalis_usuarios_ind01 ON vitalis_usuarios (per_id)
 ;
 
-CREATE INDEX IX_Relationship27 ON vitalis_usuarios (prf_id)
+CREATE INDEX vitalis_usuarios_ind02 ON vitalis_usuarios (prf_id)
 ;
 
 -- Add keys for table vitalis_usuarios
@@ -1062,21 +1051,22 @@ COMMENT ON COLUMN vitalis_usuarios.usu_version IS 'Version del registro'
 CREATE TABLE vitalis_centros_salud(
   csa_id Number NOT NULL,
   dis_id Number,
-  csa_codigo Varchar2(30 ),
-  csa_nombre Char(20 ),
-  csa_direccion_exacta Char(20 ),
-  csa_telefono Char(20 ),
-  csa_email Char(20 ),
-  csa_contacto_principal Char(20 ),
-  csa_telefono_contacto Char(20 ),
-  csa_estado Char(20 ),
+  csa_codigo Number,
+  csa_nombre Varchar2(20 ),
+  csa_direccion_exacta Varchar2(200 ),
+  csa_telefono Varchar2(15 ),
+  csa_email Varchar2(30 ),
+  csa_contacto_principal Varchar2(30 ),
+  csa_telefono_contacto Varchar2(30 ),
+  csa_estado Char(1 )
+        CONSTRAINT chk_csa_estado CHECK (activo IN ('A','I')),
   csa_version Number
 )
 ;
 
 -- Create indexes for table vitalis_centros_salud
 
-CREATE INDEX IX_Relationship22 ON vitalis_centros_salud (dis_id)
+CREATE INDEX vitalis_centros_salud_ind01 ON vitalis_centros_salud (dis_id)
 ;
 
 -- Add keys for table vitalis_centros_salud
@@ -1111,6 +1101,8 @@ COMMENT ON COLUMN vitalis_centros_salud.csa_estado IS 'Estado (A=Activo, I=Inact
 
 '
 ;
+COMMENT ON COLUMN vitalis_centros_salud.csa_version IS 'Version de los centros de salud'
+;
 
 -- Table vitalis_puestos
 
@@ -1119,9 +1111,10 @@ CREATE TABLE vitalis_puestos(
   csa_id Number,
   pue_codigo Varchar2(30 ),
   pue_nombre Varchar2(30 ),
-  pue_descripcion Varchar2(30 ),
+  pue_descripcion Varchar2(500 ),
   pue_especialidad Varchar2(30 ),
-  pue_estado Varchar2(1 ),
+  pue_estado Char(1 )
+        CONSTRAINT chk_pue_estado CHECK (activo IN ('A','I')),
   pue_nivel Varchar2(10 ),
   pue_salario Number,
   pue_version Number NOT NULL
@@ -1130,7 +1123,7 @@ CREATE TABLE vitalis_puestos(
 
 -- Create indexes for table vitalis_puestos
 
-CREATE INDEX IX_Relationship10 ON vitalis_puestos (csa_id)
+CREATE INDEX vitalis_puestos_ind01 ON vitalis_puestos (csa_id)
 ;
 
 -- Add keys for table vitalis_puestos
@@ -1167,10 +1160,11 @@ COMMENT ON COLUMN vitalis_puestos.pue_version IS 'Version del registro'
 CREATE TABLE vitalis_turnos(
   tur_id Number NOT NULL,
   tur_nombre Varchar2(10 ),
-  tur_hora_inicio Timestamp(6),
-  tur_hora_fin Timestamp(6),
+  tur_hora_inicio Timestamp(4),
+  tur_hora_fin Timestamp(4),
   tur_horas_laborales Number,
-  tur_estado Varchar2(1 ),
+  tur_estado Char(1 )
+        CONSTRAINT chk_tur_estado CHECK (activo IN ('A','I')),
   tur_tipo Varchar2(15 ),
   tur_break Number,
   tur_version Number NOT NULL
@@ -1207,13 +1201,14 @@ COMMENT ON COLUMN vitalis_turnos.tur_version IS 'Version del registro'
 
 CREATE TABLE vitalis_tipos_procedimientos(
   tpr_id Number NOT NULL,
-  tpr_codigo Char(20 ),
-  tpr_nombre Char(20 ),
-  tpr_descripcion Char(20 ),
-  tpr_monto_base_cobrar Char(20 ),
-  tpr_monto_base_pagar Char(20 ),
-  tpr_estado Char(20 ),
-  tpr_version Number
+  tpr_codigo Number NOT NULL,
+  tpr_nombre Varchar2(20 ) NOT NULL,
+  tpr_descripcion Varchar2(500 ),
+  tpr_monto_base_cobrar Number,
+  tpr_monto_base_pagar Number,
+  tpr_estado Char(1 )
+        CONSTRAINT chk_tpr_estado CHECK (activo IN ('A','I')),
+  tpr_version Number NOT NULL
 )
 ;
 
@@ -1249,29 +1244,31 @@ CREATE TABLE vitalis_procedimientos_medicos(
   per_id Number,
   tpr_id Number,
   csa_id Number,
-  prm_fecha_procedimiento Char(20 ),
-  prm_hora_inicio Char(20 ),
-  prm_hora_fin Char(20 ),
-  prm_paciente_nombre Char(20 ),
-  prm_paciente_cedula Char(20 ),
-  prm_observaciones Char(20 ),
-  prm_monto_cobrar Char(20 ),
-  prm_monto_pagar Char(20 ),
-  prm_procesado Char(20 ),
-  prm_estado Char(20 ),
+  prm_fecha_procedimiento Date,
+  prm_hora_inicio Timestamp(4),
+  prm_hora_fin Timestamp(4),
+  prm_paciente_nombre Varchar2(30 ),
+  prm_paciente_cedula Varchar2(12 ),
+  prm_observaciones Varchar2(500 ),
+  prm_monto_cobrar Number,
+  prm_monto_pagar Number,
+  prm_procesado Char(1 )
+        CONSTRAINT chk_prm_procesado CHECK (activo IN ('S','N')),
+  prm_estado Char(1 )
+        CONSTRAINT chk_prm_estado CHECK (activo IN ('A','I')),
   prm_version Number NOT NULL
 )
 ;
 
 -- Create indexes for table vitalis_procedimientos_medicos
 
-CREATE INDEX IX_Relationship33 ON vitalis_procedimientos_medicos (per_id)
+CREATE INDEX vitalis_procedimientos_medicos_ind01 ON vitalis_procedimientos_medicos (per_id)
 ;
 
-CREATE INDEX IX_Relationship34 ON vitalis_procedimientos_medicos (tpr_id)
+CREATE INDEX vitalis_procedimientos_medicos_ind02 ON vitalis_procedimientos_medicos (tpr_id)
 ;
 
-CREATE INDEX IX_Relationship40 ON vitalis_procedimientos_medicos (csa_id)
+CREATE INDEX vitalis_procedimientos_medicos_ind03 ON vitalis_procedimientos_medicos (csa_id)
 ;
 
 -- Add keys for table vitalis_procedimientos_medicos
@@ -1314,11 +1311,12 @@ COMMENT ON COLUMN vitalis_procedimientos_medicos.prm_estado IS ' Estado (A=Activ
 CREATE TABLE vitalis_escalas_base(
   esb_id Number NOT NULL,
   csa_id Number,
-  esb_nombre Char(20 ),
-  esb_semana_inicio Char(20 ),
-  esb_semana_fin Char(20 ),
-  esb_fecha_creacion Char(20 ),
-  esb_estado Char(20 ),
+  esb_nombre Varchar2(30 ),
+  esb_semana_inicio Date,
+  esb_semana_fin Date,
+  esb_fecha_creacion Date,
+  esb_estado Char(1 )
+        CONSTRAINT chk_esb_estado CHECK (activo IN ('A','I')),
   esb_version Number DEFAULT 1
  NOT NULL
 )
@@ -1326,7 +1324,7 @@ CREATE TABLE vitalis_escalas_base(
 
 -- Create indexes for table vitalis_escalas_base
 
-CREATE INDEX IX_Relationship11 ON vitalis_escalas_base (csa_id)
+CREATE INDEX vitalis_escalas_base_ind01 ON vitalis_escalas_base (csa_id)
 ;
 
 -- Add keys for table vitalis_escalas_base
@@ -1363,21 +1361,22 @@ CREATE TABLE vitalis_escalas_base_detalle(
   per_id Number,
   esb_id Number,
   put_id Number,
-  esd_dia_semana Varchar2(1 ),
-  esd_estado Char(20 ),
-  esd_version Number
+  esd_dia_semana Number,
+  esd_estado Char(1 )
+        CONSTRAINT chk_esd_estado CHECK (activo IN ('A','I')),
+  esd_version Number NOT NULL
 )
 ;
 
 -- Create indexes for table vitalis_escalas_base_detalle
 
-CREATE INDEX IX_Relationship29 ON vitalis_escalas_base_detalle (per_id)
+CREATE INDEX vitalis_escalas_base_detalle_ind01 ON vitalis_escalas_base_detalle (per_id)
 ;
 
-CREATE INDEX IX_Relationship41 ON vitalis_escalas_base_detalle (esb_id)
+CREATE INDEX vitalis_escalas_base_detalle_ind02 ON vitalis_escalas_base_detalle (esb_id)
 ;
 
-CREATE INDEX IX_Relationship42 ON vitalis_escalas_base_detalle (put_id)
+CREATE INDEX vitalis_escalas_base_detalle_ind03 ON vitalis_escalas_base_detalle (put_id)
 ;
 
 -- Add keys for table vitalis_escalas_base_detalle
@@ -1398,6 +1397,8 @@ COMMENT ON COLUMN vitalis_escalas_base_detalle.put_id IS 'Referencia a vitalis_p
 ;
 COMMENT ON COLUMN vitalis_escalas_base_detalle.esd_dia_semana IS 'Día de la semana (1=Lunes, 7=Domingo)'
 ;
+COMMENT ON COLUMN vitalis_escalas_base_detalle.esd_estado IS 'A=activo I=inactivo'
+;
 
 -- Table vitalis_escalas_mensuales
 
@@ -1405,22 +1406,23 @@ CREATE TABLE vitalis_escalas_mensuales(
   esm_id Number NOT NULL,
   esb_id Number,
   csa_id Number,
-  esm_mes Char(20 ),
-  esm_anio Char(20 ),
-  esm_nombre Char(20 ),
-  esm_fecha_creacion Char(20 ),
-  esm_estado Char(20 ),
-  esm_procesado Char(20 ),
+  esm_mes Number,
+  esm_anio Number,
+  esm_nombre Varchar2(20 ),
+  esm_fecha_creacion Date,
+  esm_estado Varchar2(30 ),
+  esm_procesado Char(1 )
+        CONSTRAINT chk_esm_procesado CHECK (activo IN ('S','N')),
   esm_version Number DEFAULT 1 NOT NULL
 )
 ;
 
 -- Create indexes for table vitalis_escalas_mensuales
 
-CREATE INDEX IX_Relationship12 ON vitalis_escalas_mensuales (esb_id)
+CREATE INDEX vitalis_escalas_mensuales_ind01 ON vitalis_escalas_mensuales (esb_id)
 ;
 
-CREATE INDEX IX_Relationship43 ON vitalis_escalas_mensuales (csa_id)
+CREATE INDEX vitalis_escalas_mensuales_ind02 ON vitalis_escalas_mensuales (csa_id)
 ;
 
 -- Add keys for table vitalis_escalas_mensuales
@@ -1461,14 +1463,17 @@ CREATE TABLE vitalis_escalas_mensuales_detalle(
   esm_id Number,
   per_id Number,
   put_id Number,
-  emd_fecha Char(20 ),
-  emd_trabajado Char(20 ),
-  emd_hora_inicio_real Char(20 ),
-  emd_hora_fin_real Char(20 ),
-  emd_horas_trabajadas Char(20 ),
-  emd_observaciones Char(20 ),
-  emd_procesado Char(20 ),
-  emd_estado Char(20 )
+  emd_fecha Date,
+  emd_trabajado Char(1 )
+        CONSTRAINT chk_emd_trabajado CHECK (activo IN ('S','N')),
+  emd_hora_inicio_real Timestamp(4),
+  emd_hora_fin_real Timestamp(4),
+  emd_horas_trabajadas Number,
+  emd_observaciones Varchar2(500 ),
+  emd_procesado Char(1 )
+        CONSTRAINT chk_emd_procesado CHECK (activo IN ('S','N')),
+  emd_estado Char(1 )
+        CONSTRAINT chk_emd_estado CHECK (activo IN ('A','I'))
 )
 ;
 
@@ -1526,11 +1531,13 @@ COMMENT ON COLUMN vitalis_escalas_mensuales_detalle.emd_estado IS 'Estado (A=Act
 
 CREATE TABLE vitalis_tipos_planillas(
   tpl_id Number NOT NULL,
-  tpl_codigo Char(20 ),
-  tpl_nombre Char(20 ),
-  tpl_descripcion Char(20 ),
-  tpl_tipo_personal Char(20 ),
-  tpl_estado Char(20 ),
+  tpl_codigo Number,
+  tpl_nombre Varchar2(20 ),
+  tpl_descripcion Varchar2(500 ),
+  tpl_tipo_personal Char(1 )
+        CONSTRAINT chk_tpl_tipo_personal CHECK (activo IN ('M','A')),
+  tpl_estado Char(1 )
+        CONSTRAINT chk_tpl_estado CHECK (activo IN ('A','I')),
   tpl_version Number DEFAULT 1 NOT NULL
 )
 ;
@@ -1550,7 +1557,7 @@ COMMENT ON COLUMN vitalis_tipos_planillas.tpl_nombre IS 'Nombre del tipo de plan
 ;
 COMMENT ON COLUMN vitalis_tipos_planillas.tpl_descripcion IS 'Descripción del tipo de planilla'
 ;
-COMMENT ON COLUMN vitalis_tipos_planillas.tpl_tipo_personal IS 'MEDICO, ADMINISTRATIVO'
+COMMENT ON COLUMN vitalis_tipos_planillas.tpl_tipo_personal IS 'M=Medico, A=Administrativo'
 ;
 COMMENT ON COLUMN vitalis_tipos_planillas.tpl_estado IS 'Estado (A=Activo, I=Inactivo)'
 ;
@@ -1559,18 +1566,22 @@ COMMENT ON COLUMN vitalis_tipos_planillas.tpl_estado IS 'Estado (A=Activo, I=Ina
 
 CREATE TABLE vitalis_tipos_movimientos(
   tmo_id Number NOT NULL,
-  tmo_codigo Char(20 ),
-  tmo_nombre Char(20 ),
-  tmo_descripcion Char(20 ),
-  tmo_tipo Char(20 ),
-  tmo_calculo Char(20 ),
-  tmo_valor Char(20 ),
-  tmo_rango_salarial_min Char(20 ),
-  tmo_rango_salarial_max Char(20 ),
-  tmo_automatico Char(20 ),
-  tmo_aplica_medicos Char(20 ),
-  tmo_aplica_administrativos Char(20 ),
-  tmo_estado Char(20 ),
+  tmo_codigo Number,
+  tmo_nombre Varchar2(20 ),
+  tmo_descripcion Varchar2(500 ),
+  tmo_tipo Varchar2(20 ),
+  tmo_calculo Varchar2(20 ),
+  tmo_valor Number,
+  tmo_rango_salarial_min Number,
+  tmo_rango_salarial_max Number,
+  tmo_automatico Char(1 )
+        CONSTRAINT chk_tmo_automatico CHECK (activo IN ('S','N')),
+  tmo_aplica_medicos Char(1 )
+        CONSTRAINT chk_tmo_aplica_medicos CHECK (activo IN ('S','N')),
+  tmo_aplica_administrativos Char(1 )
+        CONSTRAINT chk_tmo_aplica_administrativos CHECK (activo IN ('S','N')),
+  tmo_estado Char(1 )
+        CONSTRAINT chk_tmo_estado CHECK (activo IN ('A','I')),
   tmo_version Number DEFAULT 1 NOT NULL
 )
 ;
@@ -1622,24 +1633,26 @@ COMMENT ON COLUMN vitalis_tipos_movimientos.tmo_version IS 'Version del registro
 CREATE TABLE vitalis_planillas(
   pla_id Number NOT NULL,
   tpl_id Number,
-  pla_mes Char(20 ),
-  pla_anio Char(20 ),
-  pla_nombre Char(20 ),
-  pla_fecha_generacion Char(20 ),
-  pla_fecha_aprobacion Char(20 ),
-  pla_usu_aprobador Char(20 ),
-  pla_total_ingresos Char(20 ),
-  pla_total_deducciones Char(20 ),
-  pla_total_neto Char(20 ),
-  pla_estado Char(20 ),
-  pla_notificada Char(20 ),
+  pla_mes Number,
+  pla_anio Number,
+  pla_nombre Varchar2(20 ),
+  pla_fecha_generacion Date,
+  pla_fecha_aprobacion Date,
+  pla_usu_aprobador Varchar2(20 ),
+  pla_total_ingresos Number,
+  pla_total_deducciones Number,
+  pla_total_neto Number,
+  pla_estado Char(1 )
+        CONSTRAINT chk_pla_estado CHECK (activo IN ('G','A','P')),
+  pla_notificada Char(1 )
+        CONSTRAINT chk_pla_notificada CHECK (activo IN ('S','N')),
   pla_version Number DEFAULT 1
 )
 ;
 
 -- Create indexes for table vitalis_planillas
 
-CREATE INDEX IX_Relationship14 ON vitalis_planillas (tpl_id)
+CREATE INDEX vitalis_planillas_ind01 ON vitalis_planillas (tpl_id)
 ;
 
 -- Add keys for table vitalis_planillas
@@ -1673,7 +1686,7 @@ COMMENT ON COLUMN vitalis_planillas.pla_total_deducciones IS 'Total de deduccion
 ;
 COMMENT ON COLUMN vitalis_planillas.pla_total_neto IS 'Total neto a pagar'
 ;
-COMMENT ON COLUMN vitalis_planillas.pla_estado IS 'GENERADA, APROBADA, PAGADA
+COMMENT ON COLUMN vitalis_planillas.pla_estado IS 'G=generada, A=aprobada, P=Pagada
 '
 ;
 COMMENT ON COLUMN vitalis_planillas.pla_notificada IS 'Comprobantes enviados (S=Sí, N=No)
@@ -1689,22 +1702,23 @@ CREATE TABLE vitalis_planillas_detalle(
   pld_id Number NOT NULL,
   pla_id Number,
   per_id Number,
-  pld_salario_base Char(20 ),
-  pld_total_ingresos Char(20 ),
-  pld_total_deducciones Char(20 ),
-  pld_total_neto Char(20 ),
-  pld_notificado Char(20 ),
-  pld_fecha_notificacion Char(20 ),
+  pld_salario_base Number,
+  pld_total_ingresos Number,
+  pld_total_deducciones Number,
+  pld_total_neto Number,
+  pld_notificado Char(1 )
+        CONSTRAINT chk_pld_notificado CHECK (activo IN ('S','N')),
+  pld_fecha_notificacion Date,
   pld_version Number DEFAULT 1 NOT NULL
 )
 ;
 
 -- Create indexes for table vitalis_planillas_detalle
 
-CREATE INDEX IX_Relationship15 ON vitalis_planillas_detalle (pla_id)
+CREATE INDEX vitalis_planillas_detalle_ind01 ON vitalis_planillas_detalle (pla_id)
 ;
 
-CREATE INDEX IX_Relationship45 ON vitalis_planillas_detalle (per_id)
+CREATE INDEX vitalis_planillas_detalle_ind02 ON vitalis_planillas_detalle (per_id)
 ;
 
 -- Add keys for table vitalis_planillas_detalle
@@ -1745,23 +1759,23 @@ CREATE TABLE vitalis_planillas_movimientos(
   plm_id Number NOT NULL,
   tmo_id Number,
   pld_id Number,
-  plm_concepto Char(20 ),
-  plm_cantidad Char(20 ),
-  plm_valor_unitario Char(20 ),
-  plm_monto Char(20 ),
-  plm_tipo Char(20 ),
-  plm_origen Char(20 ),
-  plm_origen_id Char(20 ),
+  plm_concepto Varchar2(500 ),
+  plm_cantidad Number,
+  plm_valor_unitario Number,
+  plm_monto Number,
+  plm_tipo Varchar2(20 ),
+  plm_origen Varchar2(20 ),
+  plm_origen_id Varchar2(20 ),
   plm_version Number DEFAULT 1
 )
 ;
 
 -- Create indexes for table vitalis_planillas_movimientos
 
-CREATE INDEX IX_Relationship36 ON vitalis_planillas_movimientos (tmo_id)
+CREATE INDEX vitalis_planillas_movimientos_ind01 ON vitalis_planillas_movimientos (tmo_id)
 ;
 
-CREATE INDEX IX_Relationship46 ON vitalis_planillas_movimientos (pld_id)
+CREATE INDEX vitalis_planillas_movimientos_ind02 ON vitalis_planillas_movimientos (pld_id)
 ;
 
 -- Add keys for table vitalis_planillas_movimientos
@@ -1777,7 +1791,7 @@ COMMENT ON COLUMN vitalis_planillas_movimientos.tmo_id IS 'Referencia a vitalis_
 ;
 COMMENT ON COLUMN vitalis_planillas_movimientos.pld_id IS 'Referencia a vitalis_planillas_detalle'
 ;
-COMMENT ON COLUMN vitalis_planillas_movimientos.plm_concepto IS 'Concepto del movimiento'
+COMMENT ON COLUMN vitalis_planillas_movimientos.plm_concepto IS 'Concepto del movimiento, del porque se hizo'
 ;
 COMMENT ON COLUMN vitalis_planillas_movimientos.plm_cantidad IS 'Cantidad (horas, turnos, etc.)
 '
@@ -1802,23 +1816,23 @@ COMMENT ON COLUMN vitalis_planillas_movimientos.plm_version IS 'Version del regi
 CREATE TABLE vitalis_resumen_financiero(
   ref_id Number NOT NULL,
   csa_id Number,
-  ref_mes Char(20 ),
-  ref_anio Char(20 ),
-  ref_total_ingresos_turnos Char(20 ),
-  ref_total_ingresos_procedimientos Char(20 ),
-  ref_total_ingresos Char(20 ),
-  ref_total_gastos_medicos Char(20 ),
-  ref_total_gastos_administrativos Char(20 ),
-  ref_total_gastos Char(20 ),
-  ref_utilidad Char(20 ),
-  ref_fecha_generacion Char(20 ),
+  ref_mes Number,
+  ref_anio Number,
+  ref_total_ingresos_turnos Number,
+  ref_total_ingresos_procedimientos Number,
+  ref_total_ingresos Number,
+  ref_total_gastos_medicos Number,
+  ref_total_gastos_administrativos Number,
+  ref_total_gastos Number,
+  ref_utilidad Varchar2(30 ),
+  ref_fecha_generacion Date,
   ref_version Number DEFAULT 1 NOT NULL
 )
 ;
 
 -- Create indexes for table vitalis_resumen_financiero
 
-CREATE INDEX IX_Relationship47 ON vitalis_resumen_financiero (csa_id)
+CREATE INDEX vitalis_resumen_financiero_ind01 ON vitalis_resumen_financiero (csa_id)
 ;
 
 -- Add keys for table vitalis_resumen_financiero
@@ -1865,14 +1879,16 @@ COMMENT ON COLUMN vitalis_resumen_financiero.ref_version IS 'Version del registr
 
 CREATE TABLE vitalis_parametros(
   par_id Number NOT NULL,
-  par_codigo Char(20 ),
-  par_nombre Char(20 ),
-  par_valor Char(20 ),
-  par_descripcion Char(20 ),
-  par_tipo_dato Char(20 ),
-  par_encriptado Char(20 ),
-  par_modulo Char(20 ),
-  par_estado Char(20 ),
+  par_codigo Number,
+  par_nombre Varchar2(30 ),
+  par_valor Varchar2(30 ),
+  par_descripcion Varchar2(500 ),
+  par_tipo_dato Varchar2(30 ),
+  par_encriptado Char(1 )
+        CONSTRAINT chk_par_encriptado CHECK (activo IN ('S','N')),
+  par_modulo Varchar2(30 ),
+  par_estado Char(1 )
+        CONSTRAINT chk_par_estado CHECK (ACTIVO IN('A','S')),
   par_version Number DEFAULT 1 NOT NULL
 )
 ;
@@ -1914,15 +1930,15 @@ COMMENT ON COLUMN vitalis_parametros.par_version IS 'Version del registro'
 
 CREATE TABLE vitalis_bitacoras(
   bit_id Number NOT NULL,
-  bit_tabla Char(20 ),
-  bit_operacion Char(20 ),
-  bit_pk_tabla Char(20 ),
-  bit_usu_id Char(20 ),
-  bit_fecha Char(20 ),
-  bit_valores_anteriores Char(20 ),
-  bit_valores_nuevos Char(20 ),
-  bit_ip_usuario Char(20 ),
-  bit_version Char(20 ) DEFAULT 1,
+  bit_tabla Varchar2(30 ),
+  bit_operacion Varchar2(30 ),
+  bit_pk_tabla Number,
+  bit_usu_id Number,
+  bit_fecha Date,
+  bit_valores_anteriores Varchar2(30 ),
+  bit_valores_nuevos Varchar2(30 ),
+  bit_ip_usuario Varchar2(12 ),
+  bit_version Number DEFAULT 1,
   usu_id Number
 )
 ;
@@ -1970,17 +1986,25 @@ COMMENT ON COLUMN vitalis_bitacoras.bit_version IS 'Version del registro'
 
 CREATE TABLE vitalis_padron_nacional(
   pad_id Number NOT NULL,
-  pad_cedula Char(20 ),
-  pad_nombre Char(20 ),
-  pad_apellido1 Char(20 ),
-  pad_apellido2 Char(20 ),
-  pad_fecha_carga Char(20 )
+  pad_cedula Varchar2(12 ) NOT NULL,
+  pad_nombre Varchar2(30 ),
+  pad_apellido1 Varchar2(30 ),
+  pad_apellido2 Varchar2(30 ),
+  pad_codigo_elec Varchar2(6 ),
+  pad_fecha_cadu Date,
+  pad_junta_recep Varchar2(5 ),
+  pad_provincia Varchar2(15 ),
+  pad_canton Varchar2(25 ),
+  pad_distrito Varchar2(40 )
 )
 ;
 
 -- Add keys for table vitalis_padron_nacional
 
 ALTER TABLE vitalis_padron_nacional ADD CONSTRAINT vitalis_padron_nacional_pk PRIMARY KEY (pad_id)
+;
+
+ALTER TABLE vitalis_padron_nacional ADD CONSTRAINT pad_cedula UNIQUE (pad_cedula)
 ;
 
 -- Table and Columns comments section
@@ -1996,9 +2020,17 @@ COMMENT ON COLUMN vitalis_padron_nacional.pad_apellido1 IS 'Primer apellido
 ;
 COMMENT ON COLUMN vitalis_padron_nacional.pad_apellido2 IS 'Segundo apellido'
 ;
-COMMENT ON COLUMN vitalis_padron_nacional.pad_fecha_carga IS 'Fecha de carga al sistema
-
-'
+COMMENT ON COLUMN vitalis_padron_nacional.pad_codigo_elec IS 'Codigo electoral'
+;
+COMMENT ON COLUMN vitalis_padron_nacional.pad_fecha_cadu IS 'Fecha de caducidad o sea cuando se vence la cedula'
+;
+COMMENT ON COLUMN vitalis_padron_nacional.pad_junta_recep IS 'Junta receptora de la persona'
+;
+COMMENT ON COLUMN vitalis_padron_nacional.pad_provincia IS 'Provincia de la persona'
+;
+COMMENT ON COLUMN vitalis_padron_nacional.pad_canton IS 'Cantón de la persona'
+;
+COMMENT ON COLUMN vitalis_padron_nacional.pad_distrito IS 'Distrito de la persona'
 ;
 
 -- Table vitalis_puestos_turnos
@@ -2007,15 +2039,15 @@ CREATE TABLE vitalis_puestos_turnos(
   pue_id Number NOT NULL,
   tur_id Number NOT NULL,
   put_id Number NOT NULL,
-  put_dia_semana Varchar2(1 ),
+  put_dia_semana Number,
   put_monto_cobrar Number,
   put_monto_pagar Number,
   put_tipo_pago Varchar2(10 ),
   put_fecha_inicio Date,
   put_fecha_fin Date,
-  put_max_personas Varchar2(30 ),
-  put_min_persona Varchar2(30 ),
-  put_version Varchar2(30 ),
+  put_max_personas Number,
+  put_min_persona Number,
+  put_version Varchar2(30 ) NOT NULL,
   CONSTRAINT vitalis_puestos_turnos_ck01 CHECK ( put_dia_semana in ('1', '2', '3', '4', '5', '6', '7'))
 )
 ;
@@ -2059,17 +2091,21 @@ CREATE TABLE vitalis_perfiles_pantallas(
   pan_id Number NOT NULL,
   prf_id Number NOT NULL,
   prp_id Number NOT NULL,
-  prp_lectura Char(20 ),
-  prp_escritura Char(20 ),
-  prp_eliminacion Char(20 ),
-  prp_estado Char(20 ),
+  prp_lectura Char(1 )
+        CONSTRAINT chk_prp_lectura CHECK (activo IN ('S','N')),
+  prp_escritura Char(1 )
+        CONSTRAINT chk_prp_escritura CHECK (activo IN ('S','N')),
+  prp_eliminacion Char(1 )
+        CONSTRAINT chk_prp_eliminacion CHECK (activo IN ('S','N')),
+  prp_estado Char(1 )
+        CONSTRAINT chk_prp_estado CHECK (activo IN ('I','A')),
   prp_version Number DEFAULT 1
 )
 ;
 
 -- Add keys for table vitalis_perfiles_pantallas
 
-ALTER TABLE vitalis_perfiles_pantallas ADD CONSTRAINT vitalis_perfiles_pantallas_pk PRIMARY KEY (pan_id,prf_id,prp_id)
+ALTER TABLE vitalis_perfiles_pantallas ADD CONSTRAINT vitalis_perfiles_pantallas_pk PRIMARY KEY (prp_id)
 ;
 
 -- Table and Columns comments section
@@ -2102,9 +2138,10 @@ CREATE TABLE vitalis_personal_tipos_planillas(
   per_id Number NOT NULL,
   tpl_id Number NOT NULL,
   ptp_id Number NOT NULL,
-  ptp_salario_base Varchar2(30 ),
+  ptp_salario_base Number,
   ptp_fecha_asignacion Varchar2(30 ),
-  ptp_estado Varchar2(30 ),
+  ptp_estado Char(1 )
+        CONSTRAINT chk_ptp_estado CHECK (activo IN ('A','I')),
   ptp_version Number DEFAULT 1
 )
 ;
@@ -2166,7 +2203,7 @@ CREATE TABLE vitalis_identificacion(
 
 -- Create indexes for table vitalis_identificacion
 
-CREATE INDEX IX_Relationship48 ON vitalis_identificacion (per_id)
+CREATE INDEX vitalis_identificacion_ind01 ON vitalis_identificacion (per_id)
 ;
 
 -- Add keys for table vitalis_identificacion
@@ -2188,13 +2225,14 @@ COMMENT ON COLUMN vitalis_identificacion.ide_tipo IS 'Dimex, cedula de identidad
 
 CREATE TABLE vitalis_notificaciones(
   not_id Number NOT NULL,
-  not_tipo Char(20 ),
-  not_destinatario Char(20 ),
-  not_asunto Char(20 ),
-  not_mensaje Char(20 ),
-  not_fecha_envio Char(20 ),
-  not_estado Char(20 ),
-  not_intentos Char(20 ),
+  not_tipo Varchar2(30 ),
+  not_destinatario Varchar2(30 ),
+  not_asunto Varchar2(30 ),
+  not_mensaje Varchar2(500 ),
+  not_fecha_envio Date,
+  not_estado Char(1 )
+        CONSTRAINT chk_not_estado CHECK (activo IN ('E','P','F')),
+  not_intentos Number,
   not_version Number DEFAULT 1,
   pln_id Number
 )
@@ -2202,7 +2240,7 @@ CREATE TABLE vitalis_notificaciones(
 
 -- Create indexes for table vitalis_notificaciones
 
-CREATE INDEX IX_Relationship62 ON vitalis_notificaciones (pln_id)
+CREATE INDEX vitalis_notificaciones_ind01 ON vitalis_notificaciones (pln_id)
 ;
 
 -- Add keys for table vitalis_notificaciones
@@ -2235,11 +2273,12 @@ COMMENT ON COLUMN vitalis_notificaciones.not_version IS 'Version del registro'
 
 CREATE TABLE vitalis_contratos(
   ctr_id Number NOT NULL,
-  ctr_tipo Char(20 ),
-  ctr_fecha_inicio Char(20 ),
-  ctr_fecha_fin Char(20 ),
-  ctr_monto_base Char(20 ),
-  ctr_estado Char(20 ),
+  ctr_tipo Varchar2(500 ),
+  ctr_fecha_inicio Date,
+  ctr_fecha_fin Date,
+  ctr_monto_base Number,
+  ctr_estado Char(1 )
+        CONSTRAINT chk_ctr_estado CHECK (activo IN ('A','I')),
   ctr_version Number,
   per_id Number
 )
@@ -2255,14 +2294,29 @@ CREATE INDEX IX_Relationship49 ON vitalis_contratos (per_id)
 ALTER TABLE vitalis_contratos ADD CONSTRAINT vitalis_contratos_pk PRIMARY KEY (ctr_id)
 ;
 
+-- Table and Columns comments section
+
+COMMENT ON COLUMN vitalis_contratos.ctr_tipo IS 'Tipo del contrato que se va a realizar'
+;
+COMMENT ON COLUMN vitalis_contratos.ctr_fecha_inicio IS 'fecha de inicio del contrato'
+;
+COMMENT ON COLUMN vitalis_contratos.ctr_fecha_fin IS 'fecha final del contrato'
+;
+COMMENT ON COLUMN vitalis_contratos.ctr_monto_base IS 'El monto que estipula la legislación según el puesto'
+;
+COMMENT ON COLUMN vitalis_contratos.ctr_estado IS 'Estado A=activo I=Inactivo'
+;
+COMMENT ON COLUMN vitalis_contratos.ctr_version IS 'Version en la que se encuentra el contrato'
+;
+
 -- Table vitalis_incapacidades
 
 CREATE TABLE vitalis_incapacidades(
   inc_id Number NOT NULL,
-  inc_fecha_inicio Char(20 ),
-  inc_fecha_fin Char(20 ),
-  inc_tipo Char(20 ),
-  inc_certificado Char(20 ),
+  inc_fecha_inicio Date,
+  inc_fecha_fin Date,
+  inc_tipo Varchar2(30 ),
+  inc_certificado Blob,
   inc_version Number DEFAULT 1,
   per_id Number
 )
@@ -2270,7 +2324,7 @@ CREATE TABLE vitalis_incapacidades(
 
 -- Create indexes for table vitalis_incapacidades
 
-CREATE INDEX IX_Relationship50 ON vitalis_incapacidades (per_id)
+CREATE INDEX vitalis_incapacidades_ind01 ON vitalis_incapacidades (per_id)
 ;
 
 -- Add keys for table vitalis_incapacidades
@@ -2278,14 +2332,27 @@ CREATE INDEX IX_Relationship50 ON vitalis_incapacidades (per_id)
 ALTER TABLE vitalis_incapacidades ADD CONSTRAINT vitalis_incapacidades_pk PRIMARY KEY (inc_id)
 ;
 
+-- Table and Columns comments section
+
+COMMENT ON COLUMN vitalis_incapacidades.inc_fecha_inicio IS 'Fecha de inicio de la incapacidad'
+;
+COMMENT ON COLUMN vitalis_incapacidades.inc_fecha_fin IS 'Fecha final de incapacidad'
+;
+COMMENT ON COLUMN vitalis_incapacidades.inc_tipo IS 'Concepto de la incapacidad'
+;
+COMMENT ON COLUMN vitalis_incapacidades.inc_certificado IS 'Constancia o comprobante de la incapacidad
+'
+;
+
 -- Table vitalis_vacaciones
 
 CREATE TABLE vitalis_vacaciones(
   vac_id Number NOT NULL,
-  vac_fecha_inicio Char(20 ),
-  vac_fecha_fin Char(20 ),
-  vac_dias Char(20 ),
-  vac_estado Char(20 ),
+  vac_fecha_inicio Date NOT NULL,
+  vac_fecha_fin Date NOT NULL,
+  vac_dias Number NOT NULL,
+  vac_estado Char(1 ) NOT NULL
+        CONSTRAINT chk_vac_estado CHECK (activo IN ('A','I')),
   vac_version Number DEFAULT 1 NOT NULL,
   per_id Number
 )
@@ -2293,7 +2360,7 @@ CREATE TABLE vitalis_vacaciones(
 
 -- Create indexes for table vitalis_vacaciones
 
-CREATE INDEX IX_Relationship55 ON vitalis_vacaciones (per_id)
+CREATE INDEX vitalis_vacaciones_ind01 ON vitalis_vacaciones (per_id)
 ;
 
 -- Add keys for table vitalis_vacaciones
@@ -2301,14 +2368,29 @@ CREATE INDEX IX_Relationship55 ON vitalis_vacaciones (per_id)
 ALTER TABLE vitalis_vacaciones ADD CONSTRAINT vitalis_vacaciones_pk PRIMARY KEY (vac_id)
 ;
 
+-- Table and Columns comments section
+
+COMMENT ON COLUMN vitalis_vacaciones.vac_fecha_inicio IS 'Fecha de inicio de vaciones
+'
+;
+COMMENT ON COLUMN vitalis_vacaciones.vac_fecha_fin IS 'Fecha final de vaciones'
+;
+COMMENT ON COLUMN vitalis_vacaciones.vac_dias IS 'Numero de dias de vaciones'
+;
+COMMENT ON COLUMN vitalis_vacaciones.vac_estado IS 'A=activo I=Inactivo'
+;
+COMMENT ON COLUMN vitalis_vacaciones.vac_version IS 'Version en la que se encuentra las vacaciones'
+;
+
 -- Table vitalis_feriados
 
 CREATE TABLE vitalis_feriados(
   fer_id Number NOT NULL,
-  fer_fecha Char(20 ),
-  fer_nombre Char(20 ),
-  fer_tipo Char(20 ),
-  fer_estado Char(20 ),
+  fer_fecha Date,
+  fer_nombre Varchar2(30 ),
+  fer_tipo Varchar2(30 ),
+  fer_estado Char(1 )
+        CONSTRAINT chk_fer_estado CHECK (activo IN ('A','I')),
   fer_version Number DEFAULT 1 NOT NULL,
   csa_id Number
 )
@@ -2316,7 +2398,7 @@ CREATE TABLE vitalis_feriados(
 
 -- Create indexes for table vitalis_feriados
 
-CREATE INDEX IX_Relationship60 ON vitalis_feriados (csa_id)
+CREATE INDEX vitalis_feriados_ind01 ON vitalis_feriados (csa_id)
 ;
 
 -- Add keys for table vitalis_feriados
@@ -2324,14 +2406,28 @@ CREATE INDEX IX_Relationship60 ON vitalis_feriados (csa_id)
 ALTER TABLE vitalis_feriados ADD CONSTRAINT vitalis_feriados_pk PRIMARY KEY (fer_id)
 ;
 
+-- Table and Columns comments section
+
+COMMENT ON COLUMN vitalis_feriados.fer_fecha IS 'Fecha de feriado'
+;
+COMMENT ON COLUMN vitalis_feriados.fer_nombre IS 'Nombre del feriado'
+;
+COMMENT ON COLUMN vitalis_feriados.fer_tipo IS 'Tipo del feriado'
+;
+COMMENT ON COLUMN vitalis_feriados.fer_estado IS 'A=activo I=inactivo'
+;
+COMMENT ON COLUMN vitalis_feriados.fer_version IS 'Version de cuando del feriado'
+;
+
 -- Table vitalis_consultorios
 
 CREATE TABLE vitalis_consultorios(
   con_id Number NOT NULL,
-  con_codigo Char(20 ),
-  con_nombre Char(20 ),
-  con_capacidad Char(20 ),
-  con_estado Char(20 ),
+  con_codigo Number NOT NULL,
+  con_nombre Varchar2(20 ) NOT NULL,
+  con_capacidad Number NOT NULL,
+  con_estado Char(1 ) NOT NULL
+        CONSTRAINT chk_con_estado CHECK (activo IN ('A','I')),
   con_version Number DEFAULT 1 NOT NULL,
   csa_id Number
 )
@@ -2339,7 +2435,7 @@ CREATE TABLE vitalis_consultorios(
 
 -- Create indexes for table vitalis_consultorios
 
-CREATE INDEX IX_Relationship52 ON vitalis_consultorios (csa_id)
+CREATE INDEX vitalis_consultorios_ind01 ON vitalis_consultorios (csa_id)
 ;
 
 -- Add keys for table vitalis_consultorios
@@ -2347,24 +2443,36 @@ CREATE INDEX IX_Relationship52 ON vitalis_consultorios (csa_id)
 ALTER TABLE vitalis_consultorios ADD CONSTRAINT vitalis_consultorios_pk PRIMARY KEY (con_id)
 ;
 
+-- Table and Columns comments section
+
+COMMENT ON COLUMN vitalis_consultorios.con_codigo IS 'Codigo de consultorio'
+;
+COMMENT ON COLUMN vitalis_consultorios.con_nombre IS 'Nombre del consultorio
+'
+;
+COMMENT ON COLUMN vitalis_consultorios.con_capacidad IS 'Capacidad de personas que puede atender'
+;
+COMMENT ON COLUMN vitalis_consultorios.con_estado IS 'A=activo I=Inactivo'
+;
+
 -- Table vitalis_facturas_detalle
 
 CREATE TABLE vitalis_facturas_detalle(
   fad_id Number NOT NULL,
-  fad_origen Char(20 ),
-  fad_origen_id Char(20 ),
-  fad_descripcion Char(20 ),
-  fad_cantidad Char(20 ),
-  fad_precio_unit Char(20 ),
-  fad_monto Char(20 ),
-  fad_version Number DEFAULT 1,
+  fad_origen Varchar2(30 ) NOT NULL,
+  fad_origen_id Number NOT NULL,
+  fad_descripcion Varchar2(200 ),
+  fad_cantidad Number NOT NULL,
+  fad_precio_unit Number NOT NULL,
+  fad_monto Number NOT NULL,
+  fad_version Number DEFAULT 1 NOT NULL,
   fac_id Number
 )
 ;
 
 -- Create indexes for table vitalis_facturas_detalle
 
-CREATE INDEX IX_Relationship54 ON vitalis_facturas_detalle (fac_id)
+CREATE INDEX vitalis_facturas_detalle_ind01 ON vitalis_facturas_detalle (fac_id)
 ;
 
 -- Add keys for table vitalis_facturas_detalle
@@ -2372,17 +2480,36 @@ CREATE INDEX IX_Relationship54 ON vitalis_facturas_detalle (fac_id)
 ALTER TABLE vitalis_facturas_detalle ADD CONSTRAINT vitalis_facturas_detalle_pk PRIMARY KEY (fad_id)
 ;
 
+-- Table and Columns comments section
+
+COMMENT ON COLUMN vitalis_facturas_detalle.fad_origen IS 'De donde se genero la factura ejemplo clinica Santa Marta...'
+;
+COMMENT ON COLUMN vitalis_facturas_detalle.fad_origen_id IS 'Id del origen de la factura'
+;
+COMMENT ON COLUMN vitalis_facturas_detalle.fad_descripcion IS 'Descripcion de la factura sus detalles agregados'
+;
+COMMENT ON COLUMN vitalis_facturas_detalle.fad_cantidad IS 'Cantidad de suministros en la factura'
+;
+COMMENT ON COLUMN vitalis_facturas_detalle.fad_precio_unit IS 'Precio de unitario del coste de lo que se realizo
+'
+;
+COMMENT ON COLUMN vitalis_facturas_detalle.fad_monto IS 'Precio total 
+'
+;
+COMMENT ON COLUMN vitalis_facturas_detalle.fad_version IS 'Version de la factura'
+;
+
 -- Table vitalis_facturas_centros
 
 CREATE TABLE vitalis_facturas_centros(
   fac_id Number NOT NULL,
-  fac_mes Char(20 ),
-  fac_anio Char(20 ),
-  fac_numero Char(20 ),
-  fac_fecha Char(20 ),
-  fac_subtotal Char(20 ),
-  fac_impuestos Char(20 ),
-  fac_total Char(20 ),
+  fac_mes Number,
+  fac_anio Number,
+  fac_numero Number,
+  fac_fecha Date,
+  fac_subtotal Number,
+  fac_impuestos Number,
+  fac_total Number,
   fac_estado Char(20 ),
   fac_version Number NOT NULL,
   csa_id Number
@@ -2391,16 +2518,31 @@ CREATE TABLE vitalis_facturas_centros(
 
 -- Create indexes for table vitalis_facturas_centros
 
-CREATE INDEX IX_Relationship53 ON vitalis_facturas_centros (csa_id)
+CREATE INDEX vitalis_facturas_centros_ind01 ON vitalis_facturas_centros (csa_id)
 ;
 
 -- Add keys for table vitalis_facturas_centros
 
-ALTER TABLE vitalis_facturas_centros ADD CONSTRAINT vitalis_facturas_centros _pk PRIMARY KEY (fac_id)
+ALTER TABLE vitalis_facturas_centros ADD CONSTRAINT vitalis_facturas_centros_pk PRIMARY KEY (fac_id)
 ;
 
 -- Table and Columns comments section
 
+COMMENT ON COLUMN vitalis_facturas_centros.fac_mes IS 'mes de la factura'
+;
+COMMENT ON COLUMN vitalis_facturas_centros.fac_anio IS 'año de la factura'
+;
+COMMENT ON COLUMN vitalis_facturas_centros.fac_numero IS 'numero de la factura'
+;
+COMMENT ON COLUMN vitalis_facturas_centros.fac_fecha IS 'Fecha de la factura dada'
+;
+COMMENT ON COLUMN vitalis_facturas_centros.fac_subtotal IS 'subtotal de la factura'
+;
+COMMENT ON COLUMN vitalis_facturas_centros.fac_impuestos IS 'Impuestos de la factura que fueron colocados
+'
+;
+COMMENT ON COLUMN vitalis_facturas_centros.fac_total IS 'Total de la factura'
+;
 COMMENT ON COLUMN vitalis_facturas_centros.fac_estado IS ' (EMITIDA/PAGADA/ANULADA)'
 ;
 COMMENT ON COLUMN vitalis_facturas_centros.fac_version IS 'Version del registro'
@@ -2410,18 +2552,20 @@ COMMENT ON COLUMN vitalis_facturas_centros.fac_version IS 'Version del registro'
 
 CREATE TABLE vitalis_autoregistros(
   aur_id Number NOT NULL,
-  aur_cedula Char(20 ),
-  aur_nombre Char(20 ),
-  aur_apellido1 Char(20 ),
-  aur_apellido2 Char(20 ),
-  aur_email Char(20 ),
-  aur_telefono Char(20 ),
-  aur_tipo_personal Char(20 ),
-  aur_fecha_nacimiento Char(20 ),
-  aur_estado Char(20 ),
-  aur_fecha_registro Char(20 ),
-  aur_fecha_revision Char(20 ),
-  aur_usu_revisor Char(20 ),
+  aur_cedula Varchar2(12 ) NOT NULL,
+  aur_nombre Varchar2(30 ) NOT NULL,
+  aur_apellido1 Varchar2(10 ) NOT NULL,
+  aur_apellido2 Varchar2(10 ) NOT NULL,
+  aur_email Varchar2(20 ),
+  aur_telefono Varchar2(10 ),
+  aur_tipo_personal Char(1 )
+        CONSTRAINT chk_aur_tipo_personal CHECK (activo IN ('M','A')),
+  aur_fecha_nacimiento Date,
+  aur_estado Char(1 )
+        CONSTRAINT chk_aur_estado CHECK (activo IN ('P','A','R')),
+  aur_fecha_registro Date,
+  aur_fecha_revision Date,
+  aur_usu_revisor Varchar2(20 ),
   aur_version Number DEFAULT 1 NOT NULL
 )
 ;
@@ -2439,19 +2583,37 @@ COMMENT ON COLUMN vitalis_autoregistros.aur_cedula IS 'Cédula de identidad'
 ;
 COMMENT ON COLUMN vitalis_autoregistros.aur_nombre IS 'Primer nombre'
 ;
-COMMENT ON COLUMN vitalis_autoregistros.aur_tipo_personal IS 'MEDICO, ADMINISTRATIVO'
+COMMENT ON COLUMN vitalis_autoregistros.aur_apellido1 IS 'Apellidos de la persona que se autoregistra'
+;
+COMMENT ON COLUMN vitalis_autoregistros.aur_apellido2 IS 'Apellido numero 2 del autoregistro
+'
+;
+COMMENT ON COLUMN vitalis_autoregistros.aur_email IS 'Email del autoregistro'
+;
+COMMENT ON COLUMN vitalis_autoregistros.aur_telefono IS 'Telefeno del que realizo el autoregistro'
+;
+COMMENT ON COLUMN vitalis_autoregistros.aur_tipo_personal IS 'M=medico, A=Administrativo'
+;
+COMMENT ON COLUMN vitalis_autoregistros.aur_fecha_nacimiento IS 'Fecha de nacimiento'
 ;
 COMMENT ON COLUMN vitalis_autoregistros.aur_estado IS 'P=Pendiente, A=Aprobado, R=Rechazado'
+;
+COMMENT ON COLUMN vitalis_autoregistros.aur_fecha_registro IS 'Fecha del registro'
+;
+COMMENT ON COLUMN vitalis_autoregistros.aur_fecha_revision IS 'Fecha en que se realizo la revisión'
+;
+COMMENT ON COLUMN vitalis_autoregistros.aur_usu_revisor IS 'Usuario que reviso el autoregistro para aprobarlo'
 ;
 
 -- Table vitalis_autoregistros_documentos
 
 CREATE TABLE vitalis_autoregistros_documentos(
   aud_id Number NOT NULL,
-  aud_nombre_archivo Char(20 ),
-  aud_ruta_archivo Char(20 ),
-  aud_fecha_carga Char(20 ),
-  aud_estado Char(20 ),
+  aud_nombre_archivo Varchar2(20 ) NOT NULL,
+  aud_ruta_archivo Varchar2(30 ),
+  aud_fecha_carga Date,
+  aud_estado Char(1 ) NOT NULL
+        CONSTRAINT chk_aud_estado CHECK (activo IN ('A','I')),
   aud_version Number DEFAULT 1 NOT NULL,
   aur_id Number,
   tdo_id Number
@@ -2460,10 +2622,10 @@ CREATE TABLE vitalis_autoregistros_documentos(
 
 -- Create indexes for table vitalis_autoregistros_documentos
 
-CREATE INDEX IX_Relationship56 ON vitalis_autoregistros_documentos (aur_id)
+CREATE INDEX vitalis_documentos_personas_ind01 ON vitalis_autoregistros_documentos (aur_id)
 ;
 
-CREATE INDEX IX_Relationship57 ON vitalis_autoregistros_documentos (tdo_id)
+CREATE INDEX vitalis_documentos_personas_ind02 ON vitalis_autoregistros_documentos (tdo_id)
 ;
 
 -- Add keys for table vitalis_autoregistros_documentos
@@ -2473,6 +2635,14 @@ ALTER TABLE vitalis_autoregistros_documentos ADD CONSTRAINT vitalis_autoregistro
 
 -- Table and Columns comments section
 
+COMMENT ON COLUMN vitalis_autoregistros_documentos.aud_nombre_archivo IS 'Nombre que va a poseer el archivo'
+;
+COMMENT ON COLUMN vitalis_autoregistros_documentos.aud_ruta_archivo IS 'Ruta donde se encuentra el autoregistro'
+;
+COMMENT ON COLUMN vitalis_autoregistros_documentos.aud_fecha_carga IS 'Fecha de registro'
+;
+COMMENT ON COLUMN vitalis_autoregistros_documentos.aud_estado IS 'Estado (A=Activo, I=Inactivo)'
+;
 COMMENT ON COLUMN vitalis_autoregistros_documentos.aud_version IS 'Version del registro'
 ;
 
@@ -2480,13 +2650,14 @@ COMMENT ON COLUMN vitalis_autoregistros_documentos.aud_version IS 'Version del r
 
 CREATE TABLE vitalis_plantillas_notificacion(
   pln_id Number NOT NULL,
-  pln_codigo Char(20 ),
-  pln_nombre Char(20 ),
-  pln_asunto Char(20 ),
-  pln_cuerpo Char(20 ),
-  pln_tipo Char(20 ),
-  pln_estado Char(20 ),
-  pln_fecha_creacion Char(20 ),
+  pln_codigo Number,
+  pln_nombre Varchar2(30 ),
+  pln_asunto Varchar2(500 ),
+  pln_cuerpo Varchar2(2000 ),
+  pln_tipo Varchar2(30 ),
+  pln_estado Char(1 )
+        CONSTRAINT chk_pln_estado CHECK (activo IN ('A','I')),
+  pln_fecha_creacion Date,
   pln_version Number DEFAULT 1
 )
 ;
@@ -2496,106 +2667,38 @@ CREATE TABLE vitalis_plantillas_notificacion(
 ALTER TABLE vitalis_plantillas_notificacion ADD CONSTRAINT vitalis_plantillas_notificacion_pk PRIMARY KEY (pln_id)
 ;
 
--- Table vitalis_jobs
-
-CREATE TABLE vitalis_jobs(
-  job_id Number NOT NULL,
-  job_codigo Char(20 ),
-  job_nombre Char(20 ),
-  job_descripcion Char(20 ),
-  job_cron Char(20 ),
-  job_activo Char(20 ),
-  job_fecha_creacion Char(20 ),
-  job_version Number DEFAULT 1 NOT NULL
-)
-;
-
--- Add keys for table vitalis_jobs
-
-ALTER TABLE vitalis_jobs ADD CONSTRAINT vitalis_jobs_pk PRIMARY KEY (job_id)
-;
-
 -- Table and Columns comments section
 
-COMMENT ON COLUMN vitalis_jobs.job_version IS 'Version del registro'
+COMMENT ON COLUMN vitalis_plantillas_notificacion.pln_codigo IS 'Codigo de la notificacion'
 ;
-
--- Table vitalis_jobs_ejecuciones
-
-CREATE TABLE vitalis_jobs_ejecuciones(
-  joe_id Number NOT NULL,
-  joe_fecha_inicio Char(20 ),
-  joe_fecha_fin Char(20 ),
-  joe_estado Char(20 ),
-  joe_log Char(20 ),
-  joe_version Number DEFAULT 1 NOT NULL,
-  job_id Number
-)
+COMMENT ON COLUMN vitalis_plantillas_notificacion.pln_nombre IS 'Nombre de la notificacion'
 ;
-
--- Create indexes for table vitalis_jobs_ejecuciones
-
-CREATE INDEX IX_Relationship58 ON vitalis_jobs_ejecuciones (job_id)
+COMMENT ON COLUMN vitalis_plantillas_notificacion.pln_asunto IS 'Descripcion o asunto de la notificacion dada
+'
 ;
-
--- Add keys for table vitalis_jobs_ejecuciones
-
-ALTER TABLE vitalis_jobs_ejecuciones ADD CONSTRAINT vitalis_jobs_ejecuciones_pk PRIMARY KEY (joe_id)
+COMMENT ON COLUMN vitalis_plantillas_notificacion.pln_cuerpo IS 'El HTML de las notificaciones'
 ;
-
--- Table vitalis_monitor_bd
-
-CREATE TABLE vitalis_monitor_bd(
-  mbd_id Number NOT NULL,
-  mbd_tipo Char(20 ),
-  mbd_descripcion Char(20 ),
-  mbd_valor Char(20 ),
-  mbd_fecha Char(20 ),
-  mbd_estado Char(20 ),
-  mbd_version Number DEFAULT 1 NOT NULL
-)
+COMMENT ON COLUMN vitalis_plantillas_notificacion.pln_tipo IS 'Tipo de la notificacion si es general o etc'
 ;
-
--- Add keys for table vitalis_monitor_bd
-
-ALTER TABLE vitalis_monitor_bd ADD CONSTRAINT vitalis_monitor_bd_pk PRIMARY KEY (mbd_id)
+COMMENT ON COLUMN vitalis_plantillas_notificacion.pln_estado IS 'A=activa I=Inactiva'
 ;
-
--- Table vitalis_monitor_eventos
-
-CREATE TABLE vitalis_monitor_eventos(
-  mve_id Number NOT NULL,
-  mve_fecha Char(20 ),
-  mve_notificado Char(20 ),
-  mve_destinatario Char(20 ),
-  mve_resultado Char(20 ),
-  mve_estado Char(20 ),
-  mve_version Number DEFAULT 1 NOT NULL,
-  mbd_id Number
-)
+COMMENT ON COLUMN vitalis_plantillas_notificacion.pln_fecha_creacion IS 'Fecha de creacion de la plantilla'
 ;
-
--- Create indexes for table vitalis_monitor_eventos
-
-CREATE INDEX IX_Relationship59 ON vitalis_monitor_eventos (mbd_id)
-;
-
--- Add keys for table vitalis_monitor_eventos
-
-ALTER TABLE vitalis_monitor_eventos ADD CONSTRAINT vitalis_monitor_eventos_pk PRIMARY KEY (mve_id)
+COMMENT ON COLUMN vitalis_plantillas_notificacion.pln_version IS 'Version de la plantilla'
 ;
 
 -- Table vitalis_tarifas_historial
 
 CREATE TABLE vitalis_tarifas_historial(
   tah_id Number NOT NULL,
-  tah_contexto Char(20 ),
-  tah_monto_cobrar Char(20 ),
-  tah_monto_pagar Char(20 ),
-  tah_vig_desde Char(20 ),
-  tah_vig_hasta Char(20 ),
-  tah_estado Char(20 ),
-  tah_fecha_registro Char(20 ),
+  tah_contexto Varchar2(30 ),
+  tah_monto_cobrar Number,
+  tah_monto_pagar Number,
+  tah_vig_desde Date,
+  tah_vig_hasta Date,
+  tah_estado Char(1 )
+        CONSTRAINT chk_tah_estado CHECK (activo IN ('A','I')),
+  tah_fecha_registro Date,
   tah_version Number DEFAULT 1 NOT NULL
 )
 ;
@@ -2605,280 +2708,1085 @@ CREATE TABLE vitalis_tarifas_historial(
 ALTER TABLE vitalis_tarifas_historial ADD CONSTRAINT vitalis_tarifas_historial_pk PRIMARY KEY (tah_id)
 ;
 
+-- Table and Columns comments section
+
+COMMENT ON COLUMN vitalis_tarifas_historial.tah_monto_cobrar IS 'Monto a cobrar de la tarifa
+'
+;
+COMMENT ON COLUMN vitalis_tarifas_historial.tah_monto_pagar IS 'Monto a pagar de la tarifa'
+;
+COMMENT ON COLUMN vitalis_tarifas_historial.tah_vig_desde IS 'Vigente desde que se inicio'
+;
+COMMENT ON COLUMN vitalis_tarifas_historial.tah_vig_hasta IS 'Vigente hasta fin de la tarifa'
+;
+COMMENT ON COLUMN vitalis_tarifas_historial.tah_estado IS 'A=activo I=Inactivo'
+;
+COMMENT ON COLUMN vitalis_tarifas_historial.tah_fecha_registro IS 'Fecha de registro de la tarifa'
+;
+
+-- Trigger for sequence vitalis_paises_seq01 for column pai_id in table vitalis_paises ---------
+CREATE OR REPLACE TRIGGER vitalis_paises_TGR01 BEFORE INSERT
+ON vitalis_paises FOR EACH ROW
+BEGIN
+    if :new.pai_id is null or :new.pai_id <= 0 then
+        :new.pai_id := vitalis_paises_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_paises_TGR02 AFTER UPDATE OF pai_id
+ON vitalis_paises FOR EACH ROW
+BEGIN
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column pai_id in table vitalis_paises as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_provincias_seq01 for column pro_id in table vitalis_provincia ---------
+CREATE OR REPLACE TRIGGER vitalis_provincia_TGR01 BEFORE INSERT
+ON vitalis_provincia FOR EACH ROW
+BEGIN
+    if :new.pro_id is null or :new.pro_id <= 0 then
+        :new.pro_id := vitalis_provincias_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_provincia_TGR02 AFTER UPDATE OF pro_id
+ON vitalis_provincia FOR EACH ROW
+BEGIN
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column pro_id in table vitalis_provincia as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_cantones_seq01 for column can_id in table vitalis_cantones ---------
+CREATE OR REPLACE TRIGGER vitalis_cantones_TGR01 BEFORE INSERT
+ON vitalis_cantones FOR EACH ROW
+BEGIN
+    if :new.can_id is null or :new.can_id <= 0 then
+        :new.can_id := vitalis_cantones_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_cantones_TGR02 AFTER UPDATE OF can_id
+ON vitalis_cantones FOR EACH ROW
+BEGIN
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column can_id in table vitalis_cantones as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_distritos_seq01 for column dis_id in table vitalis_distritos ---------
+CREATE OR REPLACE TRIGGER vitalis_distritos_TGR01 BEFORE INSERT
+ON vitalis_distritos FOR EACH ROW
+BEGIN
+    if :new.dis_id is null or :new.dis_id <= 0 then
+        :new.dis_id := vitalis_distritos_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_distritos_TGR02_vitalis_distritos_seq01 AFTER UPDATE OF dis_id
+ON vitalis_distritos FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column dis_id in table vitalis_distritos as it uses sequence.');
+END;
+
+-- Trigger for sequence vitalis_tipos_documentos_seq01 for column tdo_id in table vitalis_tipos_documentos ---------
+CREATE OR REPLACE TRIGGER vitalis_tipos_documentos_TGR01 BEFORE INSERT
+ON vitalis_tipos_documentos FOR EACH ROW
+BEGIN
+    if :new.tdo_id is null or :new.tdo_id <= 0 then
+        :new.tdo_id := vitalis_tipos_documentos_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_tipos_documentos_TGR02 AFTER UPDATE OF tdo_id
+ON vitalis_tipos_documentos FOR EACH ROW
+BEGIN
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column tdo_id in table vitalis_tipos_documentos as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_bancos_seq01 for column ban_id in table vitalis_bancos ---------
+CREATE OR REPLACE TRIGGER vitalis_bancos_TGR01 BEFORE INSERT
+ON vitalis_bancos FOR EACH ROW
+BEGIN
+    if :new.ban_id is null or :new.ban_id <= 0 then
+        :new.ban_id := vitalis_bancos_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_bancos_TGR02 AFTER UPDATE OF ban_id
+ON vitalis_bancos FOR EACH ROW
+BEGIN
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column ban_id in table vitalis_bancos as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_tipos_cuenta_seq01 for column tcu_id in table vitalis_tipos_cuenta ---------
+CREATE OR REPLACE TRIGGER vitalis_tipos_cuenta_TGR01 BEFORE INSERT
+ON vitalis_tipos_cuenta FOR EACH ROW
+BEGIN
+    if :new.tcu_id is null or :new.tcu_id <= 0 then
+        :new.tcu_id := vitalis_tipos_cuenta_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_tipos_cuenta_TGR02 AFTER UPDATE OF tcu_id
+ON vitalis_tipos_cuenta FOR EACH ROW
+BEGIN
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column tcu_id in table vitalis_tipos_cuenta as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_personas_seq01 for column per_id in table vitalis_personas ---------
+CREATE OR REPLACE TRIGGER vitalis_personas_TGR01 BEFORE INSERT
+ON vitalis_personas FOR EACH ROW
+BEGIN
+    if :new.per_id is null or :new.per_id <= 0 then
+        :new.per_id := vitalis_personas_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_personas_TGR02 AFTER UPDATE OF per_id
+ON vitalis_personas FOR EACH ROW
+BEGIN
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column per_id in table vitalis_personas as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_direcciones_seq01 for column dpe_id in table vitalis_direcciones_personas ---------
+CREATE OR REPLACE TRIGGER vitalis_direcciones_personas_TGR01 BEFORE INSERT
+ON vitalis_direcciones_personas FOR EACH ROW
+BEGIN
+    if :new.dpe_id is null or :new.dpe_id <= 0 then
+        :new.dpe_id := vitalis_direcciones_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_direcciones_personas_TGR02 AFTER UPDATE OF dpe_id
+ON vitalis_direcciones_personas FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column dpe_id in table vitalis_direcciones_personas as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_telefonos_personas_seq01 for column tpe_id in table vitalis_telefonos_personas ---------
+CREATE OR REPLACE TRIGGER vitalis_telefonos_personas_TGR01 BEFORE INSERT
+ON vitalis_telefonos_personas FOR EACH ROW
+BEGIN
+    if :new.tpe_id is null or :new.tpe_id <= 0 then
+        :new.tpe_id := vitalis_telefonos_personas_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_telefonos_personas_TGR02 AFTER UPDATE OF tpe_id
+ON vitalis_telefonos_personas FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column tpe_id in table vitalis_telefonos_personas as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_cuentas_bancarias_seq01 for column cba_id in table vitalis_cuentas_bancarias ---------
+CREATE OR REPLACE TRIGGER vitalis_cuentas_bancarias_TGR01 BEFORE INSERT
+ON vitalis_cuentas_bancarias FOR EACH ROW
+BEGIN
+    if :new.cba_id is null or :new.cba_id <= 0 then
+        :new.cba_id := vitalis_cuentas_bancarias_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_cuentas_bancarias_TGR02 AFTER UPDATE OF cba_id
+ON vitalis_cuentas_bancarias FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column cba_id in table vitalis_cuentas_bancarias as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_documentos_personas_seq01 for column dop_id in table vitalis_documentos_personas ---------
+CREATE OR REPLACE TRIGGER vitalis_documentos_personas_TGR01 BEFORE INSERT
+ON vitalis_documentos_personas FOR EACH ROW
+BEGIN
+    if :new.dop_id is null or :new.dop_id <= 0 then
+        :new.dop_id := vitalis_documentos_personas_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_documentos_personas_TGR02 AFTER UPDATE OF dop_id
+ON vitalis_documentos_personas FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column dop_id in table vitalis_documentos_personas as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_perfiles_seq01 for column prf_id in table vitalis_perfiles ---------
+CREATE OR REPLACE TRIGGER vitalis_perfiles_TGR01 BEFORE INSERT
+ON vitalis_perfiles FOR EACH ROW
+BEGIN
+    if :new.prf_id is null or :new.prf_id <= 0 then
+        :new.prf_id := vitalis_perfiles_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_perfiles_TGR02 AFTER UPDATE OF prf_id
+ON vitalis_perfiles FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column prf_id in table vitalis_perfiles as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_pantallas_seq01 for column pan_id in table vitalis_pantallas ---------
+CREATE OR REPLACE TRIGGER vitalis_pantallas_TGR01 BEFORE INSERT
+ON vitalis_pantallas FOR EACH ROW
+BEGIN
+    if :new.pan_id is null or :new.pan_id <= 0 then
+        :new.pan_id := vitalis_pantallas_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_pantallas_TGR02 AFTER UPDATE OF pan_id
+ON vitalis_pantallas FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column pan_id in table vitalis_pantallas as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_usuarios_seq01 for column usu_id in table vitalis_usuarios ---------
+CREATE OR REPLACE TRIGGER vitalis_usuarios_TGR01 BEFORE INSERT
+ON vitalis_usuarios FOR EACH ROW
+BEGIN
+    if :new.usu_id is null or :new.usu_id <= 0 then
+        :new.usu_id := vitalis_usuarios_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_usuarios_TGR02 AFTER UPDATE OF usu_id
+ON vitalis_usuarios FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column usu_id in table vitalis_usuarios as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_centros_salud_seq01 for column csa_id in table vitalis_centros_salud ---------
+CREATE OR REPLACE TRIGGER vitalis_centros_salud_TGR01 BEFORE INSERT
+ON vitalis_centros_salud FOR EACH ROW
+BEGIN
+    if :new.csa_id is null or :new.csa_id <= 0 then
+        :new.csa_id := vitalis_centros_salud_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_centros_salud_TGR02 AFTER UPDATE OF csa_id
+ON vitalis_centros_salud FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column csa_id in table vitalis_centros_salud as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_puestos_seq01 for column pue_id in table vitalis_puestos ---------
+CREATE OR REPLACE TRIGGER vitalis_puestos_TGR01 BEFORE INSERT
+ON vitalis_puestos FOR EACH ROW
+BEGIN
+    if :new.pue_id is null or :new.pue_id <= 0 then
+        :new.pue_id := vitalis_puestos_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_puestos_TGR02 AFTER UPDATE OF pue_id
+ON vitalis_puestos FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column pue_id in table vitalis_puestos as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_turnos_seq01 for column tur_id in table vitalis_turnos ---------
+CREATE OR REPLACE TRIGGER vitalis_turnos_TGR01 BEFORE INSERT
+ON vitalis_turnos FOR EACH ROW
+BEGIN
+    if :new.tur_id is null or :new.tur_id <= 0 then
+        :new.tur_id := vitalis_turnos_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_turnos_TGR02 AFTER UPDATE OF tur_id
+ON vitalis_turnos FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column tur_id in table vitalis_turnos as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_tipos_procedimientos_seq01 for column tpr_id in table vitalis_tipos_procedimientos ---------
+CREATE OR REPLACE TRIGGER vitalis_tipos_procedimientos_TGR01 BEFORE INSERT
+ON vitalis_tipos_procedimientos FOR EACH ROW
+BEGIN
+    if :new.tpr_id is null or :new.tpr_id <= 0 then
+        :new.tpr_id := vitalis_tipos_procedimientos_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_tipos_procedimientos_TGR02 AFTER UPDATE OF tpr_id
+ON vitalis_tipos_procedimientos FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column tpr_id in table vitalis_tipos_procedimientos as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_procedimientos_medicos_seq01 for column prm_id in table vitalis_procedimientos_medicos ---------
+CREATE OR REPLACE TRIGGER vitalis_procedimientos_medicos_TGR01 BEFORE INSERT
+ON vitalis_procedimientos_medicos FOR EACH ROW
+BEGIN
+    if :new.prm_id is null or :new.prm_id <= 0 then
+        :new.prm_id := vitalis_procedimientos_medicos_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_procedimientos_medicos_TGR02 AFTER UPDATE OF prm_id
+ON vitalis_procedimientos_medicos FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column prm_id in table vitalis_procedimientos_medicos as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_escalas_base_seq01 for column esb_id in table vitalis_escalas_base ---------
+CREATE OR REPLACE TRIGGER vitalis_escalas_base_TGR01 BEFORE INSERT
+ON vitalis_escalas_base FOR EACH ROW
+BEGIN
+    if :new.esb_id is null or :new.esb_id <= 0 then
+        :new.esb_id := vitalis_escalas_base_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_escalas_base_TGR02 AFTER UPDATE OF esb_id
+ON vitalis_escalas_base FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column esb_id in table vitalis_escalas_base as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_escalas_base_detalle_seq01 for column esd_id in table vitalis_escalas_base_detalle ---------
+CREATE OR REPLACE TRIGGER vitalis_escalas_base_detalle_TGR01 BEFORE INSERT
+ON vitalis_escalas_base_detalle FOR EACH ROW
+BEGIN
+    if :new.esd_id is null or :new.esd_id <= 0 then
+        :new.esd_id := vitalis_escalas_base_detalle_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_escalas_base_detalle_TGR02 AFTER UPDATE OF esd_id
+ON vitalis_escalas_base_detalle FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column esd_id in table vitalis_escalas_base_detalle as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_escalas_mensuales_seq01 for column esm_id in table vitalis_escalas_mensuales ---------
+CREATE OR REPLACE TRIGGER vitalis_escalas_mensuales_TGR01 BEFORE INSERT
+ON vitalis_escalas_mensuales FOR EACH ROW
+BEGIN
+    if :new.esm_id is null or :new.esm_id <= 0 then
+        :new.esm_id := vitalis_escalas_mensuales_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_escalas_mensuales_TGR02 AFTER UPDATE OF esm_id
+ON vitalis_escalas_mensuales FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column esm_id in table vitalis_escalas_mensuales as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_escalas_mensuales_detalle_seq01 for column emd_id in table vitalis_escalas_mensuales_detalle ---------
+CREATE OR REPLACE TRIGGER vitalis_escalas_mensuales_detalle_TGR01 BEFORE INSERT
+ON vitalis_escalas_mensuales_detalle FOR EACH ROW
+BEGIN
+    if :new.emd_id is null or :new.emd_id <= 0 then
+        :new.emd_id := vitalis_escalas_mensuales_detalle_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_escalas_mensuales_detalle_TGR02 AFTER UPDATE OF emd_id
+ON vitalis_escalas_mensuales_detalle FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column emd_id in table vitalis_escalas_mensuales_detalle as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_tipos_planillas_seq01 for column tpl_id in table vitalis_tipos_planillas ---------
+CREATE OR REPLACE TRIGGER vitalis_tipos_planillas_TGR01 BEFORE INSERT
+ON vitalis_tipos_planillas FOR EACH ROW
+BEGIN
+    if :new.tpl_id is null or :new.tpl_id <= 0 then
+        :new.tpl_id := vitalis_tipos_planillas_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_tipos_planillas_TGR02 AFTER UPDATE OF tpl_id
+ON vitalis_tipos_planillas FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column tpl_id in table vitalis_tipos_planillas as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_tipos_movimientos_seq01 for column tmo_id in table vitalis_tipos_movimientos ---------
+CREATE OR REPLACE TRIGGER vitalis_tipos_movimientos_TGR01 BEFORE INSERT
+ON vitalis_tipos_movimientos FOR EACH ROW
+BEGIN
+    if :new.tmo_id is null or :new.tmo_id <= 0 then
+        :new.tmo_id := vitalis_tipos_movimientos_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_tipos_movimientos_TGR02 AFTER UPDATE OF tmo_id
+ON vitalis_tipos_movimientos FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column tmo_id in table vitalis_tipos_movimientos as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_planillas_seq01 for column pla_id in table vitalis_planillas ---------
+CREATE OR REPLACE TRIGGER vitalis_planillas_TGR01 BEFORE INSERT
+ON vitalis_planillas FOR EACH ROW
+BEGIN
+    if :new.pla_id is null or :new.pla_id <= 0 then
+        :new.pla_id := vitalis_planillas_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_planillas_TGR02 AFTER UPDATE OF pla_id
+ON vitalis_planillas FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column pla_id in table vitalis_planillas as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_planillas_detalle_seq01 for column pld_id in table vitalis_planillas_detalle ---------
+CREATE OR REPLACE TRIGGER vitalis_planillas_detalle_TGR01 BEFORE INSERT
+ON vitalis_planillas_detalle FOR EACH ROW
+BEGIN
+    if :new.pld_id is null or :new.pld_id <= 0 then
+        :new.pld_id := vitalis_planillas_detalle_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_planillas_detalle_TGR02 AFTER UPDATE OF pld_id
+ON vitalis_planillas_detalle FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column pld_id in table vitalis_planillas_detalle as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_planillas_movimientos_seq01 for column plm_id in table vitalis_planillas_movimientos ---------
+CREATE OR REPLACE TRIGGER vitalis_planillas_movimientos_TGR01 BEFORE INSERT
+ON vitalis_planillas_movimientos FOR EACH ROW
+BEGIN
+    if :new.plm_id is null or :new.plm_id <= 0 then
+        :new.plm_id := vitalis_planillas_movimientos_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_planillas_movimientos_TGR02 AFTER UPDATE OF plm_id
+ON vitalis_planillas_movimientos FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column plm_id in table vitalis_planillas_movimientos as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_resumen_financiero_seq01 for column ref_id in table vitalis_resumen_financiero ---------
+CREATE OR REPLACE TRIGGER vitalis_resumen_financiero_TGR01 BEFORE INSERT
+ON vitalis_resumen_financiero FOR EACH ROW
+BEGIN
+    if :new.ref_id is null or :new.ref_id <= 0 then
+        :new.ref_id := vitalis_resumen_financiero_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_resumen_financiero_TGR02 AFTER UPDATE OF ref_id
+ON vitalis_resumen_financiero FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column ref_id in table vitalis_resumen_financiero as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_parametros_seq01 for column par_id in table vitalis_parametros ---------
+CREATE OR REPLACE TRIGGER vitalis_parametros_TGR01 BEFORE INSERT
+ON vitalis_parametros FOR EACH ROW
+BEGIN
+    if :new.par_id is null or :new.par_id <= 0 then
+        :new.par_id := vitalis_parametros_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_parametros_TGR02 AFTER UPDATE OF par_id
+ON vitalis_parametros FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column par_id in table vitalis_parametros as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_bitacoras_seq01 for column bit_id in table vitalis_bitacoras ---------
+CREATE OR REPLACE TRIGGER vitalis_bitacoras_TGR01 BEFORE INSERT
+ON vitalis_bitacoras FOR EACH ROW
+BEGIN
+    if :new.bit_id is null or :new.bit_id <= 0 then
+        :new.bit_id := vitalis_bitacoras_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_bitacoras_TGR02 AFTER UPDATE OF bit_id
+ON vitalis_bitacoras FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column bit_id in table vitalis_bitacoras as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_padron_nacional_seq01 for column pad_id in table vitalis_padron_nacional ---------
+CREATE OR REPLACE TRIGGER vitalis_padron_nacional_TGR01 BEFORE INSERT
+ON vitalis_padron_nacional FOR EACH ROW
+BEGIN
+    if :new.pad_id is null or :new.pad_id <= 0 then
+        :new.pad_id := vitalis_padron_nacional_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_padron_nacional_TGR02 AFTER UPDATE OF pad_id
+ON vitalis_padron_nacional FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column pad_id in table vitalis_padron_nacional as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_puestos_turno_seq01 for column put_id in table vitalis_puestos_turnos ---------
+CREATE OR REPLACE TRIGGER vitalis_puestos_turnos_TGR01 BEFORE INSERT
+ON vitalis_puestos_turnos FOR EACH ROW
+BEGIN
+    if :new.put_id is null or :new.put_id <= 0 then
+        :new.put_id := vitalis_puestos_turno_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_puestos_turnos_TGR02 AFTER UPDATE OF put_id
+ON vitalis_puestos_turnos FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column put_id in table vitalis_puestos_turnos as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_perfiles_pantallas_seq01 for column prp_id in table vitalis_perfiles_pantallas ---------
+CREATE OR REPLACE TRIGGER vitalis_perfiles_pantallas_TGR01 BEFORE INSERT
+ON vitalis_perfiles_pantallas FOR EACH ROW
+BEGIN
+    if :new.prp_id is null or :new.prp_id <= 0 then
+        :new.prp_id := vitalis_perfiles_pantallas_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_perfiles_pantallas_TGR02 AFTER UPDATE OF prp_id
+ON vitalis_perfiles_pantallas FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column prp_id in table vitalis_perfiles_pantallas as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_personal_tipos_planillas_seq01 for column ptp_id in table vitalis_personal_tipos_planillas ---------
+CREATE OR REPLACE TRIGGER vitalis_personal_tipos_planillas_TGR01 BEFORE INSERT
+ON vitalis_personal_tipos_planillas FOR EACH ROW
+BEGIN
+    if :new.ptp_id is null or :new.ptp_id <= 0 then
+        :new.ptp_id := vitalis_personal_tipos_planillas_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_personal_tipos_planillas_TGR02 AFTER UPDATE OF ptp_id
+ON vitalis_personal_tipos_planillas FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column ptp_id in table vitalis_personal_tipos_planillas as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_estados_seq01 for column est_id in table vitalis_estados ---------
+CREATE OR REPLACE TRIGGER vitalis_estados_TGR01 BEFORE INSERT
+ON vitalis_estados FOR EACH ROW
+BEGIN
+    if :new.est_id is null or :new.est_id <= 0 then
+        :new.est_id := vitalis_estados_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_estados_TGR02 AFTER UPDATE OF est_id
+ON vitalis_estados FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column est_id in table vitalis_estados as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_identificacion_seq01 for column ide_id in table vitalis_identificacion ---------
+CREATE OR REPLACE TRIGGER vitalis_identificacion_TGR01 BEFORE INSERT
+ON vitalis_identificacion FOR EACH ROW
+BEGIN
+    if :new.ide_id is null or :new.ide_id <= 0 then
+        :new.ide_id := vitalis_identificacion_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_identificacion_TGR02 AFTER UPDATE OF ide_id
+ON vitalis_identificacion FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column ide_id in table vitalis_identificacion as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_notificaciones_seq01 for column not_id in table vitalis_notificaciones ---------
+CREATE OR REPLACE TRIGGER vitalis_notificaciones_TGR01 BEFORE INSERT
+ON vitalis_notificaciones FOR EACH ROW
+BEGIN
+    if :new.not_id is null or :new.not_id <= 0 then
+        :new.not_id := vitalis_notificaciones_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_notificaciones_TGR02 AFTER UPDATE OF not_id
+ON vitalis_notificaciones FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column not_id in table vitalis_notificaciones as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_contratos_seq01 for column ctr_id in table vitalis_contratos ---------
+CREATE OR REPLACE TRIGGER vitalis_contratos_TGR01 BEFORE INSERT
+ON vitalis_contratos FOR EACH ROW
+BEGIN
+    if :new.ctr_id is null or :new.ctr_id <= 0 then
+        :new.ctr_id := vitalis_contratos_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_contratos_TGR02 AFTER UPDATE OF ctr_id
+ON vitalis_contratos FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column ctr_id in table vitalis_contratos as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_incapacidades_seq01 for column inc_id in table vitalis_incapacidades ---------
+CREATE OR REPLACE TRIGGER vitalis_incapacidades_TGR01 BEFORE INSERT
+ON vitalis_incapacidades FOR EACH ROW
+BEGIN
+    if :new.inc_id is null or :new.inc_id <= 0 then
+        :new.inc_id := vitalis_incapacidades_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_incapacidades_TGR02 AFTER UPDATE OF inc_id
+ON vitalis_incapacidades FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column inc_id in table vitalis_incapacidades as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_vacaciones_seq01 for column vac_id in table vitalis_vacaciones ---------
+CREATE OR REPLACE TRIGGER vitalis_vacaciones_TGR01 BEFORE INSERT
+ON vitalis_vacaciones FOR EACH ROW
+BEGIN
+    if :new.vac_id is null or :new.vac_id <= 0 then
+        :new.vac_id := vitalis_vacaciones_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_vacaciones_TGR02 AFTER UPDATE OF vac_id
+ON vitalis_vacaciones FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column vac_id in table vitalis_vacaciones as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_feriados_seq01 for column fer_id in table vitalis_feriados ---------
+CREATE OR REPLACE TRIGGER vitalis_feriados_TGR01 BEFORE INSERT
+ON vitalis_feriados FOR EACH ROW
+BEGIN
+    if :new.fer_id is null or :new.fer_id <= 0 then
+        :new.fer_id := vitalis_feriados_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_feriados_TGR02 AFTER UPDATE OF fer_id
+ON vitalis_feriados FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column fer_id in table vitalis_feriados as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_consultorios_seq01 for column con_id in table vitalis_consultorios ---------
+CREATE OR REPLACE TRIGGER vitalis_consultorios_TGR01 BEFORE INSERT
+ON vitalis_consultorios FOR EACH ROW
+BEGIN
+    if :new.con_id is null or :new.con_id <= 0 then
+        :new.con_id := vitalis_consultorios_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_consultorios_TGR02 AFTER UPDATE OF con_id
+ON vitalis_consultorios FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column con_id in table vitalis_consultorios as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_facturas_detalle_seq01 for column fad_id in table vitalis_facturas_detalle ---------
+CREATE OR REPLACE TRIGGER vitalis_facturas_detalle_TGR01 BEFORE INSERT
+ON vitalis_facturas_detalle FOR EACH ROW
+BEGIN
+    if :new.fad_id is null or :new.fad_id <= 0 then
+        :new.fad_id := vitalis_facturas_detalle_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_facturas_detalle_TGR02 AFTER UPDATE OF fad_id
+ON vitalis_facturas_detalle FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column fad_id in table vitalis_facturas_detalle as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_facturas_seq01 for column fac_id in table vitalis_facturas_centros ---------
+CREATE OR REPLACE TRIGGER vitalis_facturas_centros_TGR01 BEFORE INSERT
+ON vitalis_facturas_centros FOR EACH ROW
+BEGIN
+    if :new.fac_id is null or :new.fac_id <= 0 then
+        :new.fac_id := vitalis_facturas_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_facturas_centros_TGR02 AFTER UPDATE OF fac_id
+ON vitalis_facturas_centros FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column fac_id in table vitalis_facturas_centros as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_autoregistros_seq01 for column aur_id in table vitalis_autoregistros ---------
+CREATE OR REPLACE TRIGGER vitalis_autoregistros_TGR01 BEFORE INSERT
+ON vitalis_autoregistros FOR EACH ROW
+BEGIN
+    if :new.aur_id is null or :new.aur_id <= 0 then
+        :new.aur_id := vitalis_autoregistros_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_autoregistros_TGR02 AFTER UPDATE OF aur_id
+ON vitalis_autoregistros FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column aur_id in table vitalis_autoregistros as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_autoregistros_documentos_seq01 for column aud_id in table vitalis_autoregistros_documentos ---------
+CREATE OR REPLACE TRIGGER vitalis_autoregistros_documentos_TGR01 BEFORE INSERT
+ON vitalis_autoregistros_documentos FOR EACH ROW
+BEGIN
+    if :new.aud_id is null or :new.aud_id <= 0 then
+        :new.aud_id := vitalis_autoregistros_documentos_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_autoregistros_documentos_TGR02 AFTER UPDATE OF aud_id
+ON vitalis_autoregistros_documentos FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column aud_id in table vitalis_autoregistros_documentos as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_planillas_notificaciones_seq01 for column pln_id in table vitalis_plantillas_notificacion ---------
+CREATE OR REPLACE TRIGGER vitalis_plantillas_notificacion_TGR01 BEFORE INSERT
+ON vitalis_plantillas_notificacion FOR EACH ROW
+BEGIN
+    if :new.pln_id is null or :new.pln_id <= 0 then
+        :new.pln_id := vitalis_planillas_notificaciones_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_plantillas_notificacion_TGR02 AFTER UPDATE OF pln_id
+ON vitalis_plantillas_notificacion FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column pln_id in table vitalis_plantillas_notificacion as it uses sequence.');
+END;
+/
+
+-- Trigger for sequence vitalis_tarifas_historial_seq01 for column tah_id in table vitalis_tarifas_historial ---------
+CREATE OR REPLACE TRIGGER vitalis_tarifas_historial_TGR01 BEFORE INSERT
+ON vitalis_tarifas_historial FOR EACH ROW
+BEGIN
+    if :new.tah_id is null or :new.tah_id <= 0 then
+        :new.tah_id := vitalis_tarifas_historial_seq01.nextval;
+    end if;
+END;
+/
+CREATE OR REPLACE TRIGGER vitalis_tarifas_historial_TGR02 AFTER UPDATE OF tah_id
+ON vitalis_tarifas_historial FOR EACH ROW
+BEGIN
+  RAISE_APPLICATION_ERROR(-20010,'Cannot update column tah_id in table vitalis_tarifas_historial as it uses sequence.');
+END;
+/
+
 
 -- Create foreign keys (relationships) section ------------------------------------------------- 
 
-ALTER TABLE vitalis_provincia ADD CONSTRAINT Relationship2 FOREIGN KEY (pai_id) REFERENCES vitalis_paises (pai_id)
+ALTER TABLE vitalis_provincia ADD CONSTRAINT vitalis_pasisesprovincia_fk01 FOREIGN KEY (pai_id) REFERENCES vitalis_paises (pai_id)
 ;
 
 
 
-ALTER TABLE vitalis_cantones ADD CONSTRAINT Relationship3 FOREIGN KEY (pro_id) REFERENCES vitalis_provincia (pro_id)
+ALTER TABLE vitalis_cantones ADD CONSTRAINT vitalis_provinciacantones_fk01 FOREIGN KEY (pro_id) REFERENCES vitalis_provincia (pro_id)
 ;
 
 
 
-ALTER TABLE vitalis_distritos ADD CONSTRAINT Relationship4 FOREIGN KEY (can_id) REFERENCES vitalis_cantones (can_id)
+ALTER TABLE vitalis_distritos ADD CONSTRAINT vitalis_cantonesdistritos_fk01 FOREIGN KEY (can_id) REFERENCES vitalis_cantones (can_id)
 ;
 
 
 
-ALTER TABLE vitalis_direcciones_personas ADD CONSTRAINT Relationship5 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_direcciones_personas ADD CONSTRAINT vitalis_personasdireccionesper_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_telefonos_personas ADD CONSTRAINT Relationship6 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_telefonos_personas ADD CONSTRAINT vitalis_personastelefonos_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_cuentas_bancarias ADD CONSTRAINT Relationship7 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_cuentas_bancarias ADD CONSTRAINT vitalis_personascuentabancaria_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_documentos_personas ADD CONSTRAINT Relationship8 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_documentos_personas ADD CONSTRAINT vitalis_personasdocumentospersona_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_usuarios ADD CONSTRAINT Relationship9 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_usuarios ADD CONSTRAINT vitalis_personasusuario_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_puestos ADD CONSTRAINT Relationship10 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+ALTER TABLE vitalis_puestos ADD CONSTRAINT vitalis_centrossaludpuestos_fk01 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_base ADD CONSTRAINT Relationship11 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+ALTER TABLE vitalis_escalas_base ADD CONSTRAINT vitalis_centrossaludescalabase_fk01 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_mensuales ADD CONSTRAINT Relationship12 FOREIGN KEY (esb_id) REFERENCES vitalis_escalas_base (esb_id)
+ALTER TABLE vitalis_escalas_mensuales ADD CONSTRAINT vitalis_escalasbaseescalasmensuales_fk01 FOREIGN KEY (esb_id) REFERENCES vitalis_escalas_base (esb_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_mensuales_detalle ADD CONSTRAINT Relationship13 FOREIGN KEY (esm_id) REFERENCES vitalis_escalas_mensuales (esm_id)
+ALTER TABLE vitalis_escalas_mensuales_detalle ADD CONSTRAINT vitalis_escalasmensualesescalasmensualesdetalle_fk01 FOREIGN KEY (esm_id) REFERENCES vitalis_escalas_mensuales (esm_id)
 ;
 
 
 
-ALTER TABLE vitalis_planillas ADD CONSTRAINT Relationship14 FOREIGN KEY (tpl_id) REFERENCES vitalis_tipos_planillas (tpl_id)
+ALTER TABLE vitalis_planillas ADD CONSTRAINT vitalis_tiposplanillasplanillas_fk01 FOREIGN KEY (tpl_id) REFERENCES vitalis_tipos_planillas (tpl_id)
 ;
 
 
 
-ALTER TABLE vitalis_planillas_detalle ADD CONSTRAINT Relationship15 FOREIGN KEY (pla_id) REFERENCES vitalis_planillas (pla_id)
+ALTER TABLE vitalis_planillas_detalle ADD CONSTRAINT vitalis_planillasplanillasdetalle_fk01 FOREIGN KEY (pla_id) REFERENCES vitalis_planillas (pla_id)
 ;
 
 
 
-ALTER TABLE vitalis_puestos_turnos ADD CONSTRAINT Relationship16 FOREIGN KEY (pue_id) REFERENCES vitalis_puestos (pue_id)
+ALTER TABLE vitalis_puestos_turnos ADD CONSTRAINT vitalis_puestospuestosturnos_fk01 FOREIGN KEY (pue_id) REFERENCES vitalis_puestos (pue_id)
 ;
 
 
 
-ALTER TABLE vitalis_puestos_turnos ADD CONSTRAINT Relationship17 FOREIGN KEY (tur_id) REFERENCES vitalis_turnos (tur_id)
+ALTER TABLE vitalis_puestos_turnos ADD CONSTRAINT vitalis_turnospuestosturnos_fk01 FOREIGN KEY (tur_id) REFERENCES vitalis_turnos (tur_id)
 ;
 
 
 
-ALTER TABLE vitalis_perfiles_pantallas ADD CONSTRAINT Relationship18 FOREIGN KEY (pan_id) REFERENCES vitalis_pantallas (pan_id)
+ALTER TABLE vitalis_perfiles_pantallas ADD CONSTRAINT vitalis_pantallasperfilespantallas_fk01 FOREIGN KEY (pan_id) REFERENCES vitalis_pantallas (pan_id)
 ;
 
 
 
-ALTER TABLE vitalis_perfiles_pantallas ADD CONSTRAINT Relationship19 FOREIGN KEY (prf_id) REFERENCES vitalis_perfiles (prf_id)
+ALTER TABLE vitalis_perfiles_pantallas ADD CONSTRAINT vitalis_perfilesperfilespantalla_fk01 FOREIGN KEY (prf_id) REFERENCES vitalis_perfiles (prf_id)
 ;
 
 
 
-ALTER TABLE vitalis_personal_tipos_planillas ADD CONSTRAINT Relationship20 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_personal_tipos_planillas ADD CONSTRAINT vitalis_personaspersonaltiposplanilla_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_personal_tipos_planillas ADD CONSTRAINT Relationship21 FOREIGN KEY (tpl_id) REFERENCES vitalis_tipos_planillas (tpl_id)
+ALTER TABLE vitalis_personal_tipos_planillas ADD CONSTRAINT vitalis_tiposplanillaspersonaltiposplanillas_fk01 FOREIGN KEY (tpl_id) REFERENCES vitalis_tipos_planillas (tpl_id)
 ;
 
 
 
-ALTER TABLE vitalis_centros_salud ADD CONSTRAINT Relationship22 FOREIGN KEY (dis_id) REFERENCES vitalis_distritos (dis_id)
+ALTER TABLE vitalis_centros_salud ADD CONSTRAINT vitalis_distritoscentrossalud_fk01 FOREIGN KEY (dis_id) REFERENCES vitalis_distritos (dis_id)
 ;
 
 
 
-ALTER TABLE vitalis_direcciones_personas ADD CONSTRAINT Relationship23 FOREIGN KEY (dis_id) REFERENCES vitalis_distritos (dis_id)
+ALTER TABLE vitalis_direcciones_personas ADD CONSTRAINT vitalis_distritosdireccionesper_fk01 FOREIGN KEY (dis_id) REFERENCES vitalis_distritos (dis_id)
 ;
 
 
 
-ALTER TABLE vitalis_cuentas_bancarias ADD CONSTRAINT Relationship24 FOREIGN KEY (ban_id) REFERENCES vitalis_bancos (ban_id)
+ALTER TABLE vitalis_cuentas_bancarias ADD CONSTRAINT vitalis_bancoscuentasbancarias_fk01 FOREIGN KEY (ban_id) REFERENCES vitalis_bancos (ban_id)
 ;
 
 
 
-ALTER TABLE vitalis_cuentas_bancarias ADD CONSTRAINT Relationship25 FOREIGN KEY (tcu_id) REFERENCES vitalis_tipos_cuenta (tcu_id)
+ALTER TABLE vitalis_cuentas_bancarias ADD CONSTRAINT vitalis_tiposcuentacuentasbancarias_fk01 FOREIGN KEY (tcu_id) REFERENCES vitalis_tipos_cuenta (tcu_id)
 ;
 
 
 
-ALTER TABLE vitalis_documentos_personas ADD CONSTRAINT Relationship26 FOREIGN KEY (tdo_id) REFERENCES vitalis_tipos_documentos (tdo_id)
+ALTER TABLE vitalis_documentos_personas ADD CONSTRAINT vitalis_tiposdocumentosdocumentospersonas_fk01 FOREIGN KEY (tdo_id) REFERENCES vitalis_tipos_documentos (tdo_id)
 ;
 
 
 
-ALTER TABLE vitalis_usuarios ADD CONSTRAINT Relationship27 FOREIGN KEY (prf_id) REFERENCES vitalis_perfiles (prf_id)
+ALTER TABLE vitalis_usuarios ADD CONSTRAINT vitalis_perfilesusuarios_fk01 FOREIGN KEY (prf_id) REFERENCES vitalis_perfiles (prf_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_base_detalle ADD CONSTRAINT Relationship29 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_escalas_base_detalle ADD CONSTRAINT vitalis_personasescalasbasedetalle_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_mensuales_detalle ADD CONSTRAINT Relationship32 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_escalas_mensuales_detalle ADD CONSTRAINT vitalis_personasescalasmensualesdetalle_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_procedimientos_medicos ADD CONSTRAINT Relationship33 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_procedimientos_medicos ADD CONSTRAINT vitalis_personasprocedimientosmedicos_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_procedimientos_medicos ADD CONSTRAINT Relationship34 FOREIGN KEY (tpr_id) REFERENCES vitalis_tipos_procedimientos (tpr_id)
+ALTER TABLE vitalis_procedimientos_medicos ADD CONSTRAINT vitalis_tiposprocedimientosprocedimientosmedicos_fk01 FOREIGN KEY (tpr_id) REFERENCES vitalis_tipos_procedimientos (tpr_id)
 ;
 
 
 
-ALTER TABLE vitalis_planillas_movimientos ADD CONSTRAINT Relationship36 FOREIGN KEY (tmo_id) REFERENCES vitalis_tipos_movimientos (tmo_id)
+ALTER TABLE vitalis_planillas_movimientos ADD CONSTRAINT vitalis_tiposmovimientosplanillasmovimientos_fk01 FOREIGN KEY (tmo_id) REFERENCES vitalis_tipos_movimientos (tmo_id)
 ;
 
 
 
-ALTER TABLE vitalis_tipos_documentos ADD CONSTRAINT Relationship37 FOREIGN KEY (est_id) REFERENCES vitalis_estados (est_id)
+ALTER TABLE vitalis_tipos_documentos ADD CONSTRAINT vitalis_estadostiposdocumentos_fk01 FOREIGN KEY (est_id) REFERENCES vitalis_estados (est_id)
 ;
 
 
 
-ALTER TABLE vitalis_perfiles ADD CONSTRAINT Relationship38 FOREIGN KEY (est_id) REFERENCES vitalis_estados (est_id)
+ALTER TABLE vitalis_perfiles ADD CONSTRAINT vitalis_estadosperfiles_fk01 FOREIGN KEY (est_id) REFERENCES vitalis_estados (est_id)
 ;
 
 
 
-ALTER TABLE vitalis_procedimientos_medicos ADD CONSTRAINT Relationship40 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+ALTER TABLE vitalis_procedimientos_medicos ADD CONSTRAINT vitalis_centrossaludprocedimientosmedicos_fk01 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_base_detalle ADD CONSTRAINT Relationship41 FOREIGN KEY (esb_id) REFERENCES vitalis_escalas_base (esb_id)
+ALTER TABLE vitalis_escalas_base_detalle ADD CONSTRAINT vitalis_escalasbaseescalasbasedetalle_fk01 FOREIGN KEY (esb_id) REFERENCES vitalis_escalas_base (esb_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_base_detalle ADD CONSTRAINT Relationship42 FOREIGN KEY (put_id) REFERENCES vitalis_puestos_turnos (put_id)
+ALTER TABLE vitalis_escalas_base_detalle ADD CONSTRAINT vitalis_puestosturnosescalasbasedetalle_fk01 FOREIGN KEY (put_id) REFERENCES vitalis_puestos_turnos (put_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_mensuales ADD CONSTRAINT Relationship43 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+ALTER TABLE vitalis_escalas_mensuales ADD CONSTRAINT vitalis_centrossaludescalasmensuales_fk01 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
 ;
 
 
 
-ALTER TABLE vitalis_escalas_mensuales_detalle ADD CONSTRAINT Relationship44 FOREIGN KEY (put_id) REFERENCES vitalis_puestos_turnos (put_id)
+ALTER TABLE vitalis_escalas_mensuales_detalle ADD CONSTRAINT vitalis_puestosturnosescalasmensualesdetalle_fk01 FOREIGN KEY (put_id) REFERENCES vitalis_puestos_turnos (put_id)
 ;
 
 
 
-ALTER TABLE vitalis_planillas_detalle ADD CONSTRAINT Relationship45 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_planillas_detalle ADD CONSTRAINT vitalis_personasplanillasdetalle_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_planillas_movimientos ADD CONSTRAINT Relationship46 FOREIGN KEY (pld_id) REFERENCES vitalis_planillas_detalle (pld_id)
+ALTER TABLE vitalis_planillas_movimientos ADD CONSTRAINT vitalis_planillasdetalleplanillasmovimientos_fk01 FOREIGN KEY (pld_id) REFERENCES vitalis_planillas_detalle (pld_id)
 ;
 
 
 
-ALTER TABLE vitalis_resumen_financiero ADD CONSTRAINT Relationship47 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+ALTER TABLE vitalis_resumen_financiero ADD CONSTRAINT vitalis_centrossaludresumenfinanciero_fk01 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
 ;
 
 
 
-ALTER TABLE vitalis_identificacion ADD CONSTRAINT Relationship48 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_identificacion ADD CONSTRAINT vitalis_personasidentificacion_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_contratos ADD CONSTRAINT Relationship49 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_contratos ADD CONSTRAINT vitalis_personascontratos_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_incapacidades ADD CONSTRAINT Relationship50 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_incapacidades ADD CONSTRAINT vitalis_personasincapacidades_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_consultorios ADD CONSTRAINT Relationship52 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+ALTER TABLE vitalis_consultorios ADD CONSTRAINT vitalis_centrossaludconsultorios_fk01 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
 ;
 
 
 
-ALTER TABLE vitalis_facturas_centros ADD CONSTRAINT Relationship53 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
+ALTER TABLE vitalis_facturas_centros ADD CONSTRAINT vitalis_centrossaludfacturascentros_fk01 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
 ;
 
 
 
-ALTER TABLE vitalis_facturas_detalle ADD CONSTRAINT Relationship54 FOREIGN KEY (fac_id) REFERENCES vitalis_facturas_centros (fac_id)
+ALTER TABLE vitalis_facturas_detalle ADD CONSTRAINT vitalis_facturasdetallefacturascentro_fk01 FOREIGN KEY (fac_id) REFERENCES vitalis_facturas_centros (fac_id)
 ;
 
 
 
-ALTER TABLE vitalis_vacaciones ADD CONSTRAINT Relationship55 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
+ALTER TABLE vitalis_vacaciones ADD CONSTRAINT vitalis_personasvaciones_fk01 FOREIGN KEY (per_id) REFERENCES vitalis_personas (per_id)
 ;
 
 
 
-ALTER TABLE vitalis_autoregistros_documentos ADD CONSTRAINT Relationship56 FOREIGN KEY (aur_id) REFERENCES vitalis_autoregistros (aur_id)
+ALTER TABLE vitalis_autoregistros_documentos ADD CONSTRAINT vitalis_autoregistrosautorregistrosdocumentos_fk01 FOREIGN KEY (aur_id) REFERENCES vitalis_autoregistros (aur_id)
 ;
 
 
 
-ALTER TABLE vitalis_autoregistros_documentos ADD CONSTRAINT Relationship57 FOREIGN KEY (tdo_id) REFERENCES vitalis_tipos_documentos (tdo_id)
+ALTER TABLE vitalis_autoregistros_documentos ADD CONSTRAINT vitalis_tiposdocumentosautoregistrosdocumentos_fk01 FOREIGN KEY (tdo_id) REFERENCES vitalis_tipos_documentos (tdo_id)
 ;
 
 
 
-ALTER TABLE vitalis_jobs_ejecuciones ADD CONSTRAINT Relationship58 FOREIGN KEY (job_id) REFERENCES vitalis_jobs (job_id)
+ALTER TABLE vitalis_feriados ADD CONSTRAINT vitalis_centrossaludferiados_fk01 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
 ;
 
 
 
-ALTER TABLE vitalis_monitor_eventos ADD CONSTRAINT Relationship59 FOREIGN KEY (mbd_id) REFERENCES vitalis_monitor_bd (mbd_id)
+ALTER TABLE vitalis_notificaciones ADD CONSTRAINT vitalis_planillasnotificacionnotificaciones_fk01 FOREIGN KEY (pln_id) REFERENCES vitalis_plantillas_notificacion (pln_id)
 ;
 
 
 
-ALTER TABLE vitalis_feriados ADD CONSTRAINT Relationship60 FOREIGN KEY (csa_id) REFERENCES vitalis_centros_salud (csa_id)
-;
-
-
-
-ALTER TABLE vitalis_notificaciones ADD CONSTRAINT Relationship62 FOREIGN KEY (pln_id) REFERENCES vitalis_plantillas_notificacion (pln_id)
-;
-
-
-
-ALTER TABLE vitalis_bitacoras ADD CONSTRAINT Relationship63 FOREIGN KEY (usu_id) REFERENCES vitalis_usuarios (usu_id)
+ALTER TABLE vitalis_bitacoras ADD CONSTRAINT vitalis_usuariosbitacoras_fk01 FOREIGN KEY (usu_id) REFERENCES vitalis_usuarios (usu_id)
 ;
 
 
