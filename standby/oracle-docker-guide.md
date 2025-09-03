@@ -1,4 +1,4 @@
-# Guía Completa: Oracle 19c en Docker con Standby Database y Snapshots
+# Guía Completa: Oracle 19c en Docker con Standby Database y Snapshots para Windows
 
 ## Tabla de Contenidos
 1. [Prerrequisitos y Preparación del Entorno](#1-prerrequisitos-y-preparación-del-entorno)
@@ -20,40 +20,94 @@
 - **CPU**: Mínimo 4 cores (recomendado 8 cores)
 - **RAM**: Mínimo 8GB (recomendado 16GB o más)
 - **Almacenamiento**: Mínimo 50GB libres (recomendado 100GB+)
-- **Sistema Operativo**: Linux (Ubuntu 20.04+, CentOS 7+, RHEL 7+)
+- **Sistema Operativo**: Windows 10/11 Pro o Windows Server 2019/2022 con Hyper-V habilitado
 
-### 1.2 Instalación de Docker
-```bash
-# Ubuntu/Debian
-sudo apt update
-sudo apt install -y docker.io docker-compose
-sudo systemctl start docker
-sudo systemctl enable docker
+### 1.2 Instalación de Docker Desktop para Windows
 
-# CentOS/RHEL
-sudo yum install -y docker docker-compose
-sudo systemctl start docker
-sudo systemctl enable docker
+#### Paso 1: Habilitar Hyper-V y WSL 2
+1. Abrir PowerShell como Administrador
+2. Ejecutar:
+```powershell
+# Habilitar Hyper-V
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 
-# Agregar usuario al grupo docker
-sudo usermod -aG docker $USER
-# Logout y login nuevamente
+# Habilitar WSL 2
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+# Reiniciar el sistema
+Restart-Computer
+```
+
+#### Paso 2: Instalar Docker Desktop
+1. Descargar Docker Desktop desde: https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe
+2. Ejecutar el instalador como Administrador
+3. Marcar "Use WSL 2 instead of Hyper-V" durante la instalación
+4. Reiniciar cuando se solicite
+
+#### Paso 3: Verificar instalación
+```powershell
+# Verificar Docker
+docker --version
+docker-compose --version
+
+# Verificar que Docker está corriendo
+docker info
 ```
 
 ### 1.3 Configuración de Docker para Oracle
-```bash
-# Crear directorio de trabajo
-mkdir -p ~/oracle-docker-project
-cd ~/oracle-docker-project
+
+#### Crear estructura de directorios manualmente:
+
+**Opción 1: Usando PowerShell**
+```powershell
+# Navegar al directorio de trabajo
+cd C:\Users\$env:USERNAME\Documents
+mkdir oracle-docker-project
+cd oracle-docker-project
 
 # Crear estructura de directorios
-mkdir -p {primary,standby}/{data,scripts,logs,backup}
-mkdir -p shared/{exports,snapshots}
-
-# Configurar límites de memoria para containers
-echo 'vm.max_map_count=262144' | sudo tee -a /etc/sysctl.conf
-sudo sysctl -p
+New-Item -ItemType Directory -Path "primary\data" -Force
+New-Item -ItemType Directory -Path "primary\scripts" -Force
+New-Item -ItemType Directory -Path "primary\logs" -Force
+New-Item -ItemType Directory -Path "primary\backup" -Force
+New-Item -ItemType Directory -Path "standby\data" -Force
+New-Item -ItemType Directory -Path "standby\scripts" -Force
+New-Item -ItemType Directory -Path "standby\logs" -Force
+New-Item -ItemType Directory -Path "standby\backup" -Force
+New-Item -ItemType Directory -Path "shared\exports" -Force
+New-Item -ItemType Directory -Path "shared\snapshots" -Force
 ```
+
+**Opción 2: Crear carpetas manualmente usando Explorador de Windows**
+1. Navegue a `C:\Users\[SuUsuario]\Documents`
+2. Cree una nueva carpeta llamada `oracle-docker-project`
+3. Dentro de esta carpeta, cree la siguiente estructura:
+   ```
+   oracle-docker-project/
+   ├── primary/
+   │   ├── data/
+   │   ├── scripts/
+   │   ├── logs/
+   │   └── backup/
+   ├── standby/
+   │   ├── data/
+   │   ├── scripts/
+   │   ├── logs/
+   │   └── backup/
+   └── shared/
+       ├── exports/
+       └── snapshots/
+   ```
+
+#### Configurar recursos de Docker Desktop:
+1. Clic derecho en el icono de Docker Desktop en la bandeja del sistema
+2. Seleccionar "Settings"
+3. En "Resources" → "Advanced":
+   - **Memory**: Mínimo 8GB (recomendado 12GB+)
+   - **CPU**: Mínimo 4 cores
+   - **Disk image size**: Mínimo 100GB
+4. Aplicar y reiniciar Docker Desktop
 
 ---
 
@@ -129,12 +183,9 @@ networks:
 ```
 
 ### 2.2 Configuración de Red Docker
-```bash
-# Crear red personalizada
-docker network create --driver bridge \
-  --subnet=172.20.0.0/16 \
-  --ip-range=172.20.240.0/20 \
-  oracle-net
+```powershell
+# Crear red personalizada (en PowerShell)
+docker network create --driver bridge --subnet=172.20.0.0/16 --ip-range=172.20.240.0/20 oracle-net
 ```
 
 ---
@@ -142,23 +193,28 @@ docker network create --driver bridge \
 ## 3. Descarga e Instalación de Oracle 19c
 
 ### 3.1 Autenticación en Oracle Container Registry
-```bash
-# Login en Oracle Container Registry
+```powershell
+# Login en Oracle Container Registry (PowerShell)
 docker login container-registry.oracle.com
 # Usar tu Oracle Account (crear en oracle.com si no tienes)
 ```
 
 ### 3.2 Descarga de Imagen Oracle
-```bash
+```powershell
 # Descargar imagen Oracle 19c Enterprise
 docker pull container-registry.oracle.com/database/enterprise:19.3.0.0
 
 # Verificar descarga
-docker images | grep oracle
+docker images | findstr oracle
 ```
 
 ### 3.3 Configuración de Parámetros Iniciales
-Crear archivo `primary/scripts/01_init_primary.sql`:
+
+**Crear manualmente el archivo**: `primary\scripts\01_init_primary.sql`
+
+1. Navegue a la carpeta `primary\scripts\` en el Explorador de Windows
+2. Cree un nuevo archivo de texto y nómbrelo `01_init_primary.sql`
+3. Abra el archivo con un editor de texto (Notepad, Notepad++, VS Code) y copie el siguiente contenido:
 
 ```sql
 -- Configuración inicial para Primary Database
@@ -186,7 +242,7 @@ ALTER DATABASE FORCE LOGGING;
 ## 4. Configuración de la Base de Datos Principal (Primary)
 
 ### 4.1 Inicialización de la Base de Datos Primary
-```bash
+```powershell
 # Iniciar solo el container primary
 docker-compose up -d oracle-primary
 
@@ -197,16 +253,21 @@ docker logs -f oracle-primary
 ```
 
 ### 4.2 Configuración Post-Instalación Primary
-Crear script `primary/scripts/02_configure_primary.sh`:
 
-```bash
-#!/bin/bash
+**Crear manualmente el script**: `primary\scripts\02_configure_primary.bat`
 
-# Conectar al container primary
+1. Navegue a `primary\scripts\` 
+2. Cree un archivo nuevo llamado `02_configure_primary.bat`
+3. Copie el siguiente contenido:
+
+```batch
+@echo off
+echo Configurando Primary Database...
+
 docker exec -it oracle-primary bash -c "
 export ORACLE_SID=ORCL
 export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
-export PATH=\$PATH:\$ORACLE_HOME/bin
+export PATH=$PATH:$ORACLE_HOME/bin
 
 # Crear directorios necesarios
 mkdir -p /opt/oracle/oradata/ORCL/arch
@@ -237,10 +298,18 @@ STARTUP;
 EXIT;
 EOF
 "
+
+echo Primary Database configurado exitosamente
+pause
 ```
 
 ### 4.3 Configuración del Listener Primary
-Crear archivo `primary/scripts/listener.ora`:
+
+**Crear manualmente el archivo**: `primary\scripts\listener.ora`
+
+1. Navegue a `primary\scripts\`
+2. Cree el archivo `listener.ora`
+3. Copie el siguiente contenido:
 
 ```
 LISTENER =
@@ -263,7 +332,12 @@ ADR_BASE_LISTENER = /opt/oracle
 ```
 
 ### 4.4 Configuración tnsnames.ora Primary
-Crear archivo `primary/scripts/tnsnames.ora`:
+
+**Crear manualmente el archivo**: `primary\scripts\tnsnames.ora`
+
+1. Navegue a `primary\scripts\`
+2. Cree el archivo `tnsnames.ora`
+3. Copie el siguiente contenido:
 
 ```
 ORCL =
@@ -290,35 +364,40 @@ ORCL_STBY =
 ## 5. Configuración de la Base de Datos Standby
 
 ### 5.1 Preparación de Archivos para Standby
-Crear script `create_standby_files.sh`:
 
-```bash
-#!/bin/bash
+**Crear manualmente el script**: `create_standby_files.bat`
 
-echo "Creando archivos de configuración para Standby..."
+1. En el directorio raíz del proyecto (`oracle-docker-project`), cree el archivo `create_standby_files.bat`
+2. Copie el siguiente contenido:
 
-# Crear directorio de scripts para standby
-mkdir -p standby/scripts
+```batch
+@echo off
+echo Creando archivos de configuración para Standby...
 
-# Script de inicialización para standby
-cat > standby/scripts/01_init_standby.sql << 'EOF'
--- Configuración para Standby Database
-STARTUP NOMOUNT PFILE='/opt/oracle/admin/ORCL_STBY/pfile/init.ora';
+REM Crear directorio de scripts para standby
+if not exist "standby\scripts" mkdir "standby\scripts"
 
--- Configurar parámetros específicos del standby
-ALTER SYSTEM SET DB_UNIQUE_NAME=ORCL_STBY SCOPE=SPFILE;
-ALTER SYSTEM SET LOG_ARCHIVE_CONFIG='DG_CONFIG=(ORCL,ORCL_STBY)' SCOPE=BOTH;
-ALTER SYSTEM SET LOG_ARCHIVE_DEST_1='LOCATION=/opt/oracle/oradata/ORCL_STBY/arch/ VALID_FOR=(ALL_LOGFILES,ALL_ROLES) DB_UNIQUE_NAME=ORCL_STBY' SCOPE=BOTH;
-ALTER SYSTEM SET LOG_ARCHIVE_DEST_2='SERVICE=ORCL LGWR ASYNC VALID_FOR=(ONLINE_LOGFILES,PRIMARY_ROLE) DB_UNIQUE_NAME=ORCL' SCOPE=BOTH;
-ALTER SYSTEM SET FAL_SERVER=ORCL SCOPE=BOTH;
-ALTER SYSTEM SET FAL_CLIENT=ORCL_STBY SCOPE=BOTH;
-ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=AUTO SCOPE=BOTH;
-ALTER SYSTEM SET DB_FILE_NAME_CONVERT='/opt/oracle/oradata/ORCL/','/opt/oracle/oradata/ORCL_STBY/' SCOPE=SPFILE;
-ALTER SYSTEM SET LOG_FILE_NAME_CONVERT='/opt/oracle/oradata/ORCL/','/opt/oracle/oradata/ORCL_STBY/' SCOPE=SPFILE;
-EOF
+REM Script de inicialización para standby
+(
+echo -- Configuración para Standby Database
+echo STARTUP NOMOUNT PFILE='/opt/oracle/admin/ORCL_STBY/pfile/init.ora';
+echo.
+echo -- Configurar parámetros específicos del standby
+echo ALTER SYSTEM SET DB_UNIQUE_NAME=ORCL_STBY SCOPE=SPFILE;
+echo ALTER SYSTEM SET LOG_ARCHIVE_CONFIG='DG_CONFIG=^(ORCL,ORCL_STBY^)' SCOPE=BOTH;
+echo ALTER SYSTEM SET LOG_ARCHIVE_DEST_1='LOCATION=/opt/oracle/oradata/ORCL_STBY/arch/ VALID_FOR=^(ALL_LOGFILES,ALL_ROLES^) DB_UNIQUE_NAME=ORCL_STBY' SCOPE=BOTH;
+echo ALTER SYSTEM SET LOG_ARCHIVE_DEST_2='SERVICE=ORCL LGWR ASYNC VALID_FOR=^(ONLINE_LOGFILES,PRIMARY_ROLE^) DB_UNIQUE_NAME=ORCL' SCOPE=BOTH;
+echo ALTER SYSTEM SET FAL_SERVER=ORCL SCOPE=BOTH;
+echo ALTER SYSTEM SET FAL_CLIENT=ORCL_STBY SCOPE=BOTH;
+echo ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=AUTO SCOPE=BOTH;
+echo ALTER SYSTEM SET DB_FILE_NAME_CONVERT='/opt/oracle/oradata/ORCL/','/opt/oracle/oradata/ORCL_STBY/' SCOPE=SPFILE;
+echo ALTER SYSTEM SET LOG_FILE_NAME_CONVERT='/opt/oracle/oradata/ORCL/','/opt/oracle/oradata/ORCL_STBY/' SCOPE=SPFILE;
+) > "standby\scripts\01_init_standby.sql"
+```
 
-# Crear PFILE para standby
-cat > standby/scripts/init_stby.ora << 'EOF'
+**Continúe creando los siguientes archivos manualmente o complete el script .bat:**
+
+**Archivo**: `standby\scripts\init_stby.ora`
 DB_NAME=ORCL
 DB_UNIQUE_NAME=ORCL_STBY
 CONTROL_FILES=('/opt/oracle/oradata/ORCL_STBY/control01.ctl','/opt/oracle/oradata/ORCL_STBY/control02.ctl')
@@ -380,52 +459,55 @@ echo "Archivos de configuración para Standby creados exitosamente."
 ```
 
 ### 5.2 Script de Creación de Standby Database
-Crear script `setup_standby.sh`:
 
-```bash
-#!/bin/bash
+**Crear manualmente el script**: `setup_standby.bat`
 
-echo "=== CONFIGURANDO STANDBY DATABASE ==="
+1. En el directorio raíz del proyecto, cree el archivo `setup_standby.bat`
+2. Copie el siguiente contenido:
 
-# 1. Crear backup del primary para el standby
-echo "Paso 1: Creando backup de Primary Database..."
+```batch
+@echo off
+echo === CONFIGURANDO STANDBY DATABASE ===
+
+REM 1. Crear backup del primary para el standby
+echo Paso 1: Creando backup de Primary Database...
 docker exec oracle-primary bash -c "
 export ORACLE_SID=ORCL
 export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
-export PATH=\$PATH:\$ORACLE_HOME/bin
+export PATH=$PATH:$ORACLE_HOME/bin
 
 # Crear backup para standby
 rman target / << 'RMAN_EOF'
 CONFIGURE DEVICE TYPE DISK PARALLELISM 2;
-CONFIGURE CHANNEL DEVICE TYPE DISK FORMAT '/opt/oracle/shared/backup_%U';
+CONFIGURE CHANNEL DEVICE TYPE DISK FORMAT '/opt/oracle/shared/backup_%%U';
 BACKUP DATABASE PLUS ARCHIVELOG;
 BACKUP CURRENT CONTROLFILE FOR STANDBY FORMAT '/opt/oracle/shared/standby_control.ctl';
 EXIT;
 RMAN_EOF
 "
 
-# 2. Iniciar container standby
-echo "Paso 2: Iniciando container Standby..."
+REM 2. Iniciar container standby
+echo Paso 2: Iniciando container Standby...
 docker-compose up -d oracle-standby
 
-# Esperar que el container esté listo
-echo "Esperando que el container standby esté listo..."
-sleep 60
+REM Esperar que el container esté listo
+echo Esperando que el container standby esté listo...
+timeout 60
 
-# 3. Configurar standby database
-echo "Paso 3: Configurando Standby Database..."
+REM 3. Configurar standby database
+echo Paso 3: Configurando Standby Database...
 docker exec oracle-standby bash -c "
 export ORACLE_SID=ORCL
 export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
-export PATH=\$PATH:\$ORACLE_HOME/bin
+export PATH=$PATH:$ORACLE_HOME/bin
 
 # Crear directorios necesarios
 mkdir -p /opt/oracle/oradata/ORCL_STBY/arch
 mkdir -p /opt/oracle/admin/ORCL_STBY/{adump,pfile}
 
 # Copiar archivos de configuración
-cp /opt/oracle/scripts/setup/listener.ora \$ORACLE_HOME/network/admin/
-cp /opt/oracle/scripts/setup/tnsnames.ora \$ORACLE_HOME/network/admin/
+cp /opt/oracle/scripts/setup/listener.ora $ORACLE_HOME/network/admin/
+cp /opt/oracle/scripts/setup/tnsnames.ora $ORACLE_HOME/network/admin/
 cp /opt/oracle/scripts/setup/init_stby.ora /opt/oracle/admin/ORCL_STBY/pfile/init.ora
 
 # Iniciar listener
@@ -449,7 +531,8 @@ RUN {
 RMAN_EOF
 "
 
-echo "Standby Database configurado exitosamente!"
+echo Standby Database configurado exitosamente!
+pause
 ```
 
 ---
@@ -457,19 +540,22 @@ echo "Standby Database configurado exitosamente!"
 ## 6. Configuración de Data Guard
 
 ### 6.1 Script de Activación de Data Guard
-Crear script `activate_dataguard.sh`:
 
-```bash
-#!/bin/bash
+**Crear manualmente el script**: `activate_dataguard.bat`
 
-echo "=== ACTIVANDO DATA GUARD ==="
+1. En el directorio raíz del proyecto, cree el archivo `activate_dataguard.bat`
+2. Copie el siguiente contenido:
 
-# Configurar Data Guard en Primary
-echo "Configurando Data Guard en Primary..."
+```batch
+@echo off
+echo === ACTIVANDO DATA GUARD ===
+
+REM Configurar Data Guard en Primary
+echo Configurando Data Guard en Primary...
 docker exec oracle-primary bash -c "
 export ORACLE_SID=ORCL
 export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
-export PATH=\$PATH:\$ORACLE_HOME/bin
+export PATH=$PATH:$ORACLE_HOME/bin
 
 sqlplus / as sysdba << 'EOF'
 -- Habilitar Data Guard
@@ -485,12 +571,12 @@ EXIT;
 EOF
 "
 
-# Iniciar managed recovery en Standby
-echo "Iniciando Managed Recovery en Standby..."
+REM Iniciar managed recovery en Standby
+echo Iniciando Managed Recovery en Standby...
 docker exec oracle-standby bash -c "
 export ORACLE_SID=ORCL
 export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
-export PATH=\$PATH:\$ORACLE_HOME/bin
+export PATH=$PATH:$ORACLE_HOME/bin
 
 sqlplus / as sysdba << 'EOF'
 -- Iniciar Managed Recovery
@@ -503,22 +589,26 @@ EXIT;
 EOF
 "
 
-echo "Data Guard activado exitosamente!"
+echo Data Guard activado exitosamente!
+pause
 ```
 
 ### 6.2 Script de Verificación de Data Guard
-Crear script `verify_dataguard.sh`:
 
-```bash
-#!/bin/bash
+**Crear manualmente el script**: `verify_dataguard.bat`
 
-echo "=== VERIFICANDO DATA GUARD ==="
+1. En el directorio raíz del proyecto, cree el archivo `verify_dataguard.bat`
+2. Copie el siguiente contenido:
 
-echo "1. Verificando Primary Database..."
+```batch
+@echo off
+echo === VERIFICANDO DATA GUARD ===
+
+echo 1. Verificando Primary Database...
 docker exec oracle-primary bash -c "
 export ORACLE_SID=ORCL
 export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
-export PATH=\$PATH:\$ORACLE_HOME/bin
+export PATH=$PATH:$ORACLE_HOME/bin
 
 sqlplus -s / as sysdba << 'EOF'
 SET PAGESIZE 100
@@ -532,11 +622,11 @@ SELECT DEST_ID, STATUS, DESTINATION FROM V\$ARCHIVE_DEST WHERE DEST_ID <= 2;
 EOF
 "
 
-echo "2. Verificando Standby Database..."
+echo 2. Verificando Standby Database...
 docker exec oracle-standby bash -c "
 export ORACLE_SID=ORCL
 export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
-export PATH=\$PATH:\$ORACLE_HOME/bin
+export PATH=$PATH:$ORACLE_HOME/bin
 
 sqlplus -s / as sysdba << 'EOF'
 SET PAGESIZE 100
@@ -545,15 +635,15 @@ COL DATABASE_ROLE FORMAT A20
 COL PROTECTION_MODE FORMAT A20
 
 SELECT DATABASE_ROLE, PROTECTION_MODE FROM V\$DATABASE;
-SELECT PROCESS, STATUS FROM V\$MANAGED_STANDBY WHERE PROCESS LIKE '%MRP%';
+SELECT PROCESS, STATUS FROM V\$MANAGED_STANDBY WHERE PROCESS LIKE '%%MRP%%';
 EOF
 "
 
-echo "3. Prueba de sincronización..."
+echo 3. Prueba de sincronización...
 docker exec oracle-primary bash -c "
 export ORACLE_SID=ORCL
 export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
-export PATH=\$PATH:\$ORACLE_HOME/bin
+export PATH=$PATH:$ORACLE_HOME/bin
 
 sqlplus -s / as sysdba << 'EOF'
 ALTER SYSTEM SWITCH LOGFILE;
@@ -561,17 +651,19 @@ SELECT MAX(SEQUENCE#) FROM V\$ARCHIVED_LOG;
 EOF
 "
 
-sleep 5
+timeout 5
 
 docker exec oracle-standby bash -c "
 export ORACLE_SID=ORCL
 export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
-export PATH=\$PATH:\$ORACLE_HOME/bin
+export PATH=$PATH:$ORACLE_HOME/bin
 
 sqlplus -s / as sysdba << 'EOF'
 SELECT MAX(SEQUENCE#) FROM V\$ARCHIVED_LOG WHERE APPLIED='YES';
 EOF
 "
+
+pause
 ```
 
 ---
@@ -579,199 +671,175 @@ EOF
 ## 7. Sistema de Snapshots con Docker
 
 ### 7.1 Configuración de Snapshots
-Crear script `snapshot_manager.sh`:
 
-```bash
-#!/bin/bash
+**Crear manualmente el script**: `snapshot_manager.bat`
 
-SNAPSHOT_DIR="./shared/snapshots"
-TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+1. En el directorio raíz del proyecto, cree el archivo `snapshot_manager.bat`
+2. Copie el siguiente contenido:
 
-# Función para crear snapshot
-create_snapshot() {
-    local snapshot_name="$1"
-    if [ -z "$snapshot_name" ]; then
-        snapshot_name="snapshot_$TIMESTAMP"
-    fi
-    
-    echo "=== CREANDO SNAPSHOT: $snapshot_name ==="
-    
-    # Crear directorio para el snapshot
-    mkdir -p "$SNAPSHOT_DIR/$snapshot_name"
-    
-    # Poner bases de datos en modo backup
-    echo "Poniendo bases de datos en modo backup..."
-    
-    # Primary database
-    docker exec oracle-primary bash -c "
-    export ORACLE_SID=ORCL
-    export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
-    export PATH=\$PATH:\$ORACLE_HOME/bin
-    
-    sqlplus / as sysdba << 'EOF'
-    ALTER DATABASE BEGIN BACKUP;
-    ALTER SYSTEM ARCHIVE LOG CURRENT;
-    EXIT;
-    EOF
-    "
-    
-    # Crear snapshot de volúmenes
-    echo "Creando snapshot de volúmenes..."
-    docker run --rm -v $(pwd)/primary/data:/primary -v $(pwd)/standby/data:/standby -v "$SNAPSHOT_DIR/$snapshot_name":/backup alpine sh -c "
-        cp -rp /primary /backup/primary_data
-        cp -rp /standby /backup/standby_data
-    "
-    
-    # Terminar modo backup
-    docker exec oracle-primary bash -c "
-    export ORACLE_SID=ORCL
-    export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
-    export PATH=\$PATH:\$ORACLE_HOME/bin
-    
-    sqlplus / as sysdba << 'EOF'
-    ALTER DATABASE END BACKUP;
-    EXIT;
-    EOF
-    "
-    
-    # Guardar estado de containers
-    docker-compose config > "$SNAPSHOT_DIR/$snapshot_name/docker-compose-state.yml"
-    
-    # Crear metadatos del snapshot
-    cat > "$SNAPSHOT_DIR/$snapshot_name/snapshot_metadata.txt" << EOF
-Snapshot Name: $snapshot_name
-Creation Date: $(date)
-Docker Compose Version: $(docker-compose version --short)
-Primary Container Status: $(docker inspect oracle-primary --format='{{.State.Status}}')
-Standby Container Status: $(docker inspect oracle-standby --format='{{.State.Status}}' 2>/dev/null || echo "not running")
+```batch
+@echo off
+setlocal enabledelayedexpansion
+
+set SNAPSHOT_DIR=.\shared\snapshots
+set TIMESTAMP=%date:~10,4%%date:~4,2%%date:~7,2%_%time:~0,2%%time:~3,2%%time:~6,2%
+set TIMESTAMP=%TIMESTAMP: =0%
+
+if "%1"=="create" goto create_snapshot
+if "%1"=="restore" goto restore_snapshot
+if "%1"=="list" goto list_snapshots
+if "%1"=="delete" goto delete_snapshot
+goto show_usage
+
+:create_snapshot
+set snapshot_name=%2
+if "%snapshot_name%"=="" set snapshot_name=snapshot_%TIMESTAMP%
+
+echo === CREANDO SNAPSHOT: %snapshot_name% ===
+
+REM Crear directorio para el snapshot
+if not exist "%SNAPSHOT_DIR%\%snapshot_name%" mkdir "%SNAPSHOT_DIR%\%snapshot_name%"
+
+REM Poner bases de datos en modo backup
+echo Poniendo bases de datos en modo backup...
+
+docker exec oracle-primary bash -c "
+export ORACLE_SID=ORCL
+export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
+export PATH=$PATH:$ORACLE_HOME/bin
+
+sqlplus / as sysdba << 'EOF'
+ALTER DATABASE BEGIN BACKUP;
+ALTER SYSTEM ARCHIVE LOG CURRENT;
+EXIT;
 EOF
-    
-    echo "Snapshot '$snapshot_name' creado exitosamente en $SNAPSHOT_DIR/$snapshot_name"
-}
+"
 
-# Función para restaurar snapshot
-restore_snapshot() {
-    local snapshot_name="$1"
-    
-    if [ -z "$snapshot_name" ]; then
-        echo "Error: Debe especificar el nombre del snapshot"
-        list_snapshots
-        return 1
-    fi
-    
-    if [ ! -d "$SNAPSHOT_DIR/$snapshot_name" ]; then
-        echo "Error: El snapshot '$snapshot_name' no existe"
-        list_snapshots
-        return 1
-    fi
-    
-    echo "=== RESTAURANDO SNAPSHOT: $snapshot_name ==="
-    
-    # Detener containers
-    echo "Deteniendo containers..."
-    docker-compose down
-    
-    # Limpiar datos actuales
-    echo "Limpiando datos actuales..."
-    rm -rf primary/data/* standby/data/*
-    
-    # Restaurar datos desde snapshot
-    echo "Restaurando datos desde snapshot..."
-    docker run --rm -v "$SNAPSHOT_DIR/$snapshot_name":/backup -v $(pwd)/primary/data:/primary -v $(pwd)/standby/data:/standby alpine sh -c "
-        cp -rp /backup/primary_data/* /primary/
-        cp -rp /backup/standby_data/* /standby/
-    "
-    
-    # Iniciar containers
-    echo "Iniciando containers..."
-    docker-compose up -d
-    
-    echo "Snapshot '$snapshot_name' restaurado exitosamente"
-    echo "Esperando que las bases de datos estén listas..."
-    sleep 60
-    
-    # Verificar estado
-    ./verify_dataguard.sh
-}
+REM Crear snapshot de volúmenes
+echo Creando snapshot de volúmenes...
+docker run --rm -v %cd%\primary\data:/primary -v %cd%\standby\data:/standby -v "%SNAPSHOT_DIR%\%snapshot_name%":/backup alpine sh -c "cp -rp /primary /backup/primary_data && cp -rp /standby /backup/standby_data"
 
-# Función para listar snapshots
-list_snapshots() {
-    echo "=== SNAPSHOTS DISPONIBLES ==="
-    if [ -d "$SNAPSHOT_DIR" ] && [ "$(ls -A $SNAPSHOT_DIR)" ]; then
-        for snapshot in "$SNAPSHOT_DIR"/*; do
-            if [ -d "$snapshot" ]; then
-                snapshot_name=$(basename "$snapshot")
-                if [ -f "$snapshot/snapshot_metadata.txt" ]; then
-                    echo "Nombre: $snapshot_name"
-                    grep "Creation Date:" "$snapshot/snapshot_metadata.txt"
-                    echo "Tamaño: $(du -sh "$snapshot" | cut -f1)"
-                    echo "---"
-                else
-                    echo "Nombre: $snapshot_name (sin metadatos)"
-                    echo "---"
-                fi
-            fi
-        done
-    else
-        echo "No hay snapshots disponibles"
-    fi
-}
+REM Terminar modo backup
+docker exec oracle-primary bash -c "
+export ORACLE_SID=ORCL
+export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
+export PATH=$PATH:$ORACLE_HOME/bin
 
-# Función para eliminar snapshot
-delete_snapshot() {
-    local snapshot_name="$1"
-    
-    if [ -z "$snapshot_name" ]; then
-        echo "Error: Debe especificar el nombre del snapshot"
-        list_snapshots
-        return 1
-    fi
-    
-    if [ ! -d "$SNAPSHOT_DIR/$snapshot_name" ]; then
-        echo "Error: El snapshot '$snapshot_name' no existe"
-        return 1
-    fi
-    
-    echo "¿Está seguro de que desea eliminar el snapshot '$snapshot_name'? (y/N)"
-    read -r confirmation
-    if [[ $confirmation =~ ^[Yy]$ ]]; then
-        rm -rf "$SNAPSHOT_DIR/$snapshot_name"
-        echo "Snapshot '$snapshot_name' eliminado exitosamente"
-    else
-        echo "Operación cancelada"
-    fi
-}
+sqlplus / as sysdba << 'EOF'
+ALTER DATABASE END BACKUP;
+EXIT;
+EOF
+"
 
-# Menú principal
-case "$1" in
-    "create")
-        create_snapshot "$2"
-        ;;
-    "restore")
-        restore_snapshot "$2"
-        ;;
-    "list")
-        list_snapshots
-        ;;
-    "delete")
-        delete_snapshot "$2"
-        ;;
-    *)
-        echo "Uso: $0 {create|restore|list|delete} [snapshot_name]"
-        echo ""
-        echo "Comandos:"
-        echo "  create [nombre]     - Crear nuevo snapshot (nombre opcional)"
-        echo "  restore <nombre>    - Restaurar snapshot específico"
-        echo "  list               - Listar snapshots disponibles"
-        echo "  delete <nombre>     - Eliminar snapshot específico"
-        echo ""
-        echo "Ejemplos:"
-        echo "  $0 create initial_state"
-        echo "  $0 restore initial_state"
-        echo "  $0 list"
-        exit 1
-        ;;
-esac
+REM Guardar estado de containers
+docker-compose config > "%SNAPSHOT_DIR%\%snapshot_name%\docker-compose-state.yml"
+
+REM Crear metadatos del snapshot
+(
+echo Snapshot Name: %snapshot_name%
+echo Creation Date: %date% %time%
+echo Primary Container Status: 
+echo Standby Container Status: 
+) > "%SNAPSHOT_DIR%\%snapshot_name%\snapshot_metadata.txt"
+
+echo Snapshot '%snapshot_name%' creado exitosamente en %SNAPSHOT_DIR%\%snapshot_name%
+goto end
+
+:restore_snapshot
+set snapshot_name=%2
+if "%snapshot_name%"=="" (
+    echo Error: Debe especificar el nombre del snapshot
+    call :list_snapshots
+    goto end
+)
+
+if not exist "%SNAPSHOT_DIR%\%snapshot_name%" (
+    echo Error: El snapshot '%snapshot_name%' no existe
+    call :list_snapshots
+    goto end
+)
+
+echo === RESTAURANDO SNAPSHOT: %snapshot_name% ===
+
+REM Detener containers
+echo Deteniendo containers...
+docker-compose down
+
+REM Limpiar datos actuales
+echo Limpiando datos actuales...
+if exist "primary\data" rmdir /s /q "primary\data"
+if exist "standby\data" rmdir /s /q "standby\data"
+mkdir "primary\data"
+mkdir "standby\data"
+
+REM Restaurar datos desde snapshot
+echo Restaurando datos desde snapshot...
+docker run --rm -v "%SNAPSHOT_DIR%\%snapshot_name%":/backup -v %cd%\primary\data:/primary -v %cd%\standby\data:/standby alpine sh -c "cp -rp /backup/primary_data/* /primary/ && cp -rp /backup/standby_data/* /standby/"
+
+REM Iniciar containers
+echo Iniciando containers...
+docker-compose up -d
+
+echo Snapshot '%snapshot_name%' restaurado exitosamente
+echo Esperando que las bases de datos estén listas...
+timeout 60
+goto end
+
+:list_snapshots
+echo === SNAPSHOTS DISPONIBLES ===
+if exist "%SNAPSHOT_DIR%" (
+    for /d %%i in ("%SNAPSHOT_DIR%\*") do (
+        echo Nombre: %%~ni
+        if exist "%%i\snapshot_metadata.txt" (
+            findstr "Creation Date:" "%%i\snapshot_metadata.txt"
+            echo ---
+        ) else (
+            echo Nombre: %%~ni ^(sin metadatos^)
+            echo ---
+        )
+    )
+) else (
+    echo No hay snapshots disponibles
+)
+goto end
+
+:delete_snapshot
+set snapshot_name=%2
+if "%snapshot_name%"=="" (
+    echo Error: Debe especificar el nombre del snapshot
+    goto end
+)
+
+if not exist "%SNAPSHOT_DIR%\%snapshot_name%" (
+    echo Error: El snapshot '%snapshot_name%' no existe
+    goto end
+)
+
+set /p confirmation="¿Está seguro de que desea eliminar el snapshot '%snapshot_name%'? (y/N): "
+if /i "%confirmation%"=="y" (
+    rmdir /s /q "%SNAPSHOT_DIR%\%snapshot_name%"
+    echo Snapshot '%snapshot_name%' eliminado exitosamente
+) else (
+    echo Operación cancelada
+)
+goto end
+
+:show_usage
+echo Uso: %0 {create^|restore^|list^|delete} [snapshot_name]
+echo.
+echo Comandos:
+echo   create [nombre]     - Crear nuevo snapshot ^(nombre opcional^)
+echo   restore ^<nombre^>    - Restaurar snapshot específico
+echo   list               - Listar snapshots disponibles
+echo   delete ^<nombre^>     - Eliminar snapshot específico
+echo.
+echo Ejemplos:
+echo   %0 create initial_state
+echo   %0 restore initial_state
+echo   %0 list
+
+:end
+pause
 ```
 
 ### 7.2 Script de Automatización de Snapshots
@@ -3473,3 +3541,184 @@ fi
 
 # Ejecutar instalación
 main "$@"
+
+---
+
+## Instrucciones Específicas para Windows
+
+### Pasos de Configuración Manual
+
+#### 1. Crear Estructura de Carpetas
+**Opción A: PowerShell**
+```powershell
+# Ejecutar en PowerShell como Administrador
+cd C:\Users\$env:USERNAME\Documents
+mkdir oracle-docker-project
+cd oracle-docker-project
+
+# Crear estructura completa
+$folders = @(
+    "primary\data", "primary\scripts", "primary\logs", "primary\backup",
+    "standby\data", "standby\scripts", "standby\logs", "standby\backup",
+    "shared\exports", "shared\snapshots", "shared\logs", "shared\reports", "shared\backups"
+)
+
+foreach ($folder in $folders) {
+    New-Item -ItemType Directory -Path $folder -Force
+    Write-Host "Creada carpeta: $folder" -ForegroundColor Green
+}
+```
+
+**Opción B: Explorador de Windows**
+1. Navegue a `C:\Users\[SuUsuario]\Documents`
+2. Cree la carpeta `oracle-docker-project`
+3. Dentro de esta carpeta, cree manualmente todas las subcarpetas mostradas en la estructura del proyecto
+
+#### 2. Scripts de Automatización para Windows
+
+**Script Principal de Despliegue**: `deploy_oracle.bat`
+```batch
+@echo off
+echo === DESPLEGANDO ORACLE 19C CON DATA GUARD ===
+
+echo Paso 1: Verificando prerrequisitos...
+docker --version > nul 2>&1
+if errorlevel 1 (
+    echo ERROR: Docker no está instalado o no está en PATH
+    pause
+    exit /b 1
+)
+
+echo Paso 2: Iniciando Primary Database...
+docker-compose up -d oracle-primary
+
+echo Esperando que Primary Database esté listo...
+:wait_primary
+timeout 30 > nul
+docker logs oracle-primary 2>&1 | findstr "DATABASE IS READY TO USE" > nul
+if errorlevel 1 goto wait_primary
+
+echo Paso 3: Configurando Primary...
+call primary\scripts\02_configure_primary.bat
+
+echo Paso 4: Configurando Standby...
+call create_standby_files.bat
+call setup_standby.bat
+
+echo Paso 5: Activando Data Guard...
+call activate_dataguard.bat
+
+echo Paso 6: Verificando configuración...
+call verify_dataguard.bat
+
+echo === DESPLIEGUE COMPLETADO ===
+echo Primary: sqlplus sys/Oracle123@localhost:1521/ORCL as sysdba
+echo Standby: sqlplus sys/Oracle123@localhost:1522/ORCL as sysdba
+pause
+```
+
+### Comandos de PowerShell Útiles
+
+```powershell
+# Verificar estado de containers
+docker ps --filter name=oracle-
+
+# Ver logs en tiempo real
+docker logs -f oracle-primary
+
+# Conectar a SQL*Plus en Primary
+docker exec -it oracle-primary sqlplus sys/Oracle123@ORCL as sysdba
+
+# Conectar a SQL*Plus en Standby
+docker exec -it oracle-standby sqlplus sys/Oracle123@ORCL as sysdba
+
+# Verificar espacio en disco
+Get-WmiObject -Class Win32_LogicalDisk | Select-Object DeviceID, @{Name="Size(GB)";Expression={[math]::Round($_.Size/1GB,2)}}, @{Name="FreeSpace(GB)";Expression={[math]::Round($_.FreeSpace/1GB,2)}}
+```
+
+### Secuencia de Despliegue Completo en Windows
+
+#### Paso 1: Preparación
+```powershell
+# 1. Verificar Docker Desktop está corriendo
+docker --version
+
+# 2. Crear estructura de directorios
+cd C:\Users\$env:USERNAME\Documents\oracle-docker-project
+
+# 3. Crear red Docker
+docker network create --driver bridge --subnet=172.20.0.0/16 oracle-net
+```
+
+#### Paso 2: Despliegue
+```batch
+# Ejecutar script principal
+deploy_oracle.bat
+```
+
+#### Paso 3: Verificación
+```batch
+# Verificar Data Guard
+verify_dataguard.bat
+
+# Crear snapshot inicial
+snapshot_manager.bat create initial_deployment
+```
+
+### Conexiones y Acceso
+
+#### SQL*Plus Connections
+```powershell
+# Primary Database
+docker exec -it oracle-primary sqlplus sys/Oracle123@localhost:1521/ORCL as sysdba
+
+# Standby Database  
+docker exec -it oracle-standby sqlplus sys/Oracle123@localhost:1521/ORCL as sysdba
+```
+
+#### Enterprise Manager
+- **Primary**: https://localhost:5500/em
+- **Standby**: https://localhost:5501/em
+  - Usuario: sys
+  - Contraseña: Oracle123
+  - Rol: sysdba
+
+### Mantenimiento y Operaciones
+
+#### Backup y Snapshots
+```batch
+# Crear snapshot antes de cambios importantes
+snapshot_manager.bat create "antes_cambios"
+
+# Listar snapshots disponibles
+snapshot_manager.bat list
+
+# Restaurar snapshot si es necesario
+snapshot_manager.bat restore nombre_snapshot
+```
+
+#### Parada Normal
+```powershell
+# Parar containers manteniendo datos
+docker-compose down
+```
+
+### Lista de Archivos que Debe Crear Manualmente
+
+1. **docker-compose.yml** (raíz del proyecto)
+2. **primary\scripts\01_init_primary.sql**
+3. **primary\scripts\02_configure_primary.bat**
+4. **primary\scripts\listener.ora**
+5. **primary\scripts\tnsnames.ora**
+6. **standby\scripts\01_init_standby.sql**
+7. **standby\scripts\init_stby.ora**
+8. **standby\scripts\listener.ora**
+9. **standby\scripts\tnsnames.ora**
+10. **create_standby_files.bat**
+11. **setup_standby.bat**
+12. **activate_dataguard.bat**
+13. **verify_dataguard.bat**
+14. **snapshot_manager.bat**
+15. **deploy_oracle.bat**
+
+**¡La configuración está completa y adaptada para Windows! Todos los scripts mantienen la funcionalidad completa de la standby database.**

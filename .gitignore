@@ -1,6 +1,8 @@
 # Archivos grandes del padrón nacional
 PadronNacional/PADRON_COMPLETO.txt
 PadronNacional/vitalis_padron_nacional_oracle.sql
+PadronNacional/Distelec.txt
+PadronNacional/Leame.txt
 
 # Archivos temporales de Python
 *.pyc
