@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  vitalis-primary:
+    image: container-registry.oracle.com/database/enterprise:19.3.0.0
+    container_name: vitalis-primary
+    hostname: vitalis-primary
+    environment:
+      - ORACLE_SID=VITALIS
+      - ORACLE_PDB=VITALISPDB1
+      - ORACLE_PWD=Vitalis123
+      - ORACLE_EDITION=enterprise
+      - ORACLE_CHARACTERSET=AL32UTF8
+      - ENABLE_ARCHIVELOG=true
+      - ENABLE_FORCE_LOGGING=true
+    ports:
+      - "1521:1521"
+      - "5500:5500"
+    volumes:
+      - ./primary/data:/opt/oracle/oradata
+      - ./primary/scripts:/opt/oracle/scripts/setup
+      - ./primary/logs:/opt/oracle/diag
+      - ./shared:/opt/oracle/shared
+    networks:
+      - vitalis-net
+    restart: unless-stopped
+    mem_limit: 4g
+    shm_size: 1g
+
+  vitalis-standby:
+    image: container-registry.oracle.com/database/enterprise:19.3.0.0
+    container_name: vitalis-standby
+    hostname: vitalis-standby
+    environment:
+      - ORACLE_SID=VITALIS
+      - ORACLE_PDB=VITALISPDB1
+      - ORACLE_PWD=Vitalis123
+      - ORACLE_EDITION=enterprise
+      - ORACLE_CHARACTERSET=AL32UTF8
+      - ENABLE_ARCHIVELOG=true
+      - ENABLE_FORCE_LOGGING=true
+    ports:
+      - "1522:1521"
+      - "5501:5500"
+    volumes:
+      - ./standby/data:/opt/oracle/oradata
+      - ./standby/scripts:/opt/oracle/scripts/setup
+      - ./standby/logs:/opt/oracle/diag
+      - ./shared:/opt/oracle/shared
+    networks:
+      - vitalis-net
+    restart: unless-stopped
+    mem_limit: 4g
+    shm_size: 1g
+    depends_on:
+      - vitalis-primary
+
+networks:
+  vitalis-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/16

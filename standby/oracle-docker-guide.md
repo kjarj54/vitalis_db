@@ -195,8 +195,8 @@ services:
     networks:
       - vitalis-net
     restart: unless-stopped
-    mem_limit: 6g
-    shm_size: 2g
+    mem_limit: 4g
+    shm_size: 1g
 
   vitalis-standby:
     image: container-registry.oracle.com/database/enterprise:19.3.0.0
@@ -221,8 +221,8 @@ services:
     networks:
       - vitalis-net
     restart: unless-stopped
-    mem_limit: 6g
-    shm_size: 2g
+    mem_limit: 4g
+    shm_size: 1g
     depends_on:
       - vitalis-primary
 
@@ -325,8 +325,8 @@ services:
       vitalis-net:
         ipv4_address: 172.30.0.10
     restart: unless-stopped
-    mem_limit: 6g
-    shm_size: 2g
+    mem_limit: 4g
+    shm_size: 1g
     ulimits:
       memlock:
         soft: -1
@@ -356,8 +356,8 @@ services:
       vitalis-net:
         ipv4_address: 172.30.0.11
     restart: unless-stopped
-    mem_limit: 6g
-    shm_size: 2g
+    mem_limit: 4g
+    shm_size: 1g
     depends_on:
       - vitalis-primary
     ulimits:
@@ -415,8 +415,8 @@ PRIMARY_EM_PORT=5500
 STANDBY_EM_PORT=5501
 
 # Configuración de recursos
-MEMORY_LIMIT=6g
-SHM_SIZE=2g
+MEMORY_LIMIT=4g
+SHM_SIZE=1g
 
 # Configuración de respaldos
 BACKUP_RETENTION_DAYS=7
@@ -496,7 +496,7 @@ ALTER SYSTEM SET NLS_LANGUAGE='SPANISH' SCOPE=SPFILE;
 
 -- Configuración de parámetros de memoria para Vitalis
 ALTER SYSTEM SET SGA_TARGET=4G SCOPE=SPFILE;
-ALTER SYSTEM SET PGA_AGGREGATE_TARGET=2G SCOPE=SPFILE;
+ALTER SYSTEM SET PGA_AGGREGATE_TARGET=1G SCOPE=SPFILE;
 
 -- Verificar configuración
 SELECT NAME, VALUE FROM V$PARAMETER 
@@ -777,7 +777,7 @@ FAL_CLIENT=VITALIS_STBY
 
 # Configuración de memoria para Vitalis Standby
 SGA_TARGET=4G
-PGA_AGGREGATE_TARGET=2G
+PGA_AGGREGATE_TARGET=1G
 
 # Configuración regional para Costa Rica
 NLS_TERRITORY='COSTA RICA'
