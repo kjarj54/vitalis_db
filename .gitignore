@@ -4,6 +4,14 @@ PadronNacional/vitalis_padron_nacional_oracle.sql
 PadronNacional/Distelec.txt
 PadronNacional/Leame.txt
 
+standby/primary/data
+standby/primary/logs
+
+
+
+standby/standby/data
+standby/standby/logs
+
 # Archivos temporales de Python
 *.pyc
 __pycache__/
