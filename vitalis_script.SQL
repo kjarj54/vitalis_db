@@ -1,6 +1,6 @@
 ﻿/*
 Created: 16/8/2025
-Modified: 30/8/2025
+Modified: 3/9/2025
 Model: Vitalis
 Database: Oracle 19c
 */
@@ -586,6 +586,8 @@ ALTER TABLE vitalis_tipos_documentos ADD CONSTRAINT vitalis_tipos_documentos_pk 
 
 -- Table and Columns comments section
 
+COMMENT ON TABLE vitalis_tipos_documentos IS 'Tabla para almacenar los documentos solicitados al momento de la contratación. '
+;
 COMMENT ON COLUMN vitalis_tipos_documentos.tdo_id IS 'ID único del tipo de documento'
 ;
 COMMENT ON COLUMN vitalis_tipos_documentos.tdo_nombre IS 'Nombre del tipo de documento'
@@ -835,6 +837,8 @@ ALTER TABLE vitalis_cuentas_bancarias ADD CONSTRAINT vitalis_cuentas_bancarias_p
 
 -- Table and Columns comments section
 
+COMMENT ON TABLE vitalis_cuentas_bancarias IS 'Tabla para manejo tanto de bancos como de cuentas bancarias asociada a persona '
+;
 COMMENT ON COLUMN vitalis_cuentas_bancarias.cba_id IS 'ID único de la cuenta bancaria'
 ;
 COMMENT ON COLUMN vitalis_cuentas_bancarias.per_id IS 'Referencia a vitalis_personas'
@@ -1334,6 +1338,9 @@ ALTER TABLE vitalis_escalas_base ADD CONSTRAINT vitalis_escalas_base_pk PRIMARY 
 
 -- Table and Columns comments section
 
+COMMENT ON TABLE vitalis_escalas_base IS 'Tabla para almacenar datos de creación de la escala base, de estos datos se genera la escala mensual
+'
+;
 COMMENT ON COLUMN vitalis_escalas_base.esb_id IS 'ID único de la escala base'
 ;
 COMMENT ON COLUMN vitalis_escalas_base.csa_id IS 'Referencia a vitalis_centros_salud
@@ -1479,13 +1486,13 @@ CREATE TABLE vitalis_escalas_mensuales_detalle(
 
 -- Create indexes for table vitalis_escalas_mensuales_detalle
 
-CREATE INDEX IX_Relationship13 ON vitalis_escalas_mensuales_detalle (esm_id)
+CREATE INDEX vitalis_escalas_mensuales_detalle_ind01 ON vitalis_escalas_mensuales_detalle (esm_id)
 ;
 
-CREATE INDEX IX_Relationship32 ON vitalis_escalas_mensuales_detalle (per_id)
+CREATE INDEX vitalis_escalas_mensuales_detalle_ind02 ON vitalis_escalas_mensuales_detalle (per_id)
 ;
 
-CREATE INDEX IX_Relationship44 ON vitalis_escalas_mensuales_detalle (put_id)
+CREATE INDEX vitalis_escalas_mensuales_detalle_ind03 ON vitalis_escalas_mensuales_detalle (put_id)
 ;
 
 -- Add keys for table vitalis_escalas_mensuales_detalle
@@ -1662,6 +1669,8 @@ ALTER TABLE vitalis_planillas ADD CONSTRAINT vitalis_planillas_pk PRIMARY KEY (p
 
 -- Table and Columns comments section
 
+COMMENT ON TABLE vitalis_planillas IS 'Tabla para el manejo de las planillas correspondientes a médicos'
+;
 COMMENT ON COLUMN vitalis_planillas.pla_id IS 'ID único de la planilla'
 ;
 COMMENT ON COLUMN vitalis_planillas.tpl_id IS 'Referencia a vitalis_tipos_planillas'
@@ -1761,11 +1770,8 @@ CREATE TABLE vitalis_planillas_movimientos(
   pld_id Number,
   plm_concepto Varchar2(500 ),
   plm_cantidad Number,
-  plm_valor_unitario Number,
   plm_monto Number,
   plm_tipo Varchar2(20 ),
-  plm_origen Varchar2(20 ),
-  plm_origen_id Varchar2(20 ),
   plm_version Number DEFAULT 1
 )
 ;
@@ -1785,6 +1791,8 @@ ALTER TABLE vitalis_planillas_movimientos ADD CONSTRAINT vitalis_planillas_movim
 
 -- Table and Columns comments section
 
+COMMENT ON TABLE vitalis_planillas_movimientos IS 'Tabla para manejar los movimientos en planilla, entre ellos nombramientos, ascensos, deducciones e ingresos.'
+;
 COMMENT ON COLUMN vitalis_planillas_movimientos.plm_id IS 'ID único del movimiento de planilla'
 ;
 COMMENT ON COLUMN vitalis_planillas_movimientos.tmo_id IS 'Referencia a vitalis_tipos_movimientos'
@@ -1796,17 +1804,9 @@ COMMENT ON COLUMN vitalis_planillas_movimientos.plm_concepto IS 'Concepto del mo
 COMMENT ON COLUMN vitalis_planillas_movimientos.plm_cantidad IS 'Cantidad (horas, turnos, etc.)
 '
 ;
-COMMENT ON COLUMN vitalis_planillas_movimientos.plm_valor_unitario IS 'Valor unitario'
-;
 COMMENT ON COLUMN vitalis_planillas_movimientos.plm_monto IS 'Monto total del movimiento'
 ;
-COMMENT ON COLUMN vitalis_planillas_movimientos.plm_tipo IS 'INGRESO, DEDUCCION'
-;
-COMMENT ON COLUMN vitalis_planillas_movimientos.plm_origen IS 'TURNO, PROCEDIMIENTO, AUTOMATICO'
-;
-COMMENT ON COLUMN vitalis_planillas_movimientos.plm_origen_id IS 'ID del origen (turno o procedimiento)
-
-'
+COMMENT ON COLUMN vitalis_planillas_movimientos.plm_tipo IS 'ascensos, traslados o nombramientos'
 ;
 COMMENT ON COLUMN vitalis_planillas_movimientos.plm_version IS 'Version del registro'
 ;
@@ -1945,7 +1945,7 @@ CREATE TABLE vitalis_bitacoras(
 
 -- Create indexes for table vitalis_bitacoras
 
-CREATE INDEX IX_Relationship63 ON vitalis_bitacoras (usu_id)
+CREATE INDEX vitalis_bitacoras_ind01 ON vitalis_bitacoras (usu_id)
 ;
 
 -- Add keys for table vitalis_bitacoras
@@ -2286,7 +2286,7 @@ CREATE TABLE vitalis_contratos(
 
 -- Create indexes for table vitalis_contratos
 
-CREATE INDEX IX_Relationship49 ON vitalis_contratos (per_id)
+CREATE INDEX vitalis_contratos_ind01 ON vitalis_contratos (per_id)
 ;
 
 -- Add keys for table vitalis_contratos
@@ -2459,8 +2459,6 @@ COMMENT ON COLUMN vitalis_consultorios.con_estado IS 'A=activo I=Inactivo'
 
 CREATE TABLE vitalis_facturas_detalle(
   fad_id Number NOT NULL,
-  fad_origen Varchar2(30 ) NOT NULL,
-  fad_origen_id Number NOT NULL,
   fad_descripcion Varchar2(200 ),
   fad_cantidad Number NOT NULL,
   fad_precio_unit Number NOT NULL,
@@ -2482,10 +2480,6 @@ ALTER TABLE vitalis_facturas_detalle ADD CONSTRAINT vitalis_facturas_detalle_pk 
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN vitalis_facturas_detalle.fad_origen IS 'De donde se genero la factura ejemplo clinica Santa Marta...'
-;
-COMMENT ON COLUMN vitalis_facturas_detalle.fad_origen_id IS 'Id del origen de la factura'
-;
 COMMENT ON COLUMN vitalis_facturas_detalle.fad_descripcion IS 'Descripcion de la factura sus detalles agregados'
 ;
 COMMENT ON COLUMN vitalis_facturas_detalle.fad_cantidad IS 'Cantidad de suministros en la factura'
@@ -2610,7 +2604,7 @@ COMMENT ON COLUMN vitalis_autoregistros.aur_usu_revisor IS 'Usuario que reviso e
 CREATE TABLE vitalis_autoregistros_documentos(
   aud_id Number NOT NULL,
   aud_nombre_archivo Varchar2(20 ) NOT NULL,
-  aud_ruta_archivo Varchar2(30 ),
+  aud_ruta_archivo Varchar2(300 ),
   aud_fecha_carga Date,
   aud_estado Char(1 ) NOT NULL
         CONSTRAINT chk_aud_estado CHECK (activo IN ('A','I')),
