@@ -210,34 +210,26 @@ services:
     container_name: vitalis-primary
     hostname: vitalis-primary
     environment:
-      # Configuración específica del proyecto Vitalis
       - ORACLE_SID=VITALIS
       - ORACLE_PDB=VITALISPDB1
-      - ORACLE_PWD=Vitalis2025!
+      - ORACLE_PWD=Vitalis123
       - ORACLE_EDITION=enterprise
       - ORACLE_CHARACTERSET=AL32UTF8
       - ENABLE_ARCHIVELOG=true
       - ENABLE_FORCE_LOGGING=true
-      # Configuración específica para Archive Logs (cada 5 min o 50MB)
-      - ARCHIVE_LAG_TARGET=300  # 5 minutos
     ports:
-      - "1521:1521"   # Puerto principal para aplicaciones
-      - "5500:5500"   # Enterprise Manager
+      - "1521:1521"
+      - "5500:5500"
     volumes:
       - ./primary/data:/opt/oracle/oradata
       - ./primary/scripts:/opt/oracle/scripts/setup
       - ./primary/logs:/opt/oracle/diag
       - ./shared:/opt/oracle/shared
     networks:
-      vitalis-net:
-        ipv4_address: 172.30.0.10
+      - vitalis-net
     restart: unless-stopped
     mem_limit: 4g
     shm_size: 1g
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
 
   vitalis-standby:
     image: container-registry.oracle.com/database/enterprise:19.3.0.0
@@ -246,31 +238,26 @@ services:
     environment:
       - ORACLE_SID=VITALIS
       - ORACLE_PDB=VITALISPDB1
-      - ORACLE_PWD=Vitalis2025!
+      - ORACLE_PWD=Vitalis123
       - ORACLE_EDITION=enterprise
       - ORACLE_CHARACTERSET=AL32UTF8
       - ENABLE_ARCHIVELOG=true
       - ENABLE_FORCE_LOGGING=true
     ports:
-      - "1522:1521"   # Puerto para servidor standby
-      - "5501:5500"   # Enterprise Manager standby
+      - "1522:1521"
+      - "5501:5500"
     volumes:
       - ./standby/data:/opt/oracle/oradata
       - ./standby/scripts:/opt/oracle/scripts/setup
       - ./standby/logs:/opt/oracle/diag
       - ./shared:/opt/oracle/shared
     networks:
-      vitalis-net:
-        ipv4_address: 172.30.0.11
+      - vitalis-net
     restart: unless-stopped
     mem_limit: 4g
     shm_size: 1g
     depends_on:
       - vitalis-primary
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
 
 networks:
   vitalis-net:
@@ -278,13 +265,6 @@ networks:
     ipam:
       config:
         - subnet: 172.30.0.0/16
-          gateway: 172.30.0.1
-
-volumes:
-  primary-data:
-    driver: local
-  standby-data:
-    driver: local
 ```
 
 #### Configuración de Red del Proyecto
