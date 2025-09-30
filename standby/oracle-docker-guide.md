@@ -126,6 +126,33 @@ docker compose exec vitalis-primary bash /home/oracle/scripts/initialize_vitalis
 docker compose exec vitalis-standby bash /home/oracle/scripts/initialize_vitalis.sh
 ```
 
+3. **Completar configuración de la base standby (ejecutar en el contenedor standby)**
+```bash
+docker compose exec vitalis-standby sqlplus sys/Vitalis123 as sysdba
+```
+```sql
+CREATE SPFILE FROM PFILE='/home/oracle/scp/initVITALISSB.ora';
+STARTUP NOMOUNT;
+EXIT;
+```
+
+4. **Ejecutar duplicación RMAN (desde el contenedor primary)**
+```bash
+docker compose exec vitalis-primary rman TARGET sys/Vitalis123@VITALIS AUXILIARY sys/Vitalis123@vitalis-standby:1521/VITALISSB
+```
+```sql
+DUPLICATE TARGET DATABASE FOR STANDBY FROM ACTIVE DATABASE DORECOVER NOFILENAMECHECK;
+```
+
+5. **Configurar recuperación en standby**
+```bash
+docker compose exec vitalis-standby sqlplus sys/Vitalis123 as sysdba
+```
+```sql
+ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DISCONNECT FROM SESSION;
+EXIT;
+```
+
 ### Configuración de Clientes de Base de Datos
 
 #### Configuración para DBeaver

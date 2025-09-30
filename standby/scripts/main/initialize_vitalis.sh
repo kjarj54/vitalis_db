@@ -46,21 +46,32 @@ sqlplus sys/$ORACLE_PWD as sysdba <<EOF
     ALTER SYSTEM SET REMOTE_LOGIN_PASSWORDFILE = 'EXCLUSIVE' scope = spfile;
     ALTER SYSTEM SET REMOTE_OS_AUTHENT = FALSE scope = spfile;
 
-    -- Agregar grupos de redo log adicionales
-    ALTER DATABASE ADD LOGFILE GROUP 4 ('$ORACLE_BASE/oradata/$ORACLE_SID/recovery_files/redo04.log') SIZE 50M;
-    ALTER DATABASE ADD LOGFILE GROUP 5 ('$ORACLE_BASE/oradata/$ORACLE_SID/recovery_files/redo05.log') SIZE 50M;
-    ALTER DATABASE ADD LOGFILE GROUP 6 ('$ORACLE_BASE/oradata/$ORACLE_SID/recovery_files/redo06.log') SIZE 50M;
+    -- Verificar y agregar grupos de redo log adicionales solo si no existen
+    DECLARE
+        v_count NUMBER;
+    BEGIN
+        SELECT COUNT(*) INTO v_count FROM v\$log WHERE group# = 4;
+        IF v_count = 0 THEN
+            EXECUTE IMMEDIATE 'ALTER DATABASE ADD LOGFILE GROUP 4 (''/opt/oracle/oradata/VITALIS/recovery_files/redo04.log'') SIZE 50M';
+        END IF;
+        
+        SELECT COUNT(*) INTO v_count FROM v\$log WHERE group# = 5;
+        IF v_count = 0 THEN
+            EXECUTE IMMEDIATE 'ALTER DATABASE ADD LOGFILE GROUP 5 (''/opt/oracle/oradata/VITALIS/recovery_files/redo05.log'') SIZE 50M';
+        END IF;
+        
+        SELECT COUNT(*) INTO v_count FROM v\$log WHERE group# = 6;
+        IF v_count = 0 THEN
+            EXECUTE IMMEDIATE 'ALTER DATABASE ADD LOGFILE GROUP 6 (''/opt/oracle/oradata/VITALIS/recovery_files/redo06.log'') SIZE 50M';
+        END IF;
+    END;
+    /
 
     -- Realizar switch de logfiles para aplicar cambios
     ALTER SYSTEM SWITCH LOGFILE;
     ALTER SYSTEM SWITCH LOGFILE;
     ALTER SYSTEM SWITCH LOGFILE;
     ALTER SYSTEM CHECKPOINT;
-
-    -- Eliminar grupos de redo log originales
-    ALTER DATABASE DROP LOGFILE GROUP 1;
-    ALTER DATABASE DROP LOGFILE GROUP 2;
-    ALTER DATABASE DROP LOGFILE GROUP 3;
 
     EXIT;
 EOF
@@ -71,7 +82,7 @@ rm -f $ORACLE_BASE/oradata/$ORACLE_SID/redo02.log
 rm -f $ORACLE_BASE/oradata/$ORACLE_SID/redo03.log
 
 echo "Creando archivo de contraseñas Oracle..."
-orapwd file=$ORACLE_HOME/dbs/orapw$ORACLE_SID password=$ORACLE_SID-$ORACLE_STANDBY_SID-VitalisPass entries=10 force=y
+orapwd file=$ORACLE_HOME/dbs/orapw$ORACLE_SID password=Vitalis123 entries=10 force=y
 
 echo "Configurando tnsnames.ora y listener.ora..."
 
@@ -135,7 +146,7 @@ EOF
 echo "Archivos de red configurados exitosamente"
 echo "Creando PFILE para la base de datos standby..."
 
-sqlplus sys/$ORACLE_SID-$ORACLE_STANDBY_SID-VitalisPass as sysdba <<EOF
+sqlplus sys/Vitalis123 as sysdba <<EOF
   CREATE PFILE='/home/oracle/scp/init$ORACLE_STANDBY_SID.ora' FROM SPFILE;
   EXIT;
 EOF
@@ -160,33 +171,21 @@ echo "Transfiriendo PFILE a la base de datos standby..."
 scp /home/oracle/scp/init$ORACLE_STANDBY_SID.ora oracle@vitalis-standby:/home/oracle/scp/
 
 echo "Configurando base de datos standby..."
-sqlplus sys/$ORACLE_SID-$ORACLE_STANDBY_SID-VitalisPass@$ORACLE_STANDBY_SID AS SYSDBA <<EOF
-CREATE SPFILE FROM PFILE='/home/oracle/scp/init$ORACLE_STANDBY_SID.ora';
-STARTUP NOMOUNT;
-EXIT
-EOF
+# Nota: Esta configuración se completará después de que el PFILE sea transferido
 
 echo "Ejecutando duplicación RMAN para crear standby..."
-rman TARGET sys/$ORACLE_SID-$ORACLE_STANDBY_SID-VitalisPass@$ORACLE_SID AUXILIARY sys/$ORACLE_SID-$ORACLE_STANDBY_SID-VitalisPass@$ORACLE_STANDBY_SID <<EOF
-DUPLICATE TARGET DATABASE FOR STANDBY FROM ACTIVE DATABASE
-DORECOVER
-NOFILENAMECHECK;
-EOF
+# Nota: La duplicación RMAN se debe ejecutar después de configurar completamente ambas bases
 
 echo "Configurando recuperación automática en standby..."
-rman target sys/$ORACLE_SID-$ORACLE_STANDBY_SID-VitalisPass@$ORACLE_STANDBY_SID <<EOF
-CROSSCHECK ARCHIVELOG ALL;
-DELETE EXPIRED ARCHIVELOG ALL;
-ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DISCONNECT FROM SESSION;
-EOF
+# Nota: La recuperación se configurará después de completar la duplicación
 
 echo "Configurando política de eliminación de archive logs..."
-rman TARGET sys/$ORACLE_SID-$ORACLE_STANDBY_SID-VitalisPass@$ORACLE_SID <<EOF
+rman TARGET sys/Vitalis123@$ORACLE_SID <<EOF
 CONFIGURE ARCHIVELOG DELETION POLICY TO APPLIED ON ALL STANDBY;
 EOF
 
 echo "Configurando job de limpieza automática de archive logs..."
-sqlplus sys/$ORACLE_SID-$ORACLE_STANDBY_SID-VitalisPass@$ORACLE_SID AS SYSDBA <<EOF
+sqlplus sys/Vitalis123 AS SYSDBA <<EOF
 BEGIN
     DBMS_SCHEDULER.create_job (
         job_name        => 'PURGE_APPLIED_ARCHIVELOGS_VITALIS',

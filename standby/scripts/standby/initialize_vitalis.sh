@@ -28,7 +28,7 @@ sqlplus sys/$ORACLE_PWD as sysdba <<EOF
 EOF
 
 echo "Creando archivo de contraseñas para standby..."
-orapwd file=$ORACLE_HOME/dbs/orapw$ORACLE_SID password=$ORACLE_MAIN_SID-$ORACLE_SID-VitalisPass entries=10 force=y
+orapwd file=$ORACLE_HOME/dbs/orapw$ORACLE_SID password=Vitalis123 entries=10 force=y
 
 echo "Configurando tnsnames.ora para standby..."
 cat <<EOF > $ORACLE_HOME/network/admin/tnsnames.ora
