@@ -1,24 +1,16 @@
 #!/bin/bash
-# Script de inicialización para Vitalis Standby Database
-# Adaptado para el proyecto Vitalis
 
-echo "=== Iniciando configuración de Vitalis Standby Database ==="
-
-# Configurar variables para el script de limpieza
 SCRIPT_PATH="/home/oracle/scripts/delete_obsolete_vitalis.sh"
 
-echo "Iniciando servicio SSH..."
 /usr/sbin/sshd
 
-echo "Creando directorios necesarios..."
+echo "Creando los directorios necesarios."
 mkdir -p /opt/oracle/oradata/$ORACLE_SID/recovery_files
-mkdir -p /home/oracle/scp/
-mkdir -p /home/oracle/scp/recovery_files/
+mkdir /home/oracle/scp/
+mkdir /home/oracle/scp/recovery_files/
 
-echo "Apagando la instancia para reconfiguración..."
 /home/oracle/shutDown.sh immediate
 
-echo "Configurando parámetros iniciales de standby..."
 sqlplus sys/$ORACLE_PWD as sysdba <<EOF
     STARTUP NOMOUNT;
     ALTER SYSTEM SET LOCAL_LISTENER = '(ADDRESS = (PROTOCOL=TCP)(HOST=vitalis-standby)(PORT=1521))';
@@ -27,10 +19,8 @@ sqlplus sys/$ORACLE_PWD as sysdba <<EOF
     EXIT;
 EOF
 
-echo "Creando archivo de contraseñas para standby..."
-orapwd file=$ORACLE_HOME/dbs/orapw$ORACLE_SID password=Vitalis123 entries=10 force=y
+orapwd file=$ORACLE_HOME/dbs/orapw$ORACLE_SID password=$ORACLE_MAIN_SID-$ORACLE_SID-1 entries=10 force=y
 
-echo "Configurando tnsnames.ora para standby..."
 cat <<EOF > $ORACLE_HOME/network/admin/tnsnames.ora
 $ORACLE_SID=localhost:1521/$ORACLE_PWD
 $ORACLE_PDB=
@@ -70,7 +60,6 @@ $ORACLE_MAIN_SID=
 )
 EOF
 
-echo "Configurando listener.ora para standby..."
 cat <<EOF > $ORACLE_HOME/network/admin/listener.ora
 LISTENER = 
 (DESCRIPTION_LIST = 
@@ -92,12 +81,7 @@ DEDICATED_THROUGH_BROKER_LISTENER=ON
 DIAG_ADR_ENABLED = off
 EOF
 
-echo "Reiniciando listener..."
 lsnrctl stop
 lsnrctl start
 
-echo "Apagando instancia standby..."
 /home/oracle/shutDown.sh immediate
-
-echo "=== Configuración de Vitalis Standby Database completada ==="
-echo "Nota: La configuración final se completará cuando el script del primary se ejecute"

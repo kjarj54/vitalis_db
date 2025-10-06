@@ -1,469 +1,331 @@
-# Guía de Implementación de Oracle Data Guard para Vitalis
-## Manual de Instalación y Configuración de Base de Datos Standby
+# Guía de Implementación Oracle Data Guard Standby - Proyecto Vitalis
 
-### Introducción
+## Introducción
 
-Este manual describe la implementación de Oracle Data Guard para el sistema Vitalis, proporcionando alta disponibilidad y protección de datos mediante una base de datos standby. La configuración utiliza contenedores Docker para simular un entorno de producción con dos servidores separados.
+Esta guía describe el proceso completo para implementar una base de datos Oracle Data Guard standby para el sistema Vitalis. La configuración utiliza contenedores Docker para facilitar el despliegue y la administración de tanto la base de datos principal como la standby.
 
-### Conceptos Fundamentales
+## Conceptos Fundamentales
 
-#### Oracle Data Guard
-Oracle Data Guard es una solución de alta disponibilidad, protección de datos y recuperación ante desastres que mantiene una o más copias standby de una base de datos primaria.
+### Oracle Data Guard
+Oracle Data Guard es una funcionalidad que proporciona alta disponibilidad, protección de datos y recuperación ante desastres para bases de datos Oracle. Mantiene una o más réplicas (standby databases) sincronizadas con la base de datos principal (primary database).
 
-**Componentes principales:**
-- **Base de datos primaria**: Base de datos de producción activa
-- **Base de datos standby**: Copia sincronizada de la primaria
-- **Redo Transport**: Servicio que transmite logs de redo
-- **Log Apply**: Proceso que aplica cambios en la standby
+### Componentes Principales
+- **Primary Database**: Base de datos principal que recibe todas las transacciones
+- **Standby Database**: Réplica de la base de datos principal que se mantiene sincronizada
+- **Archive Logs**: Archivos que contienen los cambios realizados en la base de datos
+- **Redo Logs**: Logs de transacciones en línea
 
-#### Configuración del Proyecto Vitalis
+## Arquitectura del Sistema
 
-**Arquitectura implementada:**
-- Servidor primario: `vitalis-primary` (Puerto 1521)
-- Servidor standby: `vitalis-standby` (Puerto 1522)
-- Transferencia de logs cada 5 minutos o 50MB
-- Aplicación automática de logs cada 10 minutos
-- Limpieza automática de archivos aplicados (3 días de retención)
-
-### Prerrequisitos
-
-#### Requisitos del Sistema
-- Docker Desktop instalado y funcionando
-- Mínimo 12GB de RAM disponible
-- Mínimo 50GB de espacio en disco
-- Acceso a Oracle Container Registry
-
-#### Requisitos de Red
-- Puertos disponibles: 1521, 1522, 5500, 5501, 2221, 2222
-- Conectividad entre contenedores
-
-### Procedimiento de Instalación
-
-#### Paso 1: Preparación del Entorno
-
-1. **Clonar o descargar el proyecto Vitalis**
-```bash
-cd "C:\Users\kevin\Documentos\carpetaU\SegundoSemestre2025\Administración de Bases de Datos\ProyectoDb\vitalis_db\standby"
 ```
+┌─────────────────┐    Archive Logs    ┌─────────────────┐
+│                 │ ─────────────────→ │                 │
+│ Primary DB      │                    │ Standby DB      │
+│ (vitalis-       │ ←───────────────── │ (vitalis-       │
+│  primary)       │    Status/Control   │  standby)       │
+│ Puerto: 1521    │                    │ Puerto: 1522    │
+└─────────────────┘                    └─────────────────┘
+```
+
+## Prerrequisitos
+
+### Requerimientos del Sistema
+- Docker y Docker Compose instalados
+- Al menos 8GB de RAM disponible
+- 50GB de espacio en disco libre
+- Sistema operativo compatible con Docker
+
+### Configuración de Red
+- Puerto 1521: Base de datos primary
+- Puerto 1522: Base de datos standby
+- Puerto 5500: Oracle Enterprise Manager (primary)
+- Puerto 5501: Oracle Enterprise Manager (standby)
+
+## Proceso de Implementación
+
+### Paso 1: Preparación del Entorno
+
+1. **Clonar o descargar el proyecto**
+   ```bash
+   cd e:\carpetaU\SegundoSemestre2025\AdministracionDB\ProyectoDB\standby
+   ```
 
 2. **Verificar la estructura de archivos**
-```
-standby/
-├── docker-compose.yml
-├── Dockerfile.vitalis-primary
-├── Dockerfile.vitalis-standby
-└── scripts/
-    ├── main/
-    │   ├── initialize_vitalis.sh
-    │   ├── load_vitalis_data.sql
-    │   └── backup_vitalis.sh
-    └── standby/
-        ├── initialize_vitalis.sh
-        └── delete_obsolete_vitalis.sh
-```
+   ```
+   standby/
+   ├── docker-compose.yml
+   ├── Dockerfile.vitalis-primary
+   ├── Dockerfile.vitalis-standby
+   └── scripts/
+       ├── main/
+       │   ├── initialize_vitalis.sh
+       │   ├── backup_vitalis.sh
+       │   ├── purge_applied_logs.sh
+       │   ├── purge_complete_logs_in_standby.sh
+       │   └── daily_backup.sh
+       ├── standby/
+       │   ├── initialize_vitalis.sh
+       │   └── delete_obsolete_vitalis.sh
+       └── test/
+           ├── test-primary.sql
+           └── test-standby.sql
+   ```
 
-3. **Configurar permisos de ejecución (si es necesario)**
-```bash
-# En sistemas Unix/Linux
-chmod +x scripts/main/*.sh
-chmod +x scripts/standby/*.sh
-```
+### Paso 2: Construcción y Despliegue
 
-#### Paso 2: Autenticación con Oracle Container Registry
-
-```bash
-docker login container-registry.oracle.com
-```
-*Usar credenciales de Oracle*
-
-#### Paso 3: Construcción e Inicio de Contenedores
-
-1. **Construir e iniciar los servicios**
-```bash
-docker compose up -d --build
-```
+1. **Construir y levantar los contenedores**
+   ```bash
+   docker-compose up -d
+   ```
 
 2. **Verificar que los contenedores estén ejecutándose**
+   ```bash
+   docker-compose ps
+   ```
+
+   Salida esperada:
+   ```
+   NAME               STATUS
+   vitalis-primary    Up
+   vitalis-standby    Up
+   ```
+
+### Paso 3: Inicialización de la Base de Datos Primary
+
+1. **Conectar al contenedor primary**
+   ```bash
+   docker exec -it vitalis-primary bash
+   ```
+
+2. **Ejecutar el script de inicialización**
+   ```bash
+   cd /home/oracle/scripts
+   chmod +x initialize_vitalis.sh
+   ./initialize_vitalis.sh
+   ```
+
+   **Nota importante**: Durante la ejecución del script, se solicitará la contraseña SSH para conectarse al servidor standby. La contraseña por defecto es `oracle`.
+
+### Paso 4: Inicialización de la Base de Datos Standby
+
+1. **En una nueva terminal, conectar al contenedor standby**
+   ```bash
+   docker exec -it vitalis-standby bash
+   ```
+
+2. **Ejecutar el script de inicialización del standby**
+   ```bash
+   cd /home/oracle/scripts
+   chmod +x initialize_vitalis.sh
+   ./initialize_vitalis.sh
+   ```
+
+### Paso 5: Configuración de SSH entre Contenedores
+
+Para que la replicación funcione correctamente, es necesario configurar la autenticación SSH sin contraseña entre los contenedores.
+
+1. **En el contenedor primary, generar claves SSH**
+   ```bash
+   ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -N ""
+   ```
+
+2. **Copiar la clave pública al standby**
+   ```bash
+   ssh-copy-id oracle@vitalis-standby
+   ```
+
+3. **Verificar la conexión**
+   ```bash
+   ssh oracle@vitalis-standby "hostname"
+   ```
+
+## Verificación del Funcionamiento
+
+### Verificación en Primary Database
+
+1. **Conectar a la base de datos primary**
+   ```bash
+   docker exec -it vitalis-primary sqlplus sys/VITALIS-VITALISSB-1@VITALIS as sysdba
+   ```
+
+2. **Ejecutar script de prueba**
+   ```sql
+   @/home/oracle/scripts/test/test-primary.sql
+   ```
+
+3. **Verificaciones importantes**:
+   - Estado de la base de datos debe ser `PRIMARY` y `READ WRITE`
+   - Los destinos de archive log deben estar `VALID`
+   - Debe haber actividad en LOG_ARCHIVE_DEST_2
+
+### Verificación en Standby Database
+
+1. **Conectar a la base de datos standby**
+   ```bash
+   docker exec -it vitalis-standby sqlplus sys/VITALIS-VITALISSB-1@VITALISSB as sysdba
+   ```
+
+2. **Ejecutar script de prueba**
+   ```sql
+   @/home/oracle/scripts/test/test-standby.sql
+   ```
+
+3. **Verificaciones importantes**:
+   - Estado de la base de datos debe ser `PHYSICAL STANDBY`
+   - El proceso MRP (Managed Recovery Process) debe estar activo
+   - No debe haber gaps en la aplicación de logs
+
+### Prueba de Sincronización
+
+1. **En el primary, crear una tabla de prueba**
+   ```sql
+   CREATE TABLE test_sync (id NUMBER, fecha DATE);
+   INSERT INTO test_sync VALUES (1, SYSDATE);
+   COMMIT;
+   ALTER SYSTEM SWITCH LOGFILE;
+   ```
+
+2. **En el standby, verificar que la tabla se sincronizó**
+   ```sql
+   ALTER DATABASE OPEN READ ONLY;
+   SELECT * FROM test_sync;
+   ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DISCONNECT FROM SESSION;
+   ```
+
+## Monitoreo y Mantenimiento
+
+### Scripts Automáticos Configurados
+
+1. **PURGE_APPLIED_ARCHIVELOGS**: Se ejecuta cada 5 minutos
+   - Limpia archive logs aplicados en el primary
+   
+2. **PURGE_APPLIED_ARCHIVELOGS_IN_STANDBY**: Se ejecuta diariamente
+   - Limpia archive logs obsoletos en el standby
+   
+3. **REALIZE_BACKUP_DAILY**: Se ejecuta diariamente
+   - Realiza backup completo y lo transfiere al standby
+
+### Comandos de Monitoreo Útiles
+
+1. **Ver estado de Data Guard**
+   ```sql
+   SELECT database_role, open_mode FROM v$database;
+   ```
+
+2. **Ver aplicación de logs en standby**
+   ```sql
+   SELECT process, status, sequence# FROM v$managed_standby;
+   ```
+
+3. **Ver gaps en la sincronización**
+   ```sql
+   SELECT * FROM v$archive_gap;
+   ```
+
+## Solución de Problemas Comunes
+
+### Problema: Standby no recibe archive logs
+
+**Síntomas**:
+- LOG_ARCHIVE_DEST_2 muestra estado ERROR
+- Hay gaps en v$archive_gap
+
+**Solución**:
+1. Verificar conectividad de red entre contenedores
+2. Verificar configuración de tnsnames.ora
+3. Reiniciar el listener en ambos servidores
+
 ```bash
-docker compose ps
+lsnrctl stop
+lsnrctl start
 ```
 
-3. **Monitorear los logs de inicialización**
-```bash
-# Logs del contenedor primario
-docker compose logs -f vitalis-primary
+### Problema: Recovery process no está activo
 
-# Logs del contenedor standby
-docker compose logs -f vitalis-standby
-```
+**Síntomas**:
+- v$managed_standby no muestra proceso MRP
 
-#### Paso 4: Configuración Inicial
-
-1. **Esperar a que la base de datos primaria esté lista**
-```bash
-docker compose exec vitalis-primary bash -c "
-while ! sqlplus -s sys/Vitalis123 as sysdba <<< 'SELECT 1 FROM DUAL;' > /dev/null 2>&1; do
-  echo 'Esperando que la base de datos primaria esté lista...'
-  sleep 30
-done
-echo 'Base de datos primaria lista'"
-```
-
-2. **Cargar el esquema de Vitalis (si es necesario)**
-```bash
-docker compose exec vitalis-primary sqlplus sys/Vitalis123@VITALIS as sysdba @/home/oracle/scripts/load_vitalis_data.sql
-```
-
-#### Paso 5: Configuración de Data Guard
-
-1. **Ejecutar configuración en la base primaria**
-```bash
-docker compose exec vitalis-primary bash /home/oracle/scripts/initialize_vitalis.sh
-```
-
-2. **Ejecutar configuración en la base standby**
-```bash
-docker compose exec vitalis-standby bash /home/oracle/scripts/initialize_vitalis.sh
-```
-
-3. **Completar configuración de la base standby (ejecutar en el contenedor standby)**
-```bash
-docker compose exec vitalis-standby sqlplus sys/Vitalis123 as sysdba
-```
-```sql
-CREATE SPFILE FROM PFILE='/home/oracle/scp/initVITALISSB.ora';
-STARTUP NOMOUNT;
-EXIT;
-```
-
-4. **Ejecutar duplicación RMAN (desde el contenedor primary)**
-```bash
-docker compose exec vitalis-primary rman TARGET sys/Vitalis123@VITALIS AUXILIARY sys/Vitalis123@vitalis-standby:1521/VITALISSB
-```
-```sql
-DUPLICATE TARGET DATABASE FOR STANDBY FROM ACTIVE DATABASE DORECOVER NOFILENAMECHECK;
-```
-
-5. **Configurar recuperación en standby**
-```bash
-docker compose exec vitalis-standby sqlplus sys/Vitalis123 as sysdba
-```
+**Solución**:
 ```sql
 ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DISCONNECT FROM SESSION;
-EXIT;
 ```
 
-### Configuración de Clientes de Base de Datos
+### Problema: Errores de autenticación SSH
 
-#### Configuración para DBeaver
+**Síntomas**:
+- Scripts de backup fallan con errores de SSH
+- No se pueden transferir archivos entre servidores
 
-**Conexión a Base de Datos Primaria:**
-- **Driver**: Oracle
-- **Host**: localhost
-- **Puerto**: 1521
-- **Database/SID**: VITALIS (mayúsculas) o vitalis (minúsculas)
-- **Usuario**: sys
-- **Contraseña**: Vitalis123
-- **Tipo de conexión**: SID
-- **Rol**: SYSDBA
+**Solución**:
+1. Reconfigurar claves SSH
+2. Verificar permisos de archivos ~/.ssh/
+3. Verificar conectividad de red
 
-**Conexión a Base de Datos Standby:**
-- **Driver**: Oracle
-- **Host**: localhost
-- **Puerto**: 1522
-- **Database/SID**: VITALISSB (mayúsculas) o vitalissb (minúsculas)
-- **Usuario**: sys
-- **Contraseña**: Vitalis123
-- **Tipo de conexión**: SID
-- **Rol**: SYSDBA
+## Parámetros de Configuración Importantes
 
-**Nota importante**: Si una conexión falla, probar con la variante en el caso opuesto (mayúsculas/minúsculas) ya que Oracle puede generar automáticamente los nombres de servicios en minúsculas.
+### Configuraciones de Archive Log
+- `ARCHIVE_LAG_TARGET=300`: Fuerza switch de log cada 5 minutos
+- `LOG_ARCHIVE_DEST_2`: Destino para envío a standby con delay de 10 segundos
 
-**Configuración alternativa usando Service Name:**
-- **Tipo de conexión**: Service name
-- **Service name primaria**: VITALIS o vitalis
-- **Service name standby**: VITALISSB o vitalissb
+### Configuraciones de Standby
+- `STANDBY_FILE_MANAGEMENT=AUTO`: Gestión automática de archivos
+- `FAL_SERVER` y `FAL_CLIENT`: Para recuperación automática de gaps
 
-#### Strings de Conexión para Aplicaciones
+## Comandos de Administración
 
-**Base Primaria:**
-```
-jdbc:oracle:thin:@localhost:1521:VITALIS
-jdbc:oracle:thin:@localhost:1521:vitalis
-```
-
-**Base Standby:**
-```
-jdbc:oracle:thin:@localhost:1522:VITALISSB
-jdbc:oracle:thin:@localhost:1522:vitalissb
-```
-
-### Verificación de la Configuración
-
-#### Verificar Estado de la Base Primaria
+### Forzar Switch de Logfile
 ```sql
--- Conectar a la base primaria
-sqlplus sys/Vitalis123@localhost:1521/VITALIS as sysdba
-
--- Verificar modo de la base de datos
-SELECT database_role, open_mode FROM v$database;
-
--- Verificar configuración de Data Guard
-SELECT dest_name, status, destination FROM v$archive_dest WHERE dest_name IN ('LOG_ARCHIVE_DEST_1', 'LOG_ARCHIVE_DEST_2');
-
--- Verificar generación de logs
-SELECT sequence#, first_time, applied FROM v$archived_log ORDER BY sequence# DESC;
-```
-
-#### Verificar Estado de la Base Standby
-```sql
--- Conectar a la base standby (probar ambas variantes)
--- Mayúsculas (configuración manual):
-sqlplus sys/Vitalis123@localhost:1522/VITALISSB as sysdba
--- Minúsculas (generación automática de Oracle):
-sqlplus sys/Vitalis123@localhost:1522/vitalissb as sysdba
-
--- Verificar modo de la base de datos
-SELECT database_role, open_mode FROM v$database;
-
--- Verificar aplicación de logs
-SELECT process, status, sequence# FROM v$managed_standby;
-
--- Verificar último log aplicado
-SELECT max(sequence#) FROM v$archived_log WHERE applied='YES';
-```
-
-#### Prueba de Sincronización
-```sql
--- En la base primaria, crear una tabla de prueba
-CREATE TABLE vitalis.test_sync (
-    id NUMBER,
-    fecha DATE DEFAULT SYSDATE,
-    descripcion VARCHAR2(100)
-);
-
-INSERT INTO vitalis.test_sync VALUES (1, SYSDATE, 'Prueba de sincronización');
-COMMIT;
-
--- Forzar switch de log
 ALTER SYSTEM SWITCH LOGFILE;
-
--- En la base standby (después de unos minutos), verificar la tabla
-SELECT * FROM vitalis.test_sync;
 ```
 
-### Monitoreo y Mantenimiento
-
-#### Scripts Automáticos Configurados
-
-1. **Limpieza de Archive Logs**
-   - Frecuencia: Cada 5 minutos
-   - Retención: 3 días
-   - Job: `PURGE_APPLIED_ARCHIVELOGS_VITALIS`
-
-2. **Respaldo Automático**
-   - Frecuencia: Diario
-   - Incluye: Base de datos completa + archive logs
-   - Transferencia automática al standby
-
-#### Comandos de Monitoreo
-
-```bash
-# Verificar espacio en disco
-docker compose exec vitalis-primary df -h /opt/oracle/oradata
-docker compose exec vitalis-standby df -h /opt/oracle/oradata
-
-# Verificar logs de aplicación
-docker compose exec vitalis-standby tail -f /home/oracle/logs/delete_obsolete_vitalis.log
-
-# Verificar procesos de Data Guard
-docker compose exec vitalis-standby bash -c "ps aux | grep ora_mrp"
-```
-
-### Resolución de Problemas Comunes
-
-#### 1. La base standby no está sincronizada
-
-**Diagnóstico:**
+### Detener Recovery en Standby
 ```sql
--- En primaria
-SELECT max(sequence#) FROM v$archived_log;
-
--- En standby
-SELECT max(sequence#) FROM v$archived_log WHERE applied='YES';
-```
-
-**Solución:**
-```sql
--- En standby, cancelar recuperación y reiniciar
 ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCEL;
+```
+
+### Iniciar Recovery en Standby
+```sql
 ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DISCONNECT FROM SESSION;
 ```
 
-#### 2. Error de conectividad entre bases
-
-**Verificación:**
-```bash
-# Verificar conectividad de red
-docker compose exec vitalis-primary ping vitalis-standby
-docker compose exec vitalis-standby ping vitalis-primary
-
-# Verificar listeners
-docker compose exec vitalis-primary lsnrctl status
-docker compose exec vitalis-standby lsnrctl status
-
-# Probar conexiones con ambas variantes
-# Primaria
-sqlplus sys/Vitalis123@localhost:1521/VITALIS as sysdba
-sqlplus sys/Vitalis123@localhost:1521/vitalis as sysdba
-
-# Standby
-sqlplus sys/Vitalis123@localhost:1522/VITALISSB as sysdba
-sqlplus sys/Vitalis123@localhost:1522/vitalissb as sysdba
-```
-
-**Solución:**
-```bash
-# Reiniciar listeners
-docker compose exec vitalis-primary lsnrctl reload
-docker compose exec vitalis-standby lsnrctl reload
-```
-
-#### 3. Espacio insuficiente en disco
-
-**Verificación:**
-```bash
-docker compose exec vitalis-primary df -h
-docker compose exec vitalis-standby df -h
-```
-
-**Solución:**
-```bash
-# Ejecutar limpieza manual
-docker compose exec vitalis-primary bash /home/oracle/scripts/backup_vitalis.sh
-docker compose exec vitalis-standby bash /home/oracle/scripts/delete_obsolete_vitalis.sh
-```
-
-### Procedimientos de Emergencia
-
-#### Switchover (Cambio Planificado)
-
-1. **Verificar sincronización**
+### Abrir Standby en Read-Only
 ```sql
--- En primaria
-SELECT max(sequence#) FROM v$archived_log;
+ALTER DATABASE OPEN READ ONLY;
 ```
 
-2. **Preparar switchover**
-```sql
--- En primaria
-ALTER DATABASE COMMIT TO SWITCHOVER TO STANDBY;
+## Backup y Recovery
 
--- En standby
-ALTER DATABASE COMMIT TO SWITCHOVER TO PRIMARY;
-```
+### Backup Automático
+El sistema está configurado para realizar backups automáticos diarios que incluyen:
+- Base de datos completa
+- Archive logs
+- Control files
 
-#### Failover (Cambio de Emergencia)
+### Transferencia al Standby
+Los backups se transfieren automáticamente al servidor standby para redundancia adicional.
 
-1. **Activar standby como primaria**
-```sql
--- En standby (nueva primaria)
-ALTER DATABASE ACTIVATE STANDBY DATABASE;
-ALTER DATABASE OPEN;
-```
+## Recomendaciones de Seguridad
 
-2. **Actualizar aplicaciones** para que apunten al nuevo puerto (1522)
+1. **Cambiar contraseñas por defecto**
+2. **Configurar firewall para limitar acceso a puertos**
+3. **Implementar monitoreo de logs de seguridad**
+4. **Realizar pruebas de recuperación regulares**
 
-### Automatización y Tareas Programadas
+## Conclusiones
 
-#### Configuración de Respaldos Automáticos
+La implementación de Oracle Data Guard para el proyecto Vitalis proporciona:
 
-El sistema incluye un job automático que:
-- Ejecuta respaldos completos diariamente
-- Transfiere respaldos al servidor standby
-- Mantiene retención de 7 días
-- Limpia archivos obsoletos
+- **Alta Disponibilidad**: La base de datos standby puede activarse rápidamente en caso de fallo
+- **Protección de Datos**: Los datos se replican automáticamente con un delay mínimo
+- **Facilidad de Administración**: Los procesos automatizados reducen la intervención manual
+- **Escalabilidad**: La arquitectura permite agregar más standby databases si es necesario
 
-#### Monitoreo Automático
+Esta configuración cumple con los requerimientos del proyecto de:
+- Actualización automática cada 5 minutos (ARCHIVE_LAG_TARGET)
+- Transferencia de información cada 10 minutos (LOG_ARCHIVE_DEST_2 DELAY)
+- Limpieza automática de archivos obsoletos después de 3 días
+- Respaldo diario automático con transferencia al standby
 
-Se recomienda implementar:
-- Alertas por email para fallos de sincronización
-- Monitoreo de espacio en disco
-- Verificación de integridad de archive logs
+## Contacto y Soporte
 
-### Mejores Prácticas
-
-#### Seguridad
-- Usar contraseñas robustas para todos los usuarios
-- Configurar SSL/TLS para conexiones de red
-- Implementar auditoría de accesos
-- Restringir accesos por IP
-
-#### Performance
-- Monitorear regularmente el LAG de aplicación
-- Configurar paralelismo en respaldos RMAN
-- Optimizar parámetros de red según ancho de banda
-
-#### Mantenimiento
-- Ejecutar verificaciones semanales de sincronización
-- Probar procedimientos de switchover mensualmente
-- Mantener documentación actualizada
-- Capacitar al personal en procedimientos de emergencia
-
-### Conclusiones
-
-Esta implementación de Oracle Data Guard para Vitalis proporciona:
-
-1. **Alta Disponibilidad**: Protección contra fallos de hardware/software
-2. **Protección de Datos**: Copia sincronizada en tiempo real
-3. **Recuperación Rápida**: Switchover/Failover automatizado
-4. **Mantenimiento Simplificado**: Scripts automatizados para tareas rutinarias
-5. **Monitoreo Integrado**: Alertas y logs centralizados
-
-La configuración es robusta y sigue las mejores prácticas de Oracle, garantizando la continuidad del negocio para el sistema Vitalis.
-
-### Anexos
-
-#### A. Variables de Entorno Utilizadas
-- `ORACLE_SID=VITALIS` (Primaria)
-- `ORACLE_STANDBY_SID=VITALISSB` (Standby)
-- `ORACLE_PDB=VITALISPDB1` (PDB Primaria)
-- `ORACLE_STANDBY_PDB=VITALISBPDB1` (PDB Standby)
-- `ORACLE_PWD=Vitalis123`
-
-**Nota**: Los nombres de servicios pueden aparecer en mayúsculas o minúsculas dependiendo de la configuración automática de Oracle.
-
-#### B. Puertos y Servicios
-- Puerto 1521: Base de datos primaria
-- Puerto 1522: Base de datos standby  
-- Puerto 5500/5501: Oracle Enterprise Manager
-- Puerto 2221/2222: SSH para administración
-
-#### C. Ubicaciones Importantes
-- Datos: `/opt/oracle/oradata`
-- Respaldos: `/opt/oracle/backup`
-- Scripts: `/home/oracle/scripts`
-- Logs: `/home/oracle/logs`
-
-#### D. Variantes de Conexión (Mayúsculas/Minúsculas)
-
-**Comandos SQL*Plus:**
-```bash
-# Base Primaria
-sqlplus sys/Vitalis123@localhost:1521/VITALIS as sysdba    # Mayúsculas
-sqlplus sys/Vitalis123@localhost:1521/vitalis as sysdba    # Minúsculas
-
-# Base Standby
-sqlplus sys/Vitalis123@localhost:1522/VITALISSB as sysdba  # Mayúsculas
-sqlplus sys/Vitalis123@localhost:1522/vitalissb as sysdba  # Minúsculas
-```
-
-**Configuración DBeaver - Resumen Rápido:**
-| Parámetro | Primaria | Standby |
-|-----------|----------|---------|
-| Host | localhost | localhost |
-| Puerto | 1521 | 1522 |
-| SID/Service | VITALIS o vitalis | VITALISSB o vitalissb |
-| Usuario | sys | sys |
-| Contraseña | Vitalis123 | Vitalis123 |
-| Rol | SYSDBA | SYSDBA |
+Para soporte técnico o dudas sobre la implementación, consultar la documentación oficial de Oracle Data Guard o contactar al administrador de la base de datos.

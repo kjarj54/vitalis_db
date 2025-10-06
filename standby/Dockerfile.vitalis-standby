@@ -5,9 +5,8 @@ FROM container-registry.oracle.com/database/enterprise:19.3.0.0
 USER root
 RUN yum update -y && \
     yum install -y vim \
-    openssh-server \
-    net-tools \
-    && yum clean all
+    openssh-server && \
+    yum clean all
 
 # Configurar SSH
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N '' && \
@@ -21,8 +20,7 @@ RUN chown -R oracle /etc/ssh/ && \
 # Cambiar a usuario oracle
 USER oracle
 
-# Inicializar SSH
 RUN /usr/sbin/sshd
 
 # Exponer puertos
-EXPOSE 1521 22 5500
+EXPOSE 1521 22

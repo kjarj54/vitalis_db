@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   vitalis-primary:
     build: 
@@ -14,15 +12,11 @@ services:
       - ORACLE_STANDBY_SID=VITALISSB
       - ORACLE_PDB=VITALISPDB1
       - ORACLE_STANDBY_PDB=VITALISBPDB1
-      - ORACLE_PWD=Vitalis123
-      - ORACLE_EDITION=enterprise
-      - ORACLE_CHARACTERSET=AL32UTF8
+      - ORACLE_PWD=VITALIS
       - ENABLE_ARCHIVELOG=true
-      - ENABLE_FORCE_LOGGING=true
     ports:
       - "1521:1521"
       - "5500:5500"
-      - "2221:22"
     volumes:
       - vitalis-data-primary:/opt/oracle/oradata
       - vitalis-backup-primary:/opt/oracle/backup
@@ -44,15 +38,11 @@ services:
       - ORACLE_MAIN_SID=VITALIS
       - ORACLE_PDB=VITALISBPDB1
       - ORACLE_MAIN_PDB=VITALISPDB1
-      - ORACLE_PWD=Vitalis123
-      - ORACLE_EDITION=enterprise
-      - ORACLE_CHARACTERSET=AL32UTF8
+      - ORACLE_PWD=VITALISSB
       - ENABLE_ARCHIVELOG=true
-      - ENABLE_FORCE_LOGGING=true
     ports:
       - "1522:1521"
       - "5501:5500"
-      - "2222:22"
     volumes:
       - vitalis-data-standby:/opt/oracle/oradata
       - vitalis-backup-standby:/opt/oracle/backup
