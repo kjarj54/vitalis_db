@@ -77,7 +77,10 @@ Oracle Data Guard es una funcionalidad que proporciona alta disponibilidad, prot
    ```bash
    docker-compose up -d
    ```
-
+   - Para bajar los contenedores:
+     ```bash
+     docker-compose down
+      ```
 2. **Verificar que los contenedores estén ejecutándose**
    ```bash
    docker-compose ps
@@ -90,25 +93,9 @@ Oracle Data Guard es una funcionalidad que proporciona alta disponibilidad, prot
    vitalis-standby    Up
    ```
 
-### Paso 3: Inicialización de la Base de Datos Primary
+### Paso 3: Inicialización de la Base de Datos Standby 
 
-1. **Conectar al contenedor primary**
-   ```bash
-   docker exec -it vitalis-primary bash
-   ```
-
-2. **Ejecutar el script de inicialización**
-   ```bash
-   cd /home/oracle/scripts
-   chmod +x initialize_vitalis.sh
-   ./initialize_vitalis.sh
-   ```
-
-   **Nota importante**: Durante la ejecución del script, se solicitará la contraseña SSH para conectarse al servidor standby. La contraseña por defecto es `oracle`.
-
-### Paso 4: Inicialización de la Base de Datos Standby
-
-1. **En una nueva terminal, conectar al contenedor standby**
+1. **Conectar al contenedor standby**
    ```bash
    docker exec -it vitalis-standby bash
    ```
@@ -119,6 +106,28 @@ Oracle Data Guard es una funcionalidad que proporciona alta disponibilidad, prot
    chmod +x initialize_vitalis.sh
    ./initialize_vitalis.sh
    ```
+   - Revisar que en VS code este confirgurado los archivos **.sh** con LF en vez de CRLF
+   
+   **Nota crítica**: Este script DEBE ejecutarse primero porque inicia el daemon SSH necesario para la comunicación entre contenedores.
+
+### Paso 4: Inicialización de la Base de Datos Primary
+
+1. **En una nueva terminal, conectar al contenedor primary**
+   ```bash
+   docker exec -it vitalis-primary bash
+   ```
+
+   **HACER PASO 5 DESPUES EN ESTE PASO**
+
+2. **Ejecutar el script de inicialización**
+   ```bash
+   cd /home/oracle/scripts
+   chmod +x initialize_vitalis.sh
+   ./initialize_vitalis.sh
+   ```
+   - Revisar que en VS code este confirgurado los archivos **.sh** con LF en vez de CRLF
+
+   **Nota importante**: Durante la ejecución del script, se solicitará la contraseña SSH para conectarse al servidor standby. La contraseña por defecto es `oracle`.
 
 ### Paso 5: Configuración de SSH entre Contenedores
 
@@ -133,6 +142,7 @@ Para que la replicación funcione correctamente, es necesario configurar la aute
    ```bash
    ssh-copy-id oracle@vitalis-standby
    ```
+   - Pide una contrasenya, es "oracle" 
 
 3. **Verificar la conexión**
    ```bash
@@ -254,12 +264,41 @@ ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DISCONNECT FROM SESSION;
 
 **Síntomas**:
 - Scripts de backup fallan con errores de SSH
-- No se pueden transferir archivos entre servidores
+- No se pueden transferar archivos entre servidores
+- Error "Connection refused" al ejecutar scp
 
 **Solución**:
-1. Reconfigurar claves SSH
-2. Verificar permisos de archivos ~/.ssh/
-3. Verificar conectividad de red
+1. **Verificar que SSH daemon esté activo en standby**:
+   ```bash
+   docker exec -it vitalis-standby pgrep sshd
+   ```
+2. **Si no está activo, ejecutar manualmente**:
+   ```bash
+   docker exec -it vitalis-standby /usr/sbin/sshd
+   ```
+3. Reconfigurar claves SSH
+4. Verificar permisos de archivos ~/.ssh/
+5. Verificar conectividad de red
+
+### Problema: Script del Primary falla con "Connection refused"
+
+**Síntomas**:
+- El comando `scp` falla durante la ejecución del script primary
+- Error "ssh: connect to host vitalis-standby port 22: Connection refused"
+
+**Causa**: El script del primary se ejecutó antes que el del standby
+
+**Solución**:
+1. **Detener ambos contenedores**:
+   ```bash
+   docker-compose down
+   ```
+2. **Levantar contenedores nuevamente**:
+   ```bash
+   docker-compose up -d
+   ```
+3. **Ejecutar PRIMERO el script del standby**
+4. **Luego ejecutar el script del primary**
 
 ## Parámetros de Configuración Importantes
 

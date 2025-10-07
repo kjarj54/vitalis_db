@@ -138,6 +138,29 @@ sed -i "
     s|*.log_file_name_convert='/$ORACLE_STANDBY_SID/','/$ORACLE_SID/'|*.log_file_name_convert='/$ORACLE_SID/','/$ORACLE_STANDBY_SID/'|g;
 " "/home/oracle/scp/init$ORACLE_STANDBY_SID.ora"
 
+echo "Verificando conectividad SSH con standby..."
+# Esperar hasta que SSH esté disponible en standby
+SSH_READY=false
+RETRY_COUNT=0
+MAX_RETRIES=30
+
+while [ "$SSH_READY" = false ] && [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+    if ssh -o ConnectTimeout=5 -o StrictHostKeyChecking=no oracle@vitalis-standby "echo 'SSH OK'" >/dev/null 2>&1; then
+        SSH_READY=true
+        echo "SSH conexión establecida con standby."
+    else
+        echo "Esperando que SSH esté disponible en standby... (intento $((RETRY_COUNT + 1))/$MAX_RETRIES)"
+        sleep 10
+        RETRY_COUNT=$((RETRY_COUNT + 1))
+    fi
+done
+
+if [ "$SSH_READY" = false ]; then
+    echo "ERROR: No se pudo establecer conexión SSH con standby después de $MAX_RETRIES intentos."
+    echo "Por favor, ejecute primero el script initialize_vitalis.sh en el contenedor standby."
+    exit 1
+fi
+
 echo "Trasladando el pfile a la standby. La contraseña es 'oracle'"
 scp /home/oracle/scp/init$ORACLE_STANDBY_SID.ora oracle@vitalis-standby:/home/oracle/scp/
 
