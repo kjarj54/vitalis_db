@@ -1,0 +1,9 @@
+#!/bin/bash
+export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
+export ORACLE_SID=VITALIS
+export ORACLE_STANDBY_SID=VITALISSB
+
+/opt/oracle/product/19c/dbhome_1/bin/rman target sys/$ORACLE_SID-$ORACLE_STANDBY_SID-1@$ORACLE_SID <<EOF
+CROSSCHECK ARCHIVELOG ALL;
+DELETE NOPROMPT ARCHIVELOG ALL;
+EOF
