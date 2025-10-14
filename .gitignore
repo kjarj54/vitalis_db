@@ -12,6 +12,10 @@ standby/primary/logs
 standby/standby/data
 standby/standby/logs
 
+standby/scripts/main/Distelec.txt
+standby/scripts/main/Leame.txt
+standby/scripts/main/PADRON_COMPLETO.txt
+
 # Archivos temporales de Python
 *.pyc
 __pycache__/
