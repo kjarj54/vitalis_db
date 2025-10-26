@@ -15,26 +15,7 @@ Oracle Data Guard es una funcionalidad que proporciona alta disponibilidad, prot
 - **Archive Logs**: Archivos que contienen los cambios realizados en la base de datos
 - **Redo Logs**: Logs de transacciones en línea
 
-### Data Guard Broker y Fast-Start Failover
-Esta configuración incluye **Data Guard Broker** con **Fast-Start Failover** para failover automático:
 
-#### Componentes Adicionales
-- **Data Guard Broker**: Servicio que automatiza la gestión y monitoreo del Data Guard
-- **Observer Process**: Proceso que monitorea la primary y ejecuta failover automático
-- **Fast-Start Failover (FSFO)**: Failover automático cuando la primary no responde
-
-#### Funcionamiento del Failover Automático
-1. **Observer** monitorea la primary cada 30 segundos
-2. Si la primary no responde por **30 segundos**, inicia failover automático
-3. La **standby se convierte en nueva primary** automáticamente
-4. Las aplicaciones deben reconectarse a la nueva primary
-
-#### Parámetros Clave Agregados
-- `DG_BROKER_START=TRUE` - Habilita Data Guard Broker
-- `DG_BROKER_CONFIG_FILE1/2` - Archivos de configuración del broker
-- `LOG_ARCHIVE_DEST_2` configurado como **SYNC** (síncrono) para cero pérdida de datos
-- `FastStartFailoverThreshold=30` - Timeout de 30 segundos para failover
-- **Modo MAXAVAILABILITY** - Prioriza disponibilidad sobre rendimiento
 
 ## Arquitectura del Sistema
 
@@ -146,6 +127,36 @@ Esta configuración incluye **Data Guard Broker** con **Fast-Start Failover** pa
    ```
 
 2. **Ejecutar el script de inicialización del standby**
+
+   ## 🔧 CONFIGURACIÓN CRÍTICA DE VS CODE 🔧
+   
+   ### ⚠️ **ANTES DE EJECUTAR CUALQUIER SCRIPT .SH** ⚠️
+   
+   **🚨 TODOS los archivos .sh DEBEN configurarse con terminaciones de línea LF (Unix) 🚨**
+   
+   **📋 Pasos obligatorios en VS Code:**
+   1. **Abrir TODOS los archivos .sh del proyecto**
+   2. **Verificar en la barra inferior derecha que diga "LF"**
+   3. **Si dice "CRLF", hacer clic y cambiar a "LF"**
+   4. **Guardar cada archivo después del cambio**
+   
+   **📁 Archivos .sh que REQUIEREN esta configuración:**
+   - `scripts/main/initialize_vitalis.sh`
+   - `scripts/main/backup_vitalis.sh` 
+   - `scripts/main/daily_backup.sh`
+   - `scripts/main/setup_broker.sh`
+   - `scripts/main/start_observer.sh`
+   - `scripts/main/check_dg_status.sh`
+   - `scripts/main/purge_applied_logs.sh`
+   - `scripts/main/purge_complete_logs_in_standby.sh`
+   - `scripts/main/planned_switchover.sh`
+   - `scripts/standby/initialize_vitalis.sh`
+   - `scripts/standby/delete_obsolete_vitalis.sh`
+   
+   **❌ Error común: CRLF causa "command not found" en Linux containers**
+   
+   ---
+
    ```bash
    cd /home/oracle/scripts
    chmod +x initialize_vitalis.sh
@@ -162,15 +173,28 @@ Esta configuración incluye **Data Guard Broker** con **Fast-Start Failover** pa
    docker exec -it vitalis-primary bash
    ```
 
-   **HACER PASO 5 DESPUES EN ESTE PASO**
+   ## ⚠️ ATENCIÓN: ACCIÓN CRÍTICA REQUERIDA ⚠️
+   
+   ### 🔴 **DETENER AQUÍ - LEER CUIDADOSAMENTE** 🔴
+   
+   **❗ ANTES de continuar con el paso 2, DEBE completar el PASO 5 (Configuración SSH) ❗**
+   
+   **🚨 NO EJECUTE el script de inicialización hasta completar el Paso 5 🚨**
+   
+   **➡️ Ir directamente al PASO 5: Configuración de SSH entre Contenedores**
+   
+   ---
 
-2. **Ejecutar el script de inicialización**
+2. **Ejecutar el script de inicialización** *(SOLO DESPUÉS DEL PASO 5)*
+
+   ### 🔧 RECORDATORIO: Configuración LF para archivos .sh 🔧
+   **⚠️ Verificar que TODOS los archivos .sh tengan terminaciones LF (no CRLF) ⚠️**
+   
    ```bash
    cd /home/oracle/scripts
    chmod +x initialize_vitalis.sh
    ./initialize_vitalis.sh
    ```
-   - Revisar que en VS code este confirgurado los archivos **.sh** con LF en vez de CRLF
 
    **Nota importante**: Durante la ejecución del script, se solicitará la contraseña SSH para conectarse al servidor standby. La contraseña por defecto es `oracle`.
 
@@ -195,6 +219,27 @@ Para que la replicación funcione correctamente, es necesario configurar la aute
    ```
 
 ### Paso 6: Configuración del Data Guard Broker 
+
+### Data Guard Broker y Fast-Start Failover
+Esta configuración incluye **Data Guard Broker** con **Fast-Start Failover** para failover automático:
+
+#### Componentes Adicionales
+- **Data Guard Broker**: Servicio que automatiza la gestión y monitoreo del Data Guard
+- **Observer Process**: Proceso que monitorea la primary y ejecuta failover automático
+- **Fast-Start Failover (FSFO)**: Failover automático cuando la primary no responde
+
+#### Funcionamiento del Failover Automático
+1. **Observer** monitorea la primary cada 30 segundos
+2. Si la primary no responde por **30 segundos**, inicia failover automático
+3. La **standby se convierte en nueva primary** automáticamente
+4. Las aplicaciones deben reconectarse a la nueva primary
+
+#### Parámetros Clave Agregados
+- `DG_BROKER_START=TRUE` - Habilita Data Guard Broker
+- `DG_BROKER_CONFIG_FILE1/2` - Archivos de configuración del broker
+- `LOG_ARCHIVE_DEST_2` configurado como **SYNC** (síncrono) para cero pérdida de datos
+- `FastStartFailoverThreshold=30` - Timeout de 30 segundos para failover
+- **Modo MAXAVAILABILITY** - Prioriza disponibilidad sobre rendimiento
 
 Una vez que ambas bases de datos estén funcionando correctamente, configure el Data Guard Broker manualmente:
 
@@ -250,7 +295,7 @@ Una vez completada la configuración inicial, **inicie el Observer** para habili
 
 2. **Ejecutar script de prueba**
    ```sql
-   @/home/oracle/scripts/test/test-primary.sql
+   test-primary.sql
    ```
 
 3. **Verificaciones importantes**:
