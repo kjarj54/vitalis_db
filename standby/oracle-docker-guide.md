@@ -461,6 +461,3 @@ La implementación de Oracle Data Guard para el proyecto Vitalis cumple **COMPLE
 
 La solución está **lista para producción** y cumple todos los criterios de evaluación del proyecto.
 
-## Contacto y Soporte
-
-Para soporte técnico o dudas sobre la implementación, consultar la documentación oficial de Oracle Data Guard o contactar al administrador de la base de datos.

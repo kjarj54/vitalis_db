@@ -27,6 +27,12 @@ sqlplus sys/$ORACLE_SID-$ORACLE_STANDBY_SID-1 as sysdba <<EOF
     ALTER SYSTEM SET LOCAL_LISTENER = '(ADDRESS = (PROTOCOL=TCP)(HOST=vitalis-primary)(PORT=1521))';
     ALTER SYSTEM SET REMOTE_LOGIN_PASSWORDFILE = 'EXCLUSIVE' scope = spfile;
     ALTER SYSTEM SET REMOTE_OS_AUTHENT = FALSE scope = spfile;
+    
+    -- Parámetros para Data Guard Broker y Fast-Start Failover
+    ALTER SYSTEM SET DG_BROKER_START=TRUE SCOPE=BOTH;
+    ALTER SYSTEM SET DG_BROKER_CONFIG_FILE1='/opt/oracle/oradata/$ORACLE_SID/dr1$ORACLE_SID.dat' SCOPE=SPFILE;
+    ALTER SYSTEM SET DG_BROKER_CONFIG_FILE2='/opt/oracle/oradata/$ORACLE_SID/dr2$ORACLE_SID.dat' SCOPE=SPFILE;
+    ALTER SYSTEM SET LOG_ARCHIVE_DEST_2='SERVICE=$ORACLE_STANDBY_SID LGWR SYNC AFFIRM VALID_FOR=(ONLINE_LOGFILES,PRIMARY_ROLE) DB_UNIQUE_NAME=$ORACLE_STANDBY_SID' SCOPE=BOTH;
 
     ALTER DATABASE ADD LOGFILE GROUP 4 ('$ORACLE_BASE/oradata/$ORACLE_SID/recovery_files/redo04.log') SIZE 50M;
     ALTER DATABASE ADD LOGFILE GROUP 5 ('$ORACLE_BASE/oradata/$ORACLE_SID/recovery_files/redo05.log') SIZE 50M;
@@ -233,4 +239,20 @@ END;
 EXIT;
 EOF
 
-echo "El script se ha ejecutado correctamente."
+echo "Esperando que la base de datos esté completamente sincronizada..."
+sleep 30
+
+echo "Configurando Data Guard Broker..."
+chmod +x /home/oracle/scripts/setup_broker.sh
+/home/oracle/scripts/setup_broker.sh
+
+echo "=== CONFIGURACIÓN COMPLETADA ==="
+echo "Data Guard con Fast-Start Failover está configurado."
+echo ""
+echo "Para iniciar el Observer (en un terminal separado):"
+echo "  chmod +x /home/oracle/scripts/start_observer.sh"
+echo "  /home/oracle/scripts/start_observer.sh"
+echo ""
+echo "Para verificar el estado:"
+echo "  chmod +x /home/oracle/scripts/check_dg_status.sh"
+echo "  /home/oracle/scripts/check_dg_status.sh"
