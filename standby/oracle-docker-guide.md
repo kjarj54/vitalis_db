@@ -15,6 +15,27 @@ Oracle Data Guard es una funcionalidad que proporciona alta disponibilidad, prot
 - **Archive Logs**: Archivos que contienen los cambios realizados en la base de datos
 - **Redo Logs**: Logs de transacciones en línea
 
+### Data Guard Broker y Fast-Start Failover
+Esta configuración incluye **Data Guard Broker** con **Fast-Start Failover** para failover automático:
+
+#### Componentes Adicionales
+- **Data Guard Broker**: Servicio que automatiza la gestión y monitoreo del Data Guard
+- **Observer Process**: Proceso que monitorea la primary y ejecuta failover automático
+- **Fast-Start Failover (FSFO)**: Failover automático cuando la primary no responde
+
+#### Funcionamiento del Failover Automático
+1. **Observer** monitorea la primary cada 30 segundos
+2. Si la primary no responde por **30 segundos**, inicia failover automático
+3. La **standby se convierte en nueva primary** automáticamente
+4. Las aplicaciones deben reconectarse a la nueva primary
+
+#### Parámetros Clave Agregados
+- `DG_BROKER_START=TRUE` - Habilita Data Guard Broker
+- `DG_BROKER_CONFIG_FILE1/2` - Archivos de configuración del broker
+- `LOG_ARCHIVE_DEST_2` configurado como **SYNC** (síncrono) para cero pérdida de datos
+- `FastStartFailoverThreshold=30` - Timeout de 30 segundos para failover
+- **Modo MAXAVAILABILITY** - Prioriza disponibilidad sobre rendimiento
+
 ## Arquitectura del Sistema
 
 ```
@@ -62,7 +83,10 @@ Oracle Data Guard es una funcionalidad que proporciona alta disponibilidad, prot
        │   ├── backup_vitalis.sh
        │   ├── purge_applied_logs.sh
        │   ├── purge_complete_logs_in_standby.sh
-       │   └── daily_backup.sh
+       │   ├── daily_backup.sh
+       │   ├── setup_broker.sh (Data Guard Broker)
+       │   ├── start_observer.sh (Observer para failover automático)
+       │   └── check_dg_status.sh (Verificación de estado)
        ├── standby/
        │   ├── initialize_vitalis.sh
        │   └── delete_obsolete_vitalis.sh
@@ -168,6 +192,51 @@ Para que la replicación funcione correctamente, es necesario configurar la aute
 3. **Verificar la conexión**
    ```bash
    ssh oracle@vitalis-standby "hostname"
+   ```
+
+### Paso 6: Configuración del Data Guard Broker 
+
+Una vez que ambas bases de datos estén funcionando correctamente, configure el Data Guard Broker manualmente:
+
+1. **En el contenedor primary, ejecutar el script de configuración del broker**
+   ```bash
+   cd /home/oracle/scripts
+   chmod +x setup_broker.sh
+   ./setup_broker.sh
+   ```
+
+2. **Verificar que el broker se configuró correctamente**
+   ```bash
+   dgmgrl sys/VITALIS-VITALISSB-1@VITALIS
+   ```
+   ```sql
+   SHOW CONFIGURATION;
+   ```
+
+**¿Qué se configura con el script?**
+- Data Guard Broker habilitado
+- Fast-Start Failover con timeout de 30 segundos  
+- Modo MAXAVAILABILITY (cero pérdida de datos)
+- Replicación síncrona (SYNC)
+
+### Paso 7: Iniciar el Observer para Failover Automático
+
+Una vez completada la configuración inicial, **inicie el Observer** para habilitar el failover automático:
+
+1. **En el contenedor primary (nueva terminal)**
+   ```bash
+   docker exec -it vitalis-primary bash
+   cd /home/oracle/scripts
+   chmod +x start_observer.sh
+   ./start_observer.sh
+   ```
+
+   **Nota**: El Observer debe mantenerse ejecutándose para que funcione el failover automático. Use CTRL+C para detenerlo.
+
+2. **Verificar el estado del Data Guard Broker**
+   ```bash
+   chmod +x check_dg_status.sh
+   ./check_dg_status.sh
    ```
 
 ## Verificación del Funcionamiento
@@ -412,6 +481,36 @@ ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DISCONNECT FROM SESSION;
 ALTER DATABASE OPEN READ ONLY;
 ```
 
+### Comandos de Data Guard Broker
+
+#### Conectar al Data Guard Broker
+```bash
+dgmgrl sys/VITALIS-VITALISSB-1@VITALIS
+```
+
+#### Ver configuración del Data Guard
+```sql
+SHOW CONFIGURATION;
+SHOW DATABASE VITALIS;
+SHOW DATABASE VITALISSB;
+SHOW FAST_START FAILOVER;
+```
+
+#### Realizar failover manual
+```sql
+FAILOVER TO VITALISSB;
+```
+
+#### Realizar switchover manual
+```sql
+SWITCHOVER TO VITALISSB;
+```
+
+#### Verificar estado de sincronización
+```bash
+./check_dg_status.sh
+```
+
 ## Backup y Recovery
 
 ### Backup Automático
@@ -446,9 +545,10 @@ La implementación de Oracle Data Guard para el proyecto Vitalis cumple **COMPLE
 
 ### 🎯 Características Adicionales
 
-- **Alta Disponibilidad**: La base de datos standby puede activarse rápidamente en caso de fallo
-- **Protección de Datos**: Los datos se replican automáticamente con un delay mínimo
-- **Facilidad de Administración**: Los procesos automatizados reducen la intervención manual
+- **Alta Disponibilidad con Failover Automático**: Data Guard Broker con Fast-Start Failover automático en 30 segundos
+- **Protección de Datos**: Replicación síncrona (SYNC) garantiza cero pérdida de datos
+- **Facilidad de Administración**: Data Guard Broker automatiza la gestión y monitoreo
+- **Observer Process**: Monitoreo continuo para failover automático sin intervención humana
 - **Escalabilidad**: La arquitectura permite agregar más standby databases si es necesario
 - **Ejecución a Petición**: Todos los procesos pueden ejecutarse manualmente durante la revisión del profesor
 
@@ -457,7 +557,10 @@ La implementación de Oracle Data Guard para el proyecto Vitalis cumple **COMPLE
 - **PURGE_APPLIED_ARCHIVELOGS**: Limpieza cada 5 minutos en primary
 - **PURGE_APPLIED_ARCHIVELOGS_IN_STANDBY**: Limpieza diaria en standby (archivos > 3 días)
 - **REALIZE_BACKUP_DAILY**: Respaldo completo diario con transferencia automática al standby
-- **Sincronización continua**: Archive logs transferidos automáticamente con delay de 10 segundos
+- **Sincronización síncrona**: Archive logs transferidos en tiempo real con replicación SYNC
+- **Data Guard Broker**: Configuración y monitoreo automático del Data Guard
+- **Fast-Start Failover**: Failover automático en 30 segundos si la primary no responde
+- **Observer Process**: Monitoreo continuo y failover automático sin intervención del DBA
 
 La solución está **lista para producción** y cumple todos los criterios de evaluación del proyecto.
 

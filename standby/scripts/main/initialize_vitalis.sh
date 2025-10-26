@@ -239,20 +239,3 @@ END;
 EXIT;
 EOF
 
-echo "Esperando que la base de datos esté completamente sincronizada..."
-sleep 30
-
-echo "Configurando Data Guard Broker..."
-chmod +x /home/oracle/scripts/setup_broker.sh
-/home/oracle/scripts/setup_broker.sh
-
-echo "=== CONFIGURACIÓN COMPLETADA ==="
-echo "Data Guard con Fast-Start Failover está configurado."
-echo ""
-echo "Para iniciar el Observer (en un terminal separado):"
-echo "  chmod +x /home/oracle/scripts/start_observer.sh"
-echo "  /home/oracle/scripts/start_observer.sh"
-echo ""
-echo "Para verificar el estado:"
-echo "  chmod +x /home/oracle/scripts/check_dg_status.sh"
-echo "  /home/oracle/scripts/check_dg_status.sh"

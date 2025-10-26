@@ -1,27 +1,42 @@
 #!/bin/bash
-# Script simple para configurar Data Guard Broker y Fast-Start Failover
 
-echo "=== Configurando Data Guard Broker ==="
+echo "=== CONFIGURACIÓN SIMPLE DE DATA GUARD BROKER ==="
 
-# 1. Crear configuración del broker
+# Configurar solo con la primary primero
+echo "Paso 1: Configurando broker solo con PRIMARY..."
 dgmgrl sys/$ORACLE_SID-$ORACLE_STANDBY_SID-1@$ORACLE_SID <<EOF
-CREATE CONFIGURATION vitalis_dg AS PRIMARY DATABASE IS $ORACLE_SID CONNECT IDENTIFIER IS $ORACLE_SID;
-ADD DATABASE $ORACLE_STANDBY_SID AS CONNECT IDENTIFIER IS $ORACLE_STANDBY_SID MAINTAINED AS PHYSICAL;
+REMOVE CONFIGURATION;
+CREATE CONFIGURATION 'vitalis_dg' AS PRIMARY DATABASE IS 'vitalis' CONNECT IDENTIFIER IS 'vitalis';
 ENABLE CONFIGURATION;
+SHOW CONFIGURATION;
+EXIT;
 EOF
 
-echo "=== Configurando Fast-Start Failover ==="
+echo ""
+echo "Paso 2: Presiona ENTER para continuar y agregar la STANDBY..."
+read -p ""
 
-# 2. Configurar Fast-Start Failover
+# Agregar standby por separado
+echo "Agregando STANDBY al broker..."
 dgmgrl sys/$ORACLE_SID-$ORACLE_STANDBY_SID-1@$ORACLE_SID <<EOF
-EDIT CONFIGURATION SET PROTECTION MODE AS MAXAVAILABILITY;
-EDIT DATABASE $ORACLE_SID SET PROPERTY FastStartFailoverTarget='$ORACLE_STANDBY_SID';
-EDIT DATABASE $ORACLE_STANDBY_SID SET PROPERTY FastStartFailoverTarget='$ORACLE_SID';
-EDIT CONFIGURATION SET FastStartFailoverThreshold=30;
-ENABLE FAST_START FAILOVER;
+ADD DATABASE 'vitalistb' AS CONNECT IDENTIFIER IS 'vitalistb' MAINTAINED AS PHYSICAL;
+ENABLE DATABASE 'vitalistb';
+SHOW CONFIGURATION;
+EXIT;
 EOF
 
-echo "=== Configuración Data Guard Broker completada ==="
-echo "Para iniciar el Observer, ejecuta:"
-echo "dgmgrl sys/$ORACLE_SID-$ORACLE_STANDBY_SID-1@$ORACLE_SID"
-echo "START OBSERVER FILE='/home/oracle/fsfo.dat'"
+echo ""
+echo "=== CONFIGURACIÓN COMPLETADA ==="
+echo ""
+echo "FAILOVER MANUAL DISPONIBLE:"
+echo ""
+echo "1. SWITCHOVER (cambio planificado):"
+echo "   dgmgrl sys/VITALIS-VITALISTB-1@vitalis"
+echo "   DGMGRL> SWITCHOVER TO vitalistb;"
+echo ""
+echo "2. FAILOVER (emergencia):"
+echo "   dgmgrl sys/VITALIS-VITALISTB-1@vitalis"
+echo "   DGMGRL> FAILOVER TO vitalistb IMMEDIATE;"
+echo ""
+echo "3. Verificar estado:"
+echo "   DGMGRL> SHOW CONFIGURATION;"
