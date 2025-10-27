@@ -1,4 +1,4 @@
-﻿/*
+/*
 Created: 16/8/2025
 Modified: 26/10/2025
 Model: Vitalis
@@ -28,12 +28,12 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_paises ADD CONSTRAINT vitalis_paises_pk PRIMA
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_paises.pai_id IS 'ID único del país'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_paises.pai_id IS 'ID �nico del pa�s'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_paises.pai_codigo IS 'Código ISO del país
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_paises.pai_codigo IS 'C�digo ISO del pa�s
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_paises.pai_nombre IS 'Nombre del país'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_paises.pai_nombre IS 'Nombre del pa�s'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_paises.pai_estado IS 'Estado (A=Activo, I=Inactivo)'
 ;
@@ -67,12 +67,12 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_provincia ADD CONSTRAINT vitalis_provincia_pk
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_provincia.pro_id IS 'ID único de la provincia'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_provincia.pro_id IS 'ID �nico de la provincia'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_provincia.pai_id IS 'Referencia a vitalis_paises
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_provincia.pro_codigo IS 'Código de la provincia'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_provincia.pro_codigo IS 'C�digo de la provincia'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_provincia.pro_nombre IS 'Nombre de la provincia
 '
@@ -111,11 +111,11 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_cantones ADD CONSTRAINT vitalis_cantones_pk P
 
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cantones.can_codigo IS 'Codigo del canton'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cantones.can_nombre IS 'Nombre del cantón'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cantones.can_nombre IS 'Nombre del cant�n'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cantones.can_estado IS 'A=Activo o I=inactivo'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cantones.can_version IS 'version del cantón'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cantones.can_version IS 'version del cant�n'
 ;
 
 -- Table VITALIS_SCHEMA.vitalis_distritos
@@ -145,9 +145,9 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_distritos ADD CONSTRAINT vitalis_distritos_pk
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_distritos.dis_id IS ' ID único del distrito'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_distritos.dis_id IS ' ID �nico del distrito'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_distritos.dis_codigo IS 'Código del distrito
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_distritos.dis_codigo IS 'C�digo del distrito
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_distritos.dis_nombre IS 'Nombre del distrito
@@ -190,13 +190,13 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_tipos_documentos ADD CONSTRAINT vitalis_tipos
 
 -- Table and Columns comments section
 
-COMMENT ON TABLE VITALIS_SCHEMA.vitalis_tipos_documentos IS 'Tabla para almacenar los documentos solicitados al momento de la contratación. '
+COMMENT ON TABLE VITALIS_SCHEMA.vitalis_tipos_documentos IS 'Tabla para almacenar los documentos solicitados al momento de la contrataci�n. '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_documentos.tdo_id IS 'ID único del tipo de documento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_documentos.tdo_id IS 'ID �nico del tipo de documento'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_documentos.tdo_nombre IS 'Nombre del tipo de documento'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_documentos.tdo_descripcion IS 'Descripción del tipo de documento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_documentos.tdo_descripcion IS 'Descripci�n del tipo de documento'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_documentos.tdo_tipo_personal IS 'Tipo de personal (MEDICO, ADMINISTRATIVO, AMBOS)'
 ;
@@ -293,7 +293,7 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_personas ADD CONSTRAINT vitalis_personas_pk P
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_id IS 'ID único de la persona'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_id IS 'ID �nico de la persona'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_nombre IS 'Nombre de la person'
 ;
@@ -308,11 +308,11 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_fecha_nacimiento IS 'Fecha
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_sexo IS 'Sexo de la persona (M=masculino, F= femenino)'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_email IS 'Correo electrónico'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_email IS 'Correo electr�nico'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_estado IS 'Estado de la persona(A= activo, I= inactivo)'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_tipo_personal IS 'Tipo personal(MÉDICO, ADMINISTRATIVO)'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_tipo_personal IS 'Tipo personal(M�DICO, ADMINISTRATIVO)'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_version IS 'Version del registro'
 ;
@@ -354,7 +354,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_direcciones_personas.dpe_tipo_direccion
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_direcciones_personas.dpe_direccion_exacta IS 'Direccion exacta'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_direcciones_personas.dpe_principal IS 'Dirección principal (S=Sí, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_direcciones_personas.dpe_principal IS 'Direcci�n principal (S=S�, N=No)
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_direcciones_personas.dpe_codigo_postal IS 'Codigo postal'
@@ -395,13 +395,13 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_telefonos_personas ADD CONSTRAINT vitalis_tel
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_telefonos_personas.tpe_id IS 'ID único del teléfono'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_telefonos_personas.tpe_id IS 'ID �nico del tel�fono'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_telefonos_personas.tpe_numero IS 'Número de teléfono'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_telefonos_personas.tpe_numero IS 'N�mero de tel�fono'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_telefonos_personas.tpe_tipo IS 'CELULAR, CASA, TRABAJO, FAX, ETC'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_telefonos_personas.tpe_principal IS 'Teléfono principal (S=Sí, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_telefonos_personas.tpe_principal IS 'Tel�fono principal (S=S�, N=No)
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_telefonos_personas.tpe_estado IS 'Estado (A=Activo, I=Inactivo)'
@@ -452,13 +452,13 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_cuentas_bancarias ADD CONSTRAINT vitalis_cuen
 
 COMMENT ON TABLE VITALIS_SCHEMA.vitalis_cuentas_bancarias IS 'Tabla para manejo tanto de bancos como de cuentas bancarias asociada a persona '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_id IS 'ID único de la cuenta bancaria'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_id IS 'ID �nico de la cuenta bancaria'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_numero_cuenta IS 'Número de cuenta'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_numero_cuenta IS 'N�mero de cuenta'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_iban IS 'Código IBAN'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_iban IS 'C�digo IBAN'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_principal IS 'Cuenta principal (S=Sí, N=No)'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_principal IS 'Cuenta principal (S=S�, N=No)'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_estado IS 'Estado (A=Activo, I=Inactivo)'
 ;
@@ -504,7 +504,7 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_documentos_personas ADD CONSTRAINT vitalis_do
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_documentos_personas.dop_id IS 'ID único del documento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_documentos_personas.dop_id IS 'ID �nico del documento'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_documentos_personas.dop_nombre_archivo IS 'Nombre del archivo'
 ;
@@ -554,11 +554,11 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_perfiles ADD CONSTRAINT vitalis_perfiles_pk P
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles.prf_id IS 'ID único del perfil'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles.prf_id IS 'ID �nico del perfil'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles.prf_nombre IS 'Nombre del perfil'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles.prf_descripcion IS 'Descripción del perfil'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles.prf_descripcion IS 'Descripci�n del perfil'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles.prf_estado IS 'Estado (A=Activo, I=Inactivo)'
 ;
@@ -594,15 +594,15 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_pantallas ADD CONSTRAINT vitalis_pantallas_pk
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_pantallas.pan_codigo IS 'Código de la pantalla
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_pantallas.pan_codigo IS 'C�digo de la pantalla
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_pantallas.pan_nombre IS 'Nombre de la pantalla
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_pantallas.pan_descripcion IS 'Descripción de la pantalla'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_pantallas.pan_descripcion IS 'Descripci�n de la pantalla'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_pantallas.pan_modulo IS 'Módulo al que pertenece'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_pantallas.pan_modulo IS 'M�dulo al que pertenece'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_pantallas.pan_estado IS 'Estado (A=Activo, I=Inactivo)
 
@@ -648,23 +648,23 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_usuarios ADD CONSTRAINT vitalis_usuarios_pk P
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_id IS 'ID único del usuario
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_id IS 'ID �nico del usuario
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_login IS 'Nombre de usuario
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_password IS 'Contraseña encriptada
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_password IS 'Contrase�a encriptada
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_fecha_creacion IS 'Fecha de creación'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_fecha_creacion IS 'Fecha de creaci�n'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_fecha_ultimo_acceso IS 'Fecha del último acceso'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_fecha_ultimo_acceso IS 'Fecha del �ltimo acceso'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_intentos_fallidos IS 'Intentos fallidos de login
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_bloqueado IS 'Usuario bloqueado (S=Sí, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_bloqueado IS 'Usuario bloqueado (S=S�, N=No)
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_estado IS 'Estado (A=Activo, I=Inactivo)
@@ -711,23 +711,23 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_centros_salud ADD CONSTRAINT vitalis_centros_
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_id IS 'ID único del centro de salud
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_id IS 'ID �nico del centro de salud
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_codigo IS 'Código del centro de salud'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_codigo IS 'C�digo del centro de salud'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_nombre IS 'Nombre del centro de salud'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_direccion_exacta IS 'Dirección exacta'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_direccion_exacta IS 'Direcci�n exacta'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_telefono IS 'Teléfono principal
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_telefono IS 'Tel�fono principal
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_email IS 'Correo electrónico'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_email IS 'Correo electr�nico'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_contacto_principal IS 'Nombre del contacto principal'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_telefono_contacto IS 'Teléfono del contacto
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_telefono_contacto IS 'Tel�fono del contacto
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_estado IS 'Estado (A=Activo, I=Inactivo)
@@ -762,18 +762,18 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_tipos_procedimientos ADD CONSTRAINT vitalis_t
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_id IS ' ID único del tipo de procedimiento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_id IS ' ID �nico del tipo de procedimiento'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_codigo IS 'Código del tipo de procedimiento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_codigo IS 'C�digo del tipo de procedimiento'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_nombre IS 'Nombre del tipo de procedimiento
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_descripcion IS 'Descripción del procedimiento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_descripcion IS 'Descripci�n del procedimiento'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_monto_base_cobrar IS 'Monto base a cobrar'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_monto_base_pagar IS 'Monto base a pagar al médico'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_monto_base_pagar IS 'Monto base a pagar al m�dico'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_estado IS 'Estado (A=Activo, I=Inactivo)'
 ;
@@ -834,19 +834,19 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_hora_fin IS 
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_paciente_nombre IS 'Nombre del paciente'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_paciente_cedula IS 'Cédula del paciente'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_paciente_cedula IS 'C�dula del paciente'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_observaciones IS 'Observaciones del procedimiento'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_monto_cobrar IS 'Monto a cobrar al centro'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_monto_pagar IS 'Monto a pagar al médico'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_monto_pagar IS 'Monto a pagar al m�dico'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_procesado IS 'Procesado en planilla (S=Sí, N=No)'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_procesado IS 'Procesado en planilla (S=S�, N=No)'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_estado IS ' Estado (A=Activo, I=Inactivo)'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_per_id IS 'Referencia a vitalis_personas (médico)'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_per_id IS 'Referencia a vitalis_personas (m�dico)'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_csa_id IS 'Referencia a vitalis_centros_salud'
 ;
@@ -893,13 +893,13 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_escalas_base ADD CONSTRAINT vitalis_escalas_b
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_id IS 'ID único del detalle de escala base'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_id IS 'ID �nico del detalle de escala base'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_dia_semana IS 'Día de la semana (1=Lunes, 7=Domingo)'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_dia_semana IS 'D�a de la semana (1=Lunes, 7=Domingo)'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_estado IS 'A=activo I=inactivo'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_fecha_creacion IS 'Fecha de creación'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_fecha_creacion IS 'Fecha de creaci�n'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_nombre IS 'Nombre de la escala base'
 ;
@@ -907,7 +907,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_dia_inicio IS 'Fecha d
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_dia_fin IS 'Fecha de fin de la semana'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_per_id IS 'Referencia a vitalis_personas (médico)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_per_id IS 'Referencia a vitalis_personas (m�dico)
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_esb_id IS 'Referencia a vitalis_escalas_base'
@@ -955,20 +955,20 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_escalas_mensuales ADD CONSTRAINT vitalis_esca
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_id IS 'ID único de la escala mensual'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_id IS 'ID �nico de la escala mensual'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_mes IS 'Mes de la escala
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_anio IS 'Año de la escala'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_anio IS 'A�o de la escala'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_nombre IS 'Nombre de la escala mensual'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_fecha_creacion IS 'Fecha de creación'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_fecha_creacion IS 'Fecha de creaci�n'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_estado IS 'CONSTRUCCION, VIGENTE, EN_REVISION, LISTA_PAGO, PROCESADA'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_procesado IS 'Procesado en planilla (S=Sí, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_procesado IS 'Procesado en planilla (S=S�, N=No)
 
 '
 ;
@@ -1021,12 +1021,12 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle ADD CONSTRAINT vita
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_id IS 'ID único del detalle de escala mensual'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_id IS 'ID �nico del detalle de escala mensual'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_fecha IS 'Fecha específica del turno
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_fecha IS 'Fecha espec�fica del turno
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_trabajado IS 'Si trabajó (S=Sí, N=No)'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_trabajado IS 'Si trabaj� (S=S�, N=No)'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_hora_inicio_real IS 'Hora real de inicio
 '
@@ -1038,7 +1038,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_horas_tra
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_observaciones IS 'Observaciones del turno'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_procesado IS 'Procesado en planilla (S=Sí, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_procesado IS 'Procesado en planilla (S=S�, N=No)
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_estado IS 'Estado (A=Activo, I=Inactivo)
@@ -1047,7 +1047,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_estado IS
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.put_id IS 'Referencia a vitalis_puestos_turnos'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.per_id IS 'Referencia a vitalis_personas (médico)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.per_id IS 'Referencia a vitalis_personas (m�dico)
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.esm_id IS 'Referencia a vitalis_escalas_mensuales'
@@ -1076,13 +1076,13 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_tipos_planillas ADD CONSTRAINT vitalis_tipos_
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_planillas.tpl_id IS 'ID único del tipo de planilla'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_planillas.tpl_id IS 'ID �nico del tipo de planilla'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_planillas.tpl_codigo IS 'Código del tipo de planilla'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_planillas.tpl_codigo IS 'C�digo del tipo de planilla'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_planillas.tpl_nombre IS 'Nombre del tipo de planilla'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_planillas.tpl_descripcion IS 'Descripción del tipo de planilla'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_planillas.tpl_descripcion IS 'Descripci�n del tipo de planilla'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_planillas.tpl_tipo_personal IS 'M=Medico, A=Administrativo'
 ;
@@ -1121,13 +1121,13 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_tipos_movimientos ADD CONSTRAINT vitalis_tipo
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_id IS 'ID único del tipo de movimiento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_id IS 'ID �nico del tipo de movimiento'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_codigo IS 'Código del tipo de movimiento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_codigo IS 'C�digo del tipo de movimiento'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_nombre IS 'Nombre del tipo de movimiento'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_descripcion IS 'Descripción del movimiento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_descripcion IS 'Descripci�n del movimiento'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_tipo IS 'INGRESO, DEDUCCION'
 ;
@@ -1136,17 +1136,17 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_calculo IS 'PORCE
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_valor IS 'Valor del movimiento (% o monto)
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_rango_salarial_min IS 'Rango salarial mínimo'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_rango_salarial_min IS 'Rango salarial m�nimo'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_rango_salarial_max IS 'Rango salarial máximo'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_rango_salarial_max IS 'Rango salarial m�ximo'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_automatico IS 'Movimiento automático (S=Sí, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_automatico IS 'Movimiento autom�tico (S=S�, N=No)
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_aplica_medicos IS 'Aplica a médicos (S=Sí, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_aplica_medicos IS 'Aplica a m�dicos (S=S�, N=No)
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_aplica_administrativos IS 'Aplica a administrativos (S=Sí, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_aplica_administrativos IS 'Aplica a administrativos (S=S�, N=No)
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_estado IS 'Estado (A=Activo, I=Inactivo)
@@ -1192,23 +1192,23 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_planillas ADD CONSTRAINT vitalis_planillas_pk
 
 -- Table and Columns comments section
 
-COMMENT ON TABLE VITALIS_SCHEMA.vitalis_planillas IS 'Tabla para el manejo de las planillas correspondientes a médicos'
+COMMENT ON TABLE VITALIS_SCHEMA.vitalis_planillas IS 'Tabla para el manejo de las planillas correspondientes a m�dicos'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_id IS 'ID único de la planilla'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_id IS 'ID �nico de la planilla'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_mes IS 'Mes de la planilla'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_anio IS 'Año de la planilla
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_anio IS 'A�o de la planilla
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_nombre IS 'Nombre de la planilla
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_fecha_generacion IS 'Fecha de generación'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_fecha_generacion IS 'Fecha de generaci�n'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_fecha_aprobacion IS 'Fecha de aprobación'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_fecha_aprobacion IS 'Fecha de aprobaci�n'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_usu_aprobador IS 'Usuario que aprobó'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_usu_aprobador IS 'Usuario que aprob�'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_total_ingresos IS 'Total de ingresos'
 ;
@@ -1219,7 +1219,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_total_neto IS 'Total neto
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_estado IS 'G=generada, A=aprobada, P=Pagada
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_notificada IS 'Comprobantes enviados (S=Sí, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_notificada IS 'Comprobantes enviados (S=S�, N=No)
 
 '
 ;
@@ -1262,7 +1262,7 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_planillas_detalle ADD CONSTRAINT vitalis_plan
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_id IS 'ID único del detalle de planilla'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_id IS 'ID �nico del detalle de planilla'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_salario_base IS 'Salario base
 '
@@ -1274,10 +1274,10 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_total_deducciones
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_total_neto IS 'Total neto a pagar
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_notificado IS 'Comprobante enviado (S=Sí, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_notificado IS 'Comprobante enviado (S=S�, N=No)
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_fecha_notificacion IS 'Fecha de envío del comprobante'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_fecha_notificacion IS 'Fecha de env�o del comprobante'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_version IS 'Version registro'
 ;
@@ -1321,7 +1321,7 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_planillas_movimientos ADD CONSTRAINT vitalis_
 
 COMMENT ON TABLE VITALIS_SCHEMA.vitalis_planillas_movimientos IS 'Tabla para manejar los movimientos en planilla, entre ellos nombramientos, ascensos, deducciones e ingresos.'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_movimientos.plm_id IS 'ID único del movimiento de planilla'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_movimientos.plm_id IS 'ID �nico del movimiento de planilla'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_movimientos.plm_concepto IS 'Concepto del movimiento, del porque se hizo'
 ;
@@ -1372,12 +1372,12 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_resumen_financiero ADD CONSTRAINT vitalis_res
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_id IS 'ID único del resumen financiero'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_id IS 'ID �nico del resumen financiero'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_mes IS 'Mes del resumen
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_anio IS 'Año del resumen'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_anio IS 'A�o del resumen'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_total_ingresos_turnos IS 'Total ingresos por turnos'
 ;
@@ -1386,7 +1386,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_total_ingresos_p
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_total_ingresos IS 'Total de ingresos
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_total_gastos_medicos IS 'Total gastos médicos'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_total_gastos_medicos IS 'Total gastos m�dicos'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_total_gastos_administrativos IS 'Total gastos administrativos'
 ;
@@ -1396,7 +1396,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_total_gastos IS 
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_utilidad IS 'Utilidad (ingresos - gastos)
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_fecha_generacion IS 'Fecha de generación
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_fecha_generacion IS 'Fecha de generaci�n
 
 '
 ;
@@ -1431,24 +1431,24 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_parametros ADD CONSTRAINT vitalis_parametros_
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_id IS 'ID único del parámetro'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_id IS 'ID �nico del par�metro'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_codigo IS 'Código del parámetro'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_codigo IS 'C�digo del par�metro'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_nombre IS 'Nombre del parámetro'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_nombre IS 'Nombre del par�metro'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_valor IS 'Valor del parámetro
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_valor IS 'Valor del par�metro
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_descripcion IS 'Descripción del parámetro'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_descripcion IS 'Descripci�n del par�metro'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_tipo_dato IS 'STRING, NUMBER, DATE, BOOLEAN
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_encriptado IS 'Valor encriptado (S=Sí, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_encriptado IS 'Valor encriptado (S=S�, N=No)
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_modulo IS 'Módulo al que pertenece'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_modulo IS 'M�dulo al que pertenece'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_estado IS 'Estado (A=Activo, I=Inactivo)
 
@@ -1488,7 +1488,7 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_bitacoras ADD CONSTRAINT vitalis_bitacoras_pk
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_id IS ' ID único de la bitácora'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_id IS ' ID �nico de la bit�cora'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_tabla IS 'Nombre de la tabla
 '
@@ -1497,10 +1497,10 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_operacion IS 'INSERT, UPD
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_pk_tabla IS 'Clave primaria del registro'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_usuario_id IS 'Usuario que realizó la operación
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_usuario_id IS 'Usuario que realiz� la operaci�n
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_fecha IS 'Fecha y hora de la operación'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_fecha IS 'Fecha y hora de la operaci�n'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_valores_anteriores IS 'Valores anteriores (para UPDATE y DELETE)
 '
@@ -1543,9 +1543,9 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_padron_nacional ADD CONSTRAINT pad_cedula UNI
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_id IS 'ID único del padrón'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_id IS 'ID �nico del padr�n'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_cedula IS 'Cédula de identidad'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_cedula IS 'C�dula de identidad'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_nombre IS 'Nombre'
 ;
@@ -1562,7 +1562,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_junta_recep IS 'Jun
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_provincia IS 'Provincia de la persona'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_canton IS 'Cantón de la persona'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_canton IS 'Cant�n de la persona'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_distrito IS 'Distrito de la persona'
 ;
@@ -1610,14 +1610,14 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_puestos_turnos ADD CONSTRAINT vitalis_puestos
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_id IS ' ID único de la relación puesto-turno'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_id IS ' ID �nico de la relaci�n puesto-turno'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_dia_semana IS 'Día de la semana (1=Lunes, 7=Domingo)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_dia_semana IS 'D�a de la semana (1=Lunes, 7=Domingo)
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_monto_cobrar IS 'Monto a cobrar al centro'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_monto_pagar IS 'Monto a pagar al médico'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_monto_pagar IS 'Monto a pagar al m�dico'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_tipo_pago IS 'HORAS, TURNO_COMPLETO'
 ;
@@ -1670,15 +1670,15 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_perfiles_pantallas ADD CONSTRAINT vitalis_per
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_id IS 'ID único de la relación'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_id IS 'ID �nico de la relaci�n'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_lectura IS 'Permiso de lectura (S=Sí, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_lectura IS 'Permiso de lectura (S=S�, N=No)
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_escritura IS 'Permiso de escritura (S=Sí, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_escritura IS 'Permiso de escritura (S=S�, N=No)
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_eliminacion IS 'Permiso de eliminación (S=Sí, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_eliminacion IS 'Permiso de eliminaci�n (S=S�, N=No)
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_estado IS 'Estado (A=Activo, I=Inactivo)
@@ -1714,12 +1714,12 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_personal_tipos_planillas ADD CONSTRAINT vital
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personal_tipos_planillas.ptp_id IS 'ID único de la relación
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personal_tipos_planillas.ptp_id IS 'ID �nico de la relaci�n
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personal_tipos_planillas.ptp_salario_base IS 'Salario base (para administrativos)'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personal_tipos_planillas.ptp_fecha_asignacion IS 'Fecha de asignación'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personal_tipos_planillas.ptp_fecha_asignacion IS 'Fecha de asignaci�n'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personal_tipos_planillas.ptp_estado IS 'Estado (A=Activo, I=Inactivo)'
 ;
@@ -1794,7 +1794,7 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_notificaciones ADD CONSTRAINT vitalis_notific
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_notificaciones.not_tipo IS 'Tipo de notificación
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_notificaciones.not_tipo IS 'Tipo de notificaci�n
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_notificaciones.not_destinatario IS 'Email destinatario
@@ -1848,7 +1848,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_contratos.ctr_fecha_inicio IS 'fecha de
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_contratos.ctr_fecha_fin IS 'fecha final del contrato'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_contratos.ctr_monto_base IS 'El monto que estipula la legislación según el puesto'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_contratos.ctr_monto_base IS 'El monto que estipula la legislaci�n seg�n el puesto'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_contratos.ctr_estado IS 'Estado A=activo I=Inactivo'
 ;
@@ -2081,7 +2081,7 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_facturas_centros ADD CONSTRAINT vitalis_factu
 
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_facturas_centros.fac_mes IS 'mes de la factura'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_facturas_centros.fac_anio IS 'año de la factura'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_facturas_centros.fac_anio IS 'a�o de la factura'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_facturas_centros.fac_numero IS 'numero de la factura'
 ;
@@ -2129,9 +2129,9 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_autoregistros ADD CONSTRAINT vitalis_autoregi
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_id IS 'ID único del autoregistro'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_id IS 'ID �nico del autoregistro'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_cedula IS 'Cédula de identidad'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_cedula IS 'C�dula de identidad'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_nombre IS 'Primer nombre'
 ;
@@ -2152,7 +2152,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_estado IS 'P=Pendient
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_fecha_registro IS 'Fecha del registro'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_fecha_revision IS 'Fecha en que se realizo la revisión'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_fecha_revision IS 'Fecha en que se realizo la revisi�n'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_usu_revisor IS 'Usuario que reviso el autoregistro para aprobarlo'
 ;
@@ -2199,621 +2199,709 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_plantillas_notificacion.pln_fecha_creac
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_plantillas_notificacion.pln_version IS 'Version de la plantilla'
 ;
 
--- Trigger for sequence vitalis_paises_seq01 for column pai_id in table VITALIS_SCHEMA.vitalis_paises ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_paises_vitalis_paises_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_paises_seq01 for column pai_id in table vitalis_paises ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_paises_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_paises FOR EACH ROW
 BEGIN
-  :new.pai_id := vitalis_paises_seq01.nextval;
+    if :new.pai_id is null or :new.pai_id <= 0 then
+        :new.pai_id := vitalis_paises_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_paises_vitalis_paises_seq01 AFTER UPDATE OF pai_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_paises_TGR02 AFTER UPDATE OF pai_id
 ON VITALIS_SCHEMA.vitalis_paises FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column pai_id in table VITALIS_SCHEMA.vitalis_paises as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column pai_id in table vitalis_paises as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_provincias_seq01 for column pro_id in table VITALIS_SCHEMA.vitalis_provincia ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_provincia_vitalis_provincias_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_provincias_seq01 for column pro_id in table vitalis_provincia ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_provincia_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_provincia FOR EACH ROW
 BEGIN
-  :new.pro_id := vitalis_provincias_seq01.nextval;
+    if :new.pro_id is null or :new.pro_id <= 0 then
+        :new.pro_id := vitalis_provincias_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_provincia_vitalis_provincias_seq01 AFTER UPDATE OF pro_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_provincia_TGR02 AFTER UPDATE OF pro_id
 ON VITALIS_SCHEMA.vitalis_provincia FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column pro_id in table VITALIS_SCHEMA.vitalis_provincia as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column pro_id in table vitalis_provincia as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_cantones_seq01 for column can_id in table VITALIS_SCHEMA.vitalis_cantones ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_cantones_vitalis_cantones_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_cantones_seq01 for column can_id in table vitalis_cantones ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_cantones_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_cantones FOR EACH ROW
 BEGIN
-  :new.can_id := vitalis_cantones_seq01.nextval;
+    if :new.can_id is null or :new.can_id <= 0 then
+        :new.can_id := vitalis_cantones_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_cantones_vitalis_cantones_seq01 AFTER UPDATE OF can_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_cantones_TGR02 AFTER UPDATE OF can_id
 ON VITALIS_SCHEMA.vitalis_cantones FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column can_id in table VITALIS_SCHEMA.vitalis_cantones as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column can_id in table vitalis_cantones as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_distritos_seq01 for column dis_id in table VITALIS_SCHEMA.vitalis_distritos ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_distritos_vitalis_distritos_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_distritos_seq01 for column dis_id in table vitalis_distritos ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_distritos_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_distritos FOR EACH ROW
 BEGIN
-  :new.dis_id := vitalis_distritos_seq01.nextval;
+    if :new.dis_id is null or :new.dis_id <= 0 then
+        :new.dis_id := vitalis_distritos_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_distritos_vitalis_distritos_seq01 AFTER UPDATE OF dis_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_distritos_TGR02 AFTER UPDATE OF dis_id
 ON VITALIS_SCHEMA.vitalis_distritos FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column dis_id in table VITALIS_SCHEMA.vitalis_distritos as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column dis_id in table vitalis_distritos as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_tipos_documentos_seq01 for column tdo_id in table VITALIS_SCHEMA.vitalis_tipos_documentos ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_tipos_documentos_vitalis_tipos_documentos_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_tipos_documentos_seq01 for column tdo_id in table vitalis_tipos_documentos ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_tipos_documentos_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_tipos_documentos FOR EACH ROW
 BEGIN
-  :new.tdo_id := vitalis_tipos_documentos_seq01.nextval;
+    if :new.tdo_id is null or :new.tdo_id <= 0 then
+        :new.tdo_id := vitalis_tipos_documentos_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_tipos_documentos_vitalis_tipos_documentos_seq01 AFTER UPDATE OF tdo_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_tipos_documentos_TGR02 AFTER UPDATE OF tdo_id
 ON VITALIS_SCHEMA.vitalis_tipos_documentos FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column tdo_id in table VITALIS_SCHEMA.vitalis_tipos_documentos as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column tdo_id in table vitalis_tipos_documentos as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_bancos_seq01 for column ban_id in table VITALIS_SCHEMA.vitalis_bancos ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_bancos_vitalis_bancos_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_bancos_seq01 for column ban_id in table vitalis_bancos ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_bancos_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_bancos FOR EACH ROW
 BEGIN
-  :new.ban_id := vitalis_bancos_seq01.nextval;
+    if :new.ban_id is null or :new.ban_id <= 0 then
+        :new.ban_id := vitalis_bancos_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_bancos_vitalis_bancos_seq01 AFTER UPDATE OF ban_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_bancos_TGR02 AFTER UPDATE OF ban_id
 ON VITALIS_SCHEMA.vitalis_bancos FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column ban_id in table VITALIS_SCHEMA.vitalis_bancos as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column ban_id in table vitalis_bancos as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_tipos_cuenta_seq01 for column tcu_id in table VITALIS_SCHEMA.vitalis_tipos_cuenta ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_tipos_cuenta_vitalis_tipos_cuenta_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_tipos_cuenta_seq01 for column tcu_id in table vitalis_tipos_cuenta ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_tipos_cuenta_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_tipos_cuenta FOR EACH ROW
 BEGIN
-  :new.tcu_id := vitalis_tipos_cuenta_seq01.nextval;
+    if :new.tcu_id is null or :new.tcu_id <= 0 then
+        :new.tcu_id := vitalis_tipos_cuenta_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_tipos_cuenta_vitalis_tipos_cuenta_seq01 AFTER UPDATE OF tcu_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_tipos_cuenta_TGR02 AFTER UPDATE OF tcu_id
 ON VITALIS_SCHEMA.vitalis_tipos_cuenta FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column tcu_id in table VITALIS_SCHEMA.vitalis_tipos_cuenta as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column tcu_id in table vitalis_tipos_cuenta as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_personas_seq01 for column per_id in table VITALIS_SCHEMA.vitalis_personas ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_personas_vitalis_personas_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_personas_seq01 for column per_id in table vitalis_personas ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_personas_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_personas FOR EACH ROW
 BEGIN
-  :new.per_id := vitalis_personas_seq01.nextval;
+    if :new.per_id is null or :new.per_id <= 0 then
+        :new.per_id := vitalis_personas_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_personas_vitalis_personas_seq01 AFTER UPDATE OF per_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_personas_TGR02 AFTER UPDATE OF per_id
 ON VITALIS_SCHEMA.vitalis_personas FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column per_id in table VITALIS_SCHEMA.vitalis_personas as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column per_id in table vitalis_personas as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_direcciones_seq01 for column dpe_id in table VITALIS_SCHEMA.vitalis_direcciones_personas ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_direcciones_personas_vitalis_direcciones_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_direcciones_seq01 for column dpe_id in table vitalis_direcciones_personas ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_direcciones_personas_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_direcciones_personas FOR EACH ROW
 BEGIN
-  :new.dpe_id := vitalis_direcciones_seq01.nextval;
+    if :new.dpe_id is null or :new.dpe_id <= 0 then
+        :new.dpe_id := vitalis_direcciones_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_direcciones_personas_vitalis_direcciones_seq01 AFTER UPDATE OF dpe_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_direcciones_personas_TGR02 AFTER UPDATE OF dpe_id
 ON VITALIS_SCHEMA.vitalis_direcciones_personas FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column dpe_id in table VITALIS_SCHEMA.vitalis_direcciones_personas as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column dpe_id in table vitalis_direcciones_personas as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_telefonos_personas_seq01 for column tpe_id in table VITALIS_SCHEMA.vitalis_telefonos_personas ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_telefonos_personas_vitalis_telefonos_personas_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_telefonos_personas_seq01 for column tpe_id in table vitalis_telefonos_personas ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_telefonos_personas_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_telefonos_personas FOR EACH ROW
 BEGIN
-  :new.tpe_id := vitalis_telefonos_personas_seq01.nextval;
+    if :new.tpe_id is null or :new.tpe_id <= 0 then
+        :new.tpe_id := vitalis_telefonos_personas_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_telefonos_personas_vitalis_telefonos_personas_seq01 AFTER UPDATE OF tpe_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_telefonos_personas_TGR02 AFTER UPDATE OF tpe_id
 ON VITALIS_SCHEMA.vitalis_telefonos_personas FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column tpe_id in table VITALIS_SCHEMA.vitalis_telefonos_personas as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column tpe_id in table vitalis_telefonos_personas as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_cuentas_bancarias_seq01 for column cba_id in table VITALIS_SCHEMA.vitalis_cuentas_bancarias ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_cuentas_bancarias_vitalis_cuentas_bancarias_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_cuentas_bancarias_seq01 for column cba_id in table vitalis_cuentas_bancarias ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_cuentas_bancarias_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_cuentas_bancarias FOR EACH ROW
 BEGIN
-  :new.cba_id := vitalis_cuentas_bancarias_seq01.nextval;
+    if :new.cba_id is null or :new.cba_id <= 0 then
+        :new.cba_id := vitalis_cuentas_bancarias_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_cuentas_bancarias_vitalis_cuentas_bancarias_seq01 AFTER UPDATE OF cba_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_cuentas_bancarias_TGR02 AFTER UPDATE OF cba_id
 ON VITALIS_SCHEMA.vitalis_cuentas_bancarias FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column cba_id in table VITALIS_SCHEMA.vitalis_cuentas_bancarias as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column cba_id in table vitalis_cuentas_bancarias as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_documentos_personas_seq01 for column dop_id in table VITALIS_SCHEMA.vitalis_documentos_personas ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_documentos_personas_vitalis_documentos_personas_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_documentos_personas_seq01 for column dop_id in table vitalis_documentos_personas ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_documentos_personas_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_documentos_personas FOR EACH ROW
 BEGIN
-  :new.dop_id := vitalis_documentos_personas_seq01.nextval;
+    if :new.dop_id is null or :new.dop_id <= 0 then
+        :new.dop_id := vitalis_documentos_personas_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_documentos_personas_vitalis_documentos_personas_seq01 AFTER UPDATE OF dop_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_documentos_personas_TGR02 AFTER UPDATE OF dop_id
 ON VITALIS_SCHEMA.vitalis_documentos_personas FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column dop_id in table VITALIS_SCHEMA.vitalis_documentos_personas as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column dop_id in table vitalis_documentos_personas as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_perfiles_seq01 for column prf_id in table VITALIS_SCHEMA.vitalis_perfiles ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_perfiles_vitalis_perfiles_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_perfiles_seq01 for column prf_id in table vitalis_perfiles ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_perfiles_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_perfiles FOR EACH ROW
 BEGIN
-  :new.prf_id := vitalis_perfiles_seq01.nextval;
+    if :new.prf_id is null or :new.prf_id <= 0 then
+        :new.prf_id := vitalis_perfiles_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_perfiles_vitalis_perfiles_seq01 AFTER UPDATE OF prf_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_perfiles_TGR02 AFTER UPDATE OF prf_id
 ON VITALIS_SCHEMA.vitalis_perfiles FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column prf_id in table VITALIS_SCHEMA.vitalis_perfiles as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column prf_id in table vitalis_perfiles as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_pantallas_seq01 for column pan_id in table VITALIS_SCHEMA.vitalis_pantallas ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_pantallas_vitalis_pantallas_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_pantallas_seq01 for column pan_id in table vitalis_pantallas ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_pantallas_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_pantallas FOR EACH ROW
 BEGIN
-  :new.pan_id := vitalis_pantallas_seq01.nextval;
+    if :new.pan_id is null or :new.pan_id <= 0 then
+        :new.pan_id := vitalis_pantallas_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_pantallas_vitalis_pantallas_seq01 AFTER UPDATE OF pan_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_pantallas_TGR02 AFTER UPDATE OF pan_id
 ON VITALIS_SCHEMA.vitalis_pantallas FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column pan_id in table VITALIS_SCHEMA.vitalis_pantallas as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column pan_id in table vitalis_pantallas as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_usuarios_seq01 for column usu_id in table VITALIS_SCHEMA.vitalis_usuarios ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_usuarios_vitalis_usuarios_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_usuarios_seq01 for column usu_id in table vitalis_usuarios ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_usuarios_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_usuarios FOR EACH ROW
 BEGIN
-  :new.usu_id := vitalis_usuarios_seq01.nextval;
+    if :new.usu_id is null or :new.usu_id <= 0 then
+        :new.usu_id := vitalis_usuarios_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_usuarios_vitalis_usuarios_seq01 AFTER UPDATE OF usu_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_usuarios_TGR02 AFTER UPDATE OF usu_id
 ON VITALIS_SCHEMA.vitalis_usuarios FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column usu_id in table VITALIS_SCHEMA.vitalis_usuarios as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column usu_id in table vitalis_usuarios as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_centros_salud_seq01 for column csa_id in table VITALIS_SCHEMA.vitalis_centros_salud ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_centros_salud_vitalis_centros_salud_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_centros_salud_seq01 for column csa_id in table vitalis_centros_salud ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_centros_salud_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_centros_salud FOR EACH ROW
 BEGIN
-  :new.csa_id := vitalis_centros_salud_seq01.nextval;
+    if :new.csa_id is null or :new.csa_id <= 0 then
+        :new.csa_id := vitalis_centros_salud_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_centros_salud_vitalis_centros_salud_seq01 AFTER UPDATE OF csa_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_centros_salud_TGR02 AFTER UPDATE OF csa_id
 ON VITALIS_SCHEMA.vitalis_centros_salud FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column csa_id in table VITALIS_SCHEMA.vitalis_centros_salud as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column csa_id in table vitalis_centros_salud as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_tipos_procedimientos_seq01 for column tpr_id in table VITALIS_SCHEMA.vitalis_tipos_procedimientos ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_tipos_procedimientos_vitalis_tipos_procedimientos_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_tipos_procedimientos_seq01 for column tpr_id in table vitalis_tipos_procedimientos ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_tipos_procedimientos_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_tipos_procedimientos FOR EACH ROW
 BEGIN
-  :new.tpr_id := vitalis_tipos_procedimientos_seq01.nextval;
+    if :new.tpr_id is null or :new.tpr_id <= 0 then
+        :new.tpr_id := vitalis_tipos_procedimientos_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_tipos_procedimientos_vitalis_tipos_procedimientos_seq01 AFTER UPDATE OF tpr_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_tipos_procedimientos_TGR02 AFTER UPDATE OF tpr_id
 ON VITALIS_SCHEMA.vitalis_tipos_procedimientos FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column tpr_id in table VITALIS_SCHEMA.vitalis_tipos_procedimientos as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column tpr_id in table vitalis_tipos_procedimientos as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_procedimientos_medicos_seq01 for column prm_id in table VITALIS_SCHEMA.vitalis_procedimientos_medicos ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_procedimientos_medicos_vitalis_procedimientos_medicos_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_procedimientos_medicos_seq01 for column prm_id in table vitalis_procedimientos_medicos ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_procedimientos_medicos_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_procedimientos_medicos FOR EACH ROW
 BEGIN
-  :new.prm_id := vitalis_procedimientos_medicos_seq01.nextval;
+    if :new.prm_id is null or :new.prm_id <= 0 then
+        :new.prm_id := vitalis_procedimientos_medicos_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_procedimientos_medicos_vitalis_procedimientos_medicos_seq01 AFTER UPDATE OF prm_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_procedimientos_medicos_TGR02 AFTER UPDATE OF prm_id
 ON VITALIS_SCHEMA.vitalis_procedimientos_medicos FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column prm_id in table VITALIS_SCHEMA.vitalis_procedimientos_medicos as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column prm_id in table vitalis_procedimientos_medicos as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_escalas_base_detalle_seq01 for column esd_id in table VITALIS_SCHEMA.vitalis_escalas_base ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_escalas_base_vitalis_escalas_base_detalle_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_escalas_base_detalle_seq01 for column esd_id in table vitalis_escalas_base ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_escalas_base_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_escalas_base FOR EACH ROW
 BEGIN
-  :new.esd_id := vitalis_escalas_base_detalle_seq01.nextval;
+    if :new.esd_id is null or :new.esd_id <= 0 then
+        :new.esd_id := vitalis_escalas_base_detalle_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_escalas_base_vitalis_escalas_base_detalle_seq01 AFTER UPDATE OF esd_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_escalas_base_TGR02 AFTER UPDATE OF esd_id
 ON VITALIS_SCHEMA.vitalis_escalas_base FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column esd_id in table VITALIS_SCHEMA.vitalis_escalas_base as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column esd_id in table vitalis_escalas_base as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_escalas_mensuales_seq01 for column esm_id in table VITALIS_SCHEMA.vitalis_escalas_mensuales ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_escalas_mensuales_vitalis_escalas_mensuales_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_escalas_mensuales_seq01 for column esm_id in table vitalis_escalas_mensuales ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_escalas_mensuales_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_escalas_mensuales FOR EACH ROW
 BEGIN
-  :new.esm_id := vitalis_escalas_mensuales_seq01.nextval;
+    if :new.esm_id is null or :new.esm_id <= 0 then
+        :new.esm_id := vitalis_escalas_mensuales_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_escalas_mensuales_vitalis_escalas_mensuales_seq01 AFTER UPDATE OF esm_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_escalas_mensuales_TGR02 AFTER UPDATE OF esm_id
 ON VITALIS_SCHEMA.vitalis_escalas_mensuales FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column esm_id in table VITALIS_SCHEMA.vitalis_escalas_mensuales as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column esm_id in table vitalis_escalas_mensuales as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_escalas_mensuales_detalle_seq01 for column emd_id in table VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_escalas_mensuales_detalle_vitalis_escalas_mensuales_detalle_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_escalas_mensuales_detalle_seq01 for column emd_id in table vitalis_escalas_mensuales_detalle ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle FOR EACH ROW
 BEGIN
-  :new.emd_id := vitalis_escalas_mensuales_detalle_seq01.nextval;
+    if :new.emd_id is null or :new.emd_id <= 0 then
+        :new.emd_id := vitalis_escalas_mensuales_detalle_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_escalas_mensuales_detalle_vitalis_escalas_mensuales_detalle_seq01 AFTER UPDATE OF emd_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle_TGR02 AFTER UPDATE OF emd_id
 ON VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column emd_id in table VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column emd_id in table vitalis_escalas_mensuales_detalle as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_tipos_planillas_seq01 for column tpl_id in table VITALIS_SCHEMA.vitalis_tipos_planillas ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_tipos_planillas_vitalis_tipos_planillas_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_tipos_planillas_seq01 for column tpl_id in table vitalis_tipos_planillas ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_tipos_planillas_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_tipos_planillas FOR EACH ROW
 BEGIN
-  :new.tpl_id := vitalis_tipos_planillas_seq01.nextval;
+    if :new.tpl_id is null or :new.tpl_id <= 0 then
+        :new.tpl_id := vitalis_tipos_planillas_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_tipos_planillas_vitalis_tipos_planillas_seq01 AFTER UPDATE OF tpl_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_tipos_planillas_TGR02 AFTER UPDATE OF tpl_id
 ON VITALIS_SCHEMA.vitalis_tipos_planillas FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column tpl_id in table VITALIS_SCHEMA.vitalis_tipos_planillas as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column tpl_id in table vitalis_tipos_planillas as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_tipos_movimientos_seq01 for column tmo_id in table VITALIS_SCHEMA.vitalis_tipos_movimientos ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_tipos_movimientos_vitalis_tipos_movimientos_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_tipos_movimientos_seq01 for column tmo_id in table vitalis_tipos_movimientos ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_tipos_movimientos_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_tipos_movimientos FOR EACH ROW
 BEGIN
-  :new.tmo_id := vitalis_tipos_movimientos_seq01.nextval;
+    if :new.tmo_id is null or :new.tmo_id <= 0 then
+        :new.tmo_id := vitalis_tipos_movimientos_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_tipos_movimientos_vitalis_tipos_movimientos_seq01 AFTER UPDATE OF tmo_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_tipos_movimientos_TGR02 AFTER UPDATE OF tmo_id
 ON VITALIS_SCHEMA.vitalis_tipos_movimientos FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column tmo_id in table VITALIS_SCHEMA.vitalis_tipos_movimientos as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column tmo_id in table vitalis_tipos_movimientos as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_planillas_seq01 for column pla_id in table VITALIS_SCHEMA.vitalis_planillas ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_planillas_vitalis_planillas_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_planillas_seq01 for column pla_id in table vitalis_planillas ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_planillas_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_planillas FOR EACH ROW
 BEGIN
-  :new.pla_id := vitalis_planillas_seq01.nextval;
+    if :new.pla_id is null or :new.pla_id <= 0 then
+        :new.pla_id := vitalis_planillas_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_planillas_vitalis_planillas_seq01 AFTER UPDATE OF pla_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_planillas_TGR02 AFTER UPDATE OF pla_id
 ON VITALIS_SCHEMA.vitalis_planillas FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column pla_id in table VITALIS_SCHEMA.vitalis_planillas as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column pla_id in table vitalis_planillas as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_planillas_detalle_seq01 for column pld_id in table VITALIS_SCHEMA.vitalis_planillas_detalle ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_planillas_detalle_vitalis_planillas_detalle_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_planillas_detalle_seq01 for column pld_id in table vitalis_planillas_detalle ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_planillas_detalle_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_planillas_detalle FOR EACH ROW
 BEGIN
-  :new.pld_id := vitalis_planillas_detalle_seq01.nextval;
+    if :new.pld_id is null or :new.pld_id <= 0 then
+        :new.pld_id := vitalis_planillas_detalle_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_planillas_detalle_vitalis_planillas_detalle_seq01 AFTER UPDATE OF pld_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_planillas_detalle_TGR02 AFTER UPDATE OF pld_id
 ON VITALIS_SCHEMA.vitalis_planillas_detalle FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column pld_id in table VITALIS_SCHEMA.vitalis_planillas_detalle as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column pld_id in table vitalis_planillas_detalle as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_planillas_movimientos_seq01 for column plm_id in table VITALIS_SCHEMA.vitalis_planillas_movimientos ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_planillas_movimientos_vitalis_planillas_movimientos_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_planillas_movimientos_seq01 for column plm_id in table vitalis_planillas_movimientos ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_planillas_movimientos_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_planillas_movimientos FOR EACH ROW
 BEGIN
-  :new.plm_id := vitalis_planillas_movimientos_seq01.nextval;
+    if :new.plm_id is null or :new.plm_id <= 0 then
+        :new.plm_id := vitalis_planillas_movimientos_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_planillas_movimientos_vitalis_planillas_movimientos_seq01 AFTER UPDATE OF plm_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_planillas_movimientos_TGR02 AFTER UPDATE OF plm_id
 ON VITALIS_SCHEMA.vitalis_planillas_movimientos FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column plm_id in table VITALIS_SCHEMA.vitalis_planillas_movimientos as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column plm_id in table vitalis_planillas_movimientos as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_resumen_financiero_seq01 for column ref_id in table VITALIS_SCHEMA.vitalis_resumen_financiero ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_resumen_financiero_vitalis_resumen_financiero_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_resumen_financiero_seq01 for column ref_id in table vitalis_resumen_financiero ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_resumen_financiero_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_resumen_financiero FOR EACH ROW
 BEGIN
-  :new.ref_id := vitalis_resumen_financiero_seq01.nextval;
+    if :new.ref_id is null or :new.ref_id <= 0 then
+        :new.ref_id := vitalis_resumen_financiero_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_resumen_financiero_vitalis_resumen_financiero_seq01 AFTER UPDATE OF ref_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_resumen_financiero_TGR02 AFTER UPDATE OF ref_id
 ON VITALIS_SCHEMA.vitalis_resumen_financiero FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column ref_id in table VITALIS_SCHEMA.vitalis_resumen_financiero as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column ref_id in table vitalis_resumen_financiero as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_parametros_seq01 for column par_id in table VITALIS_SCHEMA.vitalis_parametros ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_parametros_vitalis_parametros_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_parametros_seq01 for column par_id in table vitalis_parametros ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_parametros_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_parametros FOR EACH ROW
 BEGIN
-  :new.par_id := vitalis_parametros_seq01.nextval;
+    if :new.par_id is null or :new.par_id <= 0 then
+        :new.par_id := vitalis_parametros_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_parametros_vitalis_parametros_seq01 AFTER UPDATE OF par_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_parametros_TGR02 AFTER UPDATE OF par_id
 ON VITALIS_SCHEMA.vitalis_parametros FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column par_id in table VITALIS_SCHEMA.vitalis_parametros as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column par_id in table vitalis_parametros as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_bitacoras_seq01 for column bit_id in table VITALIS_SCHEMA.vitalis_bitacoras ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_bitacoras_vitalis_bitacoras_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_bitacoras_seq01 for column bit_id in table vitalis_bitacoras ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_bitacoras_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_bitacoras FOR EACH ROW
 BEGIN
-  :new.bit_id := vitalis_bitacoras_seq01.nextval;
+    if :new.bit_id is null or :new.bit_id <= 0 then
+        :new.bit_id := vitalis_bitacoras_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_bitacoras_vitalis_bitacoras_seq01 AFTER UPDATE OF bit_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_bitacoras_TGR02 AFTER UPDATE OF bit_id
 ON VITALIS_SCHEMA.vitalis_bitacoras FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column bit_id in table VITALIS_SCHEMA.vitalis_bitacoras as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column bit_id in table vitalis_bitacoras as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_padron_nacional_seq01 for column pad_id in table VITALIS_SCHEMA.vitalis_padron_nacional ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_padron_nacional_vitalis_padron_nacional_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_padron_nacional_seq01 for column pad_id in table vitalis_padron_nacional ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_padron_nacional_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_padron_nacional FOR EACH ROW
 BEGIN
-  :new.pad_id := vitalis_padron_nacional_seq01.nextval;
+    if :new.pad_id is null or :new.pad_id <= 0 then
+        :new.pad_id := vitalis_padron_nacional_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_padron_nacional_vitalis_padron_nacional_seq01 AFTER UPDATE OF pad_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_padron_nacional_TGR02 AFTER UPDATE OF pad_id
 ON VITALIS_SCHEMA.vitalis_padron_nacional FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column pad_id in table VITALIS_SCHEMA.vitalis_padron_nacional as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column pad_id in table vitalis_padron_nacional as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_puestos_turno_seq01 for column put_id in table VITALIS_SCHEMA.vitalis_puestos_turnos ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_puestos_turnos_vitalis_puestos_turno_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_puestos_turno_seq01 for column put_id in table vitalis_puestos_turnos ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_puestos_turnos_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_puestos_turnos FOR EACH ROW
 BEGIN
-  :new.put_id := vitalis_puestos_turno_seq01.nextval;
+    if :new.put_id is null or :new.put_id <= 0 then
+        :new.put_id := vitalis_puestos_turno_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_puestos_turnos_vitalis_puestos_turno_seq01 AFTER UPDATE OF put_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_puestos_turnos_TGR02 AFTER UPDATE OF put_id
 ON VITALIS_SCHEMA.vitalis_puestos_turnos FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column put_id in table VITALIS_SCHEMA.vitalis_puestos_turnos as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column put_id in table vitalis_puestos_turnos as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_perfiles_pantallas_seq01 for column prp_id in table VITALIS_SCHEMA.vitalis_perfiles_pantallas ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_perfiles_pantallas_vitalis_perfiles_pantallas_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_perfiles_pantallas_seq01 for column prp_id in table vitalis_perfiles_pantallas ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_perfiles_pantallas_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_perfiles_pantallas FOR EACH ROW
 BEGIN
-  :new.prp_id := vitalis_perfiles_pantallas_seq01.nextval;
+    if :new.prp_id is null or :new.prp_id <= 0 then
+        :new.prp_id := vitalis_perfiles_pantallas_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_perfiles_pantallas_vitalis_perfiles_pantallas_seq01 AFTER UPDATE OF prp_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_perfiles_pantallas_TGR02 AFTER UPDATE OF prp_id
 ON VITALIS_SCHEMA.vitalis_perfiles_pantallas FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column prp_id in table VITALIS_SCHEMA.vitalis_perfiles_pantallas as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column prp_id in table vitalis_perfiles_pantallas as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_personal_tipos_planillas_seq01 for column ptp_id in table VITALIS_SCHEMA.vitalis_personal_tipos_planillas ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_personal_tipos_planillas_vitalis_personal_tipos_planillas_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_personal_tipos_planillas_seq01 for column ptp_id in table vitalis_personal_tipos_planillas ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_personal_tipos_planillas_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_personal_tipos_planillas FOR EACH ROW
 BEGIN
-  :new.ptp_id := vitalis_personal_tipos_planillas_seq01.nextval;
+    if :new.ptp_id is null or :new.ptp_id <= 0 then
+        :new.ptp_id := vitalis_personal_tipos_planillas_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_personal_tipos_planillas_vitalis_personal_tipos_planillas_seq01 AFTER UPDATE OF ptp_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_personal_tipos_planillas_TGR02 AFTER UPDATE OF ptp_id
 ON VITALIS_SCHEMA.vitalis_personal_tipos_planillas FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column ptp_id in table VITALIS_SCHEMA.vitalis_personal_tipos_planillas as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column ptp_id in table vitalis_personal_tipos_planillas as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_identificacion_seq01 for column ide_id in table VITALIS_SCHEMA.vitalis_identificacion ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_identificacion_vitalis_identificacion_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_identificacion_seq01 for column ide_id in table vitalis_identificacion ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_identificacion_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_identificacion FOR EACH ROW
 BEGIN
-  :new.ide_id := vitalis_identificacion_seq01.nextval;
+    if :new.ide_id is null or :new.ide_id <= 0 then
+        :new.ide_id := vitalis_identificacion_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_identificacion_vitalis_identificacion_seq01 AFTER UPDATE OF ide_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_identificacion_TGR02 AFTER UPDATE OF ide_id
 ON VITALIS_SCHEMA.vitalis_identificacion FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column ide_id in table VITALIS_SCHEMA.vitalis_identificacion as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column ide_id in table vitalis_identificacion as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_notificaciones_seq01 for column not_id in table VITALIS_SCHEMA.vitalis_notificaciones ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_notificaciones_vitalis_notificaciones_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_notificaciones_seq01 for column not_id in table vitalis_notificaciones ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_notificaciones_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_notificaciones FOR EACH ROW
 BEGIN
-  :new.not_id := vitalis_notificaciones_seq01.nextval;
+    if :new.not_id is null or :new.not_id <= 0 then
+        :new.not_id := vitalis_notificaciones_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_notificaciones_vitalis_notificaciones_seq01 AFTER UPDATE OF not_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_notificaciones_TGR02 AFTER UPDATE OF not_id
 ON VITALIS_SCHEMA.vitalis_notificaciones FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column not_id in table VITALIS_SCHEMA.vitalis_notificaciones as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column not_id in table vitalis_notificaciones as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_contratos_seq01 for column ctr_id in table VITALIS_SCHEMA.vitalis_contratos ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_contratos_vitalis_contratos_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_contratos_seq01 for column ctr_id in table vitalis_contratos ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_contratos_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_contratos FOR EACH ROW
 BEGIN
-  :new.ctr_id := vitalis_contratos_seq01.nextval;
+    if :new.ctr_id is null or :new.ctr_id <= 0 then
+        :new.ctr_id := vitalis_contratos_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_contratos_vitalis_contratos_seq01 AFTER UPDATE OF ctr_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_contratos_TGR02 AFTER UPDATE OF ctr_id
 ON VITALIS_SCHEMA.vitalis_contratos FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column ctr_id in table VITALIS_SCHEMA.vitalis_contratos as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column ctr_id in table vitalis_contratos as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_incapacidades_seq01 for column inc_id in table VITALIS_SCHEMA.vitalis_incapacidades ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_incapacidades_vitalis_incapacidades_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_incapacidades_seq01 for column inc_id in table vitalis_incapacidades ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_incapacidades_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_incapacidades FOR EACH ROW
 BEGIN
-  :new.inc_id := vitalis_incapacidades_seq01.nextval;
+    if :new.inc_id is null or :new.inc_id <= 0 then
+        :new.inc_id := vitalis_incapacidades_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_incapacidades_vitalis_incapacidades_seq01 AFTER UPDATE OF inc_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_incapacidades_TGR02 AFTER UPDATE OF inc_id
 ON VITALIS_SCHEMA.vitalis_incapacidades FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column inc_id in table VITALIS_SCHEMA.vitalis_incapacidades as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column inc_id in table vitalis_incapacidades as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_vacaciones_seq01 for column vac_id in table VITALIS_SCHEMA.vitalis_vacaciones ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_vacaciones_vitalis_vacaciones_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_vacaciones_seq01 for column vac_id in table vitalis_vacaciones ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_vacaciones_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_vacaciones FOR EACH ROW
 BEGIN
-  :new.vac_id := vitalis_vacaciones_seq01.nextval;
+    if :new.vac_id is null or :new.vac_id <= 0 then
+        :new.vac_id := vitalis_vacaciones_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_vacaciones_vitalis_vacaciones_seq01 AFTER UPDATE OF vac_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_vacaciones_TGR02 AFTER UPDATE OF vac_id
 ON VITALIS_SCHEMA.vitalis_vacaciones FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column vac_id in table VITALIS_SCHEMA.vitalis_vacaciones as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column vac_id in table vitalis_vacaciones as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_feriados_seq01 for column fer_id in table VITALIS_SCHEMA.vitalis_feriados ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_feriados_vitalis_feriados_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_feriados_seq01 for column fer_id in table vitalis_feriados ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_feriados_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_feriados FOR EACH ROW
 BEGIN
-  :new.fer_id := vitalis_feriados_seq01.nextval;
+    if :new.fer_id is null or :new.fer_id <= 0 then
+        :new.fer_id := vitalis_feriados_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_feriados_vitalis_feriados_seq01 AFTER UPDATE OF fer_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_feriados_TGR02 AFTER UPDATE OF fer_id
 ON VITALIS_SCHEMA.vitalis_feriados FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column fer_id in table VITALIS_SCHEMA.vitalis_feriados as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column fer_id in table vitalis_feriados as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_consultorios_seq01 for column con_id in table VITALIS_SCHEMA.vitalis_consultorios ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_consultorios_vitalis_consultorios_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_consultorios_seq01 for column con_id in table vitalis_consultorios ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_consultorios_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_consultorios FOR EACH ROW
 BEGIN
-  :new.con_id := vitalis_consultorios_seq01.nextval;
+    if :new.con_id is null or :new.con_id <= 0 then
+        :new.con_id := vitalis_consultorios_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_consultorios_vitalis_consultorios_seq01 AFTER UPDATE OF con_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_consultorios_TGR02 AFTER UPDATE OF con_id
 ON VITALIS_SCHEMA.vitalis_consultorios FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column con_id in table VITALIS_SCHEMA.vitalis_consultorios as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column con_id in table vitalis_consultorios as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_facturas_detalle_seq01 for column fad_id in table VITALIS_SCHEMA.vitalis_facturas_detalle ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_facturas_detalle_vitalis_facturas_detalle_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_facturas_detalle_seq01 for column fad_id in table vitalis_facturas_detalle ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_facturas_detalle_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_facturas_detalle FOR EACH ROW
 BEGIN
-  :new.fad_id := vitalis_facturas_detalle_seq01.nextval;
+    if :new.fad_id is null or :new.fad_id <= 0 then
+        :new.fad_id := vitalis_facturas_detalle_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_facturas_detalle_vitalis_facturas_detalle_seq01 AFTER UPDATE OF fad_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_facturas_detalle_TGR02 AFTER UPDATE OF fad_id
 ON VITALIS_SCHEMA.vitalis_facturas_detalle FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column fad_id in table VITALIS_SCHEMA.vitalis_facturas_detalle as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column fad_id in table vitalis_facturas_detalle as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_facturas_seq01 for column fac_id in table VITALIS_SCHEMA.vitalis_facturas_centros ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_facturas_centros_vitalis_facturas_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_facturas_seq01 for column fac_id in table vitalis_facturas_centros ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_facturas_centros_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_facturas_centros FOR EACH ROW
 BEGIN
-  :new.fac_id := vitalis_facturas_seq01.nextval;
+    if :new.fac_id is null or :new.fac_id <= 0 then
+        :new.fac_id := vitalis_facturas_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_facturas_centros_vitalis_facturas_seq01 AFTER UPDATE OF fac_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_facturas_centros_TGR02 AFTER UPDATE OF fac_id
 ON VITALIS_SCHEMA.vitalis_facturas_centros FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column fac_id in table VITALIS_SCHEMA.vitalis_facturas_centros as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column fac_id in table vitalis_facturas_centros as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_autoregistros_seq01 for column aur_id in table VITALIS_SCHEMA.vitalis_autoregistros ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_autoregistros_vitalis_autoregistros_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_autoregistros_seq01 for column aur_id in table vitalis_autoregistros ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_autoregistros_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_autoregistros FOR EACH ROW
 BEGIN
-  :new.aur_id := vitalis_autoregistros_seq01.nextval;
+    if :new.aur_id is null or :new.aur_id <= 0 then
+        :new.aur_id := vitalis_autoregistros_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_autoregistros_vitalis_autoregistros_seq01 AFTER UPDATE OF aur_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_autoregistros_TGR02 AFTER UPDATE OF aur_id
 ON VITALIS_SCHEMA.vitalis_autoregistros FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column aur_id in table VITALIS_SCHEMA.vitalis_autoregistros as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column aur_id in table vitalis_autoregistros as it uses sequence.');
 END;
-;
+/
 
--- Trigger for sequence vitalis_planillas_notificaciones_seq01 for column pln_id in table VITALIS_SCHEMA.vitalis_plantillas_notificacion ---------
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.ts_vitalis_plantillas_notificacion_vitalis_planillas_notificaciones_seq01 BEFORE INSERT
+-- Trigger for sequence vitalis_planillas_notificaciones_seq01 for column pln_id in table vitalis_plantillas_notificacion ---------
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_plantillas_notificacion_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_plantillas_notificacion FOR EACH ROW
 BEGIN
-  :new.pln_id := vitalis_planillas_notificaciones_seq01.nextval;
+    if :new.pln_id is null or :new.pln_id <= 0 then
+        :new.pln_id := vitalis_planillas_notificaciones_seq01.nextval;
+    end if;
 END;
-;
-CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.tsu_vitalis_plantillas_notificacion_vitalis_planillas_notificaciones_seq01 AFTER UPDATE OF pln_id
+/
+CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_plantillas_notificacion_TGR02 AFTER UPDATE OF pln_id
 ON VITALIS_SCHEMA.vitalis_plantillas_notificacion FOR EACH ROW
 BEGIN
-  RAISE_APPLICATION_ERROR(-20010,'Cannot update column pln_id in table VITALIS_SCHEMA.vitalis_plantillas_notificacion as it uses sequence.');
+    RAISE_APPLICATION_ERROR(-20010,'Cannot update column pln_id in table vitalis_plantillas_notificacion as it uses sequence.');
 END;
-;
+/
 
 
 -- Create foreign keys (relationships) section ------------------------------------------------- 
@@ -3100,5 +3188,13 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_pantallas ADD CONSTRAINT vitales_pantallas_fk
 
 
 -- Grant permissions section -------------------------------------------------
+
+
+
+
+
+
+
+
 
 
