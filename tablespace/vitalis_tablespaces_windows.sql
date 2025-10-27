@@ -99,3 +99,6 @@ RECOMENDACIONES:
 - Configurar alertas cuando el tablespace alcance el 85% de capacidad
 - Considerar la implementación de un tablespace temporal adicional si es necesario
 */
+
+
+ 
