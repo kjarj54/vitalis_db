@@ -1,10 +1,404 @@
-/*
+﻿/*
 Created: 16/8/2025
-Modified: 26/10/2025
+Modified: 27/10/2025
 Model: Vitalis
 Database: Oracle 19c
 */
 
+
+-- Create sequences section -------------------------------------------------
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_paises_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_provincias_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_cantones_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_distritos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_direcciones_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_facturas_detalle_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_facturas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_consultorios_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_feriados_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_resumen_financiero_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_centros_salud_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_procedimientos_medicos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_escalas_mensuales_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_puestos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_tipos_procedimientos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_puestos_turno_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_escalas_base_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_escalas_base_detalle_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_personas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_telefonos_personas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_bancos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_tipos_cuenta_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_cuentas_bancarias_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_usuarios_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_vacaciones_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_contratos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_incapacidades_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_identificacion_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_personal_tipos_planillas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_tipos_planillas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_planillas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_tipos_movimientos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_planillas_movimientos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_planillas_detalle_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_documentos_personas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_autoregistros_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_autoregistros_documentos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_tipos_documentos_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_estados_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_perfiles_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_pantallas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_perfiles_pantallas_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_bitacoras_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_parametros_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_tarifas_historial_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_padron_nacional_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_notificaciones_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
+
+CREATE SEQUENCE VITALIS_SCHEMA.vitalis_planillas_notificaciones_seq01
+ INCREMENT BY 1
+ START WITH 1
+ NOMAXVALUE
+ MINVALUE 0
+ NOCACHE
+;
 
 -- Create tables section -------------------------------------------------
 
@@ -24,16 +418,17 @@ TABLESPACE VITALIS_DATA
 -- Add keys for table VITALIS_SCHEMA.vitalis_paises
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_paises ADD CONSTRAINT vitalis_paises_pk PRIMARY KEY (pai_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_paises.pai_id IS 'ID �nico del pa�s'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_paises.pai_id IS 'ID único del país'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_paises.pai_codigo IS 'C�digo ISO del pa�s
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_paises.pai_codigo IS 'Código ISO del país
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_paises.pai_nombre IS 'Nombre del pa�s'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_paises.pai_nombre IS 'Nombre del país'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_paises.pai_estado IS 'Estado (A=Activo, I=Inactivo)'
 ;
@@ -63,16 +458,17 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_provincia
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_provincia ADD CONSTRAINT vitalis_provincia_pk PRIMARY KEY (pro_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_provincia.pro_id IS 'ID �nico de la provincia'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_provincia.pro_id IS 'ID único de la provincia'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_provincia.pai_id IS 'Referencia a vitalis_paises
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_provincia.pro_codigo IS 'C�digo de la provincia'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_provincia.pro_codigo IS 'Código de la provincia'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_provincia.pro_nombre IS 'Nombre de la provincia
 '
@@ -105,17 +501,18 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_cantones
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_cantones ADD CONSTRAINT vitalis_cantones_pk PRIMARY KEY (can_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cantones.can_codigo IS 'Codigo del canton'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cantones.can_nombre IS 'Nombre del cant�n'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cantones.can_nombre IS 'Nombre del cantón'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cantones.can_estado IS 'A=Activo o I=inactivo'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cantones.can_version IS 'version del cant�n'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cantones.can_version IS 'version del cantón'
 ;
 
 -- Table VITALIS_SCHEMA.vitalis_distritos
@@ -141,13 +538,14 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_distritos
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_distritos ADD CONSTRAINT vitalis_distritos_pk PRIMARY KEY (dis_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_distritos.dis_id IS ' ID �nico del distrito'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_distritos.dis_id IS ' ID único del distrito'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_distritos.dis_codigo IS 'C�digo del distrito
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_distritos.dis_codigo IS 'Código del distrito
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_distritos.dis_nombre IS 'Nombre del distrito
@@ -171,32 +569,26 @@ CREATE TABLE VITALIS_SCHEMA.vitalis_tipos_documentos(
   tdo_url_recurso Varchar2(200 ) NOT NULL,
   tdo_estado Char(1 ) NOT NULL,
   tdo_version Number,
-  tdo_est_id Number NOT NULL,
   CONSTRAINT vitalis_tipos_documentos_ck01 CHECK (tdo_estado in ('A','I'))
 )
 TABLESPACE VITALIS_DATA
 ;
 
--- Create indexes for table VITALIS_SCHEMA.vitalis_tipos_documentos
-
-CREATE INDEX vitalis_tipos_documentos_ind01 ON VITALIS_SCHEMA.vitalis_tipos_documentos (tdo_est_id)
-TABLESPACE VITALIS_IDX
-;
-
 -- Add keys for table VITALIS_SCHEMA.vitalis_tipos_documentos
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_tipos_documentos ADD CONSTRAINT vitalis_tipos_documentos_pk PRIMARY KEY (tdo_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON TABLE VITALIS_SCHEMA.vitalis_tipos_documentos IS 'Tabla para almacenar los documentos solicitados al momento de la contrataci�n. '
+COMMENT ON TABLE VITALIS_SCHEMA.vitalis_tipos_documentos IS 'Tabla para almacenar los documentos solicitados al momento de la contratación. '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_documentos.tdo_id IS 'ID �nico del tipo de documento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_documentos.tdo_id IS 'ID único del tipo de documento'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_documentos.tdo_nombre IS 'Nombre del tipo de documento'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_documentos.tdo_descripcion IS 'Descripci�n del tipo de documento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_documentos.tdo_descripcion IS 'Descripción del tipo de documento'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_documentos.tdo_tipo_personal IS 'Tipo de personal (MEDICO, ADMINISTRATIVO, AMBOS)'
 ;
@@ -223,6 +615,7 @@ TABLESPACE VITALIS_DATA
 -- Add keys for table VITALIS_SCHEMA.vitalis_bancos
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_bancos ADD CONSTRAINT vitalis_bancos_pk PRIMARY KEY (ban_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
@@ -252,6 +645,7 @@ TABLESPACE VITALIS_DATA
 -- Add keys for table VITALIS_SCHEMA.vitalis_tipos_cuenta
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_tipos_cuenta ADD CONSTRAINT vitalis_tipos_cuenta_pk PRIMARY KEY (tcu_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
@@ -289,11 +683,12 @@ TABLESPACE VITALIS_DATA
 -- Add keys for table VITALIS_SCHEMA.vitalis_personas
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_personas ADD CONSTRAINT vitalis_personas_pk PRIMARY KEY (per_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_id IS 'ID �nico de la persona'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_id IS 'ID único de la persona'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_nombre IS 'Nombre de la person'
 ;
@@ -308,11 +703,11 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_fecha_nacimiento IS 'Fecha
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_sexo IS 'Sexo de la persona (M=masculino, F= femenino)'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_email IS 'Correo electr�nico'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_email IS 'Correo electrónico'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_estado IS 'Estado de la persona(A= activo, I= inactivo)'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_tipo_personal IS 'Tipo personal(M�DICO, ADMINISTRATIVO)'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_tipo_personal IS 'Tipo personal(MÉDICO, ADMINISTRATIVO)'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personas.per_version IS 'Version del registro'
 ;
@@ -346,6 +741,7 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_direcciones_personas
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_direcciones_personas ADD CONSTRAINT vitalis_direcciones_personas_pk PRIMARY KEY (dpe_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
@@ -354,7 +750,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_direcciones_personas.dpe_tipo_direccion
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_direcciones_personas.dpe_direccion_exacta IS 'Direccion exacta'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_direcciones_personas.dpe_principal IS 'Direcci�n principal (S=S�, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_direcciones_personas.dpe_principal IS 'Dirección principal (S=Sí, N=No)
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_direcciones_personas.dpe_codigo_postal IS 'Codigo postal'
@@ -391,17 +787,18 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_telefonos_personas
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_telefonos_personas ADD CONSTRAINT vitalis_telefonos_personas_pk PRIMARY KEY (tpe_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_telefonos_personas.tpe_id IS 'ID �nico del tel�fono'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_telefonos_personas.tpe_id IS 'ID único del teléfono'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_telefonos_personas.tpe_numero IS 'N�mero de tel�fono'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_telefonos_personas.tpe_numero IS 'Número de teléfono'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_telefonos_personas.tpe_tipo IS 'CELULAR, CASA, TRABAJO, FAX, ETC'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_telefonos_personas.tpe_principal IS 'Tel�fono principal (S=S�, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_telefonos_personas.tpe_principal IS 'Teléfono principal (S=Sí, N=No)
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_telefonos_personas.tpe_estado IS 'Estado (A=Activo, I=Inactivo)'
@@ -446,19 +843,20 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_cuentas_bancarias
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_cuentas_bancarias ADD CONSTRAINT vitalis_cuentas_bancarias_pk PRIMARY KEY (cba_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
 COMMENT ON TABLE VITALIS_SCHEMA.vitalis_cuentas_bancarias IS 'Tabla para manejo tanto de bancos como de cuentas bancarias asociada a persona '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_id IS 'ID �nico de la cuenta bancaria'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_id IS 'ID único de la cuenta bancaria'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_numero_cuenta IS 'N�mero de cuenta'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_numero_cuenta IS 'Número de cuenta'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_iban IS 'C�digo IBAN'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_iban IS 'Código IBAN'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_principal IS 'Cuenta principal (S=S�, N=No)'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_principal IS 'Cuenta principal (S=Sí, N=No)'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_cuentas_bancarias.cba_estado IS 'Estado (A=Activo, I=Inactivo)'
 ;
@@ -500,11 +898,12 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_documentos_personas
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_documentos_personas ADD CONSTRAINT vitalis_documentos_personas_pk PRIMARY KEY (dop_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_documentos_personas.dop_id IS 'ID �nico del documento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_documentos_personas.dop_id IS 'ID único del documento'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_documentos_personas.dop_nombre_archivo IS 'Nombre del archivo'
 ;
@@ -535,30 +934,24 @@ CREATE TABLE VITALIS_SCHEMA.vitalis_perfiles(
   prf_descripcion Varchar2(100 ) NOT NULL,
   prf_estado Char(1 ) NOT NULL,
   prf_version Number DEFAULT 1,
-  prf_est_id Number,
   CONSTRAINT vitalis_perfiles_ck01 CHECK (prf_estado in ('A','I'))
 )
 TABLESPACE VITALIS_DATA
 ;
 
--- Create indexes for table VITALIS_SCHEMA.vitalis_perfiles
-
-CREATE INDEX vitalis_perfiles_ind01 ON VITALIS_SCHEMA.vitalis_perfiles (prf_est_id)
-TABLESPACE VITALIS_IDX
-;
-
 -- Add keys for table VITALIS_SCHEMA.vitalis_perfiles
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_perfiles ADD CONSTRAINT vitalis_perfiles_pk PRIMARY KEY (prf_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles.prf_id IS 'ID �nico del perfil'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles.prf_id IS 'ID único del perfil'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles.prf_nombre IS 'Nombre del perfil'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles.prf_descripcion IS 'Descripci�n del perfil'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles.prf_descripcion IS 'Descripción del perfil'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles.prf_estado IS 'Estado (A=Activo, I=Inactivo)'
 ;
@@ -590,19 +983,20 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_pantallas
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_pantallas ADD CONSTRAINT vitalis_pantallas_pk PRIMARY KEY (pan_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_pantallas.pan_codigo IS 'C�digo de la pantalla
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_pantallas.pan_codigo IS 'Código de la pantalla
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_pantallas.pan_nombre IS 'Nombre de la pantalla
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_pantallas.pan_descripcion IS 'Descripci�n de la pantalla'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_pantallas.pan_descripcion IS 'Descripción de la pantalla'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_pantallas.pan_modulo IS 'M�dulo al que pertenece'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_pantallas.pan_modulo IS 'Módulo al que pertenece'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_pantallas.pan_estado IS 'Estado (A=Activo, I=Inactivo)
 
@@ -644,27 +1038,28 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_usuarios
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_usuarios ADD CONSTRAINT vitalis_usuarios_pk PRIMARY KEY (usu_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_id IS 'ID �nico del usuario
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_id IS 'ID único del usuario
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_login IS 'Nombre de usuario
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_password IS 'Contrase�a encriptada
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_password IS 'Contraseña encriptada
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_fecha_creacion IS 'Fecha de creaci�n'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_fecha_creacion IS 'Fecha de creación'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_fecha_ultimo_acceso IS 'Fecha del �ltimo acceso'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_fecha_ultimo_acceso IS 'Fecha del último acceso'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_intentos_fallidos IS 'Intentos fallidos de login
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_bloqueado IS 'Usuario bloqueado (S=S�, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_bloqueado IS 'Usuario bloqueado (S=Sí, N=No)
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_usuarios.usu_estado IS 'Estado (A=Activo, I=Inactivo)
@@ -707,27 +1102,28 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_centros_salud
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_centros_salud ADD CONSTRAINT vitalis_centros_salud_pk PRIMARY KEY (csa_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_id IS 'ID �nico del centro de salud
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_id IS 'ID único del centro de salud
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_codigo IS 'C�digo del centro de salud'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_codigo IS 'Código del centro de salud'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_nombre IS 'Nombre del centro de salud'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_direccion_exacta IS 'Direcci�n exacta'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_direccion_exacta IS 'Dirección exacta'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_telefono IS 'Tel�fono principal
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_telefono IS 'Teléfono principal
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_email IS 'Correo electr�nico'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_email IS 'Correo electrónico'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_contacto_principal IS 'Nombre del contacto principal'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_telefono_contacto IS 'Tel�fono del contacto
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_telefono_contacto IS 'Teléfono del contacto
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_centros_salud.csa_estado IS 'Estado (A=Activo, I=Inactivo)
@@ -758,22 +1154,23 @@ TABLESPACE VITALIS_DATA
 -- Add keys for table VITALIS_SCHEMA.vitalis_tipos_procedimientos
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_tipos_procedimientos ADD CONSTRAINT vitalis_tipos_procedimientos_pk PRIMARY KEY (tpr_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_id IS ' ID �nico del tipo de procedimiento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_id IS ' ID único del tipo de procedimiento'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_codigo IS 'C�digo del tipo de procedimiento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_codigo IS 'Código del tipo de procedimiento'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_nombre IS 'Nombre del tipo de procedimiento
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_descripcion IS 'Descripci�n del procedimiento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_descripcion IS 'Descripción del procedimiento'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_monto_base_cobrar IS 'Monto base a cobrar'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_monto_base_pagar IS 'Monto base a pagar al m�dico'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_monto_base_pagar IS 'Monto base a pagar al médico'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_procedimientos.tpr_estado IS 'Estado (A=Activo, I=Inactivo)'
 ;
@@ -821,6 +1218,7 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_procedimientos_medicos
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_procedimientos_medicos ADD CONSTRAINT vitalis_procedimientos_medicos_pk PRIMARY KEY (prm_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
@@ -834,19 +1232,19 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_hora_fin IS 
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_paciente_nombre IS 'Nombre del paciente'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_paciente_cedula IS 'C�dula del paciente'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_paciente_cedula IS 'Cédula del paciente'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_observaciones IS 'Observaciones del procedimiento'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_monto_cobrar IS 'Monto a cobrar al centro'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_monto_pagar IS 'Monto a pagar al m�dico'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_monto_pagar IS 'Monto a pagar al médico'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_procesado IS 'Procesado en planilla (S=S�, N=No)'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_procesado IS 'Procesado en planilla (S=Sí, N=No)'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_estado IS ' Estado (A=Activo, I=Inactivo)'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_per_id IS 'Referencia a vitalis_personas (m�dico)'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_per_id IS 'Referencia a vitalis_personas (médico)'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_procedimientos_medicos.prm_csa_id IS 'Referencia a vitalis_centros_salud'
 ;
@@ -865,7 +1263,6 @@ CREATE TABLE VITALIS_SCHEMA.vitalis_escalas_base(
   esd_dia_inicio Date NOT NULL,
   esd_dia_fin Date NOT NULL,
   esd_per_id Number NOT NULL,
-  esd_esb_id Number NOT NULL,
   esd_put_id Number NOT NULL,
   CONSTRAINT vitalis_escalas_base_ck01 CHECK (esd_estado in ('A','I'))
 )
@@ -878,10 +1275,6 @@ CREATE INDEX vitalis_escalas_base_detalle_ind01 ON VITALIS_SCHEMA.vitalis_escala
 TABLESPACE VITALIS_IDX
 ;
 
-CREATE INDEX vitalis_escalas_base_detalle_ind02 ON VITALIS_SCHEMA.vitalis_escalas_base (esd_esb_id)
-TABLESPACE VITALIS_IDX
-;
-
 CREATE INDEX vitalis_escalas_base_detalle_ind03 ON VITALIS_SCHEMA.vitalis_escalas_base (esd_put_id)
 TABLESPACE VITALIS_IDX
 ;
@@ -889,17 +1282,18 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_escalas_base
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_escalas_base ADD CONSTRAINT vitalis_escalas_base_detalle_pk PRIMARY KEY (esd_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_id IS 'ID �nico del detalle de escala base'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_id IS 'ID único del detalle de escala base'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_dia_semana IS 'D�a de la semana (1=Lunes, 7=Domingo)'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_dia_semana IS 'Día de la semana (1=Lunes, 7=Domingo)'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_estado IS 'A=activo I=inactivo'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_fecha_creacion IS 'Fecha de creaci�n'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_fecha_creacion IS 'Fecha de creación'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_nombre IS 'Nombre de la escala base'
 ;
@@ -907,10 +1301,8 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_dia_inicio IS 'Fecha d
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_dia_fin IS 'Fecha de fin de la semana'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_per_id IS 'Referencia a vitalis_personas (m�dico)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_per_id IS 'Referencia a vitalis_personas (médico)
 '
-;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_esb_id IS 'Referencia a vitalis_escalas_base'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_base.esd_put_id IS 'Referencia a vitalis_puestos_turnos'
 ;
@@ -928,17 +1320,12 @@ CREATE TABLE VITALIS_SCHEMA.vitalis_escalas_mensuales(
   esm_version Number DEFAULT 1,
   esm_esd_id Number NOT NULL,
   esm_csa_id Number NOT NULL,
-  esm_esb_id Number NOT NULL,
   CONSTRAINT vitalis_escalas_mensuales_ck01 CHECK (esm_procesado in ('S','N'))
 )
 TABLESPACE VITALIS_DATA
 ;
 
 -- Create indexes for table VITALIS_SCHEMA.vitalis_escalas_mensuales
-
-CREATE INDEX vitalis_escalas_mensuales_ind01 ON VITALIS_SCHEMA.vitalis_escalas_mensuales (esm_esb_id)
-TABLESPACE VITALIS_IDX
-;
 
 CREATE INDEX vitalis_escalas_mensuales_ind02 ON VITALIS_SCHEMA.vitalis_escalas_mensuales (esm_csa_id)
 TABLESPACE VITALIS_IDX
@@ -951,32 +1338,31 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_escalas_mensuales
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_escalas_mensuales ADD CONSTRAINT vitalis_escalas_mensuales_pk PRIMARY KEY (esm_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_id IS 'ID �nico de la escala mensual'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_id IS 'ID único de la escala mensual'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_mes IS 'Mes de la escala
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_anio IS 'A�o de la escala'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_anio IS 'Año de la escala'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_nombre IS 'Nombre de la escala mensual'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_fecha_creacion IS 'Fecha de creaci�n'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_fecha_creacion IS 'Fecha de creación'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_estado IS 'CONSTRUCCION, VIGENTE, EN_REVISION, LISTA_PAGO, PROCESADA'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_procesado IS 'Procesado en planilla (S=S�, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_procesado IS 'Procesado en planilla (S=Sí, N=No)
 
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_version IS 'Version del registro'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_csa_id IS 'Referencia a vitalis_centros_salud'
-;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales.esm_esb_id IS 'Referencia a vitalis_escalas_base'
 ;
 
 -- Table VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle
@@ -1017,16 +1403,17 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle ADD CONSTRAINT vitalis_escalas_mensuales_detalle_pk PRIMARY KEY (emd_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_id IS 'ID �nico del detalle de escala mensual'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_id IS 'ID único del detalle de escala mensual'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_fecha IS 'Fecha espec�fica del turno
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_fecha IS 'Fecha específica del turno
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_trabajado IS 'Si trabaj� (S=S�, N=No)'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_trabajado IS 'Si trabajó (S=Sí, N=No)'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_hora_inicio_real IS 'Hora real de inicio
 '
@@ -1038,7 +1425,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_horas_tra
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_observaciones IS 'Observaciones del turno'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_procesado IS 'Procesado en planilla (S=S�, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_procesado IS 'Procesado en planilla (S=Sí, N=No)
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_estado IS 'Estado (A=Activo, I=Inactivo)
@@ -1047,7 +1434,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.emd_estado IS
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.put_id IS 'Referencia a vitalis_puestos_turnos'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.per_id IS 'Referencia a vitalis_personas (m�dico)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.per_id IS 'Referencia a vitalis_personas (médico)
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle.esm_id IS 'Referencia a vitalis_escalas_mensuales'
@@ -1072,17 +1459,18 @@ TABLESPACE VITALIS_DATA
 -- Add keys for table VITALIS_SCHEMA.vitalis_tipos_planillas
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_tipos_planillas ADD CONSTRAINT vitalis_tipos_planillas_pk PRIMARY KEY (tpl_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_planillas.tpl_id IS 'ID �nico del tipo de planilla'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_planillas.tpl_id IS 'ID único del tipo de planilla'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_planillas.tpl_codigo IS 'C�digo del tipo de planilla'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_planillas.tpl_codigo IS 'Código del tipo de planilla'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_planillas.tpl_nombre IS 'Nombre del tipo de planilla'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_planillas.tpl_descripcion IS 'Descripci�n del tipo de planilla'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_planillas.tpl_descripcion IS 'Descripción del tipo de planilla'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_planillas.tpl_tipo_personal IS 'M=Medico, A=Administrativo'
 ;
@@ -1117,17 +1505,18 @@ TABLESPACE VITALIS_DATA
 -- Add keys for table VITALIS_SCHEMA.vitalis_tipos_movimientos
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_tipos_movimientos ADD CONSTRAINT vitalis_tipos_movimientos_pk PRIMARY KEY (tmo_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_id IS 'ID �nico del tipo de movimiento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_id IS 'ID único del tipo de movimiento'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_codigo IS 'C�digo del tipo de movimiento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_codigo IS 'Código del tipo de movimiento'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_nombre IS 'Nombre del tipo de movimiento'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_descripcion IS 'Descripci�n del movimiento'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_descripcion IS 'Descripción del movimiento'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_tipo IS 'INGRESO, DEDUCCION'
 ;
@@ -1136,17 +1525,17 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_calculo IS 'PORCE
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_valor IS 'Valor del movimiento (% o monto)
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_rango_salarial_min IS 'Rango salarial m�nimo'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_rango_salarial_min IS 'Rango salarial mínimo'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_rango_salarial_max IS 'Rango salarial m�ximo'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_rango_salarial_max IS 'Rango salarial máximo'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_automatico IS 'Movimiento autom�tico (S=S�, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_automatico IS 'Movimiento automático (S=Sí, N=No)
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_aplica_medicos IS 'Aplica a m�dicos (S=S�, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_aplica_medicos IS 'Aplica a médicos (S=Sí, N=No)
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_aplica_administrativos IS 'Aplica a administrativos (S=S�, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_aplica_administrativos IS 'Aplica a administrativos (S=Sí, N=No)
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_tipos_movimientos.tmo_estado IS 'Estado (A=Activo, I=Inactivo)
@@ -1188,27 +1577,28 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_planillas
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_planillas ADD CONSTRAINT vitalis_planillas_pk PRIMARY KEY (pla_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON TABLE VITALIS_SCHEMA.vitalis_planillas IS 'Tabla para el manejo de las planillas correspondientes a m�dicos'
+COMMENT ON TABLE VITALIS_SCHEMA.vitalis_planillas IS 'Tabla para el manejo de las planillas correspondientes a médicos'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_id IS 'ID �nico de la planilla'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_id IS 'ID único de la planilla'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_mes IS 'Mes de la planilla'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_anio IS 'A�o de la planilla
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_anio IS 'Año de la planilla
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_nombre IS 'Nombre de la planilla
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_fecha_generacion IS 'Fecha de generaci�n'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_fecha_generacion IS 'Fecha de generación'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_fecha_aprobacion IS 'Fecha de aprobaci�n'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_fecha_aprobacion IS 'Fecha de aprobación'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_usu_aprobador IS 'Usuario que aprob�'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_usu_aprobador IS 'Usuario que aprobó'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_total_ingresos IS 'Total de ingresos'
 ;
@@ -1219,7 +1609,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_total_neto IS 'Total neto
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_estado IS 'G=generada, A=aprobada, P=Pagada
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_notificada IS 'Comprobantes enviados (S=S�, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas.pla_notificada IS 'Comprobantes enviados (S=Sí, N=No)
 
 '
 ;
@@ -1258,11 +1648,12 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_planillas_detalle
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_planillas_detalle ADD CONSTRAINT vitalis_planillas_detalle_pk PRIMARY KEY (pld_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_id IS 'ID �nico del detalle de planilla'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_id IS 'ID único del detalle de planilla'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_salario_base IS 'Salario base
 '
@@ -1274,10 +1665,10 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_total_deducciones
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_total_neto IS 'Total neto a pagar
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_notificado IS 'Comprobante enviado (S=S�, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_notificado IS 'Comprobante enviado (S=Sí, N=No)
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_fecha_notificacion IS 'Fecha de env�o del comprobante'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_fecha_notificacion IS 'Fecha de envío del comprobante'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_detalle.pld_version IS 'Version registro'
 ;
@@ -1315,13 +1706,14 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_planillas_movimientos
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_planillas_movimientos ADD CONSTRAINT vitalis_planillas_movimientos_pk PRIMARY KEY (plm_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
 COMMENT ON TABLE VITALIS_SCHEMA.vitalis_planillas_movimientos IS 'Tabla para manejar los movimientos en planilla, entre ellos nombramientos, ascensos, deducciones e ingresos.'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_movimientos.plm_id IS 'ID �nico del movimiento de planilla'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_movimientos.plm_id IS 'ID único del movimiento de planilla'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_planillas_movimientos.plm_concepto IS 'Concepto del movimiento, del porque se hizo'
 ;
@@ -1368,16 +1760,17 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_resumen_financiero
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_resumen_financiero ADD CONSTRAINT vitalis_resumen_financiero_pk PRIMARY KEY (ref_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_id IS 'ID �nico del resumen financiero'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_id IS 'ID único del resumen financiero'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_mes IS 'Mes del resumen
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_anio IS 'A�o del resumen'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_anio IS 'Año del resumen'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_total_ingresos_turnos IS 'Total ingresos por turnos'
 ;
@@ -1386,7 +1779,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_total_ingresos_p
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_total_ingresos IS 'Total de ingresos
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_total_gastos_medicos IS 'Total gastos m�dicos'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_total_gastos_medicos IS 'Total gastos médicos'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_total_gastos_administrativos IS 'Total gastos administrativos'
 ;
@@ -1396,7 +1789,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_total_gastos IS 
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_utilidad IS 'Utilidad (ingresos - gastos)
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_fecha_generacion IS 'Fecha de generaci�n
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_resumen_financiero.ref_fecha_generacion IS 'Fecha de generación
 
 '
 ;
@@ -1427,28 +1820,29 @@ TABLESPACE VITALIS_DATA
 -- Add keys for table VITALIS_SCHEMA.vitalis_parametros
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_parametros ADD CONSTRAINT vitalis_parametros_pk PRIMARY KEY (par_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_id IS 'ID �nico del par�metro'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_id IS 'ID único del parámetro'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_codigo IS 'C�digo del par�metro'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_codigo IS 'Código del parámetro'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_nombre IS 'Nombre del par�metro'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_nombre IS 'Nombre del parámetro'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_valor IS 'Valor del par�metro
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_valor IS 'Valor del parámetro
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_descripcion IS 'Descripci�n del par�metro'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_descripcion IS 'Descripción del parámetro'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_tipo_dato IS 'STRING, NUMBER, DATE, BOOLEAN
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_encriptado IS 'Valor encriptado (S=S�, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_encriptado IS 'Valor encriptado (S=Sí, N=No)
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_modulo IS 'M�dulo al que pertenece'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_modulo IS 'Módulo al que pertenece'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_estado IS 'Estado (A=Activo, I=Inactivo)
 
@@ -1484,11 +1878,12 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_bitacoras
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_bitacoras ADD CONSTRAINT vitalis_bitacoras_pk PRIMARY KEY (bit_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_id IS ' ID �nico de la bit�cora'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_id IS ' ID único de la bitácora'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_tabla IS 'Nombre de la tabla
 '
@@ -1497,10 +1892,10 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_operacion IS 'INSERT, UPD
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_pk_tabla IS 'Clave primaria del registro'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_usuario_id IS 'Usuario que realiz� la operaci�n
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_usuario_id IS 'Usuario que realizó la operación
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_fecha IS 'Fecha y hora de la operaci�n'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_fecha IS 'Fecha y hora de la operación'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_valores_anteriores IS 'Valores anteriores (para UPDATE y DELETE)
 '
@@ -1536,6 +1931,7 @@ TABLESPACE VITALIS_DATA
 -- Add keys for table VITALIS_SCHEMA.vitalis_padron_nacional
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_padron_nacional ADD CONSTRAINT vitalis_padron_nacional_pk PRIMARY KEY (pad_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_padron_nacional ADD CONSTRAINT pad_cedula UNIQUE (pad_cedula)
@@ -1543,9 +1939,9 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_padron_nacional ADD CONSTRAINT pad_cedula UNI
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_id IS 'ID �nico del padr�n'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_id IS 'ID único del padrón'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_cedula IS 'C�dula de identidad'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_cedula IS 'Cédula de identidad'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_nombre IS 'Nombre'
 ;
@@ -1562,7 +1958,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_junta_recep IS 'Jun
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_provincia IS 'Provincia de la persona'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_canton IS 'Cant�n de la persona'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_canton IS 'Cantón de la persona'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_padron_nacional.pad_distrito IS 'Distrito de la persona'
 ;
@@ -1585,7 +1981,6 @@ CREATE TABLE VITALIS_SCHEMA.vitalis_puestos_turnos(
   put_hora_fin Timestamp(4) NOT NULL,
   put_especialidad Varchar2(30 ) NOT NULL,
   put_salario Number NOT NULL,
-  put_pue_id Number NOT NULL,
   put_csa_id Number NOT NULL,
   put_per_id Number NOT NULL,
   CONSTRAINT vitalis_puestos_turnos_ck01 CHECK ( put_dia_semana in ('1', '2', '3', '4', '5', '6', '7'))
@@ -1606,18 +2001,19 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_puestos_turnos
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_puestos_turnos ADD CONSTRAINT vitalis_puestos_turnos_pk PRIMARY KEY (put_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_id IS ' ID �nico de la relaci�n puesto-turno'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_id IS ' ID único de la relación puesto-turno'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_dia_semana IS 'D�a de la semana (1=Lunes, 7=Domingo)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_dia_semana IS 'Día de la semana (1=Lunes, 7=Domingo)
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_monto_cobrar IS 'Monto a cobrar al centro'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_monto_pagar IS 'Monto a pagar al m�dico'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_monto_pagar IS 'Monto a pagar al médico'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_tipo_pago IS 'HORAS, TURNO_COMPLETO'
 ;
@@ -1640,8 +2036,6 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_hora_fin IS 'Hora en
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_especialidad IS 'Especialidad de ese puesto'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_salario IS 'Salario de ese puesto'
-;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_puestos_turnos.put_pue_id IS 'Referencia a vitalis_puestos'
 ;
 
 -- Table VITALIS_SCHEMA.vitalis_perfiles_pantallas
@@ -1666,19 +2060,20 @@ TABLESPACE VITALIS_DATA
 -- Add keys for table VITALIS_SCHEMA.vitalis_perfiles_pantallas
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_perfiles_pantallas ADD CONSTRAINT vitalis_perfiles_pantallas_pk PRIMARY KEY (prp_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_id IS 'ID �nico de la relaci�n'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_id IS 'ID único de la relación'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_lectura IS 'Permiso de lectura (S=S�, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_lectura IS 'Permiso de lectura (S=Sí, N=No)
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_escritura IS 'Permiso de escritura (S=S�, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_escritura IS 'Permiso de escritura (S=Sí, N=No)
 '
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_eliminacion IS 'Permiso de eliminaci�n (S=S�, N=No)
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_eliminacion IS 'Permiso de eliminación (S=Sí, N=No)
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_perfiles_pantallas.prp_estado IS 'Estado (A=Activo, I=Inactivo)
@@ -1710,16 +2105,17 @@ TABLESPACE VITALIS_DATA
 -- Add keys for table VITALIS_SCHEMA.vitalis_personal_tipos_planillas
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_personal_tipos_planillas ADD CONSTRAINT vitalis_personal_tipos_plantillas_pk PRIMARY KEY (ptp_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personal_tipos_planillas.ptp_id IS 'ID �nico de la relaci�n
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personal_tipos_planillas.ptp_id IS 'ID único de la relación
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personal_tipos_planillas.ptp_salario_base IS 'Salario base (para administrativos)'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personal_tipos_planillas.ptp_fecha_asignacion IS 'Fecha de asignaci�n'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personal_tipos_planillas.ptp_fecha_asignacion IS 'Fecha de asignación'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_personal_tipos_planillas.ptp_estado IS 'Estado (A=Activo, I=Inactivo)'
 ;
@@ -1751,6 +2147,7 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_identificacion
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_identificacion ADD CONSTRAINT vitalis_identificacion_pk PRIMARY KEY (ide_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
@@ -1790,11 +2187,12 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_notificaciones
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_notificaciones ADD CONSTRAINT vitalis_notificaciones_pk PRIMARY KEY (not_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_notificaciones.not_tipo IS 'Tipo de notificaci�n
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_notificaciones.not_tipo IS 'Tipo de notificación
 '
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_notificaciones.not_destinatario IS 'Email destinatario
@@ -1838,6 +2236,7 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_contratos
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_contratos ADD CONSTRAINT vitalis_contratos_pk PRIMARY KEY (ctr_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
@@ -1848,7 +2247,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_contratos.ctr_fecha_inicio IS 'fecha de
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_contratos.ctr_fecha_fin IS 'fecha final del contrato'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_contratos.ctr_monto_base IS 'El monto que estipula la legislaci�n seg�n el puesto'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_contratos.ctr_monto_base IS 'El monto que estipula la legislación según el puesto'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_contratos.ctr_estado IS 'Estado A=activo I=Inactivo'
 ;
@@ -1878,6 +2277,7 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_incapacidades
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_incapacidades ADD CONSTRAINT vitalis_incapacidades_pk PRIMARY KEY (inc_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
@@ -1916,6 +2316,7 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_vacaciones
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_vacaciones ADD CONSTRAINT vitalis_vacaciones_pk PRIMARY KEY (vac_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
@@ -1955,6 +2356,7 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_feriados
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_feriados ADD CONSTRAINT vitalis_feriados_pk PRIMARY KEY (fer_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
@@ -1994,6 +2396,7 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_consultorios
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_consultorios ADD CONSTRAINT vitalis_consultorios_pk PRIMARY KEY (con_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
@@ -2031,6 +2434,7 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_facturas_detalle
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_facturas_detalle ADD CONSTRAINT vitalis_facturas_detalle_pk PRIMARY KEY (fad_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
@@ -2075,13 +2479,14 @@ TABLESPACE VITALIS_IDX
 -- Add keys for table VITALIS_SCHEMA.vitalis_facturas_centros
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_facturas_centros ADD CONSTRAINT vitalis_facturas_centros_pk PRIMARY KEY (fac_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_facturas_centros.fac_mes IS 'mes de la factura'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_facturas_centros.fac_anio IS 'a�o de la factura'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_facturas_centros.fac_anio IS 'año de la factura'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_facturas_centros.fac_numero IS 'numero de la factura'
 ;
@@ -2125,13 +2530,14 @@ TABLESPACE VITALIS_DATA
 -- Add keys for table VITALIS_SCHEMA.vitalis_autoregistros
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_autoregistros ADD CONSTRAINT vitalis_autoregistros_pk PRIMARY KEY (aur_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
 
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_id IS 'ID �nico del autoregistro'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_id IS 'ID único del autoregistro'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_cedula IS 'C�dula de identidad'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_cedula IS 'Cédula de identidad'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_nombre IS 'Primer nombre'
 ;
@@ -2152,7 +2558,7 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_estado IS 'P=Pendient
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_fecha_registro IS 'Fecha del registro'
 ;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_fecha_revision IS 'Fecha en que se realizo la revisi�n'
+COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_fecha_revision IS 'Fecha en que se realizo la revisión'
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_autoregistros.aur_usu_revisor IS 'Usuario que reviso el autoregistro para aprobarlo'
 ;
@@ -2177,6 +2583,7 @@ TABLESPACE VITALIS_DATA
 -- Add keys for table VITALIS_SCHEMA.vitalis_plantillas_notificacion
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_plantillas_notificacion ADD CONSTRAINT vitalis_plantillas_notificacion_pk PRIMARY KEY (pln_id)
+   USING INDEX TABLESPACE VITALIS_IDX
 ;
 
 -- Table and Columns comments section
@@ -2198,13 +2605,12 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_plantillas_notificacion.pln_fecha_creac
 ;
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_plantillas_notificacion.pln_version IS 'Version de la plantilla'
 ;
-
 -- Trigger for sequence vitalis_paises_seq01 for column pai_id in table vitalis_paises ---------
 CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_paises_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_paises FOR EACH ROW
 BEGIN
     if :new.pai_id is null or :new.pai_id <= 0 then
-        :new.pai_id := vitalis_paises_seq01.nextval;
+        :new.pai_id := VITALIS_SCHEMA.vitalis_paises_seq01.nextval;
     end if;
 END;
 /
@@ -2220,7 +2626,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_provincia_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_provincia FOR EACH ROW
 BEGIN
     if :new.pro_id is null or :new.pro_id <= 0 then
-        :new.pro_id := vitalis_provincias_seq01.nextval;
+        :new.pro_id := VITALIS_SCHEMA.vitalis_provincias_seq01.nextval;
     end if;
 END;
 /
@@ -2236,7 +2642,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_cantones_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_cantones FOR EACH ROW
 BEGIN
     if :new.can_id is null or :new.can_id <= 0 then
-        :new.can_id := vitalis_cantones_seq01.nextval;
+        :new.can_id := VITALIS_SCHEMA.vitalis_cantones_seq01.nextval;
     end if;
 END;
 /
@@ -2252,7 +2658,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_distritos_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_distritos FOR EACH ROW
 BEGIN
     if :new.dis_id is null or :new.dis_id <= 0 then
-        :new.dis_id := vitalis_distritos_seq01.nextval;
+        :new.dis_id := VITALIS_SCHEMA.vitalis_distritos_seq01.nextval;
     end if;
 END;
 /
@@ -2268,7 +2674,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_tipos_documentos_TGR01 BEFORE I
 ON VITALIS_SCHEMA.vitalis_tipos_documentos FOR EACH ROW
 BEGIN
     if :new.tdo_id is null or :new.tdo_id <= 0 then
-        :new.tdo_id := vitalis_tipos_documentos_seq01.nextval;
+        :new.tdo_id := VITALIS_SCHEMA.vitalis_tipos_documentos_seq01.nextval;
     end if;
 END;
 /
@@ -2284,7 +2690,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_bancos_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_bancos FOR EACH ROW
 BEGIN
     if :new.ban_id is null or :new.ban_id <= 0 then
-        :new.ban_id := vitalis_bancos_seq01.nextval;
+        :new.ban_id := VITALIS_SCHEMA.vitalis_bancos_seq01.nextval;
     end if;
 END;
 /
@@ -2300,7 +2706,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_tipos_cuenta_TGR01 BEFORE INSER
 ON VITALIS_SCHEMA.vitalis_tipos_cuenta FOR EACH ROW
 BEGIN
     if :new.tcu_id is null or :new.tcu_id <= 0 then
-        :new.tcu_id := vitalis_tipos_cuenta_seq01.nextval;
+        :new.tcu_id := VITALIS_SCHEMA.vitalis_tipos_cuenta_seq01.nextval;
     end if;
 END;
 /
@@ -2316,7 +2722,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_personas_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_personas FOR EACH ROW
 BEGIN
     if :new.per_id is null or :new.per_id <= 0 then
-        :new.per_id := vitalis_personas_seq01.nextval;
+        :new.per_id := VITALIS_SCHEMA.vitalis_personas_seq01.nextval;
     end if;
 END;
 /
@@ -2332,7 +2738,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_direcciones_personas_TGR01 BEFO
 ON VITALIS_SCHEMA.vitalis_direcciones_personas FOR EACH ROW
 BEGIN
     if :new.dpe_id is null or :new.dpe_id <= 0 then
-        :new.dpe_id := vitalis_direcciones_seq01.nextval;
+        :new.dpe_id := VITALIS_SCHEMA.vitalis_direcciones_seq01.nextval;
     end if;
 END;
 /
@@ -2348,7 +2754,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_telefonos_personas_TGR01 BEFORE
 ON VITALIS_SCHEMA.vitalis_telefonos_personas FOR EACH ROW
 BEGIN
     if :new.tpe_id is null or :new.tpe_id <= 0 then
-        :new.tpe_id := vitalis_telefonos_personas_seq01.nextval;
+        :new.tpe_id := VITALIS_SCHEMA.vitalis_telefonos_personas_seq01.nextval;
     end if;
 END;
 /
@@ -2364,7 +2770,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_cuentas_bancarias_TGR01 BEFORE 
 ON VITALIS_SCHEMA.vitalis_cuentas_bancarias FOR EACH ROW
 BEGIN
     if :new.cba_id is null or :new.cba_id <= 0 then
-        :new.cba_id := vitalis_cuentas_bancarias_seq01.nextval;
+        :new.cba_id := VITALIS_SCHEMA.vitalis_cuentas_bancarias_seq01.nextval;
     end if;
 END;
 /
@@ -2380,7 +2786,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_documentos_personas_TGR01 BEFOR
 ON VITALIS_SCHEMA.vitalis_documentos_personas FOR EACH ROW
 BEGIN
     if :new.dop_id is null or :new.dop_id <= 0 then
-        :new.dop_id := vitalis_documentos_personas_seq01.nextval;
+        :new.dop_id := VITALIS_SCHEMA.vitalis_documentos_personas_seq01.nextval;
     end if;
 END;
 /
@@ -2396,7 +2802,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_perfiles_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_perfiles FOR EACH ROW
 BEGIN
     if :new.prf_id is null or :new.prf_id <= 0 then
-        :new.prf_id := vitalis_perfiles_seq01.nextval;
+        :new.prf_id := VITALIS_SCHEMA.vitalis_perfiles_seq01.nextval;
     end if;
 END;
 /
@@ -2412,7 +2818,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_pantallas_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_pantallas FOR EACH ROW
 BEGIN
     if :new.pan_id is null or :new.pan_id <= 0 then
-        :new.pan_id := vitalis_pantallas_seq01.nextval;
+        :new.pan_id := VITALIS_SCHEMA.vitalis_pantallas_seq01.nextval;
     end if;
 END;
 /
@@ -2428,7 +2834,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_usuarios_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_usuarios FOR EACH ROW
 BEGIN
     if :new.usu_id is null or :new.usu_id <= 0 then
-        :new.usu_id := vitalis_usuarios_seq01.nextval;
+        :new.usu_id := VITALIS_SCHEMA.vitalis_usuarios_seq01.nextval;
     end if;
 END;
 /
@@ -2444,7 +2850,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_centros_salud_TGR01 BEFORE INSE
 ON VITALIS_SCHEMA.vitalis_centros_salud FOR EACH ROW
 BEGIN
     if :new.csa_id is null or :new.csa_id <= 0 then
-        :new.csa_id := vitalis_centros_salud_seq01.nextval;
+        :new.csa_id := VITALIS_SCHEMA.vitalis_centros_salud_seq01.nextval;
     end if;
 END;
 /
@@ -2460,7 +2866,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_tipos_procedimientos_TGR01 BEFO
 ON VITALIS_SCHEMA.vitalis_tipos_procedimientos FOR EACH ROW
 BEGIN
     if :new.tpr_id is null or :new.tpr_id <= 0 then
-        :new.tpr_id := vitalis_tipos_procedimientos_seq01.nextval;
+        :new.tpr_id := VITALIS_SCHEMA.vitalis_tipos_procedimientos_seq01.nextval;
     end if;
 END;
 /
@@ -2476,7 +2882,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_procedimientos_medicos_TGR01 BE
 ON VITALIS_SCHEMA.vitalis_procedimientos_medicos FOR EACH ROW
 BEGIN
     if :new.prm_id is null or :new.prm_id <= 0 then
-        :new.prm_id := vitalis_procedimientos_medicos_seq01.nextval;
+        :new.prm_id := VITALIS_SCHEMA.vitalis_procedimientos_medicos_seq01.nextval;
     end if;
 END;
 /
@@ -2492,7 +2898,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_escalas_base_TGR01 BEFORE INSER
 ON VITALIS_SCHEMA.vitalis_escalas_base FOR EACH ROW
 BEGIN
     if :new.esd_id is null or :new.esd_id <= 0 then
-        :new.esd_id := vitalis_escalas_base_detalle_seq01.nextval;
+        :new.esd_id := VITALIS_SCHEMA.vitalis_escalas_base_detalle_seq01.nextval;
     end if;
 END;
 /
@@ -2508,7 +2914,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_escalas_mensuales_TGR01 BEFORE 
 ON VITALIS_SCHEMA.vitalis_escalas_mensuales FOR EACH ROW
 BEGIN
     if :new.esm_id is null or :new.esm_id <= 0 then
-        :new.esm_id := vitalis_escalas_mensuales_seq01.nextval;
+        :new.esm_id := VITALIS_SCHEMA.vitalis_escalas_mensuales_seq01.nextval;
     end if;
 END;
 /
@@ -2524,7 +2930,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle_TGR01
 ON VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle FOR EACH ROW
 BEGIN
     if :new.emd_id is null or :new.emd_id <= 0 then
-        :new.emd_id := vitalis_escalas_mensuales_detalle_seq01.nextval;
+        :new.emd_id := VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle_seq01.nextval;
     end if;
 END;
 /
@@ -2540,7 +2946,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_tipos_planillas_TGR01 BEFORE IN
 ON VITALIS_SCHEMA.vitalis_tipos_planillas FOR EACH ROW
 BEGIN
     if :new.tpl_id is null or :new.tpl_id <= 0 then
-        :new.tpl_id := vitalis_tipos_planillas_seq01.nextval;
+        :new.tpl_id := VITALIS_SCHEMA.vitalis_tipos_planillas_seq01.nextval;
     end if;
 END;
 /
@@ -2556,7 +2962,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_tipos_movimientos_TGR01 BEFORE 
 ON VITALIS_SCHEMA.vitalis_tipos_movimientos FOR EACH ROW
 BEGIN
     if :new.tmo_id is null or :new.tmo_id <= 0 then
-        :new.tmo_id := vitalis_tipos_movimientos_seq01.nextval;
+        :new.tmo_id := VITALIS_SCHEMA.vitalis_tipos_movimientos_seq01.nextval;
     end if;
 END;
 /
@@ -2572,7 +2978,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_planillas_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_planillas FOR EACH ROW
 BEGIN
     if :new.pla_id is null or :new.pla_id <= 0 then
-        :new.pla_id := vitalis_planillas_seq01.nextval;
+        :new.pla_id := VITALIS_SCHEMA.vitalis_planillas_seq01.nextval;
     end if;
 END;
 /
@@ -2588,7 +2994,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_planillas_detalle_TGR01 BEFORE 
 ON VITALIS_SCHEMA.vitalis_planillas_detalle FOR EACH ROW
 BEGIN
     if :new.pld_id is null or :new.pld_id <= 0 then
-        :new.pld_id := vitalis_planillas_detalle_seq01.nextval;
+        :new.pld_id := VITALIS_SCHEMA.vitalis_planillas_detalle_seq01.nextval;
     end if;
 END;
 /
@@ -2604,7 +3010,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_planillas_movimientos_TGR01 BEF
 ON VITALIS_SCHEMA.vitalis_planillas_movimientos FOR EACH ROW
 BEGIN
     if :new.plm_id is null or :new.plm_id <= 0 then
-        :new.plm_id := vitalis_planillas_movimientos_seq01.nextval;
+        :new.plm_id := VITALIS_SCHEMA.vitalis_planillas_movimientos_seq01.nextval;
     end if;
 END;
 /
@@ -2620,7 +3026,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_resumen_financiero_TGR01 BEFORE
 ON VITALIS_SCHEMA.vitalis_resumen_financiero FOR EACH ROW
 BEGIN
     if :new.ref_id is null or :new.ref_id <= 0 then
-        :new.ref_id := vitalis_resumen_financiero_seq01.nextval;
+        :new.ref_id := VITALIS_SCHEMA.vitalis_resumen_financiero_seq01.nextval;
     end if;
 END;
 /
@@ -2636,7 +3042,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_parametros_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_parametros FOR EACH ROW
 BEGIN
     if :new.par_id is null or :new.par_id <= 0 then
-        :new.par_id := vitalis_parametros_seq01.nextval;
+        :new.par_id := VITALIS_SCHEMA.vitalis_parametros_seq01.nextval;
     end if;
 END;
 /
@@ -2652,7 +3058,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_bitacoras_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_bitacoras FOR EACH ROW
 BEGIN
     if :new.bit_id is null or :new.bit_id <= 0 then
-        :new.bit_id := vitalis_bitacoras_seq01.nextval;
+        :new.bit_id := VITALIS_SCHEMA.vitalis_bitacoras_seq01.nextval;
     end if;
 END;
 /
@@ -2668,7 +3074,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_padron_nacional_TGR01 BEFORE IN
 ON VITALIS_SCHEMA.vitalis_padron_nacional FOR EACH ROW
 BEGIN
     if :new.pad_id is null or :new.pad_id <= 0 then
-        :new.pad_id := vitalis_padron_nacional_seq01.nextval;
+        :new.pad_id := VITALIS_SCHEMA.vitalis_padron_nacional_seq01.nextval;
     end if;
 END;
 /
@@ -2684,7 +3090,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_puestos_turnos_TGR01 BEFORE INS
 ON VITALIS_SCHEMA.vitalis_puestos_turnos FOR EACH ROW
 BEGIN
     if :new.put_id is null or :new.put_id <= 0 then
-        :new.put_id := vitalis_puestos_turno_seq01.nextval;
+        :new.put_id := VITALIS_SCHEMA.vitalis_puestos_turno_seq01.nextval;
     end if;
 END;
 /
@@ -2700,7 +3106,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_perfiles_pantallas_TGR01 BEFORE
 ON VITALIS_SCHEMA.vitalis_perfiles_pantallas FOR EACH ROW
 BEGIN
     if :new.prp_id is null or :new.prp_id <= 0 then
-        :new.prp_id := vitalis_perfiles_pantallas_seq01.nextval;
+        :new.prp_id := VITALIS_SCHEMA.vitalis_perfiles_pantallas_seq01.nextval;
     end if;
 END;
 /
@@ -2716,7 +3122,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_personal_tipos_planillas_TGR01 
 ON VITALIS_SCHEMA.vitalis_personal_tipos_planillas FOR EACH ROW
 BEGIN
     if :new.ptp_id is null or :new.ptp_id <= 0 then
-        :new.ptp_id := vitalis_personal_tipos_planillas_seq01.nextval;
+        :new.ptp_id := VITALIS_SCHEMA.vitalis_personal_tipos_planillas_seq01.nextval;
     end if;
 END;
 /
@@ -2732,7 +3138,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_identificacion_TGR01 BEFORE INS
 ON VITALIS_SCHEMA.vitalis_identificacion FOR EACH ROW
 BEGIN
     if :new.ide_id is null or :new.ide_id <= 0 then
-        :new.ide_id := vitalis_identificacion_seq01.nextval;
+        :new.ide_id := VITALIS_SCHEMA.vitalis_identificacion_seq01.nextval;
     end if;
 END;
 /
@@ -2748,7 +3154,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_notificaciones_TGR01 BEFORE INS
 ON VITALIS_SCHEMA.vitalis_notificaciones FOR EACH ROW
 BEGIN
     if :new.not_id is null or :new.not_id <= 0 then
-        :new.not_id := vitalis_notificaciones_seq01.nextval;
+        :new.not_id := VITALIS_SCHEMA.vitalis_notificaciones_seq01.nextval;
     end if;
 END;
 /
@@ -2764,7 +3170,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_contratos_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_contratos FOR EACH ROW
 BEGIN
     if :new.ctr_id is null or :new.ctr_id <= 0 then
-        :new.ctr_id := vitalis_contratos_seq01.nextval;
+        :new.ctr_id := VITALIS_SCHEMA.vitalis_contratos_seq01.nextval;
     end if;
 END;
 /
@@ -2780,7 +3186,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_incapacidades_TGR01 BEFORE INSE
 ON VITALIS_SCHEMA.vitalis_incapacidades FOR EACH ROW
 BEGIN
     if :new.inc_id is null or :new.inc_id <= 0 then
-        :new.inc_id := vitalis_incapacidades_seq01.nextval;
+        :new.inc_id := VITALIS_SCHEMA.vitalis_incapacidades_seq01.nextval;
     end if;
 END;
 /
@@ -2796,7 +3202,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_vacaciones_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_vacaciones FOR EACH ROW
 BEGIN
     if :new.vac_id is null or :new.vac_id <= 0 then
-        :new.vac_id := vitalis_vacaciones_seq01.nextval;
+        :new.vac_id := VITALIS_SCHEMA.vitalis_vacaciones_seq01.nextval;
     end if;
 END;
 /
@@ -2812,7 +3218,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_feriados_TGR01 BEFORE INSERT
 ON VITALIS_SCHEMA.vitalis_feriados FOR EACH ROW
 BEGIN
     if :new.fer_id is null or :new.fer_id <= 0 then
-        :new.fer_id := vitalis_feriados_seq01.nextval;
+        :new.fer_id := VITALIS_SCHEMA.vitalis_feriados_seq01.nextval;
     end if;
 END;
 /
@@ -2828,7 +3234,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_consultorios_TGR01 BEFORE INSER
 ON VITALIS_SCHEMA.vitalis_consultorios FOR EACH ROW
 BEGIN
     if :new.con_id is null or :new.con_id <= 0 then
-        :new.con_id := vitalis_consultorios_seq01.nextval;
+        :new.con_id := VITALIS_SCHEMA.vitalis_consultorios_seq01.nextval;
     end if;
 END;
 /
@@ -2844,7 +3250,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_facturas_detalle_TGR01 BEFORE I
 ON VITALIS_SCHEMA.vitalis_facturas_detalle FOR EACH ROW
 BEGIN
     if :new.fad_id is null or :new.fad_id <= 0 then
-        :new.fad_id := vitalis_facturas_detalle_seq01.nextval;
+        :new.fad_id := VITALIS_SCHEMA.vitalis_facturas_detalle_seq01.nextval;
     end if;
 END;
 /
@@ -2860,7 +3266,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_facturas_centros_TGR01 BEFORE I
 ON VITALIS_SCHEMA.vitalis_facturas_centros FOR EACH ROW
 BEGIN
     if :new.fac_id is null or :new.fac_id <= 0 then
-        :new.fac_id := vitalis_facturas_seq01.nextval;
+        :new.fac_id := VITALIS_SCHEMA.vitalis_facturas_seq01.nextval;
     end if;
 END;
 /
@@ -2876,7 +3282,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_autoregistros_TGR01 BEFORE INSE
 ON VITALIS_SCHEMA.vitalis_autoregistros FOR EACH ROW
 BEGIN
     if :new.aur_id is null or :new.aur_id <= 0 then
-        :new.aur_id := vitalis_autoregistros_seq01.nextval;
+        :new.aur_id := VITALIS_SCHEMA.vitalis_autoregistros_seq01.nextval;
     end if;
 END;
 /
@@ -2892,7 +3298,7 @@ CREATE OR REPLACE TRIGGER VITALIS_SCHEMA.vitalis_plantillas_notificacion_TGR01 B
 ON VITALIS_SCHEMA.vitalis_plantillas_notificacion FOR EACH ROW
 BEGIN
     if :new.pln_id is null or :new.pln_id <= 0 then
-        :new.pln_id := vitalis_planillas_notificaciones_seq01.nextval;
+        :new.pln_id := VITALIS_SCHEMA.vitalis_planillas_notificaciones_seq01.nextval;
     end if;
 END;
 /
@@ -2946,21 +3352,6 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_usuarios ADD CONSTRAINT vitalis_personasusuar
 
 
 
-ALTER TABLE vitalis_puestos ADD CONSTRAINT vitalis_centrossaludpuestos_fk01 FOREIGN KEY (csa_id) REFERENCES VITALIS_SCHEMA.vitalis_centros_salud (csa_id)
-;
-
-
-
-ALTER TABLE vitalis_escalas_base ADD CONSTRAINT vitalis_centrossaludescalabase_fk01 FOREIGN KEY (csa_id) REFERENCES VITALIS_SCHEMA.vitalis_centros_salud (csa_id)
-;
-
-
-
-ALTER TABLE VITALIS_SCHEMA.vitalis_escalas_mensuales ADD CONSTRAINT vitalis_escalasbaseescalasmensuales_fk01 FOREIGN KEY (esm_esb_id) REFERENCES vitalis_escalas_base (esb_id)
-;
-
-
-
 ALTER TABLE VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle ADD CONSTRAINT vitalis_escalasmensualesescalasmensualesdetalle_fk01 FOREIGN KEY (esm_id) REFERENCES VITALIS_SCHEMA.vitalis_escalas_mensuales (esm_id)
 ;
 
@@ -2972,11 +3363,6 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_planillas ADD CONSTRAINT vitalis_tiposplanill
 
 
 ALTER TABLE VITALIS_SCHEMA.vitalis_planillas_detalle ADD CONSTRAINT vitalis_planillasplanillasdetalle_fk01 FOREIGN KEY (pld_pla_id) REFERENCES VITALIS_SCHEMA.vitalis_planillas (pla_id)
-;
-
-
-
-ALTER TABLE VITALIS_SCHEMA.vitalis_puestos_turnos ADD CONSTRAINT vitalis_puestospuestosturnos_fk01 FOREIGN KEY (put_pue_id) REFERENCES vitalis_puestos (pue_id)
 ;
 
 
@@ -3056,22 +3442,7 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_planillas_movimientos ADD CONSTRAINT vitalis_
 
 
 
-ALTER TABLE VITALIS_SCHEMA.vitalis_tipos_documentos ADD CONSTRAINT vitalis_estadostiposdocumentos_fk01 FOREIGN KEY (tdo_est_id) REFERENCES vitalis_estados (est_id)
-;
-
-
-
-ALTER TABLE VITALIS_SCHEMA.vitalis_perfiles ADD CONSTRAINT vitalis_estadosperfiles_fk01 FOREIGN KEY (prf_est_id) REFERENCES vitalis_estados (est_id)
-;
-
-
-
 ALTER TABLE VITALIS_SCHEMA.vitalis_procedimientos_medicos ADD CONSTRAINT vitalis_centrossaludprocedimientosmedicos_fk01 FOREIGN KEY (prm_csa_id) REFERENCES VITALIS_SCHEMA.vitalis_centros_salud (csa_id)
-;
-
-
-
-ALTER TABLE VITALIS_SCHEMA.vitalis_escalas_base ADD CONSTRAINT vitalis_escalasbaseescalasbasedetalle_fk01 FOREIGN KEY (esd_esb_id) REFERENCES vitalis_escalas_base (esb_id)
 ;
 
 
@@ -3141,16 +3512,6 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_vacaciones ADD CONSTRAINT vitalis_personasvac
 
 
 
-ALTER TABLE vitalis_autoregistros_documentos ADD CONSTRAINT vitalis_autoregistrosautorregistrosdocumentos_fk01 FOREIGN KEY (aur_id) REFERENCES VITALIS_SCHEMA.vitalis_autoregistros (aur_id)
-;
-
-
-
-ALTER TABLE vitalis_autoregistros_documentos ADD CONSTRAINT vitalis_tiposdocumentosautoregistrosdocumentos_fk01 FOREIGN KEY (tdo_id) REFERENCES VITALIS_SCHEMA.vitalis_tipos_documentos (tdo_id)
-;
-
-
-
 ALTER TABLE VITALIS_SCHEMA.vitalis_feriados ADD CONSTRAINT vitalis_centrossaludferiados_fk01 FOREIGN KEY (fer_csa_id) REFERENCES VITALIS_SCHEMA.vitalis_centros_salud (csa_id)
 ;
 
@@ -3188,13 +3549,5 @@ ALTER TABLE VITALIS_SCHEMA.vitalis_pantallas ADD CONSTRAINT vitales_pantallas_fk
 
 
 -- Grant permissions section -------------------------------------------------
-
-
-
-
-
-
-
-
 
 
