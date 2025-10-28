@@ -43,19 +43,11 @@ sqlplus sys/$ORACLE_SID-$ORACLE_STANDBY_SID-1 as sysdba <<EOF
     ALTER SYSTEM SWITCH LOGFILE;
     ALTER SYSTEM CHECKPOINT;
 
-    ALTER DATABASE DROP LOGFILE GROUP 1;
-    ALTER DATABASE DROP LOGFILE GROUP 2;
-    ALTER DATABASE DROP LOGFILE GROUP 3;
 
     ALTER SYSTEM SET LOG_FILE_SIZE = 50M SCOPE=BOTH;
 
     EXIT;
 EOF
-
-echo "Parametros creados. Eliminando redo logs fisicos"
-rm $ORACLE_BASE/oradata/$ORACLE_SID/redo01.log
-rm $ORACLE_BASE/oradata/$ORACLE_SID/redo02.log
-rm $ORACLE_BASE/oradata/$ORACLE_SID/redo03.log
 
 echo "Eliminados. Creando orapwd"
 orapwd file=$ORACLE_HOME/dbs/orapw$ORACLE_SID password=$ORACLE_SID-$ORACLE_STANDBY_SID-1 entries=10 force=y
