@@ -14,6 +14,8 @@ docker exec -it vitalis-standby /bin/bash
 ```bash
 cd /home/oracle/scripts
 ./switchover_to_primary.sh
+
+./fix_listener.sh
 ```
 
 **¡Eso es todo!** El script hace automáticamente todos los pasos necesarios.
