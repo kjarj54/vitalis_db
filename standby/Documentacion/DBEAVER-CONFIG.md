@@ -41,46 +41,12 @@
 - **Host**: localhost  
 - **Port**: 1522  ⚠️ **CAMBIÓ AL PUERTO DEL EX-STANDBY**
 - **Connection Type**: Service Name
-- **Service Name**: VITALISBPDB1
+- **Service Name**: VITALISPDB1
 - **Username**: sys as sysdba
 - **Password**: VITALIS-VITALISSB-1
 
 ---
 
-## 🔧 Configuración Manual en DBeaver
-
-### Paso 1: Crear Nueva Conexión Post-Switch Over
-
-1. **Abrir DBeaver**
-2. **Clic derecho** en el panel de conexiones → **Nueva Conexión**
-3. **Seleccionar**: Oracle
-4. **Llenar datos**:
-   ```
-   Host: localhost
-   Port: 1522
-   Database: VITALISSB
-   Username: sys as sysdba
-   Password: VITALIS-VITALISSB-1
-   ```
-5. **Test Connection** para verificar
-6. **Finish**
-
-### Paso 2: Crear Conexión para PDB
-
-1. **Nueva Conexión** → Oracle
-2. **En la pestaña "Main"**:
-   ```
-   Host: localhost  
-   Port: 1522
-   Connection Type: Service name
-   Service name: VITALISBPDB1
-   Username: sys as sysdba
-   Password: VITALIS-VITALISSB-1
-   ```
-3. **Test Connection**
-4. **Finish**
-
----
 
 ## 🧪 Queries de Verificación en DBeaver
 
@@ -117,7 +83,7 @@ ORDER BY name;
 ### Query 3: Crear Usuario de Prueba en PDB
 ```sql
 -- Cambiar a PDB
-ALTER SESSION SET CONTAINER=VITALISBPDB1;
+ALTER SESSION SET CONTAINER=VITALISPDB1;
 
 -- Crear usuario de aplicación
 CREATE USER app_vitalis IDENTIFIED BY VitalisApp2025;
@@ -159,38 +125,6 @@ FROM v$archive_dest
 WHERE dest_name IN ('LOG_ARCHIVE_DEST_1', 'LOG_ARCHIVE_DEST_2')
 ORDER BY dest_name;
 ```
-
----
-
-## 🔄 Configuración Automática para DBeaver
-
-### Script SQL para Configuración Rápida
-```sql
--- Ejecutar en la conexión CDB post-switch over
-
--- Crear usuario dedicado para DBeaver  
-CREATE USER dbeaver_admin IDENTIFIED BY DBeaver2025;
-GRANT DBA TO dbeaver_admin;
-GRANT CREATE SESSION TO dbeaver_admin;
-
--- En PDB también
-ALTER SESSION SET CONTAINER=VITALISBPDB1;
-CREATE USER dbeaver_pdb IDENTIFIED BY DBeaver2025;
-GRANT DBA TO dbeaver_pdb;
-GRANT CREATE SESSION TO dbeaver_pdb;
-
--- Volver a CDB
-ALTER SESSION SET CONTAINER=CDB$ROOT;
-```
-
-### Nueva Conexión con Usuario Dedicado:
-- **Host**: localhost
-- **Port**: 1522
-- **SID**: VITALISSB
-- **Username**: dbeaver_admin
-- **Password**: DBeaver2025
-
----
 
 ## ⚠️ Troubleshooting DBeaver
 

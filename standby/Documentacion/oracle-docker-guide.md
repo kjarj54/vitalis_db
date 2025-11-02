@@ -453,19 +453,6 @@ ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DISCONNECT FROM SESSION;
 ALTER DATABASE OPEN READ ONLY;
 ```
 
-### Comandos de Data Guard Broker
-
-#### Conectar al Data Guard Broker
-```bash
-dgmgrl sys/VITALIS-VITALISSB-1@VITALIS
-```
-
-#### Ver configuración del Data Guard
-```sql
-SHOW CONFIGURATION;
-SHOW DATABASE VITALIS;
-SHOW DATABASE VITALISSB;
-```
 
 ## Backup y Recovery
 
