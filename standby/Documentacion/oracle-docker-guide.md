@@ -15,6 +15,8 @@ Oracle Data Guard es una funcionalidad que proporciona alta disponibilidad, prot
 - **Archive Logs**: Archivos que contienen los cambios realizados en la base de datos
 - **Redo Logs**: Logs de transacciones en línea
 
+
+
 ## Arquitectura del Sistema
 
 ```
@@ -122,6 +124,32 @@ Oracle Data Guard es una funcionalidad que proporciona alta disponibilidad, prot
    ```
 
 2. **Ejecutar el script de inicialización del standby**
+
+   ## 🔧 CONFIGURACIÓN CRÍTICA DE VS CODE 🔧
+   
+   ### ⚠️ **ANTES DE EJECUTAR CUALQUIER SCRIPT .SH** ⚠️
+   
+   **🚨 TODOS los archivos .sh DEBEN configurarse con terminaciones de línea LF (Unix) 🚨**
+   
+   **📋 Pasos obligatorios en VS Code:**
+   1. **Abrir TODOS los archivos .sh del proyecto**
+   2. **Verificar en la barra inferior derecha que diga "LF"**
+   3. **Si dice "CRLF", hacer clic y cambiar a "LF"**
+   4. **Guardar cada archivo después del cambio**
+   
+   **📁 Archivos .sh que REQUIEREN esta configuración:**
+   - `scripts/main/initialize_vitalis.sh`
+   - `scripts/main/backup_vitalis.sh` 
+   - `scripts/main/daily_backup.sh`
+   - `scripts/main/purge_applied_logs.sh`
+   - `scripts/main/purge_complete_logs_in_standby.sh`
+   - `scripts/standby/initialize_vitalis.sh`
+   - `scripts/standby/delete_obsolete_vitalis.sh`
+   
+   **❌ Error común: CRLF causa "command not found" en Linux containers**
+   
+   ---
+
    ```bash
    cd /home/oracle/scripts
    chmod +x initialize_vitalis.sh
@@ -138,15 +166,28 @@ Oracle Data Guard es una funcionalidad que proporciona alta disponibilidad, prot
    docker exec -it vitalis-primary bash
    ```
 
-   **HACER PASO 5 DESPUES EN ESTE PASO**
+   ## ⚠️ ATENCIÓN: ACCIÓN CRÍTICA REQUERIDA ⚠️
+   
+   ### 🔴 **DETENER AQUÍ - LEER CUIDADOSAMENTE** 🔴
+   
+   **❗ ANTES de continuar con el paso 2, DEBE completar el PASO 5 (Configuración SSH) ❗**
+   
+   **🚨 NO EJECUTE el script de inicialización hasta completar el Paso 5 🚨**
+   
+   **➡️ Ir directamente al PASO 5: Configuración de SSH entre Contenedores**
+   
+   ---
 
-2. **Ejecutar el script de inicialización**
+2. **Ejecutar el script de inicialización** *(SOLO DESPUÉS DEL PASO 5)*
+
+   ### 🔧 RECORDATORIO: Configuración LF para archivos .sh 🔧
+   **⚠️ Verificar que TODOS los archivos .sh tengan terminaciones LF (no CRLF) ⚠️**
+   
    ```bash
    cd /home/oracle/scripts
    chmod +x initialize_vitalis.sh
    ./initialize_vitalis.sh
    ```
-   - Revisar que en VS code este confirgurado los archivos **.sh** con LF en vez de CRLF
 
    **Nota importante**: Durante la ejecución del script, se solicitará la contraseña SSH para conectarse al servidor standby. La contraseña por defecto es `oracle`.
 
@@ -181,7 +222,7 @@ Para que la replicación funcione correctamente, es necesario configurar la aute
 
 2. **Ejecutar script de prueba**
    ```sql
-   @/home/oracle/scripts/test/test-primary.sql
+   test-primary.sql
    ```
 
 3. **Verificaciones importantes**:
@@ -412,6 +453,7 @@ ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DISCONNECT FROM SESSION;
 ALTER DATABASE OPEN READ ONLY;
 ```
 
+
 ## Backup y Recovery
 
 ### Backup Automático
@@ -446,9 +488,8 @@ La implementación de Oracle Data Guard para el proyecto Vitalis cumple **COMPLE
 
 ### 🎯 Características Adicionales
 
-- **Alta Disponibilidad**: La base de datos standby puede activarse rápidamente en caso de fallo
-- **Protección de Datos**: Los datos se replican automáticamente con un delay mínimo
-- **Facilidad de Administración**: Los procesos automatizados reducen la intervención manual
+- **Protección de Datos**: Configuración de Data Guard para replicación de datos
+- **Facilidad de Administración**: Configuración simplificada con scripts automatizados
 - **Escalabilidad**: La arquitectura permite agregar más standby databases si es necesario
 - **Ejecución a Petición**: Todos los procesos pueden ejecutarse manualmente durante la revisión del profesor
 
@@ -457,10 +498,8 @@ La implementación de Oracle Data Guard para el proyecto Vitalis cumple **COMPLE
 - **PURGE_APPLIED_ARCHIVELOGS**: Limpieza cada 5 minutos en primary
 - **PURGE_APPLIED_ARCHIVELOGS_IN_STANDBY**: Limpieza diaria en standby (archivos > 3 días)
 - **REALIZE_BACKUP_DAILY**: Respaldo completo diario con transferencia automática al standby
-- **Sincronización continua**: Archive logs transferidos automáticamente con delay de 10 segundos
+- **Sincronización de Archive logs**: Archive logs transferidos automáticamente al standby
+- **Data Guard**: Configuración básica de Data Guard para replicación
 
 La solución está **lista para producción** y cumple todos los criterios de evaluación del proyecto.
 
-## Contacto y Soporte
-
-Para soporte técnico o dudas sobre la implementación, consultar la documentación oficial de Oracle Data Guard o contactar al administrador de la base de datos.
