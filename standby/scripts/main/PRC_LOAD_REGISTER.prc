@@ -1,80 +1,141 @@
-create or replace procedure PRC_LOAD_REGISTER(p_file_name VARCHAR2) is
-    l_file UTL_FILE.FILE_TYPE;
-    l_line VARCHAR2(32767);
-    l_pad_id NUMBER;
-    l_cedula VARCHAR2(12);
-    l_codigo_elec VARCHAR2(6);
-    l_fecha_caduc DATE;
-    l_junta VARCHAR2(5);
-    l_nombre VARCHAR2(30);
-    l_apellido1 VARCHAR2(30);
-    l_apellido2 VARCHAR2(30);
-    l_provincia VARCHAR2(15);
-    l_canton VARCHAR2(25);
-    l_distrito VARCHAR2(40);
-    
-    -- Variables para buscar en Distelec
-    CURSOR c_distelec(p_codigo VARCHAR2) IS
-        SELECT SUBSTR(TRIM(SUBSTR(linea, 7, 10)), 1, 15) as provincia,
-               SUBSTR(TRIM(SUBSTR(linea, 17, 20)), 1, 25) as canton,
-               SUBSTR(TRIM(SUBSTR(linea, 37, 34)), 1, 40) as distrito
-        FROM (SELECT l_line as linea FROM DUAL)
-        WHERE SUBSTR(linea, 1, 6) = p_codigo;
-        
+CREATE OR REPLACE PROCEDURE PRC_LOAD_REGISTER(
+    p_file_location IN VARCHAR2,
+    p_file_name IN VARCHAR2
+) IS
+    v_file UTL_FILE.FILE_TYPE;
+    v_line VARCHAR2(500);
+    v_cedula VARCHAR2(12);
+    v_codigo_elec VARCHAR2(6);
+    v_relleno VARCHAR2(1);
+    v_fecha_caduc VARCHAR2(8);
+    v_junta VARCHAR2(5);
+    v_nombre VARCHAR2(30);
+    v_apellido1 VARCHAR2(30);
+    v_apellido2 VARCHAR2(30);
+    v_provincia VARCHAR2(15);
+    v_canton VARCHAR2(25);
+    v_distrito VARCHAR2(40);
+    v_fecha_cadu DATE;
+    v_pad_id NUMBER;
+    v_count NUMBER := 0;
+    v_error_count NUMBER := 0;
+    v_pos NUMBER;
+    v_campo NUMBER;
 BEGIN
-    -- Abrir archivo del padrón
-    l_file := UTL_FILE.FOPEN('PADRON_DIR', p_file_name, 'R');
+    -- Abrir el archivo
+    v_file := UTL_FILE.FOPEN(p_file_location, p_file_name, 'R', 32767);
+    
+    DBMS_OUTPUT.PUT_LINE('Iniciando carga del Padrón Nacional...');
     
     LOOP
         BEGIN
-            -- Leer línea del archivo
-            UTL_FILE.GET_LINE(l_file, l_line);
+            -- Leer línea por línea
+            UTL_FILE.GET_LINE(v_file, v_line);
             
-            -- Extraer datos según posiciones fijas documentadas
-            l_cedula := TRIM(SUBSTR(l_line, 1, 9));
-            l_codigo_elec := TRIM(SUBSTR(l_line, 10, 6));
-            -- Saltar posición 16 (relleno)
+            -- Parsear la línea separada por comas
+            -- Formato: CEDULA,CODELEC,RELLENO,FECHACADUC,JUNTA,NOMBRE,APELLIDO1,APELLIDO2
+            v_pos := 1;
+            v_campo := 1;
             
-            -- Convertir fecha de formato YYYYMMDD a DATE
+            -- Campo 1: CEDULA
+            v_cedula := TRIM(REGEXP_SUBSTR(v_line, '[^,]+', 1, 1));
+            
+            -- Campo 2: CODELEC
+            v_codigo_elec := TRIM(REGEXP_SUBSTR(v_line, '[^,]+', 1, 2));
+            
+            -- Campo 3: RELLENO (ignorar)
+            v_relleno := TRIM(REGEXP_SUBSTR(v_line, '[^,]+', 1, 3));
+            
+            -- Campo 4: FECHACADUC
+            v_fecha_caduc := TRIM(REGEXP_SUBSTR(v_line, '[^,]+', 1, 4));
+            
+            -- Campo 5: JUNTA
+            v_junta := TRIM(REGEXP_SUBSTR(v_line, '[^,]+', 1, 5));
+            
+            -- Campo 6: NOMBRE
+            v_nombre := TRIM(REGEXP_SUBSTR(v_line, '[^,]+', 1, 6));
+            
+            -- Campo 7: APELLIDO1
+            v_apellido1 := TRIM(REGEXP_SUBSTR(v_line, '[^,]+', 1, 7));
+            
+            -- Campo 8: APELLIDO2
+            v_apellido2 := TRIM(REGEXP_SUBSTR(v_line, '[^,]+', 1, 8));
+            
+            -- Validar que la cédula no esté vacía
+            IF v_cedula IS NULL OR LENGTH(v_cedula) = 0 THEN
+                v_error_count := v_error_count + 1;
+                CONTINUE;
+            END IF;
+            
+            -- Convertir fecha de YYYYMMDD a DATE
             BEGIN
-                l_fecha_caduc := TO_DATE(TRIM(SUBSTR(l_line, 17, 8)), 'YYYYMMDD');
+                IF v_fecha_caduc IS NOT NULL AND LENGTH(v_fecha_caduc) = 8 THEN
+                    v_fecha_cadu := TO_DATE(v_fecha_caduc, 'YYYYMMDD');
+                ELSE
+                    v_fecha_cadu := TO_DATE('31/12/2099', 'DD/MM/YYYY');
+                END IF;
             EXCEPTION
                 WHEN OTHERS THEN
-                    l_fecha_caduc := NULL;
+                    v_fecha_cadu := TO_DATE('31/12/2099', 'DD/MM/YYYY');
             END;
             
-            l_junta := TRIM(SUBSTR(l_line, 25, 5));
-            l_nombre := TRIM(SUBSTR(l_line, 30, 30));
-            l_apellido1 := TRIM(SUBSTR(l_line, 60, 26));
-            l_apellido2 := TRIM(SUBSTR(l_line, 86, 26));
-            
-            -- Buscar información geográfica basada en código electoral
+            -- Obtener información de provincia, cantón y distrito desde Distelec
+            -- El archivo Distelec.txt está separado por comas: CODELE,PROVINCIA,CANTON,DISTRITO
             BEGIN
-                -- Buscar provincia, cantón y distrito usando el código electoral
-                -- Nota: Necesitarás cargar primero el archivo Distelec.txt en una tabla temporal
-                -- o usar una función para buscar esta información
-                SELECT SUBSTR(TRIM(SUBSTR(distelec_line, 7, 10)), 1, 15),
-                       SUBSTR(TRIM(SUBSTR(distelec_line, 17, 20)), 1, 25),
-                       SUBSTR(TRIM(SUBSTR(distelec_line, 37, 34)), 1, 40)
-                INTO l_provincia, l_canton, l_distrito
-                FROM (
-                    -- Aquí deberías tener una tabla temporal con los datos de Distelec.txt
-                    -- o implementar una función que lea el archivo Distelec.txt
-                    SELECT '101001,SAN JOSE,CENTRAL,HOSPITAL' as distelec_line FROM DUAL
-                    WHERE SUBSTR('101001,SAN JOSE,CENTRAL,HOSPITAL', 1, 6) = l_codigo_elec
-                );
-            EXCEPTION
-                WHEN NO_DATA_FOUND THEN
-                    l_provincia := 'NO ENCONTRADO';
-                    l_canton := 'NO ENCONTRADO';
-                    l_distrito := 'NO ENCONTRADO';
+                DECLARE
+                    v_distelec_file UTL_FILE.FILE_TYPE;
+                    v_distelec_line VARCHAR2(500);
+                    v_codigo_buscar VARCHAR2(6);
+                    v_found BOOLEAN := FALSE;
+                BEGIN
+                    v_distelec_file := UTL_FILE.FOPEN(p_file_location, 'Distelec.txt', 'R', 32767);
+                    
+                    LOOP
+                        BEGIN
+                            UTL_FILE.GET_LINE(v_distelec_file, v_distelec_line);
+                            
+                            -- Extraer el código electoral (primer campo)
+                            v_codigo_buscar := TRIM(REGEXP_SUBSTR(v_distelec_line, '[^,]+', 1, 1));
+                            
+                            IF v_codigo_buscar = v_codigo_elec THEN
+                                -- Extraer provincia, cantón y distrito
+                                v_provincia := TRIM(REGEXP_SUBSTR(v_distelec_line, '[^,]+', 1, 2));
+                                v_canton := TRIM(REGEXP_SUBSTR(v_distelec_line, '[^,]+', 1, 3));
+                                v_distrito := TRIM(REGEXP_SUBSTR(v_distelec_line, '[^,]+', 1, 4));
+                                v_found := TRUE;
+                                EXIT;
+                            END IF;
+                        EXCEPTION
+                            WHEN NO_DATA_FOUND THEN
+                                EXIT;
+                        END;
+                    END LOOP;
+                    
+                    UTL_FILE.FCLOSE(v_distelec_file);
+                    
+                    IF NOT v_found THEN
+                        v_provincia := 'DESCONOCIDO';
+                        v_canton := 'DESCONOCIDO';
+                        v_distrito := 'DESCONOCIDO';
+                    END IF;
+                EXCEPTION
+                    WHEN OTHERS THEN
+                        IF UTL_FILE.IS_OPEN(v_distelec_file) THEN
+                            UTL_FILE.FCLOSE(v_distelec_file);
+                        END IF;
+                        v_provincia := 'DESCONOCIDO';
+                        v_canton := 'DESCONOCIDO';
+                        v_distrito := 'DESCONOCIDO';
+                END;
             END;
             
-            -- Obtener siguiente ID de la secuencia
-            SELECT vitalis_padron_nacional_seq01.NEXTVAL INTO l_pad_id FROM DUAL;
+            -- Obtener el siguiente ID de la secuencia
+            SELECT VITALIS_SCHEMA.vitalis_padron_nacional_seq01.NEXTVAL 
+            INTO v_pad_id 
+            FROM DUAL;
             
-            -- Insertar registro en la tabla
-            INSERT INTO vitalis_padron_nacional (
+            -- Insertar el registro
+            INSERT INTO VITALIS_SCHEMA.vitalis_padron_nacional (
                 pad_id,
                 pad_cedula,
                 pad_nombre,
@@ -87,50 +148,57 @@ BEGIN
                 pad_canton,
                 pad_distrito
             ) VALUES (
-                l_pad_id,
-                l_cedula,
-                l_nombre,
-                l_apellido1,
-                l_apellido2,
-                l_codigo_elec,
-                l_fecha_caduc,
-                l_junta,
-                l_provincia,
-                l_canton,
-                l_distrito
+                v_pad_id,
+                v_cedula,
+                v_nombre,
+                v_apellido1,
+                v_apellido2,
+                v_codigo_elec,
+                v_fecha_cadu,
+                v_junta,
+                v_provincia,
+                v_canton,
+                v_distrito
             );
             
+            v_count := v_count + 1;
+            
             -- Commit cada 1000 registros para mejor performance
-            IF MOD(l_pad_id, 1000) = 0 THEN
+            IF MOD(v_count, 1000) = 0 THEN
                 COMMIT;
-                DBMS_OUTPUT.PUT_LINE('Procesados ' || l_pad_id || ' registros...');
+                DBMS_OUTPUT.PUT_LINE('Procesados ' || v_count || ' registros...');
             END IF;
             
         EXCEPTION
             WHEN NO_DATA_FOUND THEN
                 EXIT; -- Fin del archivo
+            WHEN DUP_VAL_ON_INDEX THEN
+                v_error_count := v_error_count + 1;
+                CONTINUE; -- Cédula duplicada, continuar
             WHEN OTHERS THEN
-                DBMS_OUTPUT.PUT_LINE('Error procesando línea: ' || l_line);
-                DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
-                -- Continuar con la siguiente línea
+                v_error_count := v_error_count + 1;
+                DBMS_OUTPUT.PUT_LINE('Error en línea: ' || SQLERRM);
+                CONTINUE;
         END;
     END LOOP;
     
-    -- Cerrar archivo
-    UTL_FILE.FCLOSE(l_file);
+    -- Cerrar el archivo
+    UTL_FILE.FCLOSE(v_file);
     
     -- Commit final
     COMMIT;
-    DBMS_OUTPUT.PUT_LINE('Carga del padrón nacional completada exitosamente.');
+    
+    DBMS_OUTPUT.PUT_LINE('Carga completada!');
+    DBMS_OUTPUT.PUT_LINE('Total de registros insertados: ' || v_count);
+    DBMS_OUTPUT.PUT_LINE('Total de errores: ' || v_error_count);
     
 EXCEPTION
     WHEN OTHERS THEN
-        -- Cerrar archivo si está abierto
-        IF UTL_FILE.IS_OPEN(l_file) THEN
-            UTL_FILE.FCLOSE(l_file);
+        IF UTL_FILE.IS_OPEN(v_file) THEN
+            UTL_FILE.FCLOSE(v_file);
         END IF;
-        DBMS_OUTPUT.PUT_LINE('Error en el procedimiento: ' || SQLERRM);
+        DBMS_OUTPUT.PUT_LINE('Error fatal: ' || SQLERRM);
+        ROLLBACK;
         RAISE;
-        
-end PRC_LOAD_REGISTER;
+END PRC_LOAD_REGISTER;
 /
