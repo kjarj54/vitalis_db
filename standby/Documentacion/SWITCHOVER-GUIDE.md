@@ -126,6 +126,13 @@ ALTER DATABASE OPEN;
 ALTER PLUGGABLE DATABASE VITALISPDB1 OPEN;
 ```
 
+### 5.3 Ejecutar el script de fix listener
+```bash
+cd /home/oracle/scripts
+./fix_listener.sh
+```
+
+
 **¿Qué hace este comando?**
 - Abre la PDB que contiene los datos del sistema Vitalis
 - Permite acceso a las tablas y datos del usuario
