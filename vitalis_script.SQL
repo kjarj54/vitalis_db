@@ -1551,7 +1551,7 @@ CREATE TABLE VITALIS_SCHEMA.vitalis_planillas(
   pla_id Number NOT NULL,
   pla_mes Number NOT NULL,
   pla_anio Number NOT NULL,
-  pla_nombre Varchar2(20 ) NOT NULL,
+  pla_nombre Varchar2(100 ) NOT NULL,
   pla_fecha_generacion Date NOT NULL,
   pla_fecha_aprobacion Date NOT NULL,
   pla_usu_aprobador Varchar2(20 ) NOT NULL,
