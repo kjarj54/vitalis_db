@@ -29,8 +29,9 @@ END;
 /
 
 
-TRUNCATE TABLE vitalis_padron_nacional;
+
 
 -- O si quieres eliminar y reiniciar la secuencia:
+TRUNCATE TABLE vitalis_padron_nacional;
 DELETE FROM vitalis_padron_nacional;
 COMMIT;

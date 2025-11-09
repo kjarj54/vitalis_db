@@ -30,7 +30,7 @@ BEGIN
       ('JOB_VERIFICAR_OBJETOS_INVALIDOS', SYSDATE, 'F', 'Objetos inválidos detectados', v_count);
     
     v_html := '<html><body style="font-family: Arial, sans-serif;">' ||
-              '<h2 style="color: #e67e22;">⚠️ Alerta: Objetos Inválidos</h2>' ||
+              '<h2 style="color: #e67e22;">Alerta: Objetos Inválidos</h2>' ||
               '<p>Se encontraron <strong style="color: #e67e22; font-size: 18px;">' || v_count || 
               '</strong> objeto(s) inválido(s) en VITALIS_SCHEMA:</p>' ||
               '<table style="border-collapse: collapse; width: 100%; margin: 20px 0;">' ||
@@ -43,7 +43,7 @@ BEGIN
               '</table>' ||
               '<hr style="border: 1px solid #ecf0f1;">' ||
               '<p><strong>Fecha:</strong> ' || TO_CHAR(SYSDATE, 'DD/MM/YYYY HH24:MI:SS') || '</p>' ||
-              '<p style="color: #e67e22;"><strong>⚡ Acción requerida:</strong> Recompilar los objetos inválidos.</p>' ||
+              '<p style="color: #e67e22;"><strong>Acción requerida:</strong> Recompilar los objetos inválidos.</p>' ||
               '<p style="color: #7f8c8d; font-size: 12px;">Sistema Vitalis - Monitoreo Automático</p>' ||
               '</body></html>';
     

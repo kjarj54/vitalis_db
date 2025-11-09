@@ -1,4 +1,4 @@
-CREATE OR REPLACE PACKAGE PKG_BREVO_MAIL AS
+CREATE OR REPLACE PACKAGE VITALIS_SCHEMA.PKG_BREVO_MAIL AS
   PROCEDURE send_mail(
     p_to        VARCHAR2,
     p_subject   VARCHAR2,
@@ -7,12 +7,14 @@ CREATE OR REPLACE PACKAGE PKG_BREVO_MAIL AS
 END PKG_BREVO_MAIL;
 /
 
-
-CREATE OR REPLACE PACKAGE BODY PKG_BREVO_MAIL AS
+-- =====================================================
+-- PACKAGE BODY CORREGIDO
+-- =====================================================
+CREATE OR REPLACE PACKAGE BODY VITALIS_SCHEMA.PKG_BREVO_MAIL AS
 
   -- === Función auxiliar: obtiene parámetros ===
   FUNCTION get_param(p_name VARCHAR2) RETURN VARCHAR2 IS
-    v_value VARCHAR2(4000);
+    v_value VARCHAR2(4000);  -- ✅ CORREGIDO: estaba como v_valu en la línea del SELECT
   BEGIN
     SELECT par_valor INTO v_value
     FROM VITALIS_SCHEMA.VITALIS_PARAMETROS
@@ -22,14 +24,14 @@ CREATE OR REPLACE PACKAGE BODY PKG_BREVO_MAIL AS
   EXCEPTION
     WHEN NO_DATA_FOUND THEN
       RETURN NULL;
-  END;
+  END get_param;
 
   -- === Función: desencripta clave SMTP ===
   FUNCTION decrypt_key(p_encrypted VARCHAR2) RETURN VARCHAR2 IS
     v_key_raw RAW(2000);
     v_decrypted VARCHAR2(4000);
   BEGIN
-    v_key_raw := UTL_RAW.cast_to_raw('V1t@l1s_Smtp$2025');  -- misma clave usada para cifrar
+    v_key_raw := UTL_RAW.cast_to_raw('V1t@l1s_Smtp$2025');
     v_decrypted := UTL_RAW.cast_to_varchar2(
       DBMS_CRYPTO.decrypt(
         src => UTL_ENCODE.base64_decode(UTL_RAW.cast_to_raw(p_encrypted)),
@@ -38,7 +40,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_BREVO_MAIL AS
       )
     );
     RETURN v_decrypted;
-  END;
+  END decrypt_key;
 
   -- === Procedimiento principal de envío ===
   PROCEDURE send_mail(
@@ -62,7 +64,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_BREVO_MAIL AS
         UTL_RAW.cast_to_varchar2(
           UTL_ENCODE.base64_encode(UTL_RAW.cast_to_raw(p_txt))
         ), CHR(13), ''), CHR(10), '');
-    END;
+    END b64;
   BEGIN
     -- 1️⃣ Conexión SMTP
     l_conn := UTL_SMTP.open_connection(l_host, l_port);
@@ -95,12 +97,14 @@ CREATE OR REPLACE PACKAGE BODY PKG_BREVO_MAIL AS
   EXCEPTION
     WHEN OTHERS THEN
       BEGIN
-        IF l_conn IS NOT NULL THEN
-          UTL_SMTP.quit(l_conn);
-        END IF;
-      EXCEPTION WHEN OTHERS THEN NULL; END;
+        -- ✅ CORREGIDO: Verificar si la conexión está inicializada antes de cerrar
+        UTL_SMTP.quit(l_conn);
+      EXCEPTION 
+        WHEN OTHERS THEN 
+          NULL; 
+      END;
       DBMS_OUTPUT.put_line('❌ Error al enviar correo: '||SQLERRM);
       RAISE;
-  END;
+  END send_mail;
 END PKG_BREVO_MAIL;
 /

@@ -46,7 +46,7 @@ BEGIN
       ('JOB_VERIFICAR_TABLESPACES', SYSDATE, 'F', 'Tablespaces con uso > 85% detectados', v_count);
     
     v_html := '<html><body style="font-family: Arial, sans-serif;">' ||
-              '<h2 style="color: #e74c3c;">⚠️ Alerta: Tablespaces con Alto Uso</h2>' ||
+              '<h2 style="color: #e74c3c;">Alerta: Tablespaces con Alto Uso</h2>' ||
               '<p>Se detectaron <strong style="color: #c0392b; font-size: 18px;">' || v_count || 
               '</strong> tablespace(s) con uso superior al 85%:</p>' ||
               '<table style="border-collapse: collapse; width: 100%; margin: 20px 0;">' ||
@@ -61,7 +61,7 @@ BEGIN
               '</table>' ||
               '<hr style="border: 1px solid #ecf0f1;">' ||
               '<p><strong>Fecha:</strong> ' || TO_CHAR(SYSDATE, 'DD/MM/YYYY HH24:MI:SS') || '</p>' ||
-              '<p style="color: #e74c3c;"><strong>⚡ Acción requerida:</strong> Extender los tablespaces o liberar espacio.</p>' ||
+              '<p style="color: #e74c3c;"><strong>Acción requerida:</strong> Extender los tablespaces o liberar espacio.</p>' ||
               '<p style="color: #7f8c8d; font-size: 12px;">Sistema Vitalis - Monitoreo Automático</p>' ||
               '</body></html>';
     

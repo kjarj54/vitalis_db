@@ -1804,7 +1804,7 @@ CREATE TABLE VITALIS_SCHEMA.vitalis_parametros(
   par_id Number NOT NULL,
   par_codigo Number NOT NULL,
   par_nombre Varchar2(30 ) NOT NULL,
-  par_valor Varchar2(30 ) NOT NULL,
+  par_valor Varchar2(200 ) NOT NULL,
   par_descripcion Varchar2(500 ) NOT NULL,
   par_tipo_dato Varchar2(30 ) NOT NULL,
   par_encriptado Char(1 ) NOT NULL,
