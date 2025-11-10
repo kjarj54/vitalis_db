@@ -1853,14 +1853,14 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_version IS 'Version del 
 
 -- Table VITALIS_SCHEMA.vitalis_bitacoras
 
-CREATE TABLE VITALIS_SCHEMA.vitalis_bitacoras(
+CREATE OR REPLACE TABLE VITALIS_SCHEMA.vitalis_bitacoras(
   bit_id Number NOT NULL,
   bit_tabla Varchar2(30 ) NOT NULL,
   bit_operacion Varchar2(30 ) NOT NULL,
   bit_pk_tabla Number NOT NULL,
   bit_usuario_id Number NOT NULL,
   bit_fecha Date NOT NULL,
-  bit_valores_anteriores Varchar2(30 ) NOT NULL,
+  bit_valores_anteriores Varchar2(4000 ) NOT NULL,
   bit_valores_nuevos Varchar2(30 ) NOT NULL,
   bit_ip_usuario Varchar2(12 ) NOT NULL,
   bit_version Number DEFAULT 1,

@@ -7,7 +7,7 @@ INSERT INTO VITALIS_SCHEMA.vitalis_perfiles (
   prf_version
 ) VALUES (
   VITALIS_SCHEMA.vitalis_perfiles_seq01.NEXTVAL,
-  'PRUEBA_PRE_EMAIL',
+  'ADMIN',
   'Perfil para pruebas de inactividad de usuarios',
   'A',
   1
@@ -45,7 +45,7 @@ BEGIN
     'carlos.activo', 'pass123',
     SYSDATE, TRUNC(SYSDATE) - 10,
     0, 'N', 'A',
-    VITALIS_SCHEMA.vitalis_personas_seq01.CURRVAL, v_prf_id
+    VITALIS_SCHEMA.vitalis_personas_seq01.CURRVAL, 1
   );
 
   -- USUARIO INACTIVO 95 días
@@ -70,7 +70,7 @@ BEGIN
     'juan.dormido', 'pass123',
     SYSDATE, TRUNC(SYSDATE) - 95,
     0, 'N', 'A',
-    VITALIS_SCHEMA.vitalis_personas_seq01.CURRVAL, v_prf_id
+    VITALIS_SCHEMA.vitalis_personas_seq01.CURRVAL, 1
   );
 
   -- USUARIO INACTIVO 120 días
@@ -95,7 +95,7 @@ BEGIN
     'maria.olvidada', 'pass123',
     SYSDATE, TRUNC(SYSDATE) - 120,
     0, 'N', 'A',
-    VITALIS_SCHEMA.vitalis_personas_seq01.CURRVAL, v_prf_id
+    VITALIS_SCHEMA.vitalis_personas_seq01.CURRVAL, 1
   );
 
   -- USUARIO INACTIVO 150 días
@@ -120,7 +120,7 @@ BEGIN
     'pedro.ausente', 'pass123',
     SYSDATE, TRUNC(SYSDATE) - 150,
     0, 'N', 'A',
-    VITALIS_SCHEMA.vitalis_personas_seq01.CURRVAL, v_prf_id
+    VITALIS_SCHEMA.vitalis_personas_seq01.CURRVAL, 1
   );
 END;
 /

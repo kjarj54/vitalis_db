@@ -1,4 +1,5 @@
 1. Desde sys ingresar los datos de start_email.sql y schema.sql
+2. Ejecutar el script inicial de la BD
 2. entrar en el schema y ejecutar los scripts de email_parameters.sql
 3. ejecutar el PKG_BREVO_MAIL.sql
 4. ejecutar pre-email.sql
