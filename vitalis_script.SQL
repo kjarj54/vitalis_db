@@ -1853,21 +1853,21 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_parametros.par_version IS 'Version del 
 
 -- Table VITALIS_SCHEMA.vitalis_bitacoras
 
-CREATE TABLE VITALIS_SCHEMA.vitalis_bitacoras(
-  bit_id Number NOT NULL,
-  bit_tabla Varchar2(30 ) NOT NULL,
-  bit_operacion Varchar2(30 ) NOT NULL,
-  bit_pk_tabla Number NOT NULL,
-  bit_usuario_id Number NOT NULL,
-  bit_fecha Date NOT NULL,
-  bit_valores_anteriores Varchar2(30 ) NOT NULL,
-  bit_valores_nuevos Varchar2(30 ) NOT NULL,
-  bit_ip_usuario Varchar2(12 ) NOT NULL,
-  bit_version Number DEFAULT 1,
-  bit_usu_id Number
+CREATE TABLE VITALIS_SCHEMA.vitalis_bitacoras (
+    bit_id                  Number NOT NULL,
+    bit_tabla               VARCHAR2(100 CHAR)       NOT NULL,
+    bit_operacion           VARCHAR2(10 CHAR)        NOT NULL,    -- 'INSERT', 'UPDATE', 'DELETE'
+    bit_pk_tabla            NUMBER                   NULL,
+    bit_usuario_id          NUMBER                   NULL,        -- referencia a vitalis_usuarios
+    bit_usu_id              NUMBER                   NULL,        -- redundante (usuario de sesión)
+    bit_fecha               DATE                     DEFAULT SYSDATE NOT NULL,
+    bit_valores_anteriores  CLOB                     NULL,        -- valores JSON antiguos
+    bit_valores_nuevos      CLOB                     NULL,        -- valores JSON nuevos
+    bit_ip_usuario          VARCHAR2(50 CHAR)        DEFAULT 'UNKNOWN' NULL
 )
 TABLESPACE VITALIS_DATA
 ;
+
 
 -- Create indexes for table VITALIS_SCHEMA.vitalis_bitacoras
 
@@ -1906,8 +1906,6 @@ COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_valores_nuevos IS 'Valore
 COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_ip_usuario IS 'IP del usuario
 
 '
-;
-COMMENT ON COLUMN VITALIS_SCHEMA.vitalis_bitacoras.bit_version IS 'Version del registro'
 ;
 
 -- Table VITALIS_SCHEMA.vitalis_padron_nacional
