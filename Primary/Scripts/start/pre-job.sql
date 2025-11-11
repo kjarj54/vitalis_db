@@ -7,29 +7,18 @@ INSERT INTO VITALIS_SCHEMA.vitalis_perfiles (
   prf_version
 ) VALUES (
   VITALIS_SCHEMA.vitalis_perfiles_seq01.NEXTVAL,
-  'ADMIN',
+  'PRUEBA_PRE_EMAIL',
   'Perfil para pruebas de inactividad de usuarios',
   'A',
   1
 );
-
--- guardar ID perfil creado
-DECLARE
-  v_prf_id NUMBER;
-BEGIN
-  SELECT prf_id INTO v_prf_id FROM (
-    SELECT prf_id FROM VITALIS_SCHEMA.vitalis_perfiles
-    WHERE prf_nombre='PRUEBA_PRE_EMAIL'
-    ORDER BY prf_id DESC
-  ) WHERE ROWNUM=1;
-
   -- USUARIO ACTIVO (10 días sin acceso)
   INSERT INTO VITALIS_SCHEMA.vitalis_personas (
     per_id, per_nombre, per_apellido1, per_apellido2,
     per_estado_civil, per_fecha_nacimiento, per_sexo,
     per_email, per_estado, per_tipo_personal
   ) VALUES (
-    VITALIS_SCHEMA.vitalis_personas_seq01.NEXTVAL,
+    999,
     'Carlos', 'Activo', 'Martinez',
     'Soltero', TO_DATE('1990-05-15', 'YYYY-MM-DD'), 'M',
     'carlos.activo@vitalis.com', 'A', 'ADMIN'
@@ -54,7 +43,7 @@ BEGIN
     per_estado_civil, per_fecha_nacimiento, per_sexo,
     per_email, per_estado, per_tipo_personal
   ) VALUES (
-    VITALIS_SCHEMA.vitalis_personas_seq01.NEXTVAL,
+    998,
     'Juan', 'Dormido', 'Lopez',
     'Casado', TO_DATE('1985-03-10', 'YYYY-MM-DD'), 'M',
     'juan.dormido@vitalis.com', 'A', 'EMPLEADO'
@@ -79,7 +68,7 @@ BEGIN
     per_estado_civil, per_fecha_nacimiento, per_sexo,
     per_email, per_estado, per_tipo_personal
   ) VALUES (
-    VITALIS_SCHEMA.vitalis_personas_seq01.NEXTVAL,
+    997,
     'Maria', 'Olvidada', 'Fernandez',
     'Divorciada', TO_DATE('1988-07-22', 'YYYY-MM-DD'), 'F',
     'maria.olvidada@vitalis.com', 'A', 'EMPLEADO'
@@ -94,31 +83,6 @@ BEGIN
     VITALIS_SCHEMA.vitalis_usuarios_seq01.NEXTVAL,
     'maria.olvidada', 'pass123',
     SYSDATE, TRUNC(SYSDATE) - 120,
-    0, 'N', 'A',
-    VITALIS_SCHEMA.vitalis_personas_seq01.CURRVAL, 1
-  );
-
-  -- USUARIO INACTIVO 150 días
-  INSERT INTO VITALIS_SCHEMA.vitalis_personas (
-    per_id, per_nombre, per_apellido1, per_apellido2,
-    per_estado_civil, per_fecha_nacimiento, per_sexo,
-    per_email, per_estado, per_tipo_personal
-  ) VALUES (
-    VITALIS_SCHEMA.vitalis_personas_seq01.NEXTVAL,
-    'Pedro', 'Ausente', 'Ramirez',
-    'Soltero', TO_DATE('1992-11-30', 'YYYY-MM-DD'), 'M',
-    'pedro.ausente@vitalis.com', 'A', 'EMPLEADO'
-  );
-
-  INSERT INTO VITALIS_SCHEMA.vitalis_usuarios (
-    usu_id, usu_login, usu_password,
-    usu_fecha_creacion, usu_fecha_ultimo_acceso,
-    usu_intentos_fallidos, usu_bloqueado, usu_estado,
-    usu_per_id, usu_prf_id
-  ) VALUES (
-    VITALIS_SCHEMA.vitalis_usuarios_seq01.NEXTVAL,
-    'pedro.ausente', 'pass123',
-    SYSDATE, TRUNC(SYSDATE) - 150,
     0, 'N', 'A',
     VITALIS_SCHEMA.vitalis_personas_seq01.CURRVAL, 1
   );

@@ -61,3 +61,14 @@ SELECT jol_job_nombre,
 FROM vitalis_jobs_logs
 WHERE jol_fecha_ejecucion >= TRUNC(SYSDATE)
 ORDER BY jol_fecha_ejecucion DESC;
+
+-- Ver estado de los jobs en el scheduler
+SELECT 
+    job_name,
+    enabled,
+    state,
+    repeat_interval,
+    last_start_date,
+    next_run_date
+FROM USER_SCHEDULER_JOBS
+ORDER BY job_name;

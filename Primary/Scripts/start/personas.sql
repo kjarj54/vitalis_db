@@ -79,3 +79,103 @@ INSERT INTO VITALIS_SCHEMA.vitalis_personas (
     TO_DATE('1987-12-02','YYYY-MM-DD'), 'M', 'Kjarj54@gmail.com', 'A',
     'ADMINISTRATIVO', 1
 );
+
+
+-- ============================================================================
+-- Crear un perfil base si no existe (por ejemplo "ADMIN" o "DEFAULT")
+-- ============================================================================
+INSERT INTO VITALIS_SCHEMA.vitalis_perfiles (
+    prf_id,
+    prf_nombre,
+    prf_descripcion,
+    prf_estado
+) VALUES (
+    1,
+    'ADMIN',
+    'Perfil administrador general del sistema',
+    'A'
+);
+
+COMMIT;
+
+
+-- ============================================================================
+--  CREACIÓN DE USUARIOS CON FECHAS DE ÚLTIMO ACCESO DIFERENTES
+-- ============================================================================
+
+-- Usuario con acceso hace 15 días
+INSERT INTO VITALIS_SCHEMA.vitalis_usuarios (
+    usu_id,
+    usu_login,
+    usu_password,
+    usu_fecha_creacion,
+    usu_fecha_ultimo_acceso,
+    usu_intentos_fallidos,
+    usu_bloqueado,
+    usu_estado,
+    usu_per_id,
+    usu_prf_id
+) VALUES (
+    101,
+    'cmora',                      -- login
+    '1234',                       -- password dummy
+    SYSDATE - 120,                -- creado hace 120 días
+    SYSDATE - 15,                 -- último acceso hace 15 días
+    0,
+    'N',                          -- no bloqueado
+    'A',                          -- activo
+    1,                            -- persona: Carlos Mora (MEDICO)
+    1                             -- perfil genérico
+);
+
+-- Usuario con acceso hace 95 días
+INSERT INTO VITALIS_SCHEMA.vitalis_usuarios (
+    usu_id,
+    usu_login,
+    usu_password,
+    usu_fecha_creacion,
+    usu_fecha_ultimo_acceso,
+    usu_intentos_fallidos,
+    usu_bloqueado,
+    usu_estado,
+    usu_per_id,
+    usu_prf_id
+) VALUES (
+    102,
+    'mrojas',
+    '1234',
+    SYSDATE - 150,
+    SYSDATE - 95,                 -- último acceso hace 95 días
+    1,
+    'N',
+    'A',
+    2,                            -- persona: María Rojas
+    1
+);
+
+-- Usuario con acceso hace 120 días
+INSERT INTO VITALIS_SCHEMA.vitalis_usuarios (
+    usu_id,
+    usu_login,
+    usu_password,
+    usu_fecha_creacion,
+    usu_fecha_ultimo_acceso,
+    usu_intentos_fallidos,
+    usu_bloqueado,
+    usu_estado,
+    usu_per_id,
+    usu_prf_id
+) VALUES (
+    103,
+    'jlopez',
+    '1234',
+    SYSDATE - 180,
+    SYSDATE - 120,                -- último acceso hace 120 días
+    0,
+    'N',
+    'A',
+    3,                            -- persona: Jorge López
+    1
+);
+
+COMMIT;

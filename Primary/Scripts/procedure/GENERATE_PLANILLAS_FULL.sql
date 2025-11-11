@@ -155,22 +155,37 @@ BEGIN
         );
 
         -- *** AQUI ENVIAMOS EL CORREO DESPUÉS DEL INSERT ***
-        DECLARE
-            v_pld_id NUMBER;
-        BEGIN
-            SELECT vitalis_planillas_detalle_seq01.CURRVAL INTO v_pld_id FROM dual;
-            IF persona_rec.per_email IS NOT NULL THEN
-               enviar_comprobante_brevo(
-                    p_pld_id          => v_pld_id,
-                    p_nombre_completo => persona_rec.per_nombre ||' '||persona_rec.per_apellido1||' '||persona_rec.per_apellido2,
-                    p_email           => persona_rec.per_email,
-                    p_periodo         => LPAD(p_mes,2,'0')||'/'||p_anio,
-                    p_ingresos        => v_ing_total_persona,
-                    p_deducciones     => v_ded_total_persona,
-                    p_neto            => v_neto_persona
-               );
-            END IF;
-        END;
+DECLARE
+    v_pld_id NUMBER;
+BEGIN
+    SELECT vitalis_planillas_detalle_seq01.CURRVAL INTO v_pld_id FROM dual;
+
+    IF persona_rec.per_email IS NOT NULL THEN
+        enviar_comprobante_brevo(
+            p_pld_id          => v_pld_id,
+            p_nombre_completo => persona_rec.per_nombre ||' '||persona_rec.per_apellido1||' '||persona_rec.per_apellido2,
+            p_email           => persona_rec.per_email,
+            p_periodo         => LPAD(p_mes,2,'0')||'/'||p_anio,
+            p_ingresos        => v_ing_total_persona,
+            p_deducciones     => v_ded_total_persona,
+            p_neto            => v_neto_persona
+        );
+
+        -- ✅ marcar detalle como notificado
+        UPDATE VITALIS_SCHEMA.vitalis_planillas_detalle
+        SET pld_notificado = 'S',
+            pld_fecha_notificacion = SYSDATE
+        WHERE pld_id = v_pld_id;
+
+        -- ✅ marcar planilla general como notificada (si todos los detalles ya fueron enviados)
+        UPDATE VITALIS_SCHEMA.vitalis_planillas
+        SET pla_notificada = 'S'
+        WHERE pla_id = v_pla_id;
+
+        COMMIT;
+    END IF;
+END;
+
 
         UPDATE VITALIS_SCHEMA.vitalis_escalas_mensuales_detalle
         SET    emd_procesado = 'S'

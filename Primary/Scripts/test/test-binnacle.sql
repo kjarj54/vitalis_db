@@ -39,7 +39,7 @@ INSERT INTO VITALIS_SCHEMA.vitalis_escalas_mensuales (
 ) VALUES (
     9999, 11, 2025, 'Escala Prueba Nov',
     SYSDATE, 'ACTIVO', 'N',
-    1, 1
+    3, 1
 );
 COMMIT;
 -- TEST 5: UPDATE en escalas mensuales
@@ -57,8 +57,13 @@ COMMIT;
 
 
 
+
+
+
+
+
 -- ========================================
--- PASO 5: RESUMEN DE TODAS LAS OPERACIONES
+-- RESUMEN DE TODAS LAS OPERACIONES
 -- ========================================
 
 -- Todas las operaciones de prueba en PLANILLAS
